@@ -1,0 +1,16 @@
+0000-0000 loop Bind Pose  
+0001-0024 loop Run         
+0025-0094 loop Walk        
+0094-0112 loop Attack Ground   
+0112-0130 loop Hit Land Left   
+0130-0147 loop Hit Land Right  
+0178-0164 loop Land Death      
+0165-0228 loop Idle            
+0229-0308 loop Idle01  
+0309-0323 loop Fly    
+0324-0363 loop Flying        
+0363-0393 loop Attack Air    
+0393-0423 loop Hit Right Air 
+0423-0453 loop Hit Left Air  
+0453-0483 loop Hit Front Air 
+0483-0503 Death Air

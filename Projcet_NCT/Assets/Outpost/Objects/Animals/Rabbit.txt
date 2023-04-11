@@ -1,0 +1,18 @@
+0001-0009 loop Run
+0010-0018 Run Turn Left 
+0020-0028 Run Turn Right
+0030-0043 loop Jump Short
+0044-0065 loop Jump Long
+0067-0079 loop Walk
+0081-0130 loop Idle
+0132-0199 loop Idle
+0201-0240 Loop Fight Idle
+0241-0299 loop Attack
+0300-0314 loop Hit Right
+0315-0329 loop Hit Left
+0330-0344 loop Hit Front
+0345-0359 loop Hit Back
+0360-0374 Fight With Death
+0376-0387 Run With Death
+0389-0521 loop Eating
+0521-0550 loop Sleeping

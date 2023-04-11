@@ -1,0 +1,11 @@
+0000-0013 loop Fly
+0015-0063 loop Sleep
+0064-0103 loop  Eating
+0104-0120 loop start Fly
+0121-0137 loop Attack
+0138-0167 loop Attack01
+0168-0177 loop Dodge Right
+0178-0187 loop Dodge Left
+0188-0214 loop Hit Right
+0215-0246 loop Hit Left
+0247-0247 loop Death
