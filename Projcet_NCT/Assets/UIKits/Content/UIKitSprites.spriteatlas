@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: UIKitSprites
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 1024
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 1
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 0
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 0b2e5e57fe993c44ba99b2c934ecb977, type: 3}
+    totalSpriteSurfaceArea: 859824
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 7bf7f2d0ecbeed64d8b37768b01c0ab1, type: 3}
+  - {fileID: 21300000, guid: 8fe46654f0c38644788be1524c0dd551, type: 3}
+  - {fileID: 21300000, guid: 6e616fe4dc8cfb84081afc02380f21e3, type: 3}
+  - {fileID: 21300000, guid: a1a762766af5d3942876d2c057968281, type: 3}
+  - {fileID: 21300000, guid: 8839c9c6e921841418d7b093b24d537c, type: 3}
+  - {fileID: 21300000, guid: cd7ff7a8b7a6c5e45b67c75f900d4840, type: 3}
+  - {fileID: 21300000, guid: 7238849908ac12440ab31ba1453f784a, type: 3}
+  - {fileID: 21300000, guid: a3a17c9afdab87940a6df5419bb5e004, type: 3}
+  - {fileID: 21300000, guid: 6bd8dcfa51002364bb9e8ee98a3c6ef5, type: 3}
+  - {fileID: 21300000, guid: c85a84dc8f85b7d4c82dd818429d3786, type: 3}
+  - {fileID: 21300000, guid: 04cf187dcc3f5ba45a7d0556e5c84bc0, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - ArrowRight
+  - PlaceholderSquare
+  - Backspace
+  - Line
+  - CircleEmpty
+  - Capslock
+  - PlaceholderRect
+  - Border
+  - Circle
+  - ArrowLeft
+  - CircleThick
+  m_Tag: UIKitSprites
+  m_IsVariant: 0
