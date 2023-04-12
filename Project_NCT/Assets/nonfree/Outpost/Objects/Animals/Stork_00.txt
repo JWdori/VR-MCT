@@ -1,0 +1,17 @@
+0001-0059 Idle
+0060-0094 Attack Land
+0095-0134 Fight Idle
+0135-0167 Start To Fly
+0168-0209 Landing  
+0211-0227 Soarning
+0289-0388 Soarning01
+0390-0418 Attack Air
+0419-0430 Hit Right
+0431-0442 Hit Left
+0443-0454 Hit Front
+0456-0467 Hit Right Land
+0468-0479 Hit Leftt Land
+0480-0504 Death Land
+0506-0524 Death Air
+0526-0573 Walk
+0575-0649 Eating
