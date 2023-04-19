@@ -65,7 +65,6 @@ public class BackManager : MonoBehaviour
         //다음 이미지 준비
         //Mathf.Repeat() 0~<한계값-1>을 반복으로 처리하는 함수
         imgNum = (int)Mathf.Repeat(++imgNum, imgCnt);
-        Debug.Log(imgNum);
 
         //배경2에 새로운 이미지 할당
         back2.GetComponent<Renderer>().material.mainTexture = Resources.Load("imgBack" + imgNum) as Texture2D;
