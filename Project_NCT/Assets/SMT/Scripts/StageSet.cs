@@ -20,7 +20,7 @@ public class StageSet : MonoBehaviour
 
         new string[]
         {
-            "  .*..*.  ",
+            "  .*...*.  ",
             "  >**..**.  ",
             "  ***.***   ",
             "  >**..**   ",
