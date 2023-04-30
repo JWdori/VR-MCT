@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    //게임 전체 시간, 스테이지 시간, 스테이지 번호, 맞춘 카드의 숫자
+    public Text totalTimeText, stageTimeText, stageText, hitText, stageNumText;
+
     //클릭한 카드 번호
     static public int cardNum;
 
@@ -32,8 +35,21 @@ public class GameManager : MonoBehaviour
     //스테이지 경과 시간
     float stageTime;
 
+    //열거형의 자료를 설정하는 정의문 나열의 자료는 0,1,2...의 값이 할당된다
+    public enum STATE
+    {
+        START, HIT, WAIT, IDLE, CLEAR
+    }
+
+    static public STATE state = STATE.START;
+
+    
     void Start()
     {
+
+        Screen.orientation = ScreenOrientation.LandscapeRight;
+        Screen.sleepTimeout = SleepTimeout.NeverSleep;
+
         //시간 초기화
         startTime = stageTime = Time.time;
         //스테이지 만들기
@@ -43,11 +59,134 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        int time1 = (int)(Time.time - startTime);
+        int time2 = (int)(Time.time - stageTime);
+
+        //게임 저체 시간, 스테이지 시간, 스테이지 번호, 맞춘 카드의 숫자를 화면에 출력
+        totalTimeText.text = "Total time : " + time1;
+        stageTimeText.text = "Stage Time : " + time2;
+        stageText.text = "Stage : " + stageNum;
+        hitText.text = "Hit : " + hitCnt;
+
+        switch (state)
+        {
+            //스테이지 만들기
+            case STATE.START:
+                StartCoroutine(MakeStage());
+                break;
+
+            //같은 그림인지 판정
+            case STATE.HIT:
+
+                CheckCard();
+                break;
+
+            //스테이지를 클리어하고 다음 스테이지를 만듬
+            case STATE.CLEAR:
+                StartCoroutine(StageClear());
+                break;
+        }
+
+        //게임중지
+        if (Input.GetKeyDown(KeyCode.Escape)) // ESC 버튼
+        {
+            Application.Quit();
+        }
+    }
+
+    void CheckCard()
+    {
+        state = STATE.WAIT;
+
+        //첫 번째 카드
+        if (lastNum == 0) //직전의 카드번호가 0일 때
+        {
+            //현재 카드 보존
+            lastNum = cardNum; // 클릭한 카드 번호를 할당
+            state = STATE.IDLE;
+            return;
+        }
+
+        //이미지 찾기
+        int img1 = (cardNum + 1) / 2;
+        int img2 = (lastNum + 1) / 2;
+
+        //다른 카드 이면 카드를 닫게 한다
+        if (img1 != img2)
+        {
+            StartCoroutine(CloseTwoCards());
+
+            lastNum = 0;
+            state = STATE.IDLE;
+            return;
+        }
+
+        //같은 카드면
+        hitCnt += 2; //클릭 횟수 +2
+
+        //카드가 모두 열리면 스테이지를 클리어 한다.
+        if (hitCnt == cardCnt)
+        {
+            state = STATE.CLEAR;
+            return;
+        }
+
+        //카드가 남아있으면 다른 카드를 조사한다.
+        lastNum = 0;
+        state = STATE.IDLE;
+    }
+
+    //카드 닫기
+    IEnumerator CloseTwoCards()
+    {
+        //태그로 카드 찾기
+        GameObject card1 = GameObject.FindWithTag("card" + lastNum);
+        GameObject card2 = GameObject.FindWithTag("card" + cardNum);
+
+        //카드 닫기
+        yield return new WaitForSeconds(0.2f);
+        card1.SendMessage("CloseCard", SendMessageOptions.DontRequireReceiver);
+        card2.SendMessage("CloseCard", SendMessageOptions.DontRequireReceiver);
+
+    }
+
+    //스테이지를 클리어
+    IEnumerator StageClear()
+    {
+        state = STATE.WAIT;
+
+        yield return new WaitForSeconds(2);
+
+        //스테이지 카드 제거
+        for (int i = 1; i<=cardCnt; i++)
+        {
+            GameObject card = GameObject.FindWithTag("card" + i);
+            Destroy(card);
+        }
+
+        //다음 스테이지 번호
+        ++stageNum;
+        if (stageNum > stageCnt)
+        {
+            Application.LoadLevel("GameStart");
+            //return;
+        }
+
+        //스테이지 초기화
+        stageTime = Time.time;
+        lastNum = 0;
+        hitCnt = 0;
+
+        state = STATE.START;
     }
 
     IEnumerator MakeStage()
     {
+        //현재 작업중으로 설정
+        state = STATE.WAIT;
+
+        StartCoroutine(ShowStageNum());
+
         //시작카드의 x좌표
         float sx = 0;
 
@@ -55,6 +194,9 @@ public class GameManager : MonoBehaviour
         float sz = 0;
 
         SetCardPos(out sx, out sz);
+
+        //카드섞기
+        ShuffleCard();
 
         //시작 카드의 번호
         int n = 1;
@@ -86,8 +228,10 @@ public class GameManager : MonoBehaviour
                         card.transform.position = new Vector3(x, 0, sz);
 
                         //태그 달기
-                        card.tag = "card" + n++;
-                        //card.tag = "card" + arCards[n++];
+                        //card.tag = "card" + n++;
+
+                        //섞인 카드
+                        card.tag = "card" + arCards[n++];
                         x++;
                         break;
 
@@ -117,6 +261,8 @@ public class GameManager : MonoBehaviour
             //한 줄 아래로 이동
             sz--;
         }
+        //입력 대기중으로 설정
+        state = STATE.IDLE;
     }
 
     //카드의 시작 위치 계산
@@ -185,5 +331,39 @@ public class GameManager : MonoBehaviour
         sz = (z - 1) / 2;
 
         // StartCoroutine(CardOpen(cardCnt));
+    }
+
+    void ShuffleCard()
+    {
+        for (int i = 1; i <= cardCnt; i++)
+        {
+            arCards[i] = i;
+        }
+        //return
+
+        //카드섞기 15회정도 반복
+        for (int i = 1; i <= 15; i++)
+        {
+            //임의의 난수를 두 개 만든다
+            int n1 = Random.Range(1, cardCnt + 1);
+            int n2 = Random.Range(1, cardCnt + 1);
+
+            //교환
+            int t = arCards[n1]; //배열의 값을 바꾼다
+            arCards[n1] = arCards[n2];
+            arCards[n2] = t;
+
+            //StartCoroutine(CardOpen(arCards[n1]));
+        }
+    }
+
+    //스테이지 시작시 스테이지 번호를 보여준다
+    IEnumerator ShowStageNum()
+    {
+        stageNumText.text = "STATE" + stageNum;
+
+        yield return new WaitForSeconds(2f);
+
+        stageNumText.text = "";
     }
 }

@@ -18,11 +18,32 @@ public class CardCtrl : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
+
+        Cardview();
+    }
+
+    //스테이지 첫 시작할 때 전체 그림을 보여준다
+    void Cardview()
+    {
+        int cardNum = int.Parse(transform.tag.Substring(4));
+
+        imgNum = (cardNum + 1) / 2;
+        anim.Play("aniOpen");
+
+        GameManager.cardNum = cardNum;
+
+        StartCoroutine(CardCloseStart());
+    }
+
+    IEnumerator CardCloseStart()
+    {
+        yield return new WaitForSeconds(2f);
+        anim.Play("aniClose");
     }
 
     void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1") && GameManager.state == GameManager.STATE.IDLE)
         {
             CheckCard();
         }
@@ -48,7 +69,9 @@ public class CardCtrl : MonoBehaviour
 
     void OpenCard()
     {
+        //열린 카드는 처리 없음
         if (isOpen) return;
+        //열린 카드 참거짓 판정
         isOpen = true;
 
         //카드 번호 Substring() 문자열의 일부분을 추출하는 함수, 카드 번호(tag)는 card0~card32 있으므로 문자 4번째부터(card~) 끝까지 추출한다.
@@ -59,8 +82,8 @@ public class CardCtrl : MonoBehaviour
         //카드 애니메이션 실행
         anim.Play("aniOpen");
 
-        //GameManager.cardNum = cardNum;
-        //GameManager.state = GameManager.STATE.HIT;
+        GameManager.cardNum = cardNum;
+        GameManager.state = GameManager.STATE.HIT;
     }
 
     void CloseCard()
