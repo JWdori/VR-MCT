@@ -1,3 +1,4 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,17 +6,15 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    //게임 전체 시간, 스테이지 시간, 스테이지 번호, 맞춘 카드의 숫자
-    public Text totalTimeText, stageTimeText, stageText, hitText, stageNumText;
 
-    //클릭한 카드 번호
-    static public int cardNum;
+    //클릭한 패드 번호
+    static public int padNum;
 
     //직전의 카드 번호
     int lastNum = 0;
 
     //스테이지의 전체 카드 수
-    int cardCnt;
+    int padCnt;
 
     //카드 클릭 횟수
     int hitCnt = 0;
@@ -23,11 +22,17 @@ public class GameManager : MonoBehaviour
     //스테이지 번호
     static public int stageNum = 1;
 
-    //스테이지 수
-    int stageCnt = 6;
+    //난이도 번호
+    static public int levelNum = 1;
 
-    //카드 배열 카드 섞기용
-    int[] arCards = new int[50];
+    //스테이지 수
+    int stageCnt = 20;
+
+    //패드 문제 배열
+    int[] arPads = new int[20];
+
+    //패드 배열
+    int[] setPads = new int[25];
 
     //게임 시작 시간
     float startTime;
@@ -35,14 +40,12 @@ public class GameManager : MonoBehaviour
     //스테이지 경과 시간
     float stageTime;
 
-    //열거형의 자료를 설정하는 정의문 나열의 자료는 0,1,2...의 값이 할당된다
     public enum STATE
     {
         START, HIT, WAIT, IDLE, CLEAR
-    }
+    };
 
     static public STATE state = STATE.START;
-
     
     void Start()
     {
@@ -52,123 +55,63 @@ public class GameManager : MonoBehaviour
 
         //시간 초기화
         startTime = stageTime = Time.time;
+        
         //스테이지 만들기
         StartCoroutine(MakeStage());
+        //StartCoroutine(ShuffleTouch());
+        ShuffleTouch();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        int time1 = (int)(Time.time - startTime);
-        int time2 = (int)(Time.time - stageTime);
-
-        //게임 저체 시간, 스테이지 시간, 스테이지 번호, 맞춘 카드의 숫자를 화면에 출력
-        totalTimeText.text = "Total time : " + time1;
-        stageTimeText.text = "Stage Time : " + time2;
-        stageText.text = "Stage : " + stageNum;
-        hitText.text = "Hit : " + hitCnt;
-
         switch (state)
         {
             //스테이지 만들기
             case STATE.START:
-                StartCoroutine(MakeStage());
+                StartCoroutine(MakeStage());               
                 break;
 
-            //같은 그림인지 판정
             case STATE.HIT:
-
-                CheckCard();
+                CheckPad();
                 break;
 
-            //스테이지를 클리어하고 다음 스테이지를 만듬
             case STATE.CLEAR:
                 StartCoroutine(StageClear());
+                ShowTouch();
                 break;
         }
-
-        //게임중지
-        if (Input.GetKeyDown(KeyCode.Escape)) // ESC 버튼
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             Application.Quit();
         }
+        
     }
 
-    void CheckCard()
+    void CheckPad()
     {
         state = STATE.WAIT;
 
-        //첫 번째 카드
-        if (lastNum == 0) //직전의 카드번호가 0일 때
+        for (int i = 1; i <= stageNum; i++)
         {
-            //현재 카드 보존
-            lastNum = cardNum; // 클릭한 카드 번호를 할당
-            state = STATE.IDLE;
-            return;
+            
         }
 
-        //이미지 찾기
-        int img1 = (cardNum + 1) / 2;
-        int img2 = (lastNum + 1) / 2;
-
-        //다른 카드 이면 카드를 닫게 한다
-        if (img1 != img2)
-        {
-            StartCoroutine(CloseTwoCards());
-
-            lastNum = 0;
-            state = STATE.IDLE;
-            return;
-        }
-
-        //같은 카드면
-        hitCnt += 2; //클릭 횟수 +2
-
-        //카드가 모두 열리면 스테이지를 클리어 한다.
-        if (hitCnt == cardCnt)
-        {
-            state = STATE.CLEAR;
-            return;
-        }
-
-        //카드가 남아있으면 다른 카드를 조사한다.
-        lastNum = 0;
         state = STATE.IDLE;
     }
 
-    //카드 닫기
-    IEnumerator CloseTwoCards()
-    {
-        //태그로 카드 찾기
-        GameObject card1 = GameObject.FindWithTag("card" + lastNum);
-        GameObject card2 = GameObject.FindWithTag("card" + cardNum);
-
-        //카드 닫기
-        yield return new WaitForSeconds(0.2f);
-        card1.SendMessage("CloseCard", SendMessageOptions.DontRequireReceiver);
-        card2.SendMessage("CloseCard", SendMessageOptions.DontRequireReceiver);
-
-    }
-
-    //스테이지를 클리어
     IEnumerator StageClear()
     {
         state = STATE.WAIT;
 
         yield return new WaitForSeconds(2);
 
-        //스테이지 카드 제거
-        for (int i = 1; i<=cardCnt; i++)
-        {
-            GameObject card = GameObject.FindWithTag("card" + i);
-            Destroy(card);
-        }
-
         //다음 스테이지 번호
         ++stageNum;
-        if (stageNum > stageCnt)
+        if(stageNum > stageCnt)
         {
-            Application.LoadLevel("GameStart");
+            //Application.LoadLevel("GameStart");
             //return;
         }
 
@@ -182,10 +125,6 @@ public class GameManager : MonoBehaviour
 
     IEnumerator MakeStage()
     {
-        //현재 작업중으로 설정
-        state = STATE.WAIT;
-
-        StartCoroutine(ShowStageNum());
 
         //시작카드의 x좌표
         float sx = 0;
@@ -193,16 +132,16 @@ public class GameManager : MonoBehaviour
         //시작카드의 z좌표
         float sz = 0;
 
-        SetCardPos(out sx, out sz);
+        //패드배열 순서
+        int p = 0;
 
-        //카드섞기
-        ShuffleCard();
+        SetPadPos(out sx, out sz);
 
-        //시작 카드의 번호
+        //시작 패드의 번호
         int n = 1;
 
         //카드배열 읽기 배열의 1행을 읽고 변수 t에 할당한다
-        string[] str = StageSet.stage[stageNum - 1];
+        string[] str = PadSet.stage[levelNum - 1];
 
         //배열의 행의 수만큼 반복
         foreach (string t in str)
@@ -222,16 +161,12 @@ public class GameManager : MonoBehaviour
                     //맵의 내용이 *이면 그 위치에 카드 만들어서 배치
                     case '*':
                         //카드 만들기
-                        GameObject card = Instantiate(Resources.Load("Prefab/Card")) as GameObject;
+                        GameObject pad = Instantiate(Resources.Load("Prefab/Pad")) as GameObject;
 
                         //카드 좌표설정
-                        card.transform.position = new Vector3(x, 0, sz);
+                        pad.transform.position = new Vector3(x, 0, sz);
 
-                        //태그 달기
-                        //card.tag = "card" + n++;
-
-                        //섞인 카드
-                        card.tag = "card" + arCards[n++];
+                        pad.tag = "pad" + n++;
                         x++;
                         break;
 
@@ -261,12 +196,12 @@ public class GameManager : MonoBehaviour
             //한 줄 아래로 이동
             sz--;
         }
-        //입력 대기중으로 설정
+        StartCoroutine(ShowTouch());
         state = STATE.IDLE;
     }
 
     //카드의 시작 위치 계산
-    void SetCardPos(out float sx, out float sz)
+    void SetPadPos(out float sx, out float sz)
     {
         //가로 카드 수 반 칸 공백 포함
         float x = 0;
@@ -278,10 +213,10 @@ public class GameManager : MonoBehaviour
         float maxX = 0;
 
         //스테이지 전체 카드 수
-        cardCnt = 0;
+        padCnt = 0;
 
         //카드 배열 조사 맵 배열을 읽음
-        string[] str = StageSet.stage[stageNum - 1];
+        string[] str = PadSet.stage[levelNum - 1];
 
         //행의 수만큼 반복
         for (int i = 0; i<str.Length; i++)
@@ -306,7 +241,7 @@ public class GameManager : MonoBehaviour
                         if (t[j] == '*')
                         {
                             //전체 카드 수
-                            cardCnt++;
+                            padCnt++;
                         }
                         break;
                     case '>':
@@ -332,38 +267,30 @@ public class GameManager : MonoBehaviour
 
         // StartCoroutine(CardOpen(cardCnt));
     }
-
-    void ShuffleCard()
+    IEnumerator ShowTouch()
     {
-        for (int i = 1; i <= cardCnt; i++)
+        state = STATE.WAIT;
+        for (int i = 1; i <= stageNum; i++)
         {
-            arCards[i] = i;
+            Debug.Log(i);
+            GameObject pad = GameObject.FindWithTag("pad" + arPads[i-1]);
+            pad.SendMessage("TouchPad", SendMessageOptions.DontRequireReceiver);
+            yield return new WaitForSeconds(1f);
         }
-        //return
-
-        //카드섞기 15회정도 반복
-        for (int i = 1; i <= 15; i++)
-        {
-            //임의의 난수를 두 개 만든다
-            int n1 = Random.Range(1, cardCnt + 1);
-            int n2 = Random.Range(1, cardCnt + 1);
-
-            //교환
-            int t = arCards[n1]; //배열의 값을 바꾼다
-            arCards[n1] = arCards[n2];
-            arCards[n2] = t;
-
-            //StartCoroutine(CardOpen(arCards[n1]));
-        }
+        
+        state = STATE.IDLE;
+        //return;
     }
 
-    //스테이지 시작시 스테이지 번호를 보여준다
-    IEnumerator ShowStageNum()
+    void ShuffleTouch()
     {
-        stageNumText.text = "STATE" + stageNum;
-
-        yield return new WaitForSeconds(2f);
-
-        stageNumText.text = "";
+        for (int i = 0; i < stageCnt; i++)
+        {
+            int r = Random.Range(1, padCnt + 1);
+            Debug.Log("r"+r);
+            arPads[i] = r;
+        }
+        //yield return new WaitForSeconds(0.2f);
     }
+
 }
