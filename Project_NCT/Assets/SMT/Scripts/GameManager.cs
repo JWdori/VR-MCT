@@ -21,8 +21,8 @@ public class GameManager : MonoBehaviour
     //클릭한 패드 번호
     static public int padNum;
 
-    //스테이지의 전체 카드 수
-    int padCnt = 9;
+    //스테이지의 전체 패드 수
+    static public int padCnt;
 
     //카드 클릭 횟수
     int hitCnt = 0;
@@ -194,9 +194,6 @@ public class GameManager : MonoBehaviour
 
         //시작카드의 z좌표
         float sz = 0;
-
-        //패드배열 순서
-        int p = 0;
 
         SetPadPos(out sx, out sz);
 
