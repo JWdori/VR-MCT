@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class PadCtrl : MonoBehaviour
 {
-    // 터치 여부
-    bool isTouch = false;
 
     Animator anim;
 
@@ -18,7 +16,7 @@ public class PadCtrl : MonoBehaviour
     void Update()
     {
         //왼쪽 마우스 버튼 클릭
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetMouseButtonDown(0) && GameManager.state == GameManager.STATE.IDLE)
         {
             CheckPad();
         }
@@ -37,25 +35,40 @@ public class PadCtrl : MonoBehaviour
             if (tag.Substring(0,3)=="pad")
             {
                 //Debug.Log(tag);
-                hit.transform.SendMessage("TouchPad", SendMessageOptions.DontRequireReceiver);
                 int padNum = int.Parse(tag.Substring(3));
-                GameManager.padNum = padNum;
+                GameManager.padNum = padNum;   
+                if (GameManager.arPads[GameManager.step] == padNum)
+                {
+                    hit.transform.SendMessage("TouchPad", SendMessageOptions.DontRequireReceiver);
+                }
+                else
+                {
+                    hit.transform.SendMessage("WrongPad", SendMessageOptions.DontRequireReceiver);
+                }
             }
         }
     }
 
+    void ShowPad()
+    {
+        anim.Play("aniTouch", -1, 0.5f);
+    }
+
     void TouchPad()
     {
-        isTouch = true;
+        if (GameManager.isTouch) return;
+        GameManager.isTouch = true;
 
         anim.Play("aniTouch",-1,0.5f);
-        //GameManager.padNum = padNum;
-        //GameManager.state = GameManager.STATE.HIT;
-    }
-    void BasePad()
-    {
-        isTouch = false;
 
+        GameManager.state = GameManager.STATE.HIT;
+    }
+    void WrongPad()
+    {
+        if (GameManager.isTouch) return;
+        GameManager.isTouch = true;
         anim.Play("aniPad", -1, 0.5f);
+
+        GameManager.state = GameManager.STATE.WRONG;
     }
 }
