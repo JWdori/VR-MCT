@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// Level Easy 모드
-// 3X3 Pad
-public class Easy : MonoBehaviour
+// Level Hard 모드
+// 5X5 Pad
+public class Hard : MonoBehaviour
 {
     public AudioSource audioSource;
 
@@ -13,19 +13,20 @@ public class Easy : MonoBehaviour
     {
         audioSource = GetComponent<AudioSource>();
     }
-    public void EasyScene()
-    {
-        //levelNum이 1이면 easy
-        GameManager.levelNum = 1;
 
-        //easy는 pad가 총 9개, 3X3
-        GameManager.padCnt = 9;
+    public void HardScene()
+    {
+        //levelNum이 3이면 Hard
+        GameManager.levelNum = 3;
+
+        //Hard는 총 25개 pad, 5X5
+        GameManager.padCnt = 25;
 
         //효과음 실행
         StartCoroutine(PlayAudio());
     }
 
-    //Easy 버튼 눌렀을 때 효과음
+    //Hard 버튼 눌렀을 때 효과음
     IEnumerator PlayAudio()
     {
 
