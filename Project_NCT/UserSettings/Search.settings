@@ -7,9 +7,9 @@ onBoardingDoNotAskAgain = true
 showPackageIndexes = false
 showStatusBar = false
 scopes = {
-	"last_search.DA949528" = "OVRPlugin"
+	"last_search.DA949528" = "Converter"
 	"OpenInspectorPreview.DA949528" = "0"
-	"currentGroup.DA949528" = "menu"
+	"currentGroup.DA949528" = "all"
 }
 providers = {
 	adb = {
@@ -56,6 +56,9 @@ providers = {
 objectSelectors = {
 }
 recentSearches = [
+	"co"
+	"R"
+	"r"
 	"OVRPlugin"
 ]
 searchItemFavorites = [
