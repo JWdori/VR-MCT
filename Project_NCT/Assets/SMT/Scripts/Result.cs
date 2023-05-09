@@ -76,8 +76,15 @@ public class Result : MonoBehaviour
     IEnumerator ShowMissNum()
     {
         yield return new WaitForSeconds(2.5f);
-
-        missNumText.text = "Miss               -------------------       " + GameManager.totalMiss;
+        if (GameManager.over)
+        {
+            missNumText.text = "                        Time Over                        ";
+        }
+        else
+        {
+            missNumText.text = "Miss               -------------------       " + GameManager.totalMiss;
+        }
+        
 
         yield return new WaitForSeconds(1f);
     }

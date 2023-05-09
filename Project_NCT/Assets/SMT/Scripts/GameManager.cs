@@ -54,6 +54,11 @@ public class GameManager : MonoBehaviour
     //전체 miss 횟수
     static public int totalMiss;
 
+    //스테이지 시간
+    static public int time2;
+
+    static public bool over = false;
+
     //게임 상태를 나타내는 STATE
     public enum STATE
     {
@@ -83,7 +88,7 @@ public class GameManager : MonoBehaviour
         //전체 게임 시간 계산
         totalTime = (int)(Time.time - startTime);
         //스테이지 게임 시간 계산
-        int time2 = (int)(Time.time - stageTime);
+        time2 = (int)(Time.time - stageTime);
 
         //게임 전체 시간 출력
         totalTimeText.text = "Total time : " + totalTime;
@@ -93,6 +98,12 @@ public class GameManager : MonoBehaviour
         missText.text = "Miss : " + missNum;
         //맞춘 횟수 출력
         hitText.text = "Hit : " + hitCnt;
+
+        if (time2 == 10)
+        {
+            over = true;
+            state = STATE.FINISH;
+        }
 
         //state에 따라 알맞은 환경 실행
         switch (state)
