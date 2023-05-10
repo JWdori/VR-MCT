@@ -17,10 +17,18 @@ namespace Bhaptics.SDK2
     public class BhapticsEvent
     {
         
-        public const string TEST = "test";
+        public const string FINISH = "finish";
         
-        public const string RIGHT_GLOVE = "right_glove";
+        public const string CORRECT_RIGHT = "correct_right";
         
-        public const string LEFT_GLOVE = "left_glove";
+        public const string WRONG_RIGHT = "wrong_right";
+        
+        public const string TOUCH_LEFT = "touch_left";
+        
+        public const string WRONG_LEFT = "wrong_left";
+        
+        public const string CORRECT_LEFT = "correct_left";
+        
+        public const string TOUCH_RIGHT = "touch_right";
     }
 }

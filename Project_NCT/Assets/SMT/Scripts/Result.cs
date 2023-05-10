@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Bhaptics.SDK2;
 
 public class Result : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class Result : MonoBehaviour
     void Start()
     {
         StartCoroutine(ShowLevel());
+        BhapticsLibrary.Play(BhapticsEvent.FINISH);
     }
 
     // 게임 결과를 순서대로 보여줌

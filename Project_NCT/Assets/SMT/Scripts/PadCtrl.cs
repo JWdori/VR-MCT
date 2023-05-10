@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Bhaptics.SDK2;
 
 public class PadCtrl : MonoBehaviour
 {
@@ -23,12 +24,18 @@ public class PadCtrl : MonoBehaviour
         //왼쪽 마우스 버튼 클릭 및 state가 IDLE일 때 및 isTouch가 true일 때
         if (Input.GetMouseButtonDown(0) && GameManager.state == GameManager.STATE.IDLE && GameManager.isTouch)
         {
-            CheckPad();
+            CheckPadL();
         }
+        //오른쪽 마우스 버튼 클릭 및 state가 IDLE일 때 및 isTouch가 true일 때
+        if (Input.GetMouseButtonDown(1) && GameManager.state == GameManager.STATE.IDLE && GameManager.isTouch)
+        {
+            CheckPadR();
+        }
+
     }
 
     //패드 체크
-    void CheckPad()
+    void CheckPadL()
     {
         //사용자가 클릭하는 곳 추적
         RaycastHit hit;
@@ -52,6 +59,7 @@ public class PadCtrl : MonoBehaviour
                     //맞췄을 때 효과음 실행
                     audioSource.clip = clip[0];
                     audioSource.Play();
+                    BhapticsLibrary.Play(BhapticsEvent.CORRECT_LEFT);
                     //맞췄을 때 aniTouch animation 실행
                     hit.transform.SendMessage("TouchPad", SendMessageOptions.DontRequireReceiver);
                 }
@@ -61,6 +69,50 @@ public class PadCtrl : MonoBehaviour
                     //틀렸을 때 효과음 실행
                     audioSource.clip = clip[1];
                     audioSource.Play();
+                    BhapticsLibrary.Play(BhapticsEvent.WRONG_LEFT);
+                    //틀렸을 때 aniPad animation 실행
+                    hit.transform.SendMessage("WrongPad", SendMessageOptions.DontRequireReceiver);
+                }
+            }
+        }
+    }
+
+    //패드 체크
+    void CheckPadR()
+    {
+        //사용자가 클릭하는 곳 추적
+        RaycastHit hit;
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        //터치한 패드 식별
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+        {
+            string tag = hit.transform.tag;
+            //사용자가 누른 오브젝트의 tag가 pad로 시작하면 실행
+            //즉, Pad를 눌렀을 때 실행
+            if (tag.Substring(0, 3) == "pad")
+            {
+                //누른 pad의 해당하는 tag번호를 padNum으로 설정
+                int padNum = int.Parse(tag.Substring(3));
+                //위에서 설정한 padNum을 GameManager에 있는 padNum에도 설정
+                GameManager.padNum = padNum;
+                //맞춘 경우
+                if (GameManager.arPads[GameManager.step] == padNum)
+                {
+                    //맞췄을 때 효과음 실행
+                    audioSource.clip = clip[0];
+                    audioSource.Play();
+                    BhapticsLibrary.Play(BhapticsEvent.CORRECT_RIGHT);
+                    //맞췄을 때 aniTouch animation 실행
+                    hit.transform.SendMessage("TouchPad", SendMessageOptions.DontRequireReceiver);
+                }
+                //틀린 경우
+                else
+                {
+                    //틀렸을 때 효과음 실행
+                    audioSource.clip = clip[1];
+                    audioSource.Play();
+                    BhapticsLibrary.Play(BhapticsEvent.WRONG_RIGHT);
                     //틀렸을 때 aniPad animation 실행
                     hit.transform.SendMessage("WrongPad", SendMessageOptions.DontRequireReceiver);
                 }

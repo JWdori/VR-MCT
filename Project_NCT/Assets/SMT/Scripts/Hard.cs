@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Bhaptics.SDK2;
+
 
 // Level Hard ¸ðµå
 // 5X5 Pad
@@ -31,6 +33,8 @@ public class Hard : MonoBehaviour
     {
 
         audioSource.Play();
+        BhapticsLibrary.Play(BhapticsEvent.TOUCH_LEFT);
+        BhapticsLibrary.Play(BhapticsEvent.TOUCH_RIGHT);
 
         yield return new WaitForSeconds(1f);
 
