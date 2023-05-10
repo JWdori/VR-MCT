@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
-public class GameManager : MonoBehaviour
+public class GameManager_VR : MonoBehaviour
 {
     //게임 전체 시간, 스테이지 시간, 틀린 횟수, 맞춘 횟수, 스테이지 번호, (시작, 성공, 실패)를 나타내는 텍스트
-    public Text totalTimeText, stageTimeText, missText, hitText, stageNumText, pushText;
+    //public TextMeshProUGUI totalTimeText, stageTimeText, missText, hitText, stageNumText, pushText;
 
     //터치 여부
     static public bool isTouch = true;
@@ -89,7 +90,7 @@ public class GameManager : MonoBehaviour
         totalTime = (int)(Time.time - startTime);
         //스테이지 게임 시간 계산
         time2 = (int)(Time.time - stageTime);
-
+        /*
         //게임 전체 시간 출력
         totalTimeText.text = "Total time : " + totalTime;
         //스테이지 게임 시간 출력
@@ -98,6 +99,7 @@ public class GameManager : MonoBehaviour
         missText.text = "Miss : " + missNum;
         //맞춘 횟수 출력
         hitText.text = "Hit : " + hitCnt;
+        */
 
         if (time2 == 60)
         {
@@ -112,7 +114,7 @@ public class GameManager : MonoBehaviour
             //MakeStage() 실행
             case STATE.START:
                 StartCoroutine(MakeStage());
-                Debug.Log("Start");               
+                Debug.Log("Start");
                 break;
 
             //state가 MAKE이면 문제 제시
@@ -129,7 +131,7 @@ public class GameManager : MonoBehaviour
                 Debug.Log("Wrong");
                 StartCoroutine(WrongPad());
                 break;
-            
+
             //state가 HIT이면 맞은 경우
             //CheckPad() 실행
             //state를 HIT로 바꾸는 부분은 PadCtrl.cs에 있음
@@ -158,7 +160,7 @@ public class GameManager : MonoBehaviour
         {
             SceneManager.LoadScene("LevelSelect");
         }
-        
+
     }
 
     //틀렸을 경우 실행되는 환경
@@ -181,7 +183,7 @@ public class GameManager : MonoBehaviour
             {
                 //두 번 틀리면 터치 안 되고, Fail 출력
                 isTouch = false;
-                StartCoroutine(ShowFail());
+                //StartCoroutine(ShowFail());
                 yield return new WaitForSeconds(2f);
                 //state가 FINISH로 바뀜
                 state = STATE.FINISH;
@@ -205,9 +207,9 @@ public class GameManager : MonoBehaviour
         {
             //맞춘 횟수 증가
             ++hitCnt;
-            
+
             //해당 스테이지에서 눌러야 되는 Pad를 모두 눌렀을 경우
-            if (step+1 == stageNum)
+            if (step + 1 == stageNum)
             {
                 //터치 안 되게 바꾸고, state는 CLEAR로 변환
                 isTouch = false;
@@ -232,12 +234,12 @@ public class GameManager : MonoBehaviour
         state = STATE.WAIT;
         yield return new WaitForSeconds(0.5f);
         //Clear 문구 보여줌
-        StartCoroutine(ShowClear());
+        //StartCoroutine(ShowClear());
         yield return new WaitForSeconds(2f);
 
         //다음 스테이지 번호
         ++stageNum;
-        
+
         //최대 스테이지가 되었을 경우
         if (stageNum > stageCnt)
         {
@@ -248,7 +250,7 @@ public class GameManager : MonoBehaviour
 
         //스테이지 시간 초기화
         stageTime = Time.time;
-        
+
         //맞춘 횟수 초기화
         hitCnt = 0;
         //맞춰야 되는 Pad갯수 초기화
@@ -257,14 +259,14 @@ public class GameManager : MonoBehaviour
         missNum = 0;
         //다음 문제 제시
         state = STATE.MAKE;
-        
+
     }
 
     //처음 게임에 들어왔을 때 Level에 맞춰 Pad 셋팅
     IEnumerator MakeStage()
     {
         state = STATE.WAIT;
-        
+
         yield return new WaitForSeconds(1f);
 
         //시작카드의 x좌표
@@ -279,7 +281,7 @@ public class GameManager : MonoBehaviour
         int n = 1;
 
         //PadSet.cs에서 Pad배열 읽기 배열의 1행을 읽고 변수 t에 할당한다
-        string[] str = PadSet.stage[levelNum - 1];
+        string[] str = PadSet_VR.stage[levelNum - 1];
 
         //배열의 행의 수만큼 반복
         foreach (string t in str)
@@ -300,7 +302,7 @@ public class GameManager : MonoBehaviour
                     case '*':
                         //Pad 만들기
                         //Prefap으로 만들어진 Pad를 GameObject로 설정
-                        GameObject pad = Instantiate(Resources.Load("Prefab/Pad")) as GameObject;
+                        GameObject pad = Instantiate(Resources.Load("Prefab/Pad_VR")) as GameObject;
 
                         //Pad 좌표설정
                         pad.transform.position = new Vector3(x, 0, sz);
@@ -357,10 +359,10 @@ public class GameManager : MonoBehaviour
         float maxX = 0;
 
         //Pad 배열 조사 맵 배열을 읽음
-        string[] str = PadSet.stage[levelNum - 1];
+        string[] str = PadSet_VR.stage[levelNum - 1];
 
         //행의 수만큼 반복
-        for (int i = 0; i<str.Length; i++)
+        for (int i = 0; i < str.Length; i++)
         {
             //1행 읽기
             string t = str[i].Trim();
@@ -369,10 +371,10 @@ public class GameManager : MonoBehaviour
             x = 0;
 
             //각 행의 글자 수만큼 반복
-            for (int j = 0; j<t.Length; j++)
+            for (int j = 0; j < t.Length; j++)
             {
                 //문자열(string)은 단일 문자(char)의 배열로 취급할 수 있음
-                switch(t[j])
+                switch (t[j])
                 {
                     case '.':
                     case '*':
@@ -391,7 +393,7 @@ public class GameManager : MonoBehaviour
             }
 
             //각 행의 최대 Pad 수 계산
-            if (x>maxX)
+            if (x > maxX)
             {
                 maxX = x;
             }
@@ -413,9 +415,9 @@ public class GameManager : MonoBehaviour
         //ShuffleTouch();
 
         //문제 제시 전에 Stage 알려줌
-        StartCoroutine(ShowStageNum());
+        //StartCoroutine(ShowStageNum());
         yield return new WaitForSeconds(2f);
-        
+
         //눌러야 되는 Pad 순서 처음으로 초기화
         step = 0;
 
@@ -424,7 +426,7 @@ public class GameManager : MonoBehaviour
         {
             //pad를 tag를 이용하여 설정
             //ShuffleTouch에서 arPads 배열 랜덤 생성
-            GameObject pad = GameObject.FindWithTag("pad" + arPads[i-1]);
+            GameObject pad = GameObject.FindWithTag("pad" + arPads[i - 1]);
             //문제 보여줄 때 효과음 실행
             pad.SendMessage("PlayAud", SendMessageOptions.DontRequireReceiver);
             //눌러야 되는 Pad 파란색으로 보여줌
@@ -433,7 +435,7 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(1f);
         }
         //문제 보여준 후 사용자가 터치할 수 있는 순간을 알려줌
-        StartCoroutine(ShowPushTiming());
+        //StartCoroutine(ShowPushTiming());
         yield return new WaitForSeconds(1f);
 
         //터치할 수 있도록 설정
@@ -454,6 +456,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    /*
     //스테이지 시작시 스테이지 번호를 보여준다.
     IEnumerator ShowStageNum()
     {
@@ -461,7 +464,7 @@ public class GameManager : MonoBehaviour
 
         //1초 후 사라짐
         yield return new WaitForSeconds(1f);
-        
+
         stageNumText.text = "";
         yield return new WaitForSeconds(2f);
     }
@@ -473,7 +476,7 @@ public class GameManager : MonoBehaviour
 
         //1초 후 사라짐
         yield return new WaitForSeconds(1f);
-        
+
         pushText.text = "";
 
         yield return new WaitForSeconds(2f);
@@ -504,5 +507,6 @@ public class GameManager : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
     }
+    */
 
 }
