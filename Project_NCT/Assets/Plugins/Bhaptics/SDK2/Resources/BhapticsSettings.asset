@@ -12,9 +12,65 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b3b9d9689fae93418e33472f9eccaa7, type: 3}
   m_Name: BhapticsSettings
   m_EditorClassIdentifier: 
-  appName: 
-  appId: 27r5I5BhaJMi4ATpqnt3
-  apiKey: R5U8IdSXXZ1rxFlMX4le
-  lastDeployVersion: -1
-  eventData: []
-  defaultDeploy: 
+  appName: Tutorial
+  appId: XXU1MmEvliDCDDWCsqqC
+  apiKey: q1tLkPOvR3a3vD764pDw
+  lastDeployVersion: 6
+  eventData:
+  - durationMillis: 3000
+    key: finish
+    description: finish
+    isAudio: 0
+    updateTime: 1683719619390
+    positions:
+    - Gloves
+  - durationMillis: 1000
+    key: correct_right
+    description: correct right index finger
+    isAudio: 0
+    updateTime: 1683716352261
+    positions:
+    - Gloves
+  - durationMillis: 1000
+    key: wrong_right
+    description: wrong right index finger
+    isAudio: 0
+    updateTime: 1683721371521
+    positions:
+    - Gloves
+  - durationMillis: 400
+    key: touch_left
+    description: touch left index finger
+    isAudio: 0
+    updateTime: 1683716493905
+    positions:
+    - Gloves
+  - durationMillis: 980
+    key: wrong_left
+    description: wrong left index finger
+    isAudio: 0
+    updateTime: 1683721362275
+    positions:
+    - Gloves
+  - durationMillis: 1000
+    key: correct_left
+    description: correct left index finger
+    isAudio: 0
+    updateTime: 1683716403829
+    positions:
+    - Gloves
+  - durationMillis: 400
+    key: touch_right
+    description: touch right index finger
+    isAudio: 0
+    updateTime: 1683716451089
+    positions:
+    - Gloves
+  defaultDeploy: '{"status":true,"message":{"id":"NaeybasbeJ066JYq8msB","createTime":1683721392630,"name":"Tutorial","creator":"EJAxdN5gVOVeLhVtnoH56ylzhAO2","workspaceId":"XXU1MmEvliDCDDWCsqqC","version":6,"disableValidation":false,"hapticMappings":[{"enable":true,"intensity":100,"key":"finish","category":"Finish","description":"finish","updateTime":1683719619390,"tactFilePatterns":[{"position":"LeftGlove","tactFile":{"name":"finish_7b8da15e","tracks":[{"enable":true,"effects":[{"name":"","offsetTime":1000,"startTime":0,"modes":{"GloveR":{"dotMode":{"dotConnected":false,"feedback":[{"startTime":0,"endTime":1000,"playbackType":"NONE","pointList":[]}]},"pathMode":{"feedback":[{"movingPattern":"CONST_TDM","playbackType":"NONE","visible":true,"pointList":[{"intensity":0.5,"time":0,"x":0.0,"y":0.4971503782457575},{"intensity":0.5,"time":200,"x":0.24598752811286034,"y":0.10459261909629931},{"intensity":0.5,"time":400,"x":0.5036035575546922,"y":0.0},{"intensity":0.5,"time":600,"x":0.7448630136986301,"y":0.10050347577182579},{"intensity":0.5,"time":800,"x":0.9983898998159885,"y":0.24771263545287261},{"intensity":0.5,"time":1000,"x":0.5076927008791657,"y":1.0}]}]},"mode":"PATH_MODE"},"GloveL":{"dotMode":{"dotConnected":false,"feedback":[{"startTime":0,"endTime":1000,"playbackType":"NONE","pointList":[]}]},"pathMode":{"feedback":[{"movingPattern":"CONST_TDM","playbackType":"NONE","visible":true,"pointList":[{"intensity":0.5,"time":0,"x":1.0,"y":0.5053286648947045},{"intensity":0.5,"time":200,"x":0.7489521570231036,"y":0.10050347577182579},{"intensity":0.5,"time":400,"x":0.49951441423021875,"y":0.0},{"intensity":0.5,"time":600,"x":0.2541658147618074,"y":0.09641433244735227},{"intensity":0.5,"time":800,"x":0.00472807196892251,"y":0.2518017787773461},{"intensity":0.5,"time":1000,"x":0.49951441423021875,"y":1.0}]}]},"mode":"PATH_MODE"}}},{"name":"","offsetTime":1000,"startTime":1000,"modes":{"GloveR":{"dotMode":{"dotConnected":false,"feedback":[{"startTime":0,"endTime":1000,"playbackType":"NONE","pointList":[]}]},"pathMode":{"feedback":[{"movingPattern":"CONST_SPEED","playbackType":"NONE","visible":true,"pointList":[{"intensity":0.5,"time":0,"x":0.0,"y":0.501239521570231},{"intensity":0.5,"time":217,"x":0.2582549580862809,"y":0.10050347577182579},{"intensity":0.5,"time":337,"x":0.5036035575546922,"y":0.002364035984461255},{"intensity":0.5,"time":459,"x":0.7530413003475771,"y":0.10050347577182579},{"intensity":0.5,"time":590,"x":0.9983898998159885,"y":0.2518017787773461},{"intensity":0.5,"time":1000,"x":0.5076927008791657,"y":1.0}]}]},"mode":"PATH_MODE"},"GloveL":{"dotMode":{"dotConnected":false,"feedback":[{"startTime":0,"endTime":1000,"playbackType":"NONE","pointList":[]}]},"pathMode":{"feedback":[{"movingPattern":"CONST_TDM","playbackType":"NONE","visible":true,"pointList":[{"intensity":0.5,"time":0,"x":1.0,"y":0.5053286648947045},{"intensity":0.5,"time":200,"x":0.7489521570231036,"y":0.10459261909629931},{"intensity":0.5,"time":400,"x":0.5076927008791657,"y":0.0},{"intensity":0.5,"time":600,"x":0.2541658147618074,"y":0.09232518912287875},{"intensity":0.5,"time":800,"x":0.0,"y":0.24771263545287261},{"intensity":0.5,"time":1000,"x":0.49951441423021875,"y":1.0}]}]},"mode":"PATH_MODE"}}},{"name":"","offsetTime":1000,"startTime":2000,"modes":{"GloveR":{"dotMode":{"dotConnected":false,"feedback":[]},"pathMode":{"feedback":[{"movingPattern":"CONST_SPEED","playbackType":"NONE","visible":true,"pointList":[{"intensity":0.5,"time":0,"x":0.0,"y":0.5053286648947045},{"intensity":0.5,"time":214,"x":0.2582549580862809,"y":0.11277090574524637},{"intensity":0.5,"time":337,"x":0.5036035575546922,"y":0.0},{"intensity":0.5,"time":455,"x":0.7448630136986301,"y":0.09641433244735227},{"intensity":0.5,"time":591,"x":1.0,"y":0.2518017787773461},{"intensity":0.5,"time":1000,"x":0.49951441423021875,"y":0.9960258638315272}]}]},"mode":"PATH_MODE"},"GloveL":{"dotMode":{"dotConnected":false,"feedback":[{"startTime":0,"endTime":1000,"playbackType":"NONE","pointList":[]}]},"pathMode":{"feedback":[{"movingPattern":"CONST_SPEED","playbackType":"NONE","visible":true,"pointList":[{"intensity":0.5,"time":0,"x":0.994300756491515,"y":0.4971503782457575},{"intensity":0.5,"time":211,"x":0.7489521570231036,"y":0.10459261909629931},{"intensity":0.5,"time":333,"x":0.49951441423021875,"y":0.002364035984461255},{"intensity":0.5,"time":454,"x":0.2541658147618074,"y":0.10459261909629931},{"intensity":0.5,"time":588,"x":6.389286444489879E-4,"y":0.2558909221018197},{"intensity":0.5,"time":1000,"x":0.5036035575546922,"y":1.0}]}]},"mode":"PATH_MODE"}}}]}],"layout":{"name":"Glove","type":"Glove"}}}],"audioFilePatterns":[],"eventTime":3000},{"enable":true,"intensity":100,"key":"correct_right","category":"CorrectR","description":"correct
+    right index finger","updateTime":1683716352261,"tactFilePatterns":[{"position":"LeftGlove","tactFile":{"name":"correct_right_bddf6edd","tracks":[{"enable":true,"effects":[{"name":"","offsetTime":1000,"startTime":0,"modes":{"GloveR":{"dotMode":{"dotConnected":false,"feedback":[{"startTime":0,"endTime":1000,"playbackType":"FADE_OUT","pointList":[{"intensity":0.5,"index":1}]}]},"pathMode":{"feedback":[{"movingPattern":"CONST_SPEED","playbackType":"NONE","visible":true,"pointList":[]}]},"mode":"DOT_MODE"},"GloveL":{"dotMode":{"dotConnected":false,"feedback":[{"startTime":0,"endTime":1000,"playbackType":"NONE","pointList":[]}]},"pathMode":{"feedback":[{"movingPattern":"CONST_SPEED","playbackType":"NONE","visible":true,"pointList":[]}]},"mode":"PATH_MODE"}}}]}],"layout":{"name":"Glove","type":"Glove"}}}],"audioFilePatterns":[],"eventTime":1000},{"enable":true,"intensity":100,"key":"wrong_right","category":"WrongR","description":"wrong
+    right index finger","updateTime":1683721371521,"tactFilePatterns":[{"position":"LeftGlove","tactFile":{"name":"wrong_right_f19c37bb","tracks":[{"enable":true,"effects":[{"name":"","offsetTime":400,"startTime":0,"modes":{"GloveR":{"dotMode":{"dotConnected":false,"feedback":[{"startTime":0,"endTime":400,"playbackType":"FADE_OUT","pointList":[{"intensity":0.5,"index":1}]}]},"pathMode":{"feedback":[{"movingPattern":"CONST_SPEED","playbackType":"NONE","visible":true,"pointList":[]}]},"mode":"DOT_MODE"},"GloveL":{"dotMode":{"dotConnected":false,"feedback":[{"startTime":0,"endTime":400,"playbackType":"NONE","pointList":[]}]},"pathMode":{"feedback":[]},"mode":"PATH_MODE"}}},{"name":"","offsetTime":300,"startTime":400,"modes":{"GloveR":{"dotMode":{"dotConnected":false,"feedback":[{"startTime":0,"endTime":300,"playbackType":"FADE_OUT","pointList":[{"intensity":0.5,"index":1}]}]},"pathMode":{"feedback":[{"movingPattern":"CONST_SPEED","playbackType":"NONE","visible":true,"pointList":[]}]},"mode":"DOT_MODE"},"GloveL":{"dotMode":{"dotConnected":false,"feedback":[{"startTime":0,"endTime":300,"playbackType":"NONE","pointList":[]}]},"pathMode":{"feedback":[{"movingPattern":"CONST_SPEED","playbackType":"NONE","visible":true,"pointList":[]}]},"mode":"PATH_MODE"}}},{"name":"","offsetTime":300,"startTime":700,"modes":{"GloveR":{"dotMode":{"dotConnected":false,"feedback":[{"startTime":0,"endTime":300,"playbackType":"FADE_OUT","pointList":[{"intensity":0.6,"index":1}]}]},"pathMode":{"feedback":[{"movingPattern":"CONST_SPEED","playbackType":"NONE","visible":true,"pointList":[]}]},"mode":"DOT_MODE"},"GloveL":{"dotMode":{"dotConnected":false,"feedback":[{"startTime":0,"endTime":300,"playbackType":"NONE","pointList":[]}]},"pathMode":{"feedback":[]},"mode":"PATH_MODE"}}}]}],"layout":{"name":"Glove","type":"Glove"}}}],"audioFilePatterns":[],"eventTime":1000},{"enable":true,"intensity":100,"key":"touch_left","category":"TouchL","description":"touch
+    left index finger","updateTime":1683716493905,"tactFilePatterns":[{"position":"LeftGlove","tactFile":{"name":"touch_left_49e234f7","tracks":[{"enable":true,"effects":[{"name":"","offsetTime":300,"startTime":100,"modes":{"GloveR":{"dotMode":{"dotConnected":false,"feedback":[{"startTime":0,"endTime":300,"playbackType":"NONE","pointList":[]}]},"pathMode":{"feedback":[{"movingPattern":"CONST_SPEED","playbackType":"NONE","visible":true,"pointList":[]}]},"mode":"PATH_MODE"},"GloveL":{"dotMode":{"dotConnected":false,"feedback":[{"startTime":0,"endTime":300,"playbackType":"NONE","pointList":[{"intensity":0.3,"index":1}]}]},"pathMode":{"feedback":[{"movingPattern":"CONST_SPEED","playbackType":"NONE","visible":true,"pointList":[{"intensity":0.5,"time":0,"x":0.7612195869965241,"y":0.08414690247393171},{"intensity":0.5,"time":129,"x":1.0,"y":0.5339526681660192},{"intensity":0.5,"time":300,"x":0.5158709875281129,"y":1.0}]}]},"mode":"DOT_MODE"}}}]}],"layout":{"name":"Glove","type":"Glove"}}}],"audioFilePatterns":[],"eventTime":400},{"enable":true,"intensity":100,"key":"wrong_left","category":"WrongL","description":"wrong
+    left index finger","updateTime":1683721362275,"tactFilePatterns":[{"position":"LeftGlove","tactFile":{"name":"wrong_left_aea94f90","tracks":[{"enable":true,"effects":[{"name":"","offsetTime":400,"startTime":0,"modes":{"GloveR":{"dotMode":{"dotConnected":false,"feedback":[]},"pathMode":{"feedback":[]},"mode":"DOT_MODE"},"GloveL":{"dotMode":{"dotConnected":false,"feedback":[{"startTime":0,"endTime":400,"playbackType":"FADE_OUT","pointList":[{"intensity":0.5,"index":1}]}]},"pathMode":{"feedback":[{"movingPattern":"CONST_SPEED","playbackType":"NONE","visible":true,"pointList":[]}]},"mode":"DOT_MODE"}}},{"name":"","offsetTime":300,"startTime":398,"modes":{"GloveR":{"dotMode":{"dotConnected":false,"feedback":[{"startTime":0,"endTime":300,"playbackType":"NONE","pointList":[]}]},"pathMode":{"feedback":[{"movingPattern":"CONST_SPEED","playbackType":"NONE","visible":true,"pointList":[]}]},"mode":"PATH_MODE"},"GloveL":{"dotMode":{"dotConnected":false,"feedback":[{"startTime":0,"endTime":300,"playbackType":"FADE_OUT","pointList":[{"intensity":0.5,"index":1}]}]},"pathMode":{"feedback":[{"movingPattern":"CONST_SPEED","playbackType":"NONE","visible":true,"pointList":[]}]},"mode":"DOT_MODE"}}},{"name":"","offsetTime":300,"startTime":699,"modes":{"GloveR":{"dotMode":{"dotConnected":false,"feedback":[{"startTime":0,"endTime":300,"playbackType":"NONE","pointList":[]}]},"pathMode":{"feedback":[]},"mode":"PATH_MODE"},"GloveL":{"dotMode":{"dotConnected":false,"feedback":[{"startTime":0,"endTime":300,"playbackType":"FADE_OUT","pointList":[{"intensity":0.6,"index":1}]}]},"pathMode":{"feedback":[]},"mode":"DOT_MODE"}}}]}],"layout":{"name":"Glove","type":"Glove"}}}],"audioFilePatterns":[],"eventTime":980},{"enable":true,"intensity":100,"key":"correct_left","category":"CorrectL","description":"correct
+    left index finger","updateTime":1683716403829,"tactFilePatterns":[{"position":"LeftGlove","tactFile":{"name":"correct_left_390a0993","tracks":[{"enable":true,"effects":[{"name":"","offsetTime":1000,"startTime":0,"modes":{"GloveR":{"dotMode":{"dotConnected":false,"feedback":[{"startTime":0,"endTime":1000,"playbackType":"FADE_OUT","pointList":[]}]},"pathMode":{"feedback":[{"movingPattern":"CONST_SPEED","playbackType":"NONE","visible":true,"pointList":[]}]},"mode":"DOT_MODE"},"GloveL":{"dotMode":{"dotConnected":false,"feedback":[{"startTime":0,"endTime":1000,"playbackType":"FADE_OUT","pointList":[{"intensity":0.5,"index":1}]}]},"pathMode":{"feedback":[{"movingPattern":"CONST_SPEED","playbackType":"NONE","visible":true,"pointList":[]}]},"mode":"DOT_MODE"}}}]}],"layout":{"name":"Glove","type":"Glove"}}}],"audioFilePatterns":[],"eventTime":1000},{"enable":true,"intensity":100,"key":"touch_right","category":"TouchR","description":"touch
+    right index finger","updateTime":1683716451089,"tactFilePatterns":[{"position":"LeftGlove","tactFile":{"name":"touch_right_62e64c3b","tracks":[{"enable":true,"effects":[{"name":"","offsetTime":300,"startTime":100,"modes":{"GloveR":{"dotMode":{"dotConnected":false,"feedback":[{"startTime":0,"endTime":300,"playbackType":"NONE","pointList":[{"intensity":0.3,"index":1}]}]},"pathMode":{"feedback":[{"movingPattern":"CONST_SPEED","playbackType":"NONE","visible":true,"pointList":[]}]},"mode":"DOT_MODE"},"GloveL":{"dotMode":{"dotConnected":false,"feedback":[{"startTime":0,"endTime":300,"playbackType":"NONE","pointList":[]}]},"pathMode":{"feedback":[{"movingPattern":"CONST_SPEED","playbackType":"NONE","visible":true,"pointList":[]}]},"mode":"PATH_MODE"}}}]}],"layout":{"name":"Glove","type":"Glove"}}}],"audioFilePatterns":[],"eventTime":400}],"categoryOptions":["Finish","WrongL","WrongR","TouchL","TouchR","CorrectL","CorrectR"],"description":"index
+    finger finis"},"errorMessage":null,"timestamp":1683721397068,"code":200}'

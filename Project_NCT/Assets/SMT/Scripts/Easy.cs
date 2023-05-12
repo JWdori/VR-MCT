@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Bhaptics.SDK2;
 
 // Level Easy 모드
 // 3X3 Pad
@@ -28,8 +29,10 @@ public class Easy : MonoBehaviour
     //Easy 버튼 눌렀을 때 효과음
     IEnumerator PlayAudio()
     {
-
+         
         audioSource.Play();
+        BhapticsLibrary.Play(BhapticsEvent.TOUCH_LEFT);
+        BhapticsLibrary.Play(BhapticsEvent.TOUCH_RIGHT);
 
         yield return new WaitForSeconds(1f);
 

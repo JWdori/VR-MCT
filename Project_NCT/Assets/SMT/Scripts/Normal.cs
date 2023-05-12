@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Bhaptics.SDK2;
 
 
 // Level Normal ¸ðµå
@@ -32,6 +33,8 @@ public class Normal : MonoBehaviour
     {
 
         audioSource.Play();
+        BhapticsLibrary.Play(BhapticsEvent.TOUCH_LEFT);
+        BhapticsLibrary.Play(BhapticsEvent.TOUCH_RIGHT);
 
         yield return new WaitForSeconds(1f);
 

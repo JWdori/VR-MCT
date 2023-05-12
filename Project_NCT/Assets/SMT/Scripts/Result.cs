@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Bhaptics.SDK2;
 
 public class Result : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class Result : MonoBehaviour
     void Start()
     {
         StartCoroutine(ShowLevel());
+        BhapticsLibrary.Play(BhapticsEvent.FINISH);
     }
 
     // 게임 결과를 순서대로 보여줌
@@ -76,8 +78,15 @@ public class Result : MonoBehaviour
     IEnumerator ShowMissNum()
     {
         yield return new WaitForSeconds(2.5f);
-
-        missNumText.text = "Miss               -------------------       " + GameManager.totalMiss;
+        if (GameManager.over)
+        {
+            missNumText.text = "                        Time Over                        ";
+        }
+        else
+        {
+            missNumText.text = "Miss               -------------------       " + GameManager.totalMiss;
+        }
+        
 
         yield return new WaitForSeconds(1f);
     }
