@@ -34,7 +34,7 @@ public class GameManager_VR : MonoBehaviour
 
     //난이도 번호 (1 = easy, 2 = normal, 3 = hard)
     //Easy.cs, Normal.cs, Hard.cs에서 설정
-    static public int levelNum;
+    static public int levelNum = 1;
 
     //최대 스테이지 수
     int stageCnt = 20;
@@ -272,10 +272,10 @@ public class GameManager_VR : MonoBehaviour
         //시작카드의 x좌표
         float sx = 0;
 
-        //시작카드의 z좌표
-        float sz = 0;
+        //시작카드의 y좌표
+        float sy = 5;
 
-        SetPadPos(out sx, out sz);
+        SetPadPos(out sx, out sy);
 
         //시작 패드의 번호
         int n = 1;
@@ -305,7 +305,7 @@ public class GameManager_VR : MonoBehaviour
                         GameObject pad = Instantiate(Resources.Load("Prefab/Pad_VR")) as GameObject;
 
                         //Pad 좌표설정
-                        pad.transform.position = new Vector3(x, 0, sz);
+                        pad.transform.position = new Vector3(x, sy, 4);
 
                         //pad1, pad2, ... pad25까지 tag로 설정되어 있음
                         //생성되는 Pad마다 tag를 붙여줌
@@ -326,7 +326,7 @@ public class GameManager_VR : MonoBehaviour
 
                     //반 줄 행간 처리
                     case '^':
-                        sz += 0.5f;
+                        sy += 0.5f;
                         break;
                 }
 
@@ -338,7 +338,7 @@ public class GameManager_VR : MonoBehaviour
             }
 
             //한 줄 아래로 이동
-            sz--;
+            sy--;
         }
         yield return new WaitForSeconds(1);
 
@@ -347,13 +347,13 @@ public class GameManager_VR : MonoBehaviour
     }
 
     //Pad의 시작 위치 계산
-    void SetPadPos(out float sx, out float sz)
+    void SetPadPos(out float sx, out float sy)
     {
         //가로 Pad 수 반 칸 공백 포함
         float x = 0;
 
         //세로 행수 반줄 행간 포함
-        float z = 0;
+        float y = 5;
 
         //가로 Pad 최대 수
         float maxX = 0;
@@ -387,7 +387,7 @@ public class GameManager_VR : MonoBehaviour
                         x += 0.5f;
                         break;
                     case '^':
-                        z -= 0.5f;
+                        y -= 0.5f;
                         break;
                 }
             }
@@ -398,11 +398,11 @@ public class GameManager_VR : MonoBehaviour
                 maxX = x;
             }
             //전체 행의 수
-            z++;
+            y++;
         }
         //Pad 가로 시작 위치
         sx = -maxX / 2;
-        sz = (z - 1) / 2;
+        sy = (y - 1) / 2;
     }
 
     //사용자가 터치해야 할 Pad들을 보여줌
