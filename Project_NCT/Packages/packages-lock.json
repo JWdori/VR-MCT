@@ -40,7 +40,7 @@
       "depth": 0,
       "source": "builtin",
       "dependencies": {
-        "com.unity.xr.oculus": "3.2.2",
+        "com.unity.xr.oculus": "3.2.3",
         "com.unity.xr.openxr": "1.6.0"
       }
     },
@@ -181,6 +181,18 @@
       },
       "url": "https://packages.unity.com"
     },
+    "com.unity.xr.hands": {
+      "version": "1.1.0",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.inputsystem": "1.4.3",
+        "com.unity.modules.xr": "1.0.0",
+        "com.unity.xr.core-utils": "2.0.0",
+        "com.unity.xr.management": "4.0.1"
+      },
+      "url": "https://packages.unity.com"
+    },
     "com.unity.xr.interaction.toolkit": {
       "version": "2.2.0",
       "depth": 0,
@@ -219,9 +231,18 @@
       },
       "url": "https://packages.unity.com"
     },
+    "com.unity.xr.mock-hmd": {
+      "version": "1.3.1-preview.1",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.xr.management": "4.0.1"
+      },
+      "url": "https://packages.unity.com"
+    },
     "com.unity.xr.oculus": {
-      "version": "3.2.2",
-      "depth": 1,
+      "version": "3.2.3",
+      "depth": 0,
       "source": "registry",
       "dependencies": {
         "com.unity.xr.management": "4.2.0"
