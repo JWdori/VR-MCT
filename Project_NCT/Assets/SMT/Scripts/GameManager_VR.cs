@@ -164,7 +164,7 @@ public class GameManager_VR : MonoBehaviour
             //Result 화면으로 넘어감
             case STATE.FINISH:
                 Debug.Log("Finish");
-                SceneManager.LoadScene("Result");
+                SceneManager.LoadScene("Result_VR");
                 break;
         }
         //일단 Esc 버튼 누르면 난이도 선택으로 넘어가게 설정
