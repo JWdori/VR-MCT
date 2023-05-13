@@ -68,7 +68,7 @@ public class GameManager_VR : MonoBehaviour
     //게임 상태를 나타내는 STATE
     public enum STATE
     {
-        START, MAKE, HIT, WRONG, WAIT, IDLE, CLEAR, FINISH, SELECT
+        START, MAKE, HIT, WRONG, WAIT, IDLE, CLEAR, FINISH, SELECT, RESULT
     };
 
     //처음 상태를 START로 지정
@@ -91,13 +91,17 @@ public class GameManager_VR : MonoBehaviour
     // Update is called once per frame
     public void Update()
     {
+        
         if (isTotaltime)
         {
             //전체 게임 시간 계산
             totalTime = (int)(time_temp + (int)(Time.time - stageTime));
+            /*
             //게임 전체 시간 출력
             totalTimeText.text = "Total time : " + totalTime;
+            */
         }
+        
 
         if (isStagetime)
         {
@@ -164,16 +168,52 @@ public class GameManager_VR : MonoBehaviour
             //Result 화면으로 넘어감
             case STATE.FINISH:
                 Debug.Log("Finish");
-                SceneManager.LoadScene("Result_VR");
+                StartCoroutine(DestroyPad());
+                //SceneManager.LoadScene("Result_VR");
+                break;
+
+            case STATE.RESULT:
+                Debug.Log("Result");
+                StartCoroutine(ShowResult());
                 break;
         }
         //일단 Esc 버튼 누르면 난이도 선택으로 넘어가게 설정
         //나중에 수정
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            SceneManager.LoadScene("LevelSelect");
+            //SceneManager.LoadScene("LevelSelect");
         }
 
+    }
+
+    
+    IEnumerator ShowResult()
+    {
+        state = STATE.WAIT; 
+
+        Result_VR.isResult = true;
+        yield return new WaitForSeconds(1);
+    }
+
+    IEnumerator DestroyPad()
+    {
+        state = STATE.WAIT;
+
+        yield return new WaitForSeconds(1);
+
+        //틀린 횟수 출력
+        missText.text = "";
+        //맞춘 횟수 출력
+        hitText.text = "";
+        stageTimeText.text = "";
+
+        for (int i = 1; i <= padCnt; i++)
+        {
+            GameObject pad = GameObject.FindWithTag("pad" + i);
+            Destroy(pad);
+        }
+
+        state = STATE.RESULT;
     }
 
     //틀렸을 경우 실행되는 환경
@@ -191,6 +231,8 @@ public class GameManager_VR : MonoBehaviour
             ++missNum; //스테이지마다 초기화
             ++totalMiss; //누적
             missText.text = "Miss : " + missNum;
+            isStagetime = false;
+            isTotaltime = false;
             // missNum이 1보다 크다는 것은 한 스테이지에서 두 번 틀렸다는 뜻
             if (missNum > 1)
             {
@@ -287,6 +329,8 @@ public class GameManager_VR : MonoBehaviour
         state = STATE.WAIT;
 
         yield return new WaitForSeconds(1f);
+
+        Disappear_VR.isShow = true;
 
         //시작카드의 x좌표
         float sx = 0;

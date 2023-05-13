@@ -8,21 +8,34 @@ public class Result_VR : MonoBehaviour
 {
     //여기서는 text를 meshpro를 사용함
     //게임 전체 시간, 사용자가 선택한 Level, 사용자가 틀린 스테이지, 전체 게임에서 틀린 횟수
-    public TextMeshPro TotalTimeText, LevelText, stageNumText, missNumText;
+    public TextMeshPro TotalTimeText, LevelText, stageNumText, missNumText, resultText;
+
+    static public bool isResult = false;
 
     //사용자가 선택한 level을 보여줌
     void Start()
     {
-        StartCoroutine(ShowLevel());
-        BhapticsLibrary.Play(BhapticsEvent.FINISH);
+        resultText.text = "";
+        TotalTimeText.text = "";
+        LevelText.text = "";
+        stageNumText.text = "";
+        missNumText.text = "";
+
     }
 
     // 게임 결과를 순서대로 보여줌
     void Update()
     {
-        StartCoroutine(ShowPlaytime());
-        StartCoroutine(ShowStageNum());
-        StartCoroutine(ShowMissNum());
+
+        if (isResult)
+        {
+            resultText.text = "Result";
+            StartCoroutine(ShowLevel());
+            //BhapticsLibrary.Play(BhapticsEvent.FINISH);
+            StartCoroutine(ShowPlaytime());
+            StartCoroutine(ShowStageNum());
+            StartCoroutine(ShowMissNum());
+        }
     }
 
     //총 게임 플레이 시간
