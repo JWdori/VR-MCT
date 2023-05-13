@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MakeStage : MonoBehaviour
+public class MakeStage_VR : MonoBehaviour
 {
     public void Make_easy()
     {

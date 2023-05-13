@@ -18,11 +18,8 @@ EditorBuildSettings:
     path: Assets/SMT/Scenes/Result.unity
     guid: abf78f66787dd174fbbe89919ba52be1
   - enabled: 1
-    path: Assets/Oculus/Interaction/Samples/Scenes/Examples/HandGrabExamples.unity
-    guid: 39ae0e546b9edc0408d3b11c6a7c2814
-  - enabled: 1
-    path: Assets/Oculus/Interaction/Samples/Scenes/Examples/TouchGrabExamples.unity
-    guid: ade7d3882b4495145a8fe79f5624beab
+    path: Assets/SMT/Scenes/Memory_game.unity
+    guid: 33419b875f22df646b2de99130d4a4a4
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 8956e24cb39bebc41bc92491432701ef,
       type: 2}
