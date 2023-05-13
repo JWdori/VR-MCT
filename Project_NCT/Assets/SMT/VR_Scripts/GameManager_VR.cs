@@ -14,7 +14,7 @@ public class GameManager_VR : MonoBehaviour
     static public bool isTouch = true;
 
     //틀린 횟수
-    int missNum = 0;
+    int missNum = 2;
 
     //눌러야 되는 패드 순서
     static public int step = 0;
@@ -141,7 +141,7 @@ public class GameManager_VR : MonoBehaviour
             //MakeStage() 실행
             case STATE.START:
                 stageNum = 1;
-                missNum = 0;
+                missNum = 2;
                 totalMiss = 0;
                 totalTime = 0f;
                 over = false ;
@@ -153,7 +153,7 @@ public class GameManager_VR : MonoBehaviour
             //ShowTouch() 실행
             case STATE.MAKE:
                 //틀린 횟수 출력
-                missText.text = "Miss : " + missNum;
+                missText.text = "LIFE : " + missNum;
                 //맞춘 횟수 출력
                 hitText.text = "Hit : " + hitCnt;
                 Debug.Log("Make");
@@ -266,13 +266,13 @@ public class GameManager_VR : MonoBehaviour
         if (arPads[step] != padNum && isTouch)
         {
             //틀렸을 경우 missNum과 totalMiss 하나 씩 증가
-            ++missNum; //스테이지마다 초기화
+            --missNum; //스테이지마다 초기화
             ++totalMiss; //누적
             //틀린 횟수 update
-            missText.text = "Miss : " + missNum;
+            missText.text = "LIFE : " + missNum;
             
             // missNum이 1보다 크다는 것은 한 스테이지에서 두 번 틀렸다는 뜻
-            if (missNum > 1)
+            if (missNum < 1)
             {
                 //두 번 틀리면 터치 안 되고, Fail 출력
                 isTouch = false;
