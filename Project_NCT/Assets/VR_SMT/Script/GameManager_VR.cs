@@ -37,7 +37,7 @@ public class GameManager_VR : MonoBehaviour
     static public int levelNum = 1;
 
     //최대 스테이지 수
-    int stageCnt = 20;
+    static public int stageCnt = 20;
 
     //패드 문제 배열
     //ShuffleTouch에서 랜덤으로 설정
@@ -63,13 +63,13 @@ public class GameManager_VR : MonoBehaviour
     //게임 상태를 나타내는 STATE
     public enum STATE
     {
-        START, MAKE, HIT, WRONG, WAIT, IDLE, CLEAR, FINISH
+        START, MAKE, HIT, WRONG, WAIT, IDLE, CLEAR, FINISH, SELECT
     };
 
     //처음 상태를 START로 지정
-    static public STATE state = STATE.START;
+    static public STATE state = STATE.SELECT;
 
-    void Start()
+    public void Start()
     {
 
         Screen.orientation = ScreenOrientation.LandscapeRight;
@@ -80,11 +80,11 @@ public class GameManager_VR : MonoBehaviour
 
         //문제 생성
         //외워야 되는 Pad가 누적인 경우
-        ShuffleTouch();
+        //ShuffleTouch();
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
         //전체 게임 시간 계산
         totalTime = (int)(Time.time - startTime);
@@ -273,7 +273,7 @@ public class GameManager_VR : MonoBehaviour
         float sx = 0;
 
         //시작카드의 y좌표
-        float sy = 5;
+        float sy = 2;
 
         SetPadPos(out sx, out sy);
 
@@ -305,18 +305,18 @@ public class GameManager_VR : MonoBehaviour
                         GameObject pad = Instantiate(Resources.Load("Prefab/Pad_VR")) as GameObject;
 
                         //Pad 좌표설정
-                        pad.transform.position = new Vector3(x, sy, 4);
+                        pad.transform.position = new Vector3(x, sy, 2);
 
                         //pad1, pad2, ... pad25까지 tag로 설정되어 있음
                         //생성되는 Pad마다 tag를 붙여줌
                         //나중에 사용자가 선택한 Pad와 눌러야 되는 Pad 비교할 때 쓰임
                         pad.tag = "pad" + n++;
-                        x++;
+                        x += 0.5f;
                         break;
 
                     //빈칸 처리
                     case '.':
-                        x++;
+                        x += 0.05f;
                         break;
 
                     //반 칸 공백처리
@@ -326,7 +326,7 @@ public class GameManager_VR : MonoBehaviour
 
                     //반 줄 행간 처리
                     case '^':
-                        sy += 0.5f;
+                        sy += 0.05f;
                         break;
                 }
 
@@ -338,7 +338,7 @@ public class GameManager_VR : MonoBehaviour
             }
 
             //한 줄 아래로 이동
-            sy--;
+            sy-=0.5f;
         }
         yield return new WaitForSeconds(1);
 
@@ -353,7 +353,7 @@ public class GameManager_VR : MonoBehaviour
         float x = 0;
 
         //세로 행수 반줄 행간 포함
-        float y = 5;
+        float y = 6;
 
         //가로 Pad 최대 수
         float maxX = 0;
@@ -380,7 +380,7 @@ public class GameManager_VR : MonoBehaviour
                     case '*':
 
                         //Pad 배치에 필요한 공간
-                        x++;
+                        x += 0.05f;
 
                         break;
                     case '>':
@@ -432,6 +432,7 @@ public class GameManager_VR : MonoBehaviour
             //눌러야 되는 Pad 파란색으로 보여줌
             //"ShowPad"는 PadCtrl.cs에서 확인
             pad.SendMessage("ShowPad", SendMessageOptions.DontRequireReceiver);
+            TouchPad_VR.isTouch = true;
             yield return new WaitForSeconds(1f);
         }
         //문제 보여준 후 사용자가 터치할 수 있는 순간을 알려줌
@@ -445,7 +446,7 @@ public class GameManager_VR : MonoBehaviour
 
     //사용자가 눌러야 되는 Pad를 랜덤으로 받을 수 있도록 설정
     //arPads 배열 설정
-    void ShuffleTouch()
+    static public void ShuffleTouch()
     {
         for (int i = 0; i < stageCnt; i++)
         {

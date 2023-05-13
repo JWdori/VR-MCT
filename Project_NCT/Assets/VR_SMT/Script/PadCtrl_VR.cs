@@ -19,22 +19,20 @@ public class PadCtrl_VR : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
-    void Update()
+    public void Update()
     {
-        void Update()
-        {
-            //왼쪽 마우스 버튼 클릭 및 state가 IDLE일 때 및 isTouch가 true일 때
-            if (Input.GetButtonDown("XRI_Left_Trigger") && GameManager_VR.state == GameManager_VR.STATE.IDLE && GameManager_VR.isTouch)
-            {
-                CheckPadL();
-            }
-            //오른쪽 마우스 버튼 클릭 및 state가 IDLE일 때 및 isTouch가 true일 때
-            if (Input.GetButtonDown("XRI_Right_Trigger") && GameManager_VR.state == GameManager_VR.STATE.IDLE && GameManager_VR.isTouch)
-            {
-                CheckPadR();
-            }
 
-        }
+         //왼쪽 마우스 버튼 클릭 및 state가 IDLE일 때 및 isTouch가 true일 때
+         if (TouchPad_VR.isTouch && GameManager_VR.state == GameManager_VR.STATE.IDLE && GameManager_VR.isTouch)
+         {
+            CheckPadL();
+         }
+         //오른쪽 마우스 버튼 클릭 및 state가 IDLE일 때 및 isTouch가 true일 때
+         if (Input.GetButtonDown("XRI_Right_TriggerButton") && GameManager_VR.state == GameManager_VR.STATE.IDLE && GameManager_VR.isTouch)
+         {
+             CheckPadR();
+         }
+
     }
 
     //패드 체크
