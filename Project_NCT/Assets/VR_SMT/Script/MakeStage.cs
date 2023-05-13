@@ -13,6 +13,7 @@ public class MakeStage : MonoBehaviour
             //문제 생성
             //외워야 되는 Pad가 누적인 경우
             GameManager_VR.ShuffleTouch();
+            GameManager_VR.startTime = Time.time;
             GameManager_VR.state = GameManager_VR.STATE.START;
         }
 
@@ -25,6 +26,7 @@ public class MakeStage : MonoBehaviour
             GameManager_VR.padCnt = 8;
             GameManager_VR.levelNum = 2;
             GameManager_VR.ShuffleTouch();
+            GameManager_VR.startTime = Time.time;
             GameManager_VR.state = GameManager_VR.STATE.START;
         }
 
@@ -37,6 +39,7 @@ public class MakeStage : MonoBehaviour
             GameManager_VR.padCnt = 10;
             GameManager_VR.levelNum = 3;
             GameManager_VR.ShuffleTouch();
+            GameManager_VR.startTime = Time.time;
             GameManager_VR.state = GameManager_VR.STATE.START;
         }
 

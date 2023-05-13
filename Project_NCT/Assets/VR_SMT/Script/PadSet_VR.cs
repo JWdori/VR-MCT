@@ -14,7 +14,9 @@ public class PadSet_VR : MonoBehaviour
         //Easy 모드 Pad 배열
         new string[]
         {
+            "               ",
             "  .*.*.*.*.*.  ",
+            "               "
         },
 
         //Normal 모드 Pad 배열
