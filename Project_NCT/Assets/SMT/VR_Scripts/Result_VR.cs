@@ -32,7 +32,7 @@ public class Result_VR : MonoBehaviour
         //결과를 보여줘야 할 때 isResult가 true
         if (isResult)
         {
-            resultText.text = "Result";
+            resultText.text = "결과";
             //Level을 알려줌
             StartCoroutine(ShowLevel());
             //BhapticsLibrary.Play(BhapticsEvent.FINISH);
@@ -64,7 +64,7 @@ public class Result_VR : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
 
-        TotalTimeText.text = "Total time       -------------------       " + GameManager_VR.totalTime;
+        TotalTimeText.text = "소모 시간     -------------------       " + GameManager_VR.totalTime;
 
         yield return new WaitForSeconds(0.5f);
     }
@@ -75,7 +75,7 @@ public class Result_VR : MonoBehaviour
         //levelNum이 1이면 easy
         if (GameManager_VR.levelNum == 1)
         {
-            LevelText.text = "EASY";
+            LevelText.text = "쉬움";
 
             yield return new WaitForSeconds(0.5f);
         }
@@ -83,7 +83,7 @@ public class Result_VR : MonoBehaviour
         //levelNum이 2이면 normal
         else if (GameManager_VR.levelNum == 2)
         {
-            LevelText.text = "NORMAL";
+            LevelText.text = "보통";
 
             yield return new WaitForSeconds(0.5f);
         }
@@ -91,7 +91,7 @@ public class Result_VR : MonoBehaviour
         //levelNum이 3이면 hard
         else if (GameManager_VR.levelNum == 3)
         {
-            LevelText.text = "HARD";
+            LevelText.text = "어려움";
 
             yield return new WaitForSeconds(0.5f);
         }
@@ -103,7 +103,7 @@ public class Result_VR : MonoBehaviour
     {
         yield return new WaitForSeconds(1.5f);
 
-        stageNumText.text = "Stage             -------------------       " + GameManager_VR.stageNum;
+        stageNumText.text = "최종 단계           -------------------       " + GameManager_VR.stageNum;
 
         yield return new WaitForSeconds(0.5f);
     }
@@ -115,11 +115,11 @@ public class Result_VR : MonoBehaviour
         // over가 true이면 시간 초과로 게임이 종료되었다는 뜻
         if (GameManager_VR.over)
         {
-            missNumText.text = "                        Time Over                        ";
+            missNumText.text = "                        시간 종료!                        ";
         }
         else
         {
-            missNumText.text = "Miss               -------------------       " + GameManager_VR.totalMiss;
+            missNumText.text = "목숨               -------------------       " + GameManager_VR.totalMiss;
         }
 
         yield return new WaitForSeconds(0.5f);
