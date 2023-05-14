@@ -20,7 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/SMT/Scenes/Memory_game.unity
     guid: 33419b875f22df646b2de99130d4a4a4
-  - enabled: 1
+  - enabled: 0
     path: Assets/SMT/Scenes/Result_VR.unity
     guid: 3c9e59cb51d176549ab177bcc7a78178
   m_configObjects:
