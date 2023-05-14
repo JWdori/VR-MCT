@@ -14,7 +14,7 @@ public class GameManager_VR : MonoBehaviour
     static public bool isTouch = true;
 
     //틀린 횟수
-    int missNum = 0;
+    int missNum = 2;
 
     //눌러야 되는 패드 순서
     static public int step = 0;
@@ -58,7 +58,7 @@ public class GameManager_VR : MonoBehaviour
     static public int time2;
 
     //게임이 진행중이지 않을 때 시간을 멈췄다 진행하기 위한 시간 저장 변수
-    int time_temp = 0;
+    int time_temp = 60;
 
     //시간 초과로 인한 종료 판단
     static public bool over = false;
@@ -117,19 +117,19 @@ public class GameManager_VR : MonoBehaviour
         if (isStagetime)
         {
             //스테이지 게임 시간 계산
-            time2 = (int)(Time.time - stageTime);
+            time2 = 60 - (int)(Time.time - stageTime);
             //스테이지 게임 시간 출력
             stageTimeText.text = "Stage Time : " + time2;
         }
         
         //time2는 stage 시간
         //60초 지나면 게임 종료
-        if (time2 >= 60 && !over)
+        if (time2 <= 0 && !over)
         {
             //한 번 더 판단
             over = true;
             //시간 다시 초기화
-            time2 = 0;
+            time2 = 60;
             //시간 초과로 인한 게임 종료
             state = STATE.FINISH;
         }
@@ -141,8 +141,8 @@ public class GameManager_VR : MonoBehaviour
             //MakeStage() 실행
             case STATE.START:
                 stageNum = 1;
-                missNum = 0;
-                totalMiss = 0;
+                missNum = 2;
+                totalMiss = 2;
                 totalTime = 0f;
                 over = false ;
                 StartCoroutine(MakeStage());
@@ -153,7 +153,7 @@ public class GameManager_VR : MonoBehaviour
             //ShowTouch() 실행
             case STATE.MAKE:
                 //틀린 횟수 출력
-                missText.text = "Miss : " + missNum;
+                missText.text = "Life : " + missNum;
                 //맞춘 횟수 출력
                 hitText.text = "Hit : " + hitCnt;
                 Debug.Log("Make");
@@ -266,17 +266,19 @@ public class GameManager_VR : MonoBehaviour
         if (arPads[step] != padNum && isTouch)
         {
             //틀렸을 경우 missNum과 totalMiss 하나 씩 증가
-            ++missNum; //스테이지마다 초기화
-            ++totalMiss; //누적
+            --missNum; //스테이지마다 초기화
+            --totalMiss; //누적
             //틀린 횟수 update
-            missText.text = "Miss : " + missNum;
+            missText.text = "Life : " + missNum;
             
             // missNum이 1보다 크다는 것은 한 스테이지에서 두 번 틀렸다는 뜻
-            if (missNum > 1)
+            if (missNum < 1)
             {
-                //두 번 틀리면 터치 안 되고, Fail 출력
+                //두 번 틀리면 터치 안 되고, Fail 출력 시간도 안흐르게...
                 isTouch = false;
-                
+                isTotaltime = false;
+                isStagetime = false;
+
                 StartCoroutine(ShowFail());
                 yield return new WaitForSeconds(2f);
                 //state가 FINISH로 바뀜
@@ -308,6 +310,8 @@ public class GameManager_VR : MonoBehaviour
             {
                 //터치 안 되게 바꾸고, state는 CLEAR로 변환
                 isTouch = false;
+                isTotaltime = false;
+                isStagetime = false;
                 state = STATE.CLEAR;
                 yield return new WaitForSeconds(0.03f);
                 //return;
@@ -327,6 +331,11 @@ public class GameManager_VR : MonoBehaviour
     IEnumerator StageClear()
     {
         state = STATE.WAIT;
+
+        isTouch = false;
+        isTotaltime = false;
+        isStagetime = false;
+
         yield return new WaitForSeconds(0.5f);
         //Clear 문구 보여줌
         StartCoroutine(ShowClear());
@@ -345,6 +354,7 @@ public class GameManager_VR : MonoBehaviour
         }
 
         //stage가 바뀌는 순간에는 시간이 안 흐름
+        isTouch = false;
         isTotaltime = false;
         isStagetime = false;
 
@@ -360,8 +370,8 @@ public class GameManager_VR : MonoBehaviour
         //맞춰야 되는 Pad갯수 초기화
         step = 0;
         //틀린 횟수 초기화
-        missNum = 0;
-        missText.text = "Miss : " + missNum;
+        missNum = 2;
+        missText.text = "Life : " + missNum;
         //다음 문제 제시
         state = STATE.MAKE;
 
@@ -609,6 +619,7 @@ public class GameManager_VR : MonoBehaviour
         pushText.text = "";
         isStagetime = true;
         isTotaltime = true;
+        //왜지?
         yield return new WaitForSeconds(2f);
     }
 
