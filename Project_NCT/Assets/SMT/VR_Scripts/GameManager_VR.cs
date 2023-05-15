@@ -55,7 +55,7 @@ public class GameManager_VR : MonoBehaviour
     static public int totalMiss;
 
     //스테이지 시간
-    static public int time2;
+    static public int time2 = 60;
 
     //게임이 진행중이지 않을 때 시간을 멈췄다 진행하기 위한 시간 저장 변수
     int time_temp = 0;
@@ -106,7 +106,7 @@ public class GameManager_VR : MonoBehaviour
         if (isTotaltime)
         {
             //전체 게임 시간 계산
-            totalTime = (int)(time_temp + time2);
+            totalTime = (int)(time_temp + (int)(Time.time - stageTime));
             /*
             //게임 전체 시간 출력
             totalTimeText.text = "Total time : " + totalTime;
@@ -371,7 +371,7 @@ public class GameManager_VR : MonoBehaviour
         //맞춰야 되는 Pad갯수 초기화
         step = 0;
         //틀린 횟수 초기화
-        missNum = 2;
+        missNum = totalMiss;
         missText.text = "목숨 : " + missNum;
         //다음 문제 제시
         state = STATE.MAKE;
@@ -424,7 +424,7 @@ public class GameManager_VR : MonoBehaviour
                         GameObject pad = Instantiate(Resources.Load("Prefab/Pad_VR")) as GameObject;
 
                         //Pad 좌표설정
-                        pad.transform.position = new Vector3(x, sy, 1f);
+                        pad.transform.position = new Vector3(x, sy, 1.1f);
 
                         //pad1, pad2, ... pad25까지 tag로 설정되어 있음
                         //생성되는 Pad마다 tag를 붙여줌
@@ -457,7 +457,7 @@ public class GameManager_VR : MonoBehaviour
             }
 
             //한 줄 아래로 이동
-            sy-=0.1f;
+            sy-=0.05f;
         }
         yield return new WaitForSeconds(1);
 

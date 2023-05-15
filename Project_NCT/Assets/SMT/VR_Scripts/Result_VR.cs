@@ -103,7 +103,7 @@ public class Result_VR : MonoBehaviour
     {
         yield return new WaitForSeconds(1.5f);
 
-        stageNumText.text = "최종 단계           -------------------       " + GameManager_VR.stageNum;
+        stageNumText.text = "최종 단계       -------------------       " + GameManager_VR.stageNum;
 
         yield return new WaitForSeconds(0.5f);
     }
