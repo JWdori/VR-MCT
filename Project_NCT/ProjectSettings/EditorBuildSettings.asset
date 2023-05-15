@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/SMT/Scenes/Gamestart.unity
     guid: 8b5a9f9d98c073743bc0091e00425a97
   - enabled: 0
@@ -23,7 +23,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/SMT/Scenes/Result_VR.unity
     guid: 3c9e59cb51d176549ab177bcc7a78178
-  - enabled: 1
+  - enabled: 0
     path: Assets/SMT/Scenes/Game2.unity
     guid: d2d61fc504db2284f9aeb675cbaff717
   m_configObjects:
