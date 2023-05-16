@@ -88,8 +88,8 @@ public class GameManager_VR : MonoBehaviour
     public void Start()
     {
 
-        Screen.orientation = ScreenOrientation.LandscapeRight;
-        Screen.sleepTimeout = SleepTimeout.NeverSleep;
+        //Screen.orientation = ScreenOrientation.LandscapeRight;
+      //  Screen.sleepTimeout = SleepTimeout.NeverSleep;
 
         //시간 초기화
         //startTime = Time.time;
