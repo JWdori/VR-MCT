@@ -66,7 +66,7 @@ public class Result_VR : MonoBehaviour
 
         TotalTimeText.text = "Total time       -------------------       " + GameManager_VR.totalTime;
 
-        yield return new WaitForSeconds(0.5f);
+        //yield return new WaitForSeconds(0.5f);
     }
 
     //사용자가 플레이한 난이도
@@ -105,7 +105,7 @@ public class Result_VR : MonoBehaviour
 
         stageNumText.text = "Stage             -------------------       " + GameManager_VR.stageNum;
 
-        yield return new WaitForSeconds(0.5f);
+        //yield return new WaitForSeconds(0.5f);
     }
 
     //총 틀린 횟수
@@ -122,6 +122,6 @@ public class Result_VR : MonoBehaviour
             missNumText.text = "Miss               -------------------       " + GameManager_VR.totalMiss;
         }
 
-        yield return new WaitForSeconds(0.5f);
+        //yield return new WaitForSeconds(0.5f);
     }
 }
