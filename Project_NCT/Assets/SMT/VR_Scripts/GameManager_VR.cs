@@ -55,7 +55,7 @@ public class GameManager_VR : MonoBehaviour
     static public int totalMiss;
 
     //스테이지 시간
-    static public int time2;
+    static public int time2 = 60;
 
     //게임이 진행중이지 않을 때 시간을 멈췄다 진행하기 위한 시간 저장 변수
     int time_temp = 0;
@@ -88,8 +88,8 @@ public class GameManager_VR : MonoBehaviour
     public void Start()
     {
 
-        Screen.orientation = ScreenOrientation.LandscapeRight;
-        Screen.sleepTimeout = SleepTimeout.NeverSleep;
+        //Screen.orientation = ScreenOrientation.LandscapeRight;
+      //  Screen.sleepTimeout = SleepTimeout.NeverSleep;
 
         //시간 초기화
         //startTime = Time.time;
@@ -117,19 +117,19 @@ public class GameManager_VR : MonoBehaviour
         if (isStagetime)
         {
             //스테이지 게임 시간 계산
-            time2 = (int)(Time.time - stageTime);
+            time2 = 60 - (int)(Time.time - stageTime);
             //스테이지 게임 시간 출력
-            stageTimeText.text = "Stage Time : " + time2;
+            stageTimeText.text = "남은 시간 : " + time2;
         }
         
         //time2는 stage 시간
         //60초 지나면 게임 종료
-        if (time2 >= 60 && !over)
+        if (time2 <= 0 && !over)
         {
             //한 번 더 판단
             over = true;
             //시간 다시 초기화
-            time2 = 0;
+            time2 = 60;
             //시간 초과로 인한 게임 종료
             state = STATE.FINISH;
         }
@@ -142,7 +142,7 @@ public class GameManager_VR : MonoBehaviour
             case STATE.START:
                 stageNum = 1;
                 missNum = 2;
-                totalMiss = 0;
+                totalMiss = 2;
                 totalTime = 0f;
                 over = false ;
                 StartCoroutine(MakeStage());
@@ -153,9 +153,9 @@ public class GameManager_VR : MonoBehaviour
             //ShowTouch() 실행
             case STATE.MAKE:
                 //틀린 횟수 출력
-                missText.text = "LIFE : " + missNum;
+                missText.text = "목숨 : " + missNum;
                 //맞춘 횟수 출력
-                hitText.text = "Hit : " + hitCnt;
+                hitText.text = "성공 횟수 : " + hitCnt;
                 Debug.Log("Make");
                 StartCoroutine(ShowTouch());
                 break;
@@ -267,16 +267,18 @@ public class GameManager_VR : MonoBehaviour
         {
             //틀렸을 경우 missNum과 totalMiss 하나 씩 증가
             --missNum; //스테이지마다 초기화
-            ++totalMiss; //누적
+            --totalMiss; //누적
             //틀린 횟수 update
-            missText.text = "LIFE : " + missNum;
+            missText.text = "목숨 : " + missNum;
             
             // missNum이 1보다 크다는 것은 한 스테이지에서 두 번 틀렸다는 뜻
             if (missNum < 1)
             {
-                //두 번 틀리면 터치 안 되고, Fail 출력
+                //두 번 틀리면 터치 안 되고, Fail 출력 시간도 안흐르게...
                 isTouch = false;
-                
+                isTotaltime = false;
+                isStagetime = false;
+
                 StartCoroutine(ShowFail());
                 yield return new WaitForSeconds(2f);
                 //state가 FINISH로 바뀜
@@ -302,12 +304,14 @@ public class GameManager_VR : MonoBehaviour
             //맞춘 횟수 증가
             ++hitCnt;
             //맞춘 횟수 update
-            hitText.text = "Hit : " + hitCnt;
+            hitText.text = "성공 횟수 : " + hitCnt;
             //해당 스테이지에서 눌러야 되는 Pad를 모두 눌렀을 경우
             if (step + 1 == stageNum)
             {
                 //터치 안 되게 바꾸고, state는 CLEAR로 변환
                 isTouch = false;
+                isTotaltime = false;
+                isStagetime = false;
                 state = STATE.CLEAR;
                 yield return new WaitForSeconds(0.03f);
                 //return;
@@ -327,10 +331,15 @@ public class GameManager_VR : MonoBehaviour
     IEnumerator StageClear()
     {
         state = STATE.WAIT;
+
+        isTouch = false;
+        isTotaltime = false;
+        isStagetime = false;
+
         yield return new WaitForSeconds(0.5f);
         //Clear 문구 보여줌
         StartCoroutine(ShowClear());
-        stageTimeText.text = "Stage Time : " + 0;
+        stageTimeText.text = "남은 시간 : " + 60;
         yield return new WaitForSeconds(2f);
 
         //다음 스테이지 번호
@@ -345,6 +354,7 @@ public class GameManager_VR : MonoBehaviour
         }
 
         //stage가 바뀌는 순간에는 시간이 안 흐름
+        isTouch = false;
         isTotaltime = false;
         isStagetime = false;
 
@@ -354,14 +364,15 @@ public class GameManager_VR : MonoBehaviour
         //스테이지 시간 초기화
         stageTime = Time.time;
 
+
         //맞춘 횟수 초기화
         hitCnt = 0;
-        hitText.text = "Hit : " + hitCnt;
+        hitText.text = "성공 횟수 : " + hitCnt;
         //맞춰야 되는 Pad갯수 초기화
         step = 0;
         //틀린 횟수 초기화
-        missNum = 0;
-        missText.text = "Miss : " + missNum;
+        missNum = totalMiss;
+        missText.text = "목숨 : " + missNum;
         //다음 문제 제시
         state = STATE.MAKE;
 
@@ -381,7 +392,7 @@ public class GameManager_VR : MonoBehaviour
         float sx = 0;
 
         //시작카드의 y좌표
-        float sy = 2;
+        float sy = 6;
 
         SetPadPos(out sx, out sy);
 
@@ -398,7 +409,7 @@ public class GameManager_VR : MonoBehaviour
             char[] ch = t.Trim().ToCharArray();
 
             //Pad의 x축 좌표
-            float x = sx;
+            float x = 1.3f;
 
             //1행의 문자열 길이만큼 반복
             //배열의 ch의 한문자를 읽고 변수 c에 할당한다
@@ -413,13 +424,13 @@ public class GameManager_VR : MonoBehaviour
                         GameObject pad = Instantiate(Resources.Load("Prefab/Pad_VR")) as GameObject;
 
                         //Pad 좌표설정
-                        pad.transform.position = new Vector3(x, sy, 2);
+                        pad.transform.position = new Vector3(x, sy, 1.1f);
 
                         //pad1, pad2, ... pad25까지 tag로 설정되어 있음
                         //생성되는 Pad마다 tag를 붙여줌
                         //나중에 사용자가 선택한 Pad와 눌러야 되는 Pad 비교할 때 쓰임
                         pad.tag = "pad" + n++;
-                        x += 0.5f;
+                        x += 0.3f;
                         break;
 
                     //빈칸 처리
@@ -446,7 +457,7 @@ public class GameManager_VR : MonoBehaviour
             }
 
             //한 줄 아래로 이동
-            sy-=0.1f;
+            sy-=0.05f;
         }
         yield return new WaitForSeconds(1);
 
@@ -568,11 +579,11 @@ public class GameManager_VR : MonoBehaviour
     //스테이지 시작시 스테이지 번호를 보여준다.
     IEnumerator ShowStageNum()
     {
-        stageNumText.text = "STAGE " + stageNum;
+        stageNumText.text =  stageNum + " 단계";
         //levelNum이 1이면 easy
         if (levelNum == 1)
         {
-            levelText.text = "EASY";
+            levelText.text = "쉬움";
 
             yield return new WaitForSeconds(0.5f);
         }
@@ -580,7 +591,7 @@ public class GameManager_VR : MonoBehaviour
         //levelNum이 2이면 normal
         else if (levelNum == 2)
         {
-            levelText.text = "NORMAL";
+            levelText.text = "보통";
 
             yield return new WaitForSeconds(0.5f);
         }
@@ -588,7 +599,7 @@ public class GameManager_VR : MonoBehaviour
         //levelNum이 3이면 hard
         else if (levelNum == 3)
         {
-            levelText.text = "HARD";
+            levelText.text = "어려움";
 
             yield return new WaitForSeconds(0.5f);
         }
@@ -600,7 +611,7 @@ public class GameManager_VR : MonoBehaviour
     //누르는 타이밍을 알려준다.
     IEnumerator ShowPushTiming()
     {
-        pushText.text = "Start";
+        pushText.text = "시작!";
 
         //1초 후 사라짐
         yield return new WaitForSeconds(1f);
@@ -609,13 +620,14 @@ public class GameManager_VR : MonoBehaviour
         pushText.text = "";
         isStagetime = true;
         isTotaltime = true;
+        //왜지?
         yield return new WaitForSeconds(2f);
     }
 
     //Stage를 Clear했다는 것을 알림
     IEnumerator ShowClear()
     {
-        pushText.text = "Clear";
+        pushText.text = "성공!";
 
         //1초 후 사라짐
         yield return new WaitForSeconds(1f);
@@ -628,7 +640,7 @@ public class GameManager_VR : MonoBehaviour
     //Stage를 Clear하지 못함
     IEnumerator ShowFail()
     {
-        pushText.text = "Fail";
+        pushText.text = "실패!";
 
         //1초 후 사라짐
         yield return new WaitForSeconds(1f);

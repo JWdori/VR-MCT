@@ -8,6 +8,6 @@ public class ControlSky : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        RenderSettings.skybox.SetFloat("_Rotation",Time.time * 0.4f);
+        RenderSettings.skybox.SetFloat("_Rotation",Time.time * 0.5f);
     }
 }
