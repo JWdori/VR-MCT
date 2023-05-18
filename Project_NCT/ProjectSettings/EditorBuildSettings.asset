@@ -8,15 +8,24 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/SMT/Scenes/Gamestart.unity
     guid: 8b5a9f9d98c073743bc0091e00425a97
-  - enabled: 1
+  - enabled: 0
     path: Assets/SMT/Scenes/SMT.unity
     guid: 66b2cb5426be9024dac7b4e7fa92957a
-  - enabled: 1
+  - enabled: 0
     path: Assets/SMT/Scenes/LevelSelect.unity
     guid: 8dc63e729c2965d47b5ce6255bc7a8d7
-  - enabled: 1
+  - enabled: 0
     path: Assets/SMT/Scenes/Result.unity
     guid: abf78f66787dd174fbbe89919ba52be1
+  - enabled: 1
+    path: Assets/SMT/Scenes/Memory_game.unity
+    guid: 33419b875f22df646b2de99130d4a4a4
+  - enabled: 0
+    path: Assets/SMT/Scenes/Result_VR.unity
+    guid: 3c9e59cb51d176549ab177bcc7a78178
+  - enabled: 1
+    path: Assets/SMT/Scenes/Game2.unity
+    guid: d2d61fc504db2284f9aeb675cbaff717
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 8956e24cb39bebc41bc92491432701ef,
       type: 2}

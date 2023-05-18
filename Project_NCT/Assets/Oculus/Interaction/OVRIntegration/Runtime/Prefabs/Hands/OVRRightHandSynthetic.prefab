@@ -27,6 +27,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8662184561472330087}
   m_Father: {fileID: 0}
@@ -48,8 +49,6 @@ MonoBehaviour:
   _updateAfter: {fileID: 0}
   _iModifyDataFromSourceMono: {fileID: 0}
   _applyModifier: 1
-  _aspects:
-  - {fileID: 8662184560477892147}
   _wristPositionLockCurve:
     _animationCurve:
       serializedVersion: 2
@@ -227,7 +226,7 @@ PrefabInstance:
     - target: {fileID: 1678554349857304353, guid: 34a22dd67c1e5344591237fdd61e78ec,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.0845
       objectReference: {fileID: 0}
     - target: {fileID: 1678554349857304353, guid: 34a22dd67c1e5344591237fdd61e78ec,
         type: 3}
@@ -237,7 +236,7 @@ PrefabInstance:
     - target: {fileID: 1678554349857304353, guid: 34a22dd67c1e5344591237fdd61e78ec,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.1768
       objectReference: {fileID: 0}
     - target: {fileID: 1678554349857304353, guid: 34a22dd67c1e5344591237fdd61e78ec,
         type: 3}
@@ -284,12 +283,6 @@ PrefabInstance:
 --- !u!4 &8662184561472330087 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1678554349857304353, guid: 34a22dd67c1e5344591237fdd61e78ec,
-    type: 3}
-  m_PrefabInstance: {fileID: 8033628709413992006}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &8662184560477892147 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1678554350674794613, guid: 34a22dd67c1e5344591237fdd61e78ec,
     type: 3}
   m_PrefabInstance: {fileID: 8033628709413992006}
   m_PrefabAsset: {fileID: 0}
