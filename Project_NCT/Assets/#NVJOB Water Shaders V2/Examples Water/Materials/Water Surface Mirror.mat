@@ -2,15 +2,21 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!21 &2100000
 Material:
-  serializedVersion: 6
+  serializedVersion: 8
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Water Surface Mirror
   m_Shader: {fileID: 4800000, guid: cab0bc95e1ce4946a1298a052a7d1d6f, type: 3}
-  m_ShaderKeywords: EFFECT_ALBEDO2 EFFECT_FOAM EFFECT_MICROWAVE EFFECT_MIRROR EFFECT_NORMALMAP2
-    EFFECT_PARALLAX
+  m_ValidKeywords:
+  - EFFECT_ALBEDO2
+  - EFFECT_FOAM
+  - EFFECT_MICROWAVE
+  - EFFECT_MIRROR
+  - EFFECT_NORMALMAP2
+  - EFFECT_PARALLAX
+  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -132,6 +138,7 @@ Material:
         m_Texture: {fileID: 2800000, guid: 0c41e829b9bb6ee4cb72abae07230cdb, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    m_Ints: []
     m_Floats:
     - _Albedo2Flow: 0.9
     - _Albedo2Tiling: 0.9
@@ -245,3 +252,4 @@ Material:
     - _ReflectColor: {r: 0.07605405, g: 0.084, b: 0.082864866, a: 1}
     - _SpecColor: {r: 0.4, g: 0.4, b: 0.3764706, a: 1}
     - _SpecularColor: {r: 0.5808823, g: 0.5808823, b: 0.5808823, a: 1}
+  m_BuildTextureStacks: []
