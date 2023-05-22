@@ -119,7 +119,7 @@ public class Result_VR : MonoBehaviour
         }
         else
         {
-            missNumText.text = "格见               -------------------       " + GameManager_VR.totalMiss;
+            missNumText.text = "格见            -------------------       " + GameManager_VR.totalMiss;
         }
 
         //yield return new WaitForSeconds(0.5f);
