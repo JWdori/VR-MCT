@@ -4,14 +4,14 @@ using UnityEngine;
 using TMPro;
 using Bhaptics.SDK2;
 
-public class Result_VR : MonoBehaviour
+public class Result_VR1 : MonoBehaviour
 {
     //여기서는 text를 meshpro를 사용함
     //게임 전체 시간, 사용자가 선택한 Level, 사용자가 틀린 스테이지, 전체 게임에서 틀린 횟수
     public TextMeshPro TotalTimeText, LevelText, stageNumText, missNumText, resultText;
 
     //결과창이 보이는 상황가 안 보이는 상황 구별
-    static public bool isResult = false;
+    static public bool isResult1 = false;
 
     //사용자가 선택한 level을 보여줌
     void Start()
@@ -30,7 +30,7 @@ public class Result_VR : MonoBehaviour
     void Update()
     {
         //결과를 보여줘야 할 때 isResult가 true
-        if (isResult)
+        if (isResult1)
         {
             resultText.text = "결과";
             //Level을 알려줌
@@ -47,7 +47,7 @@ public class Result_VR : MonoBehaviour
 
         }
 
-        else if (!isResult & !Result_VR1.isResult1)
+        else if (!Result_VR.isResult & !isResult1)
         {
             //isResult가 false일 때
             //결과를 보여주는 상황이 아닐 때
@@ -64,7 +64,7 @@ public class Result_VR : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
 
-        TotalTimeText.text = "소모 시간     -------------------       " + GameManager_VR.totalTime;
+        TotalTimeText.text = "소모 시간     -------------------       " + GameManager_VR1.totalTime1;
 
         //yield return new WaitForSeconds(0.5f);
     }
@@ -72,10 +72,10 @@ public class Result_VR : MonoBehaviour
     //사용자가 플레이한 난이도
     IEnumerator ShowLevel()
     {
-        LevelText.text = "쉬움";
+        LevelText.text = "보통";
 
         yield return new WaitForSeconds(0.5f);
-       
+
     }
 
     //사용자가 실패한 스테이지
@@ -83,7 +83,7 @@ public class Result_VR : MonoBehaviour
     {
         yield return new WaitForSeconds(1.5f);
 
-        stageNumText.text = "최종 단계       -------------------       " + GameManager_VR.stageNum;
+        stageNumText.text = "최종 단계       -------------------       " + GameManager_VR1.stageNum1;
 
         //yield return new WaitForSeconds(0.5f);
     }
@@ -93,13 +93,13 @@ public class Result_VR : MonoBehaviour
     {
         yield return new WaitForSeconds(2.5f);
         // over가 true이면 시간 초과로 게임이 종료되었다는 뜻
-        if (GameManager_VR.over)
+        if (GameManager_VR1.over1)
         {
             missNumText.text = "                        시간 종료!                        ";
         }
         else
         {
-            missNumText.text = "목숨            -------------------       " + GameManager_VR.totalMiss;
+            missNumText.text = "목숨            -------------------       " + GameManager_VR1.totalMiss1;
         }
 
         //yield return new WaitForSeconds(0.5f);

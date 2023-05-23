@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.55060005, g: 0.7984652, b: 0.9703038, a: 1}
+  m_IndirectSpecularColor: {r: 0.5507462, g: 0.7985981, b: 0.97024447, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -7935,6 +7935,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1601002281}
   - component: {fileID: 1601002282}
+  - component: {fileID: 1601002283}
   m_Layer: 0
   m_Name: Result
   m_TagString: Untagged
@@ -7980,6 +7981,23 @@ MonoBehaviour:
   stageNumText: {fileID: 1985663637}
   missNumText: {fileID: 1384309332}
   resultText: {fileID: 394316053}
+--- !u!114 &1601002283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1601002280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13c13e1aa12c1b947ac1684bfe63a3ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TotalTimeText: {fileID: 1017525586}
+  LevelText: {fileID: 1638608701}
+  stageNumText: {fileID: 1985663637}
+  missNumText: {fileID: 1384309332}
+  resultText: {fileID: 394316053}
 --- !u!1 &1605164219
 GameObject:
   m_ObjectHideFlags: 0
@@ -7991,6 +8009,7 @@ GameObject:
   - component: {fileID: 1605164221}
   - component: {fileID: 1605164220}
   - component: {fileID: 1605164222}
+  - component: {fileID: 1605164223}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -8045,6 +8064,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menu: {fileID: 198707199}
+--- !u!114 &1605164223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1605164219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb900f0a9fea4a94ba27161f1e3347b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  totalTimeText: {fileID: 1759485867}
+  stageTimeText: {fileID: 1540111015}
+  missText: {fileID: 1473208125}
+  hitText: {fileID: 1889902152}
+  stageNumText: {fileID: 1744484589}
+  pushText: {fileID: 306635870}
+  levelText: {fileID: 1076339051}
 --- !u!1 &1611882272
 GameObject:
   m_ObjectHideFlags: 0

@@ -46,6 +46,7 @@ public class PadCtrl_VR : MonoBehaviour
             int padNum = int.Parse(tag.Substring(3));
             //위에서 설정한 padNum을 GameManager에 있는 padNum에도 설정
             GameManager_VR.padNum = padNum;
+            GameManager_VR1.padNum1 = padNum;
             //맞춘 경우, IDLE 상태에서만 누르는 게 가능
             if (GameManager_VR.arPads[GameManager_VR.step] == padNum && GameManager_VR.state == GameManager_VR.STATE.IDLE && GameManager_VR.isTouch)
             {
@@ -70,6 +71,31 @@ public class PadCtrl_VR : MonoBehaviour
 
                 //state를 WRONG으로 설정
                 GameManager_VR.state = GameManager_VR.STATE.WRONG;
+            }
+            //맞춘 경우
+            else if (GameManager_VR1.arPads1[GameManager_VR1.step1] == padNum && GameManager_VR1.state1 == GameManager_VR1.STATE.IDLE && GameManager_VR1.isTouch1)
+            {
+                CorrectAudio.play();
+
+                //맞춘 animation 실행, 초록색
+                anim.Play("aniTouch_VR", -1, 0.5f);
+                GameManager_VR1.isTouch1 = false;
+
+                //state를 HIT로 설정
+                GameManager_VR1.state1 = GameManager_VR1.STATE.HIT;
+
+            }
+            //틀린 경우
+            else if (GameManager_VR1.arPads1[GameManager_VR1.step1] != padNum && GameManager_VR1.state1 == GameManager_VR1.STATE.IDLE && GameManager_VR1.isTouch1)
+            {
+                WrongAudio.play();
+
+                //틀린 animation 실행, 빨간색
+                anim.Play("aniPad_VR", -1, 0.5f);
+                GameManager_VR1.isTouch1 = false;
+
+                //state를 WRONG으로 설정
+                GameManager_VR1.state1 = GameManager_VR1.STATE.WRONG;
             }
         }
     }
