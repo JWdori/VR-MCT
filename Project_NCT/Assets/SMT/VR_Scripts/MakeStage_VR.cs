@@ -52,7 +52,7 @@ public class MakeStage_VR : MonoBehaviour
 
             //문제 생성
             //외워야 되는 Pad가 누적인 경우
-            GameManager_VR1.ShuffleTouch();
+            //GameManager_VR1.ShuffleTouch();
 
             //시작 시간 기록
             GameManager_VR1.startTime1 = Time.time;

@@ -74,14 +74,14 @@ public class Result_VR1 : MonoBehaviour
     {
         LevelText.text = "보통";
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.1f);
 
     }
 
     //사용자가 실패한 스테이지
     IEnumerator ShowStageNum()
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1f);
 
         stageNumText.text = "최종 단계       -------------------       " + GameManager_VR1.stageNum1;
 
@@ -91,7 +91,7 @@ public class Result_VR1 : MonoBehaviour
     //총 틀린 횟수
     IEnumerator ShowMissNum()
     {
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(1.5f);
         // over가 true이면 시간 초과로 게임이 종료되었다는 뜻
         if (GameManager_VR1.over1)
         {

@@ -73,22 +73,27 @@ public class PadCtrl_VR : MonoBehaviour
                 GameManager_VR.state = GameManager_VR.STATE.WRONG;
             }
             //맞춘 경우
-            else if (GameManager_VR1.arPads1[GameManager_VR1.step1] == padNum && GameManager_VR1.state1 == GameManager_VR1.STATE.IDLE && GameManager_VR1.isTouch1)
+            else if (GameManager_VR1.arPads1[padNum-1] && GameManager_VR1.state1 == GameManager_VR1.STATE.IDLE && GameManager_VR1.isTouch1)
             {
                 CorrectAudio.play();
+                Debug.Log(GameManager_VR1.arPads1[padNum - 1]);
+                Debug.Log(padNum - 1);
 
                 //맞춘 animation 실행, 초록색
                 anim.Play("aniTouch_VR", -1, 0.5f);
                 GameManager_VR1.isTouch1 = false;
+                GameManager_VR1.arPads1[padNum - 1] = false;
 
                 //state를 HIT로 설정
                 GameManager_VR1.state1 = GameManager_VR1.STATE.HIT;
 
             }
             //틀린 경우
-            else if (GameManager_VR1.arPads1[GameManager_VR1.step1] != padNum && GameManager_VR1.state1 == GameManager_VR1.STATE.IDLE && GameManager_VR1.isTouch1)
+            else if (!GameManager_VR1.arPads1[padNum-1] && GameManager_VR1.state1 == GameManager_VR1.STATE.IDLE && GameManager_VR1.isTouch1)
             {
                 WrongAudio.play();
+                Debug.Log(GameManager_VR1.arPads1[padNum - 1]);
+                Debug.Log(padNum - 1);
 
                 //틀린 animation 실행, 빨간색
                 anim.Play("aniPad_VR", -1, 0.5f);

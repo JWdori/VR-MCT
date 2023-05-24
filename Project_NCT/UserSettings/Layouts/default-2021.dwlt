@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1280
     height: 710
   m_ShowMode: 4
-  m_Title: Inspector
+  m_Title: Hierarchy
   m_RootView: {fileID: 3}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -198,7 +198,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 300}
   m_MaxSize: {x: 8096, y: 24288}
   vertical: 1
-  controlID: 60
+  controlID: 37
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -523,23 +523,23 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
-      m_LastClickedID: 0
-      m_ExpandedIDs: 2efbffff
+      m_SelectedIDs: bef3ffff
+      m_LastClickedID: -3138
+      m_ExpandedIDs: c6eeffff60f0ffff66f0ffff6af0ffff1af2ffff8cf3fffffcf4ffff02f5ffff06f5ffff4af6ffff50f6ffff54f6ffff10f9ffff2efbffff08750000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: 
-        m_OriginalName: 
+        m_Name: r_handMeshNode
+        m_OriginalName: r_handMeshNode
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: 0
+        m_UserData: -3138
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 11
+        m_OriginalEventType: 0
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 7}
       m_SearchString: 
@@ -809,9 +809,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 2.125, y: 3.8, z: 3.8660002}
+    m_Target: {x: 1.8156911, y: 1.4811627, z: 0.39559156}
     speed: 2
-    m_Value: {x: 2.125, y: 3.8, z: 3.8660002}
+    m_Value: {x: 1.8156556, y: 1.4811318, z: 0.39558446}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -858,13 +858,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.008879734, y: 0.98455036, z: 0.16697799, w: 0.052340467}
+    m_Target: {x: 0.001418034, y: 0.3180678, z: -0.0004900915, w: 0.9480898}
     speed: 2
-    m_Value: {x: -0.008879559, y: 0.984531, z: 0.16697471, w: 0.05233944}
+    m_Value: {x: 0.005681359, y: 0.31947714, z: -0.0019299818, w: 0.947575}
   m_Size:
-    m_Target: 1.5748488
+    m_Target: 0.18869649
     speed: 2
-    m_Value: 1.5748488
+    m_Value: 0.18869573
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -1179,22 +1179,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/SMT/VR_Scripts
+    - Assets/SMT/Resources/Prefab
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/SMT/VR_Scripts
+  - Assets/SMT/Resources/Prefab
   m_LastFoldersGridSize: 16
   m_LastProjectPath: C:\Users\wjdgu\Documents\GitHub\VR-MCT\Project_NCT
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 1203}
-    m_SelectedIDs: a4930000
-    m_LastClickedID: 37796
-    m_ExpandedIDs: 00000000a0920000a2920000a4920000a6920000a8920000aa920000ac920000ae920000b0920000b2920000b4920000b6920000b8920000ba920000bc920000be920000c0920000c2920000c4920000c6920000c8920000ca920000cc920000ce920000d0920000d2920000d4920000d6920000d892000000ca9a3bffffff7f
+    scrollPos: {x: 0, y: 183}
+    m_SelectedIDs: 9e930000
+    m_LastClickedID: 37790
+    m_ExpandedIDs: 00000000a0920000a2920000a4920000a6920000a8920000aa920000ac920000ae920000b0920000b2920000b4920000b6920000b8920000ba920000bc920000be920000c0920000c2920000c4920000c6920000c8920000ca920000cc920000ce920000d2920000d4920000d6920000d89200008c9300004a33010000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1249,8 +1249,8 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 0
-    m_ExpandedInstanceIDs: c6230000366700002a970000a896030000a3000000000000
+    m_HadKeyboardFocusLastEvent: 1
+    m_ExpandedInstanceIDs: c6230000366700002a970000a896030000a30000000000000a810000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

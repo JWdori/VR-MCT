@@ -29,6 +29,8 @@ TagManager:
   - pad23
   - pad24
   - pad25
+  - left_hand
+  - right_hand
   layers:
   - Default
   - TransparentFX

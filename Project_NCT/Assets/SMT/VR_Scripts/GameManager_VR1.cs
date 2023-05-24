@@ -40,7 +40,7 @@ public class GameManager_VR1 : MonoBehaviour
 
     //패드 문제 배열
     //ShuffleTouch에서 랜덤으로 설정
-    static public int[] arPads1 = new int[20];
+    static public bool[] arPads1 = new bool[11];
 
     //게임 시작 시간
     static public float startTime1;
@@ -67,6 +67,9 @@ public class GameManager_VR1 : MonoBehaviour
     bool isTotaltime = false;
     bool isStagetime = false;
 
+    //ShuffleTouch에서 사용
+    int r = 0;
+
     //게임 상태를 나타내는 STATE
     public enum STATE
     {
@@ -87,9 +90,8 @@ public class GameManager_VR1 : MonoBehaviour
 
     public void Start()
     {
-
         //Screen.orientation = ScreenOrientation.LandscapeRight;
-      //  Screen.sleepTimeout = SleepTimeout.NeverSleep;
+        //  Screen.sleepTimeout = SleepTimeout.NeverSleep;
 
         //시간 초기화
         //startTime = Time.time;
@@ -263,7 +265,7 @@ public class GameManager_VR1 : MonoBehaviour
         isTouch1 = true;
         //arPads[step]은 step번째 눌러야 되는 Pad번호
         //padNum은 PadCtrl.cs에서 받아온 사용자가 누른 Pad번호
-        if (arPads1[step1] != padNum1 && isTouch1)
+        if (isTouch1)
         {
             //틀렸을 경우 missNum과 totalMiss 하나 씩 증가
             --missNum; //스테이지마다 초기화
@@ -300,14 +302,14 @@ public class GameManager_VR1 : MonoBehaviour
         //Debug.Log(step1);
 
         //눌러야 되는 Pad와 사용자가 누른 Pad가 같은 경우
-        if (arPads1[step1] == padNum1 && isTouch1)
+        if (isTouch1)
         {
             //맞춘 횟수 증가
             ++hitCnt;
             //맞춘 횟수 update
             hitText.text = "성공 횟수 : " + hitCnt;
             //해당 스테이지에서 눌러야 되는 Pad를 모두 눌렀을 경우
-            if (step1 + 1 == stageNum1)
+            if (step1+1 == (stageNum1 + 3) / 2)
             {
                 //터치 안 되게 바꾸고, state는 CLEAR로 변환
                 isTouch1 = false;
@@ -344,13 +346,12 @@ public class GameManager_VR1 : MonoBehaviour
         yield return new WaitForSeconds(2f);
 
         //다음 스테이지 번호
-        if (stageNum1 != stageCnt1)
+        if (stageNum1 < stageCnt1)
         {
             ++stageNum1;
         }
-
         //최대 스테이지가 되었을 경우
-        if (stageNum1 > stageCnt1)
+        else if (stageNum1 == stageCnt1)
         {
             //게임 끝, FINISH 상태로
             state1 = STATE.FINISH;
@@ -377,6 +378,7 @@ public class GameManager_VR1 : MonoBehaviour
         //틀린 횟수 초기화
         missNum = totalMiss1;
         missText.text = "목숨 : " + missNum;
+        
         //다음 문제 제시
         state1 = STATE.MAKE;
 
@@ -425,7 +427,7 @@ public class GameManager_VR1 : MonoBehaviour
                     case '*':
                         //Pad 만들기
                         //Prefap으로 만들어진 Pad를 GameObject로 설정
-                        GameObject pad = Instantiate(Resources.Load("Prefab/Pad_VR_6")) as GameObject;
+                        GameObject pad = Instantiate(Resources.Load("Prefab/Pad_VR_Hand")) as GameObject;
 
                         //Pad 좌표설정
                         pad.transform.position = new Vector3(x, sy, 1.1f);
@@ -433,7 +435,9 @@ public class GameManager_VR1 : MonoBehaviour
                         //pad1, pad2, ... pad25까지 tag로 설정되어 있음
                         //생성되는 Pad마다 tag를 붙여줌
                         //나중에 사용자가 선택한 Pad와 눌러야 되는 Pad 비교할 때 쓰임
-                        pad.tag = "pad" + n++;
+                        pad.tag = "pad" + n;
+                        arPads1[n-1] = false;
+                        ++n;
                         x += 0.3f;
                         break;
 
@@ -533,9 +537,12 @@ public class GameManager_VR1 : MonoBehaviour
     {
         state1 = STATE.WAIT;
 
+
         //랜덤으로 Pad순서 생성
         //stage마다 문제가 바뀔 때
-        ShuffleTouch();
+        //ShuffleTouch();
+        StartCoroutine(ShuffleTouch());
+        yield return new WaitForSeconds(0.1f);
 
         //문제 제시 전에 Stage 알려줌
         StartCoroutine(ShowStageNum());
@@ -544,6 +551,22 @@ public class GameManager_VR1 : MonoBehaviour
         //눌러야 되는 Pad 순서 처음으로 초기화
         step1 = 0;
 
+        for(int i = 0; i < padCnt1; i++)
+        {
+            if (arPads1[i])
+            {
+                //pad를 tag를 이용하여 설정
+                //ShuffleTouch에서 arPads 배열 랜덤 생성
+                GameObject pad = GameObject.FindWithTag("pad" + (i+1));
+                //문제 보여줄 때 효과음 실행
+                pad.SendMessage("PlayAud", SendMessageOptions.DontRequireReceiver);
+                //눌러야 되는 Pad 파란색으로 보여줌
+                //"ShowPad"는 PadCtrl.cs에서 확인
+                pad.SendMessage("ShowPad", SendMessageOptions.DontRequireReceiver);
+            }
+        }
+
+        /*
         //stageNum만큼 눌러야 되는 Pad 순서대로 보여줌
         for (int i = 1; i <= (stageNum1+3)/2; i++)
         {
@@ -557,6 +580,7 @@ public class GameManager_VR1 : MonoBehaviour
             pad.SendMessage("ShowPad", SendMessageOptions.DontRequireReceiver);
             //yield return new WaitForSeconds(1f);
         }
+        */
         //문제 보여준 후 사용자가 터치할 수 있는 순간을 알려줌
         yield return new WaitForSeconds(1f);
         StartCoroutine(ShowPushTiming());
@@ -569,15 +593,27 @@ public class GameManager_VR1 : MonoBehaviour
 
     //사용자가 눌러야 되는 Pad를 랜덤으로 받을 수 있도록 설정
     //arPads 배열 설정
-    static public void ShuffleTouch()
+    IEnumerator ShuffleTouch()
     {
-        for (int i = 0; i < (stageNum1+3)/2; i++)
+        r = 0;
+
+        while (r < (stageNum1+3)/2)
         {
             //1부터 pad갯수 사이에 숫자를 랜덤으로 설정
-            int r = Random.Range(1, padCnt1 + 1);
-            //랜덤으로 뽑은 숫자를 배열에 순서대로 설정
-            arPads1[i] = r;
+            int PadN = Random.Range(0, padCnt1);
+            
+            if (!arPads1[PadN])
+            {
+                arPads1[PadN] = true;
+                ++r;
+            }
+            else
+            {
+                continue;
+            }
+            
         }
+        yield return new WaitForSeconds(0.1f);
     }
 
     
