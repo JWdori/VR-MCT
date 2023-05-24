@@ -29,6 +29,7 @@ TagManager:
   - pad23
   - pad24
   - pad25
+  - game3_terrain
   layers:
   - Default
   - TransparentFX
