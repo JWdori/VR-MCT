@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/SMT/Scenes/Gamestart.unity
     guid: 8b5a9f9d98c073743bc0091e00425a97
   - enabled: 0
@@ -17,13 +17,13 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/SMT/Scenes/Result.unity
     guid: abf78f66787dd174fbbe89919ba52be1
-  - enabled: 1
+  - enabled: 0
     path: Assets/SMT/Scenes/Memory_game.unity
     guid: 33419b875f22df646b2de99130d4a4a4
   - enabled: 0
     path: Assets/SMT/Scenes/Result_VR.unity
     guid: 3c9e59cb51d176549ab177bcc7a78178
-  - enabled: 1
+  - enabled: 0
     path: Assets/SMT/Scenes/Game2.unity
     guid: d2d61fc504db2284f9aeb675cbaff717
   m_configObjects:
@@ -35,7 +35,7 @@ EditorBuildSettings:
       type: 2}
     UnityEditor.XR.ARKit.ARKitSettings: {fileID: 11400000, guid: a49cadc1a815591479693b955ccf08c1,
       type: 2}
-    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 1a4c68ca72a83449f938d669337cb305,
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: bee34913097973a4a9419f724ad1a70a,
       type: 2}
     com.unity.xr.openxr.settings4: {fileID: 11400000, guid: b5dbebfc0926f4e4caa5b26cdf4209b4,
       type: 2}
