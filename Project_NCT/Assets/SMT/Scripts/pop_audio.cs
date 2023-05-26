@@ -17,6 +17,7 @@ public class pop_audio : MonoBehaviour
         particleSystem = GetComponent<ParticleSystem>();
         audioSource = gameObject.AddComponent<AudioSource>();
         PlayRandomAudio();
+
     }
 
     private void PlayRandomAudio()
@@ -37,6 +38,8 @@ public class pop_audio : MonoBehaviour
             audioSource.spatialBlend = spatialBlendMax; // spatial blend ¼³Á¤
             audioSource.Play();
         }
+
+
     }
 
     private void Update()
