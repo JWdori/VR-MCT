@@ -18,11 +18,23 @@ public class Collision_Hand : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.gameObject.CompareTag("left_hand"))
+        if (collision.gameObject.CompareTag("left_hand"))
         {
             Debug.Log("Left Hand");
         }
-        else if (collision.collider.gameObject.CompareTag("right_hand"))
+        else if (collision.gameObject.CompareTag("right_hand"))
+        {
+            Debug.Log("Right Hand");
+        }
+    }
+
+    private void OnTriggerEnter(Collider collider)
+    {
+        if (collider.CompareTag("left_hand"))
+        {
+            Debug.Log("Left Hand");
+        }
+        else if (collider.CompareTag("right_hand"))
         {
             Debug.Log("Right Hand");
         }

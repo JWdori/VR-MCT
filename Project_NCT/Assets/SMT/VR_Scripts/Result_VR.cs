@@ -47,7 +47,7 @@ public class Result_VR : MonoBehaviour
 
         }
 
-        else if (!isResult & !Result_VR1.isResult1)
+        else if (!isResult & !Result_VR1.isResult1 & !Result_VR2.isResult2)
         {
             //isResult가 false일 때
             //결과를 보여주는 상황이 아닐 때

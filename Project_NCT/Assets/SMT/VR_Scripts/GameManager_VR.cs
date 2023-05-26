@@ -424,7 +424,7 @@ public class GameManager_VR : MonoBehaviour
                     case '*':
                         //Pad 만들기
                         //Prefap으로 만들어진 Pad를 GameObject로 설정
-                        GameObject pad = Instantiate(Resources.Load("Prefab/Pad_VR_6")) as GameObject;
+                        GameObject pad = Instantiate(Resources.Load("Prefab/Pad_VR")) as GameObject;
 
                         //Pad 좌표설정
                         pad.transform.position = new Vector3(x, sy, 1.1f);
