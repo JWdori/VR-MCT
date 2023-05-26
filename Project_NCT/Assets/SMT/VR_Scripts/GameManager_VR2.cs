@@ -557,6 +557,8 @@ public class GameManager_VR2 : MonoBehaviour
         {
             if (arPadsL[i])
             {
+                Debug.Log("Left" + i);
+                Debug.Log("Left" + arPadsL[i]);
                 //pad를 tag를 이용하여 설정
                 //ShuffleTouch에서 arPads 배열 랜덤 생성
                 GameObject padL = GameObject.FindWithTag("pad" + (i+1));
@@ -568,6 +570,8 @@ public class GameManager_VR2 : MonoBehaviour
             }
             else if (arPadsR[i])
             {
+                Debug.Log("Right" + i);
+                Debug.Log("Right" + arPadsR[i]);
                 //pad를 tag를 이용하여 설정
                 //ShuffleTouch에서 arPads 배열 랜덤 생성
                 GameObject padR = GameObject.FindWithTag("pad" + (i + 1));
