@@ -29,8 +29,12 @@ TagManager:
   - pad23
   - pad24
   - pad25
+
   - left_hand
   - right_hand
+
+  - game3_terrain
+
   layers:
   - Default
   - TransparentFX
