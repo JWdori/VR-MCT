@@ -80,7 +80,13 @@ namespace Bhaptics.SDK2
         extern public static int playDot(int position, int durationMillis, int[] motors, int size);
 
         [DllImport(ModuleName, CallingConvention = CallingConvention.Cdecl)]
-        extern public static int playGlove(int position, int[] motorValues, int[] playTimeValues, int[] shapeValues, int motorLen);
+        extern public static int playWaveform(int position, int[] motorValues, int[] playTimeValues, int[] shapeValues, int motorLen);
+
+        [DllImport(ModuleName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int playPath(int position, float[] xValues, float[] yValues, int[] intensityValues, int Len);
+
+        [DllImport(ModuleName, CallingConvention = CallingConvention.Cdecl)]
+        extern public static int playLoop(string key, float intensity, float duration, float angleX, float offsetY, int interval, int maxCount);
 
         // https://stackoverflow.com/questions/36239705/serialize-and-deserialize-json-and-json-array-in-unity
         public static List<HapticDevice> GetDevices()

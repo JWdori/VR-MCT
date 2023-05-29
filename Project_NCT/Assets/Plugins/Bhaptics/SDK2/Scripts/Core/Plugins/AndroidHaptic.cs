@@ -20,10 +20,13 @@ namespace Bhaptics.SDK2
         protected IntPtr AndroidJavaObjectPtr;
 
         protected IntPtr InitializePtr;
+        protected IntPtr InitializeRequestPermissionPtr;
+
         protected IntPtr PlayPtr;
         protected IntPtr PlayPosPtr;
         protected IntPtr PlayParamPtr;
         protected IntPtr PlayPosParamPtr;
+
         protected IntPtr StopIntPtr;
         protected IntPtr StopByEventIdPtr;
         protected IntPtr StopAllPtr;
@@ -62,6 +65,8 @@ namespace Bhaptics.SDK2
                 AndroidJavaObjectPtr = androidJavaObject.GetRawObject();
 
                 InitializePtr = AndroidJNIHelper.GetMethodID(androidJavaObject.GetRawClass(), "initialize");
+
+                InitializeRequestPermissionPtr = AndroidJNIHelper.GetMethodID(androidJavaObject.GetRawClass(), "initializeWithPermissionOption");
 
                 PlayPtr = AndroidJNIHelper.GetMethodID(androidJavaObject.GetRawClass(), "play");
                 PlayPosPtr = AndroidJNIHelper.GetMethodID(androidJavaObject.GetRawClass(), "playPos");
@@ -143,6 +148,12 @@ namespace Bhaptics.SDK2
         {
             Debug.LogFormat("[bHaptics] Initialize() {0} {1}", workspaceId, json);
             CallNativeVoidMethod(InitializePtr, new object[] { workspaceId, sdkKey, json });
+        }
+
+        public void InitializeWithPermission(string workspaceId, string sdkKey, string json, bool requestPermission)
+        {
+            Debug.LogFormat("[bHaptics] InitializeWithPermission() {0} {1}", workspaceId, json);
+            CallNativeVoidMethod(InitializeRequestPermissionPtr, new object[] { workspaceId, sdkKey, json, requestPermission ? 1 : 0 });
         }
 
         public bool IsConnect()
@@ -245,6 +256,28 @@ namespace Bhaptics.SDK2
                 return -1;
             }
             return androidJavaObject.Call<int>("playGlove", position, motors, playTimeValues, shapeValues, 6);
+        }
+
+        public int PlayPath(int position, float[] xValues, float[] yValues, int[] intensityValues, int duration)
+        {
+            if (androidJavaObject == null)
+            {
+                return -1;
+            }
+
+            androidJavaObject.Call("submitPath", "key?", position, xValues, yValues, intensityValues, duration);
+
+            return -1;
+        }
+
+        public int PlayLoop(string eventId, float intensity, float duration, float angleX, float offsetY, int interval, int maxCount)
+        {
+            if(androidJavaObject == null)
+            {
+                return -1;
+            }
+
+            return androidJavaObject.Call<int>("playLoop", eventId, intensity, duration, angleX, offsetY, interval, maxCount);
         }
 
         public bool StopByRequestId(int key)

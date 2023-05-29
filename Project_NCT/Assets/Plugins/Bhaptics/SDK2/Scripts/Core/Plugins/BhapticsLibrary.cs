@@ -66,7 +66,7 @@ namespace Bhaptics.SDK2
 
 
 
-        public static bool Initialize(string appId, string apiKey, string json)
+        public static bool Initialize(string appId, string apiKey, string json, bool autoRequestBluetoothPermission = true)
         {
             lock (Lock)
             {
@@ -83,7 +83,7 @@ namespace Bhaptics.SDK2
                 {
                     Debug.Log("[bHaptics] BhapticsLibrary - Initialize ");
                     android = new AndroidHaptic();
-                    android.Initialize(appId, apiKey, json);
+                    android.InitializeWithPermission(appId, apiKey, json, autoRequestBluetoothPermission);
                     _initialized = true;
                     return true;
                 }
@@ -234,7 +234,52 @@ namespace Bhaptics.SDK2
                 }
                 return -1;
             }
-            return bhaptics_library.playGlove((int)positionType, motorValues, playTimes, shapeVals, 6);
+            return bhaptics_library.playWaveform((int)positionType, motorValues, playTimes, shapeVals, 6);
+        }
+
+        public static int PlayPath(int position, float[] xValues, float[] yValues, int[] intensityValues, int duration)
+        {
+            if (!isAvailable)
+            {
+                return -1;
+            }
+
+            if (Application.platform == RuntimePlatform.Android)
+            {
+                if (android != null)
+                {
+                    return android.PlayPath(position, xValues, yValues, intensityValues, duration);
+                }
+
+                return -1;
+            }
+
+            return bhaptics_library.playPath(position, xValues, yValues, intensityValues, duration);
+        }
+
+        public static int PlayLoop(string eventId, float intensity, float duration, float angleX, float offsetY, int interval, int maxCount)
+        {
+            if (!isAvailable)
+            {
+                return -1;
+            }
+
+            if (eventId == null || eventId.Equals(string.Empty))
+            {
+                return -1;
+            }
+
+            if (Application.platform == RuntimePlatform.Android)
+            {
+                if (android != null)
+                {
+                    return android.PlayLoop(eventId, intensity, duration, angleX, offsetY, interval, maxCount);
+                }
+
+                return -1;
+            }
+
+            return bhaptics_library.playLoop(eventId, intensity, duration, angleX, offsetY, interval, maxCount);
         }
 
         public static bool StopByEventId(string eventId)
