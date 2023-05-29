@@ -11,7 +11,7 @@ namespace Bhaptics.SDK2
         [Header("Only for PC")]
         [Tooltip("If bHaptics Player(PC) is not turned on when this program starts, it automatically runs bHaptics Player.")]
         [SerializeField] private bool autoRunBhapticsPlayer = false;
-
+        private bool autoRequestBluetoothPermission = true;
 
         private BhapticsSettings bhapticsSettings;
 
@@ -40,7 +40,7 @@ namespace Bhaptics.SDK2
             }
 
             Debug.LogFormat("[bHaptics] {0} {1}", bhapticsSettings.AppId, bhapticsSettings.ApiKey);
-            BhapticsLibrary.Initialize(bhapticsSettings.AppId, bhapticsSettings.ApiKey, bhapticsSettings.DefaultDeploy);
+            BhapticsLibrary.Initialize(bhapticsSettings.AppId, bhapticsSettings.ApiKey, bhapticsSettings.DefaultDeploy, autoRequestBluetoothPermission);
 
             var playerSetup = BhapticsLibrary.IsBhapticsAvailable(autoRunBhapticsPlayer);
             Debug.LogFormat("[bHaptics] player IsBhapticsAvailable {0}", playerSetup);

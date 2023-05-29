@@ -59,7 +59,6 @@ public class PadCtrl : MonoBehaviour
                     //맞췄을 때 효과음 실행
                     audioSource.clip = clip[0];
                     audioSource.Play();
-                    BhapticsLibrary.Play(BhapticsEvent.CORRECT_LEFT);
                     //맞췄을 때 aniTouch animation 실행
                     hit.transform.SendMessage("TouchPad", SendMessageOptions.DontRequireReceiver);
                 }
@@ -69,7 +68,6 @@ public class PadCtrl : MonoBehaviour
                     //틀렸을 때 효과음 실행
                     audioSource.clip = clip[1];
                     audioSource.Play();
-                    BhapticsLibrary.Play(BhapticsEvent.WRONG_LEFT);
                     //틀렸을 때 aniPad animation 실행
                     hit.transform.SendMessage("WrongPad", SendMessageOptions.DontRequireReceiver);
                 }
@@ -102,7 +100,6 @@ public class PadCtrl : MonoBehaviour
                     //맞췄을 때 효과음 실행
                     audioSource.clip = clip[0];
                     audioSource.Play();
-                    BhapticsLibrary.Play(BhapticsEvent.CORRECT_RIGHT);
                     //맞췄을 때 aniTouch animation 실행
                     hit.transform.SendMessage("TouchPad", SendMessageOptions.DontRequireReceiver);
                 }
@@ -112,7 +109,6 @@ public class PadCtrl : MonoBehaviour
                     //틀렸을 때 효과음 실행
                     audioSource.clip = clip[1];
                     audioSource.Play();
-                    BhapticsLibrary.Play(BhapticsEvent.WRONG_RIGHT);
                     //틀렸을 때 aniPad animation 실행
                     hit.transform.SendMessage("WrongPad", SendMessageOptions.DontRequireReceiver);
                 }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using Bhaptics.SDK2;
 
 public class GameManager_VR : MonoBehaviour
 {
@@ -36,7 +37,7 @@ public class GameManager_VR : MonoBehaviour
     static public int levelNum = 1;
 
     //최대 스테이지 수
-    static public int stageCnt = 3;
+    static public int stageCnt = 10;
 
     //패드 문제 배열
     //ShuffleTouch에서 랜덤으로 설정
@@ -260,6 +261,7 @@ public class GameManager_VR : MonoBehaviour
         //STATE.WAIT이랑 isTouch는 PadCtrl.cs에서 마우스 클릭 가능한 환경 설정
         //STATE.WAIT인 상태에서는 마우스 클릭 안 됨
         state = STATE.WAIT;
+        yield return new WaitForSeconds(1f);
         isTouch = true;
         //arPads[step]은 step번째 눌러야 되는 Pad번호
         //padNum은 PadCtrl.cs에서 받아온 사용자가 누른 Pad번호
@@ -281,6 +283,8 @@ public class GameManager_VR : MonoBehaviour
 
                 StartCoroutine(ShowFail());
                 yield return new WaitForSeconds(2f);
+                FailAudio.play();
+                BhapticsLibrary.Play(BhapticsEvent.FAIL);
                 //state가 FINISH로 바뀜
                 state = STATE.FINISH;
             }
@@ -296,6 +300,7 @@ public class GameManager_VR : MonoBehaviour
         //STATE.WAIT이랑 isTouch는 PadCtrl.cs에서 마우스 클릭 가능한 환경 설정
         //STATE.WAIT인 상태에서는 마우스 클릭 안 됨
         state = STATE.WAIT;
+        yield return new WaitForSeconds(1f);
         isTouch = true;
 
         //눌러야 되는 Pad와 사용자가 누른 Pad가 같은 경우
@@ -343,11 +348,16 @@ public class GameManager_VR : MonoBehaviour
         yield return new WaitForSeconds(2f);
 
         //다음 스테이지 번호
-        ++stageNum;
+        if (stageNum != stageCnt)
+        {
+            ++stageNum;
+        }
 
         //최대 스테이지가 되었을 경우
         if (stageNum > stageCnt)
         {
+            BhapticsLibrary.Play(BhapticsEvent.CLEAR);
+            ClearAudio.play();
             //게임 끝, FINISH 상태로
             state = STATE.FINISH;
             yield return new WaitForSeconds(0.5f);
@@ -535,7 +545,7 @@ public class GameManager_VR : MonoBehaviour
 
         //문제 제시 전에 Stage 알려줌
         StartCoroutine(ShowStageNum());
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(0.5f);
 
         //눌러야 되는 Pad 순서 처음으로 초기화
         step = 0;
