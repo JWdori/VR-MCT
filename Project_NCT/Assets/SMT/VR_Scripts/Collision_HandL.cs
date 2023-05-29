@@ -24,6 +24,7 @@ public class Collision_HandL : MonoBehaviour
         {
             Debug.Log("Left Hand");
             isLeft = true;
+            ClearAudio.play();
             Collision_HandR.isRight = false;
         }
     }
