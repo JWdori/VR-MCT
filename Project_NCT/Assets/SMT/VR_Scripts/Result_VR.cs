@@ -47,7 +47,7 @@ public class Result_VR : MonoBehaviour
 
         }
 
-        else
+        else if (!isResult & !Result_VR1.isResult1 & !Result_VR2.isResult2)
         {
             //isResult가 false일 때
             //결과를 보여주는 상황이 아닐 때
@@ -72,30 +72,10 @@ public class Result_VR : MonoBehaviour
     //사용자가 플레이한 난이도
     IEnumerator ShowLevel()
     {
-        //levelNum이 1이면 easy
-        if (GameManager_VR.levelNum == 1)
-        {
-            LevelText.text = "쉬움";
+        LevelText.text = "쉬움";
 
-            yield return new WaitForSeconds(0.5f);
-        }
-
-        //levelNum이 2이면 normal
-        else if (GameManager_VR.levelNum == 2)
-        {
-            LevelText.text = "보통";
-
-            yield return new WaitForSeconds(0.5f);
-        }
-
-        //levelNum이 3이면 hard
-        else if (GameManager_VR.levelNum == 3)
-        {
-            LevelText.text = "어려움";
-
-            yield return new WaitForSeconds(0.5f);
-        }
-
+        yield return new WaitForSeconds(0.5f);
+       
     }
 
     //사용자가 실패한 스테이지
