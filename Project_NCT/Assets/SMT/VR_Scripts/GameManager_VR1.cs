@@ -285,6 +285,7 @@ public class GameManager_VR1 : MonoBehaviour
 
                 StartCoroutine(ShowFail());
                 yield return new WaitForSeconds(2f);
+                FailAudio.play();
                 BhapticsLibrary.Play(BhapticsEvent.FAIL);
                 //state가 FINISH로 바뀜
                 state1 = STATE.FINISH;
@@ -358,6 +359,7 @@ public class GameManager_VR1 : MonoBehaviour
         else if (stageNum1 == stageCnt1)
         {
             BhapticsLibrary.Play(BhapticsEvent.CLEAR);
+            ClearAudio.play();
             //게임 끝, FINISH 상태로
             state1 = STATE.FINISH;
             yield return new WaitForSeconds(0.5f);

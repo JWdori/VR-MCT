@@ -287,6 +287,7 @@ public class GameManager_VR2 : MonoBehaviour
                 StartCoroutine(ShowFail());
                 yield return new WaitForSeconds(2f);
                 //state가 FINISH로 바뀜
+                FailAudio.play();
                 BhapticsLibrary.Play(BhapticsEvent.FAIL);
                 state2 = STATE.FINISH;
             }
@@ -358,6 +359,7 @@ public class GameManager_VR2 : MonoBehaviour
         //최대 스테이지가 되었을 경우
         else if (stageNum2 == stageCnt2)
         {
+            ClearAudio.play();
             //게임 끝, FINISH 상태로
             BhapticsLibrary.Play(BhapticsEvent.CLEAR);
             state2 = STATE.FINISH;
