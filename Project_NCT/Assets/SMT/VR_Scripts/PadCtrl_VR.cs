@@ -92,10 +92,10 @@ public class PadCtrl_VR : MonoBehaviour
 
 
             // 보통 난이도
-          
+
 
             //맞춘 경우
-            else if (GameManager_VR1.arPads1[padNum-1] && GameManager_VR1.state1 == GameManager_VR1.STATE.IDLE && GameManager_VR1.isTouch1)
+            else if (GameManager_VR1.arPads1[padNum - 1] && GameManager_VR1.state1 == GameManager_VR1.STATE.IDLE && GameManager_VR1.isTouch1)
             {
                 CorrectAudio.play();
                 Debug.Log(GameManager_VR1.arPads1[padNum - 1]);
@@ -111,7 +111,7 @@ public class PadCtrl_VR : MonoBehaviour
 
             }
             //틀린 경우
-            else if (!GameManager_VR1.arPads1[padNum-1] && GameManager_VR1.state1 == GameManager_VR1.STATE.IDLE && GameManager_VR1.isTouch1)
+            else if (!GameManager_VR1.arPads1[padNum - 1] && GameManager_VR1.state1 == GameManager_VR1.STATE.IDLE && GameManager_VR1.isTouch1)
             {
                 WrongAudio.play();
                 Debug.Log(GameManager_VR1.arPads1[padNum - 1]);
@@ -129,76 +129,84 @@ public class PadCtrl_VR : MonoBehaviour
             //어려움 난이도
 
 
-            else if (Collision_Hand.isLeft && GameManager_VR2.state2 == GameManager_VR2.STATE.IDLE && GameManager_VR2.isTouch2)
+            //맞춘 경우
+            else if (Collision_HandL.isLeft & GameManager_VR2.state2 == GameManager_VR2.STATE.IDLE & GameManager_VR2.isTouch2 & GameManager_VR2.arPadsL[padNum - 1])
             {
-                //맞춘 경우
-                if (GameManager_VR2.arPadsL[padNum - 1])
-                {
-                    CorrectAudio.play();
-                    Debug.Log(GameManager_VR2.arPadsL[padNum - 1]);
-                    Debug.Log("Left C"+ (padNum - 1));
+                
+                Debug.Log("LC" + Collision_HandL.isLeft + GameManager_VR2.arPadsL[padNum - 1] + (padNum - 1));
+                Collision_HandL.isLeft = false;
+                Collision_HandR.isRight = false;
+                CorrectAudio.play();
 
-                    //맞춘 animation 실행, 초록색
-                    anim.Play("aniLeft_VR", -1, 0.5f);
-                    GameManager_VR2.isTouch2 = false;
-                    GameManager_VR2.arPadsL[padNum - 1] = false;
-                    Collision_Hand.isLeft = false;
+                //맞춘 animation 실행, 초록색
+                anim.Play("aniLeft_VR", -1, 0.5f);
+                GameManager_VR2.isTouch2 = false;
+                GameManager_VR2.arPadsL[padNum - 1] = false;
 
-                    //state를 HIT로 설정
-                    GameManager_VR2.state2 = GameManager_VR2.STATE.HIT;
 
-                }
-                //틀린 경우
-                else if (!GameManager_VR2.arPadsL[padNum - 1])
-                {
-                    WrongAudio.play();
-                    Debug.Log(GameManager_VR2.arPadsL[padNum - 1]);
-                    Debug.Log("Left W" + (padNum - 1));
-
-                    //틀린 animation 실행, 빨간색
-                    anim.Play("aniPad_VR", -1, 0.5f);
-                    GameManager_VR2.isTouch2 = false;
-                    Collision_Hand.isLeft = false;
-
-                    //state를 WRONG으로 설정
-                    GameManager_VR2.state2 = GameManager_VR2.STATE.WRONG;
-                }
+                //state를 HIT로 설정
+                GameManager_VR2.state2 = GameManager_VR2.STATE.HIT;
             }
-            else if (Collision_Hand.isRight && GameManager_VR2.state2 == GameManager_VR2.STATE.IDLE && GameManager_VR2.isTouch2)
+
+            //맞춘 경우
+            else if (Collision_HandR.isRight & GameManager_VR2.state2 == GameManager_VR2.STATE.IDLE & GameManager_VR2.isTouch2 & GameManager_VR2.arPadsR[padNum - 1])
             {
-                //맞춘 경우
-                if (GameManager_VR2.arPadsR[padNum - 1])
-                {
-                    CorrectAudio.play();
-                    Debug.Log(GameManager_VR2.arPadsR[padNum - 1]);
-                    Debug.Log("Right C"+(padNum - 1));
 
-                    //맞춘 animation 실행, 초록색
-                    anim.Play("aniRight_VR", -1, 0.5f);
-                    GameManager_VR2.isTouch2 = false;
-                    GameManager_VR2.arPadsR[padNum - 1] = false;
-                    Collision_Hand.isRight = false;
+                
+                Debug.Log("RC" + Collision_HandR.isRight + GameManager_VR2.arPadsR[padNum - 1] + (padNum - 1));
+                Collision_HandL.isLeft = false;
+                Collision_HandR.isRight = false;
+                CorrectAudio.play();
 
-                    //state를 HIT로 설정
-                    GameManager_VR2.state2 = GameManager_VR2.STATE.HIT;
+                //맞춘 animation 실행, 초록색
+                anim.Play("aniRight_VR", -1, 0.5f);
+                GameManager_VR2.isTouch2 = false;
+                GameManager_VR2.arPadsR[padNum - 1] = false;
 
-                }
-                //틀린 경우
-                else if (!GameManager_VR2.arPadsR[padNum - 1])
-                {
-                    WrongAudio.play();
-                    Debug.Log(GameManager_VR2.arPadsR[padNum - 1]);
-                    Debug.Log("Right W"+(padNum - 1));
 
-                    //틀린 animation 실행, 빨간색
-                    anim.Play("aniPad_VR", -1, 0.5f);
-                    GameManager_VR2.isTouch2 = false;
-                    Collision_Hand.isRight = false;
-
-                    //state를 WRONG으로 설정
-                    GameManager_VR2.state2 = GameManager_VR2.STATE.WRONG;
-                }
+                //state를 HIT로 설정
+                GameManager_VR2.state2 = GameManager_VR2.STATE.HIT;
             }
+
+            //틀린 경우
+            else if (Collision_HandL.isLeft & GameManager_VR2.state2 == GameManager_VR2.STATE.IDLE & GameManager_VR2.isTouch2 & !GameManager_VR2.arPadsL[padNum - 1])
+            {
+                
+                Debug.Log("LW" + Collision_HandL.isLeft + GameManager_VR2.arPadsL[padNum - 1] + (padNum - 1));
+                Collision_HandL.isLeft = false;
+                Collision_HandR.isRight = false;
+                WrongAudio.play();
+
+                //틀린 animation 실행, 빨간색
+                anim.Play("aniPad_VR", -1, 0.5f);
+                GameManager_VR2.isTouch2 = false;
+
+
+                //state를 WRONG으로 설정
+                GameManager_VR2.state2 = GameManager_VR2.STATE.WRONG;
+            }
+
+            
+            
+
+            //틀린 경우
+            else if (Collision_HandR.isRight & GameManager_VR2.state2 == GameManager_VR2.STATE.IDLE & GameManager_VR2.isTouch2 & !GameManager_VR2.arPadsR[padNum - 1])
+            {
+                    
+                Debug.Log("RW" + Collision_HandR.isRight + GameManager_VR2.arPadsR[padNum - 1] + (padNum - 1));
+                Collision_HandL.isLeft = false;
+                Collision_HandR.isRight = false;
+                WrongAudio.play();
+
+                //틀린 animation 실행, 빨간색
+                anim.Play("aniPad_VR", -1, 0.5f);
+                GameManager_VR2.isTouch2 = false;
+                  
+
+                //state를 WRONG으로 설정
+                GameManager_VR2.state2 = GameManager_VR2.STATE.WRONG;
+            }
+            
         }
     }
 }

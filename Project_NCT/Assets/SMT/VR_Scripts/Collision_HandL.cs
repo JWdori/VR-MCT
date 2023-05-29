@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Collision_Hand : MonoBehaviour
+public class Collision_HandL : MonoBehaviour
 {
     static public bool isLeft = false;
     static public bool isRight = false;
@@ -19,17 +19,12 @@ public class Collision_Hand : MonoBehaviour
         
     }
 
-    private void OnCollisionStay(Collision collision)
+    private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("left_hand"))
         {
             Debug.Log("Left Hand");
             isLeft = true;
-        }
-        else if (collision.gameObject.CompareTag("right_hand"))
-        {
-            Debug.Log("Right Hand");
-            isRight = true;
         }
     }
 }
