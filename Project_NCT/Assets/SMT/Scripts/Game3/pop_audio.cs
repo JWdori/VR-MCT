@@ -5,8 +5,6 @@ using UnityEngine;
 public class pop_audio : MonoBehaviour
 {
     public AudioClip audioClip1; // 첫 번째 오디오 클립
-    public AudioClip audioClip2; // 두 번째 오디오 클립
-
     public float spatialBlendMax = 1f; // spatialBlend의 최대치
 
     private ParticleSystem particleSystem;
@@ -22,17 +20,8 @@ public class pop_audio : MonoBehaviour
 
     private void PlayRandomAudio()
     {
-        float randomValue = Random.value;
 
-        if (randomValue <= 0.3f && audioClip1 != null)
-        {
-            audioSource.clip = audioClip1;
-        }
-        else if (audioClip2 != null)
-        {
-            audioSource.clip = audioClip2;
-        }
-
+        audioSource.clip = audioClip1;
         if (audioSource.clip != null)
         {
             audioSource.spatialBlend = spatialBlendMax; // spatial blend 설정
