@@ -69,6 +69,17 @@ public class PadCtrl_VR : MonoBehaviour
             {
                 CorrectAudio.play();
 
+                if (Collision_HandL.isLeft)
+                {
+                    Collision_HandL.isLeft = false;
+                    BhapticsLibrary.Play(BhapticsEvent.CORRECT_LEFT);
+                }
+                else if (Collision_HandR.isRight)
+                {
+                    Collision_HandR.isRight = false;
+                    BhapticsLibrary.Play(BhapticsEvent.CORRECT_RIGHT);
+                }
+
                 //맞춘 animation 실행, 초록색
                 anim.Play("aniTouch_VR", -1, 0.5f);
                 GameManager_VR.isTouch = false;
@@ -82,6 +93,17 @@ public class PadCtrl_VR : MonoBehaviour
             else if (GameManager_VR.arPads[GameManager_VR.step] != padNum && GameManager_VR.state == GameManager_VR.STATE.IDLE && GameManager_VR.isTouch)
             {
                 WrongAudio.play();
+
+                if (Collision_HandL.isLeft)
+                {
+                    Collision_HandL.isLeft = false;
+                    BhapticsLibrary.Play(BhapticsEvent.WRONG_LEFT);
+                }
+                else if (Collision_HandR.isRight)
+                {
+                    Collision_HandR.isRight = false;
+                    BhapticsLibrary.Play(BhapticsEvent.WRONG_RIGHT);
+                }
 
                 //틀린 animation 실행, 빨간색
                 anim.Play("aniPad_VR", -1, 0.5f);
@@ -99,8 +121,17 @@ public class PadCtrl_VR : MonoBehaviour
             else if (GameManager_VR1.arPads1[padNum - 1] && GameManager_VR1.state1 == GameManager_VR1.STATE.IDLE && GameManager_VR1.isTouch1)
             {
                 CorrectAudio.play();
-                Debug.Log(GameManager_VR1.arPads1[padNum - 1]);
-                Debug.Log(padNum - 1);
+
+                if (Collision_HandL.isLeft)
+                {
+                    Collision_HandL.isLeft = false;
+                    BhapticsLibrary.Play(BhapticsEvent.CORRECT_LEFT);
+                }
+                else if (Collision_HandR.isRight)
+                {
+                    Collision_HandR.isRight = false;
+                    BhapticsLibrary.Play(BhapticsEvent.CORRECT_RIGHT);
+                }
 
                 //맞춘 animation 실행, 초록색
                 anim.Play("aniTouch_VR", -1, 0.5f);
@@ -115,8 +146,17 @@ public class PadCtrl_VR : MonoBehaviour
             else if (!GameManager_VR1.arPads1[padNum - 1] && GameManager_VR1.state1 == GameManager_VR1.STATE.IDLE && GameManager_VR1.isTouch1)
             {
                 WrongAudio.play();
-                Debug.Log(GameManager_VR1.arPads1[padNum - 1]);
-                Debug.Log(padNum - 1);
+
+                if (Collision_HandL.isLeft)
+                {
+                    Collision_HandL.isLeft = false;
+                    BhapticsLibrary.Play(BhapticsEvent.WRONG_LEFT);
+                }
+                else if (Collision_HandR.isRight)
+                {
+                    Collision_HandR.isRight = false;
+                    BhapticsLibrary.Play(BhapticsEvent.WRONG_RIGHT);
+                }
 
                 //틀린 animation 실행, 빨간색
                 anim.Play("aniPad_VR", -1, 0.5f);
@@ -134,7 +174,7 @@ public class PadCtrl_VR : MonoBehaviour
             else if (Collision_HandL.isLeft & GameManager_VR2.state2 == GameManager_VR2.STATE.IDLE & GameManager_VR2.isTouch2 & GameManager_VR2.arPadsL[padNum - 1])
             {
                 
-                Debug.Log("LC" + Collision_HandL.isLeft + GameManager_VR2.arPadsL[padNum - 1] + (padNum - 1));
+                //Debug.Log("LC" + Collision_HandL.isLeft + GameManager_VR2.arPadsL[padNum - 1] + (padNum - 1));
                 Collision_HandL.isLeft = false;
                 Collision_HandR.isRight = false;
                 CorrectAudio.play();
@@ -155,7 +195,7 @@ public class PadCtrl_VR : MonoBehaviour
             {
 
                 
-                Debug.Log("RC" + Collision_HandR.isRight + GameManager_VR2.arPadsR[padNum - 1] + (padNum - 1));
+                //Debug.Log("RC" + Collision_HandR.isRight + GameManager_VR2.arPadsR[padNum - 1] + (padNum - 1));
                 Collision_HandL.isLeft = false;
                 Collision_HandR.isRight = false;
                 CorrectAudio.play();
@@ -175,7 +215,7 @@ public class PadCtrl_VR : MonoBehaviour
             else if (Collision_HandL.isLeft & GameManager_VR2.state2 == GameManager_VR2.STATE.IDLE & GameManager_VR2.isTouch2 & !GameManager_VR2.arPadsL[padNum - 1])
             {
                 
-                Debug.Log("LW" + Collision_HandL.isLeft + GameManager_VR2.arPadsL[padNum - 1] + (padNum - 1));
+                //Debug.Log("LW" + Collision_HandL.isLeft + GameManager_VR2.arPadsL[padNum - 1] + (padNum - 1));
                 Collision_HandL.isLeft = false;
                 Collision_HandR.isRight = false;
                 WrongAudio.play();
@@ -197,7 +237,7 @@ public class PadCtrl_VR : MonoBehaviour
             else if (Collision_HandR.isRight & GameManager_VR2.state2 == GameManager_VR2.STATE.IDLE & GameManager_VR2.isTouch2 & !GameManager_VR2.arPadsR[padNum - 1])
             {
                     
-                Debug.Log("RW" + Collision_HandR.isRight + GameManager_VR2.arPadsR[padNum - 1] + (padNum - 1));
+                //Debug.Log("RW" + Collision_HandR.isRight + GameManager_VR2.arPadsR[padNum - 1] + (padNum - 1));
                 Collision_HandL.isLeft = false;
                 Collision_HandR.isRight = false;
                 WrongAudio.play();

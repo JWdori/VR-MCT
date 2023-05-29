@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Collision_HandR : MonoBehaviour
 {
-    static public bool isLeft = false;
     static public bool isRight = false;
 
     // Start is called before the first frame update
@@ -25,6 +24,7 @@ public class Collision_HandR : MonoBehaviour
         {
             Debug.Log("Right Hand");
             isRight = true;
+            Collision_HandL.isLeft = false;
         }
     }
 }
