@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using Bhaptics.SDK2;
 
 public class GameManager_VR2 : MonoBehaviour
 {
@@ -286,6 +287,7 @@ public class GameManager_VR2 : MonoBehaviour
                 StartCoroutine(ShowFail());
                 yield return new WaitForSeconds(2f);
                 //state가 FINISH로 바뀜
+                BhapticsLibrary.Play(BhapticsEvent.FAIL);
                 state2 = STATE.FINISH;
             }
             yield return new WaitForSeconds(0.03f);
@@ -357,6 +359,7 @@ public class GameManager_VR2 : MonoBehaviour
         else if (stageNum2 == stageCnt2)
         {
             //게임 끝, FINISH 상태로
+            BhapticsLibrary.Play(BhapticsEvent.CLEAR);
             state2 = STATE.FINISH;
             yield return new WaitForSeconds(0.5f);
         }

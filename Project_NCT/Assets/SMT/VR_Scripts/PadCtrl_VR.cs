@@ -72,6 +72,7 @@ public class PadCtrl_VR : MonoBehaviour
                 //맞춘 animation 실행, 초록색
                 anim.Play("aniTouch_VR", -1, 0.5f);
                 GameManager_VR.isTouch = false;
+                
 
                 //state를 HIT로 설정
                 GameManager_VR.state = GameManager_VR.STATE.HIT;
@@ -137,6 +138,7 @@ public class PadCtrl_VR : MonoBehaviour
                 Collision_HandL.isLeft = false;
                 Collision_HandR.isRight = false;
                 CorrectAudio.play();
+                BhapticsLibrary.Play(BhapticsEvent.CORRECT_LEFT);
 
                 //맞춘 animation 실행, 초록색
                 anim.Play("aniLeft_VR", -1, 0.5f);
@@ -157,6 +159,7 @@ public class PadCtrl_VR : MonoBehaviour
                 Collision_HandL.isLeft = false;
                 Collision_HandR.isRight = false;
                 CorrectAudio.play();
+                BhapticsLibrary.Play(BhapticsEvent.CORRECT_RIGHT);
 
                 //맞춘 animation 실행, 초록색
                 anim.Play("aniRight_VR", -1, 0.5f);
@@ -176,6 +179,7 @@ public class PadCtrl_VR : MonoBehaviour
                 Collision_HandL.isLeft = false;
                 Collision_HandR.isRight = false;
                 WrongAudio.play();
+                BhapticsLibrary.Play(BhapticsEvent.WRONG_LEFT);
 
                 //틀린 animation 실행, 빨간색
                 anim.Play("aniPad_VR", -1, 0.5f);
@@ -197,6 +201,7 @@ public class PadCtrl_VR : MonoBehaviour
                 Collision_HandL.isLeft = false;
                 Collision_HandR.isRight = false;
                 WrongAudio.play();
+                BhapticsLibrary.Play(BhapticsEvent.WRONG_RIGHT);
 
                 //틀린 animation 실행, 빨간색
                 anim.Play("aniPad_VR", -1, 0.5f);

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Bhaptics.SDK2;
 
 
 // Hierachy에 있는 SelectLevel 하위 Easy, Normal, Hard "When Select" 부분에 들어가 있는 코드
