@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.5526606, g: 0.7971681, b: 0.9636957, a: 1}
+  m_IndirectSpecularColor: {r: 0.5522828, g: 0.7970549, b: 0.9636385, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -13065,6 +13065,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pad_VR
+      objectReference: {fileID: 0}
+    - target: {fileID: 7469964403051787999, guid: ef542dc264a413d4e9734060b398f1fa,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7469964403051787999, guid: ef542dc264a413d4e9734060b398f1fa,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef542dc264a413d4e9734060b398f1fa, type: 3}
