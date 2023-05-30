@@ -20,11 +20,10 @@ public class Collision_HandL : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("left_hand"))
+        if (collision.gameObject.CompareTag("left_hand") & GameManager_VR2.state2 == GameManager_VR2.STATE.IDLE & GameManager_VR2.isTouch2)
         {
             Debug.Log("Left Hand");
             isLeft = true;
-            ClearAudio.play();
             Collision_HandR.isRight = false;
         }
     }

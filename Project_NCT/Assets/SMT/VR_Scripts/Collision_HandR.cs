@@ -20,7 +20,7 @@ public class Collision_HandR : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("right_hand"))
+        if (collision.gameObject.CompareTag("right_hand") & GameManager_VR2.state2 == GameManager_VR2.STATE.IDLE & GameManager_VR2.isTouch2)
         {
             Debug.Log("Right Hand");
             isRight = true;

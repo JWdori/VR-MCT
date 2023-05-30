@@ -58,14 +58,10 @@ public class GameManager_VR1 : MonoBehaviour
     //스테이지 시간
     static public int time2_1 = 60;
 
-    //게임이 진행중이지 않을 때 시간을 멈췄다 진행하기 위한 시간 저장 변수
-    int time_temp = 0;
-
     //시간 초과로 인한 종료 판단
     static public bool over1 = false;
 
     //문제가 제시되고 있을 때 시간 정지를 판단하기 위한 변수
-    bool isTotaltime = false;
     bool isStagetime = false;
 
     //ShuffleTouch에서 사용
@@ -105,16 +101,6 @@ public class GameManager_VR1 : MonoBehaviour
     // Update is called once per frame
     public void Update()
     {
-        //isTotaltime이 true이면 전체 시간 흐름
-        if (isTotaltime)
-        {
-            //전체 게임 시간 계산
-            totalTime1 = (int)(time_temp + (int)(Time.time - stageTime));
-            /*
-            //게임 전체 시간 출력
-            totalTimeText.text = "Total time : " + totalTime;
-            */
-        }
         
         //isStagetime이 true이면 stage 시간이 흐름
         if (isStagetime)
@@ -195,7 +181,6 @@ public class GameManager_VR1 : MonoBehaviour
                 Debug.Log("Finish");
                 //게임 끝, 시간도 종료
                 isStagetime = false;
-                isTotaltime = false;
                 //터치 패드 제거
                 StartCoroutine(DestroyPad());
                 //SceneManager.LoadScene("Result_VR");
@@ -280,8 +265,8 @@ public class GameManager_VR1 : MonoBehaviour
             {
                 //두 번 틀리면 터치 안 되고, Fail 출력 시간도 안흐르게...
                 isTouch1 = false;
-                isTotaltime = false;
                 isStagetime = false;
+                totalTime1 += 60 - time2_1;
 
                 StartCoroutine(ShowFail());
                 yield return new WaitForSeconds(2f);
@@ -318,7 +303,6 @@ public class GameManager_VR1 : MonoBehaviour
             {
                 //터치 안 되게 바꾸고, state는 CLEAR로 변환
                 isTouch1 = false;
-                isTotaltime = false;
                 isStagetime = false;
                 state1 = STATE.CLEAR;
                 yield return new WaitForSeconds(0.03f);
@@ -341,7 +325,6 @@ public class GameManager_VR1 : MonoBehaviour
         state1 = STATE.WAIT;
 
         isTouch1 = false;
-        isTotaltime = false;
         isStagetime = false;
 
         yield return new WaitForSeconds(0.5f);
@@ -367,11 +350,10 @@ public class GameManager_VR1 : MonoBehaviour
 
         //stage가 바뀌는 순간에는 시간이 안 흐름
         isTouch1 = false;
-        isTotaltime = false;
         isStagetime = false;
 
         //현재까지 흐른 전체 시간 저장
-        time_temp = (int)(totalTime1);
+        totalTime1 += 60 - time2_1;
 
         //스테이지 시간 초기화
         stageTime = Time.time;
@@ -396,7 +378,7 @@ public class GameManager_VR1 : MonoBehaviour
     {
         state1 = STATE.WAIT;
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
 
         //난이도 선택 창 비활성화
         Disappear_select.isHide = true;
@@ -667,7 +649,6 @@ public class GameManager_VR1 : MonoBehaviour
         stageTime = Time.time;
         pushText.text = "";
         isStagetime = true;
-        isTotaltime = true;
         //왜지?
         yield return new WaitForSeconds(2f);
     }
