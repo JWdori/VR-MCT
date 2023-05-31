@@ -12,9 +12,11 @@ public class GameManager3 : MonoBehaviour
 
     //balloon 터치 여부
     static public bool isTouch = true;
-
+    public AudioClip audioClip; // 오디오 클립
+    private AudioSource audioSource;
     public GameObject balloonPrefab; // 풍선 프리팹
     public GameObject Failed_balloonPrefab; // 풍선 프리팹
+
 
     //눌러야 되는 패드 순서
 
@@ -33,7 +35,7 @@ public class GameManager3 : MonoBehaviour
     static public int levelNum = 1;
 
     //최대 스테이지 수
-    static public int stageCnt = 10;
+    static public int stageCnt = 2;
 
     //패드 문제 배열
     //ShuffleTouch에서 랜덤으로 설정
@@ -67,7 +69,7 @@ public class GameManager3 : MonoBehaviour
     //위치 정보 배열
     private Vector3[][] stageBalloonPositions = new Vector3[9][];
 
-
+    int stage_temp = 0;
 
 
 
@@ -120,13 +122,27 @@ public enum STATE
         //60초 지나면 게임 종료
         if (time2 <= 0 && !over)
         {
+            totalTime += 60 - time2;
             //한 번 더 판단
             over = true;
             //시간 다시 초기화
             time2 = 60;
             //시간 초과로 인한 게임 종료
+            isTouch = false;
+            isStagetime = false;
+            isTotaltime = false;
+
+
+            StartCoroutine(ShowFail());
+            //state가 FINISH로 바뀜
+            FailAudio.play();
+            BhapticsLibrary.Play(BhapticsEvent.FAIL);
             state = STATE.FINISH;
         }
+
+
+
+
 
         //state에 따라 알맞은 환경 실행
         switch (state)
@@ -150,8 +166,14 @@ public enum STATE
                 missText.text = "목숨 : " + missNum;
                 //맞춘 횟수 출력
                 hitText.text = "성공 횟수 : " + hitCnt;
-                Debug.Log("Make");
-                StartCoroutine(ShowTouch(stageNum)); //풍선 보여주기
+                Debug.Log("????" + stage_temp);
+                Debug.Log("????" + stageCnt);
+
+                if (stage_temp != stageCnt)
+                {
+                    StartCoroutine(ShowTouch(stageNum));
+                    stage_temp++;
+                }//풍선 보여주기
                 break;
 
             //state가 WRONG이면 틀렸을 경우
@@ -182,9 +204,10 @@ public enum STATE
             //터치패드 제거
             case STATE.FINISH:
                 Debug.Log("Finish");
+           
                 //게임 끝, 시간도 종료
                 isStagetime = false;
-                isTotaltime = false;
+                //isTotaltime = false;
                 //터치 패드 제거
                 StartCoroutine(DestroyPad());
                 //SceneManager.LoadScene("Result_VR");
@@ -234,16 +257,16 @@ public enum STATE
         stageTimeText.text = "";
         stageNumText.text = "";
         levelText.text = "";
-
+        Debug.Log("123");
         //터치 패드 tag를 이용하여 제거
-        for (int i = 1; i <= padCnt; i++)
-        {
-            GameObject balloons = GameObject.FindWithTag("balloon" + i);
-            Destroy(balloons);
-        }
+        Debug.Log("12345" );
+        GameObject balloons = GameObject.FindWithTag("balloon" );
+        Destroy(balloons);
+       
         //터치패드 제거 후 결과를 보여주는 상태로 변환
         state = STATE.RESULT;
     }
+
 
     //빨간 풍선 맞췄을 떄틀렸을 경우 실행되는 환경
     IEnumerator WrongPad()
@@ -266,16 +289,18 @@ public enum STATE
             // missNum이 1보다 크다는 것은 한 스테이지에서 두 번 틀렸다는 뜻
             if (missNum < 1)
             {
+
                 //두 번 틀리면 터치 안 되고, Fail 출력 시간도 안흐르게...
                 isTouch = false;
-                isTotaltime = false;
                 isStagetime = false;
+                isTotaltime = false;
+                totalTime += 60 - time2;
 
                 StartCoroutine(ShowFail());
                 yield return new WaitForSeconds(2f);
+                //state가 FINISH로 바뀜
                 FailAudio.play();
                 BhapticsLibrary.Play(BhapticsEvent.FAIL);
-                //state가 FINISH로 바뀜
                 state = STATE.FINISH;
             }
             FailBalloon = false; // 다시 false로
@@ -340,13 +365,12 @@ public enum STATE
         yield return new WaitForSeconds(2f);
 
         //다음 스테이지 번호
-        if (stageNum != stageCnt)
+        if (stageNum < stageCnt)
         {
             ++stageNum;
         }
-
         //최대 스테이지가 되었을 경우
-        if (stageNum > stageCnt)
+        else if(stageNum == stageCnt)
         {
             BhapticsLibrary.Play(BhapticsEvent.CLEAR);
             ClearAudio.play();
@@ -354,7 +378,6 @@ public enum STATE
             state = STATE.FINISH;
             yield return new WaitForSeconds(0.5f);
         }
-
         //stage가 바뀌는 순간에는 시간이 안 흐름
         isTouch = false;
         isTotaltime = false;
@@ -461,53 +484,40 @@ public enum STATE
         //stage마다 문제가 바뀔 때
         //ShuffleTouch();
 
-            // 풍선 위치 입력
-
-        StartCoroutine(ShowStageNum());
-        yield return new WaitForSeconds(0.5f);
-        if (stage == 1)
-        {
-            // 스테이지 1의 풍선 위치
-            stageBalloonPositions[0] = new Vector3[] { new Vector3(-1.11f, 2.047f, 2.331f) };
-        }
-        else if (stage == 2)
-        {
-            // 스테이지 2의 풍선 위치
-            stageBalloonPositions[1] = new Vector3[] { new Vector3(1f, 2f, 1f), new Vector3(1f, 0f, 1f) };
-        }
-
-
-        // 풍선 생성 및 배치
-        foreach (Vector3 position in stageBalloonPositions[stage - 1])
-        {
-            GameObject balloon = Instantiate(balloonPrefab);
-            balloon.transform.position = position;
-            balloon.tag = "balloon"; // 풍선에 태그 추가
+        // 풍선 위치 입력
+            StartCoroutine(ShowStageNum());
+            yield return new WaitForSeconds(0.5f);
+            if (stage == 1)
+            {
+                // 스테이지 1의 풍선 위치
+                stageBalloonPositions[0] = new Vector3[] { new Vector3(-1.11f, 2.047f, 2.331f) };
+            }
+            else if (stage == 2)
+            {
+                // 스테이지 2의 풍선 위치
+                stageBalloonPositions[1] = new Vector3[] { new Vector3(1f, 2f, 1f), new Vector3(1f, 0f, 1f) };
+            }
 
 
-            yield return null; // 한 프레임 대기
-        }
+            // 풍선 생성 및 배치
+            foreach (Vector3 position in stageBalloonPositions[stage - 1])
+            {
+                GameObject balloon = Instantiate(balloonPrefab);
+                balloon.transform.position = position;
+                balloon.tag = "balloon"; // 풍선에 태그 추가
 
 
-    //눌러야 되는 Pad 순서 처음으로 초기화
+                yield return null; // 한 프레임 대기
+                audioSource = gameObject.AddComponent<AudioSource>();
+                audioSource.clip = audioClip; // 오디오 클립 할당
+                audioSource.Play();
 
-    //stageNum만큼 눌러야 되는 Pad 순서대로 보여줌
-    //for (int i = 1; i <= stageNum; i++)
-    //{
-    //    //pad를 tag를 이용하여 설정
-    //    //ShuffleTouch에서 arPads 배열 랜덤 생성
-    //    GameObject pad = GameObject.FindWithTag("pad" + arPads[i - 1]);
-    //    //문제 보여줄 때 효과음 실행
-    //    pad.SendMessage("PlayAud", SendMessageOptions.DontRequireReceiver);
-    //    //눌러야 되는 Pad 파란색으로 보여줌
-    //    //"ShowPad"는 PadCtrl.cs에서 확인
-    //    pad.SendMessage("ShowPad", SendMessageOptions.DontRequireReceiver);
-    //    yield return new WaitForSeconds(1f);
-    //}
-    //문제 보여준 후 사용자가 터치할 수 있는 순간을 알려줌
-    StartCoroutine(ShowPushTiming());
-        yield return new WaitForSeconds(0.5f);
+            }
 
+            StartCoroutine(ShowPushTiming());
+            yield return new WaitForSeconds(0.5f);
+
+        
         //터치할 수 있도록 설정
         isTouch = true;
         state = STATE.IDLE;

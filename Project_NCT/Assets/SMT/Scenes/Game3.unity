@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.55012137, g: 0.79805493, b: 0.9703694, a: 1}
+  m_IndirectSpecularColor: {r: 0.5504201, g: 0.7982191, b: 0.9701601, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -8442,6 +8442,7 @@ MonoBehaviour:
   stageNumText: {fileID: 1866458491}
   pushText: {fileID: 356629276}
   levelText: {fileID: 457148733}
+  audioClip: {fileID: 8300000, guid: bf4ae6b8c62314c29bd84983374412eb, type: 3}
   balloonPrefab: {fileID: 690081341719746852, guid: a3c36d8a773f56946aadf1615c9b12f2,
     type: 3}
   Failed_balloonPrefab: {fileID: 443745611346689549, guid: cbe235927b0adbf479a9110c15497a38,
