@@ -23,7 +23,7 @@ public class reset_button : MonoBehaviour
         if (targetObject != null)
         {
             // targetObject의 위치를 (1, 2, 0)으로 이동
-            targetObject.transform.position = new Vector3(0.275f, 0.9535f, 0.469f);
+            targetObject.transform.position = new Vector3(0.1616356f, 1.3955f, 0.396f);
         }
         else
         {

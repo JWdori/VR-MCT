@@ -114,6 +114,7 @@ public class GameManager_VR : MonoBehaviour
         //60초 지나면 게임 종료
         if (time2 <= 0 && !over)
         {
+            totalTime += 60 - time2;
             //한 번 더 판단
             over = true;
             //시간 다시 초기화
@@ -247,7 +248,7 @@ public class GameManager_VR : MonoBehaviour
         //STATE.WAIT이랑 isTouch는 PadCtrl.cs에서 마우스 클릭 가능한 환경 설정
         //STATE.WAIT인 상태에서는 마우스 클릭 안 됨
         state = STATE.WAIT;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.2f);
         isTouch = true;
         //arPads[step]은 step번째 눌러야 되는 Pad번호
         //padNum은 PadCtrl.cs에서 받아온 사용자가 누른 Pad번호
@@ -286,7 +287,7 @@ public class GameManager_VR : MonoBehaviour
         //STATE.WAIT이랑 isTouch는 PadCtrl.cs에서 마우스 클릭 가능한 환경 설정
         //STATE.WAIT인 상태에서는 마우스 클릭 안 됨
         state = STATE.WAIT;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.2f);
         isTouch = true;
 
         //눌러야 되는 Pad와 사용자가 누른 Pad가 같은 경우
@@ -376,7 +377,7 @@ public class GameManager_VR : MonoBehaviour
     {
         state = STATE.WAIT;
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
 
         //난이도 선택 창 비활성화
         Disappear_select.isHide = true;
@@ -418,7 +419,7 @@ public class GameManager_VR : MonoBehaviour
                         GameObject pad = Instantiate(Resources.Load("Prefab/Pad_VR")) as GameObject;
 
                         //Pad 좌표설정
-                        pad.transform.position = new Vector3(x, sy, 1.1f);
+                        pad.transform.position = new Vector3(x, sy, 1.15f);
 
                         //pad1, pad2, ... pad25까지 tag로 설정되어 있음
                         //생성되는 Pad마다 tag를 붙여줌
@@ -466,7 +467,7 @@ public class GameManager_VR : MonoBehaviour
         float x = 0;
 
         //세로 행수 반줄 행간 포함
-        float y = 4;
+        float y = 4.5f;
 
         //가로 Pad 최대 수
         float maxX = 0;
