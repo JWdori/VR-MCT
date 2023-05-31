@@ -471,7 +471,7 @@ public class GameManager_VR1 : MonoBehaviour
         float x = 0;
 
         //세로 행수 반줄 행간 포함
-        float y = 3.5f;
+        float y = 3f;
 
         //가로 Pad 최대 수
         float maxX = 0;
