@@ -62,11 +62,11 @@ public class Result_VR1 : MonoBehaviour
     //총 게임 플레이 시간
     IEnumerator ShowPlaytime()
     {
-        yield return new WaitForSeconds(0.5f);
+        //yield return new WaitForSeconds(0.5f);
 
         TotalTimeText.text = "소모 시간     -------------------       " + GameManager_VR1.totalTime1;
 
-        //yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.5f);
     }
 
     //사용자가 플레이한 난이도
@@ -81,17 +81,17 @@ public class Result_VR1 : MonoBehaviour
     //사용자가 실패한 스테이지
     IEnumerator ShowStageNum()
     {
-        yield return new WaitForSeconds(1f);
+        //yield return new WaitForSeconds(1f);
 
         stageNumText.text = "최종 단계       -------------------       " + GameManager_VR1.stageNum1;
 
-        //yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.5f);
     }
 
     //총 틀린 횟수
     IEnumerator ShowMissNum()
     {
-        yield return new WaitForSeconds(1.5f);
+        //yield return new WaitForSeconds(1.5f);
         // over가 true이면 시간 초과로 게임이 종료되었다는 뜻
         if (GameManager_VR1.over1)
         {
@@ -102,6 +102,6 @@ public class Result_VR1 : MonoBehaviour
             missNumText.text = "목숨            -------------------       " + GameManager_VR1.totalMiss1;
         }
 
-        //yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.5f);
     }
 }

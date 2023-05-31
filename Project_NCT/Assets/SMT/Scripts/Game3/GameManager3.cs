@@ -13,6 +13,10 @@ public class GameManager3 : MonoBehaviour
     //balloon 터치 여부
     static public bool isTouch = true;
 
+    //위치 정보 배열
+    private Vector3[][] stageBalloonPositions = new Vector3[9][];
+    public GameObject balloonPrefab; // 풍선 프리팹
+
     //눌러야 되는 패드 순서
 
     //틀린 횟수
@@ -380,76 +384,70 @@ public class GameManager3 : MonoBehaviour
         Disappear_select3.isHide = true;
 
         //시작카드의 x좌표
-        float sx = 0;
+        float sx = -0.016f;
 
         //시작카드의 y좌표
-        float sy = 6;
+        float sy = 2.046f;
 
         SetPadPos(out sx, out sy);
 
-        //시작 패드의 번호
-        int n = 1;
-
-        //PadSet.cs에서 Pad배열 읽기 배열의 1행을 읽고 변수 t에 할당한다
-        string[] str = PadSet_VR.stage[levelNum - 1];
-
         //배열의 행의 수만큼 반복
-        foreach (string t in str)
-        {
-            //각 행의 문자열을 단일 문자 배열로 변환(문자열 좌우의 공백 제거), 변수의 좌우 공백을 제거(Trim)하고 단일 문자배열로 변환
-            char[] ch = t.Trim().ToCharArray();
+        //foreach (string t in str)
+        //{
+        //    //각 행의 문자열을 단일 문자 배열로 변환(문자열 좌우의 공백 제거), 변수의 좌우 공백을 제거(Trim)하고 단일 문자배열로 변환
+        //    char[] ch = t.Trim().ToCharArray();
 
-            //Pad의 x축 좌표
-            float x = 1.3f;
+        //    //Pad의 x축 좌표
+        //    float x = 1.3f;
 
-            //1행의 문자열 길이만큼 반복
-            //배열의 ch의 한문자를 읽고 변수 c에 할당한다
-            foreach (char c in ch)
-            {
-                switch (c)
-                {
-                    //맵의 내용이 *이면 그 위치에 Pad 만들어서 배치
-                    case '*':
-                        //Pad 만들기
-                        //Prefap으로 만들어진 Pad를 GameObject로 설정
-                        GameObject pad = Instantiate(Resources.Load("Prefab/Pad_VR")) as GameObject;
+        //    //1행의 문자열 길이만큼 반복
+        //    //배열의 ch의 한문자를 읽고 변수 c에 할당한다
+        //    foreach (char c in ch)
+        //    {
+        //        switch (c)
+        //        {
+        //            //맵의 내용이 *이면 그 위치에 Pad 만들어서 배치
+        //            case '*':
+        //                //Pad 만들기
+        //                //Prefap으로 만들어진 Pad를 GameObject로 설정
+        //                GameObject pad = Instantiate(Resources.Load("Prefab/Pad_VR")) as GameObject;
 
-                        //Pad 좌표설정
-                        pad.transform.position = new Vector3(x, sy, 1.1f);
+        //                //Pad 좌표설정
+        //                pad.transform.position = new Vector3(x, sy, 1.1f);
 
-                        //pad1, pad2, ... pad25까지 tag로 설정되어 있음
-                        //생성되는 Pad마다 tag를 붙여줌
-                        //나중에 사용자가 선택한 Pad와 눌러야 되는 Pad 비교할 때 쓰임
-                        pad.tag = "pad" + n++;
-                        x += 0.3f;
-                        break;
+        //                //pad1, pad2, ... pad25까지 tag로 설정되어 있음
+        //                //생성되는 Pad마다 tag를 붙여줌
+        //                //나중에 사용자가 선택한 Pad와 눌러야 되는 Pad 비교할 때 쓰임
+        //                //pad.tag = "pad" + n++;
+        //                x += 0.3f;
+        //                break;
 
-                    //빈칸 처리
-                    case '.':
-                        x += 0.05f;
-                        break;
+        //            //빈칸 처리
+        //            case '.':
+        //                x += 0.05f;
+        //                break;
 
-                    //반 칸 공백처리
-                    case '>':
-                        x += 0.5f;
-                        break;
+        //            //반 칸 공백처리
+        //            case '>':
+        //                x += 0.5f;
+        //                break;
 
-                    //반 줄 행간 처리
-                    case '^':
-                        sy += 0.05f;
-                        break;
-                }
+        //            //반 줄 행간 처리
+        //            case '^':
+        //                sy += 0.05f;
+        //                break;
+        //        }
 
-                //카드를 표시한 후에는 지연 시간을 두어 카드가 배치되는 과정이 보이도록함
-                if (c == '*')
-                {
-                    yield return new WaitForSeconds(0.03f);
-                }
-            }
+        //        //카드를 표시한 후에는 지연 시간을 두어 카드가 배치되는 과정이 보이도록함
+        //        if (c == '*')
+        //        {
+        //            yield return new WaitForSeconds(0.03f);
+        //        }
+        //    }
 
-            //한 줄 아래로 이동
-            sy -= 0.05f;
-        }
+        //    //한 줄 아래로 이동
+        //    sy -= 0.05f;
+        //}
         yield return new WaitForSeconds(1);
 
         //Pad 셋팅 완료 후 문제 제시 상태로 넘어감

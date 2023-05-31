@@ -7,7 +7,7 @@ public class PadCtrl_VR : MonoBehaviour
 {
     bool isLeft = false;
     bool isRight = false;
-    private void OnCollisionStay(Collision collision)
+    private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("left_hand"))
         {

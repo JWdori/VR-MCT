@@ -115,6 +115,7 @@ public class GameManager_VR2 : MonoBehaviour
         //60초 지나면 게임 종료
         if (time2_2 <= 0 && !over2)
         {
+            totalTime2 += 60 - time2_2;
             //한 번 더 판단
             over2 = true;
             //시간 다시 초기화
@@ -248,7 +249,7 @@ public class GameManager_VR2 : MonoBehaviour
         //STATE.WAIT이랑 isTouch는 PadCtrl.cs에서 마우스 클릭 가능한 환경 설정
         //STATE.WAIT인 상태에서는 마우스 클릭 안 됨
         state2 = STATE.WAIT;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.2f);
         isTouch2 = true;
         //arPads[step]은 step번째 눌러야 되는 Pad번호
         //padNum은 PadCtrl.cs에서 받아온 사용자가 누른 Pad번호
@@ -287,7 +288,7 @@ public class GameManager_VR2 : MonoBehaviour
         //STATE.WAIT이랑 isTouch는 PadCtrl.cs에서 마우스 클릭 가능한 환경 설정
         //STATE.WAIT인 상태에서는 마우스 클릭 안 됨
         state2 = STATE.WAIT;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.2f);
         isTouch2 = true;
         //Debug.Log(step1);
 
@@ -378,7 +379,7 @@ public class GameManager_VR2 : MonoBehaviour
     {
         state2 = STATE.WAIT;
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
 
         //난이도 선택 창 비활성화
         Disappear_select.isHide = true;
@@ -387,7 +388,7 @@ public class GameManager_VR2 : MonoBehaviour
         float sx = 0;
 
         //시작카드의 y좌표
-        float sy = 3;
+        float sy = 0;
 
         SetPadPos(out sx, out sy);
 
@@ -404,7 +405,7 @@ public class GameManager_VR2 : MonoBehaviour
             char[] ch = t.Trim().ToCharArray();
 
             //Pad의 x축 좌표
-            float x = 1.3f;
+            float x = 1.6f;
 
             //1행의 문자열 길이만큼 반복
             //배열의 ch의 한문자를 읽고 변수 c에 할당한다
@@ -419,7 +420,7 @@ public class GameManager_VR2 : MonoBehaviour
                         GameObject pad = Instantiate(Resources.Load("Prefab/Pad_VR")) as GameObject;
 
                         //Pad 좌표설정
-                        pad.transform.position = new Vector3(x, sy, 1.1f);
+                        pad.transform.position = new Vector3(x, sy, 1.15f);
 
                         //pad1, pad2, ... pad25까지 tag로 설정되어 있음
                         //생성되는 Pad마다 tag를 붙여줌
@@ -427,17 +428,17 @@ public class GameManager_VR2 : MonoBehaviour
                         pad.tag = "pad" + n;
                         arPads[n - 1] = 0;
                         ++n;
-                        x += 0.3f;
+                        x += 0.1f;
                         break;
 
                     //빈칸 처리
                     case '.':
-                        x += 0.05f;
+                        x += 0.1f;
                         break;
 
                     //반 칸 공백처리
                     case '>':
-                        x += 0.3f;
+                        x += 0.1f;
                         break;
 
                     //반 줄 행간 처리
@@ -454,7 +455,7 @@ public class GameManager_VR2 : MonoBehaviour
             }
 
             //한 줄 아래로 이동
-            sy-=0.3f;
+            sy-=0.2f;
         }
         yield return new WaitForSeconds(1);
 
@@ -469,7 +470,7 @@ public class GameManager_VR2 : MonoBehaviour
         float x = 0;
 
         //세로 행수 반줄 행간 포함
-        float y = 3;
+        float y = 3.5f;
 
         //가로 Pad 최대 수
         float maxX = 0;
@@ -496,11 +497,11 @@ public class GameManager_VR2 : MonoBehaviour
                     case '*':
 
                         //Pad 배치에 필요한 공간
-                        x += 0.3f;
+                        x += 0.1f;
 
                         break;
                     case '>':
-                        x += 0.3f;
+                        x += 0.1f;
                         break;
                     case '^':
                         y -= 0.05f;
