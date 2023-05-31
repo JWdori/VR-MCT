@@ -13,9 +13,8 @@ public class GameManager3 : MonoBehaviour
     //balloon 터치 여부
     static public bool isTouch = true;
 
-    //위치 정보 배열
-    private Vector3[][] stageBalloonPositions = new Vector3[9][];
     public GameObject balloonPrefab; // 풍선 프리팹
+    public GameObject Failed_balloonPrefab; // 풍선 프리팹
 
     //눌러야 되는 패드 순서
 
@@ -65,8 +64,15 @@ public class GameManager3 : MonoBehaviour
     bool isTotaltime = false;
     bool isStagetime = false;
 
-    //게임 상태를 나타내는 STATE
-    public enum STATE
+    //위치 정보 배열
+    private Vector3[][] stageBalloonPositions = new Vector3[9][];
+
+
+
+
+
+//게임 상태를 나타내는 STATE
+public enum STATE
     {
         START, MAKE, HIT, WRONG, WAIT, IDLE, CLEAR, FINISH, SELECT, RESULT
     };
@@ -145,7 +151,7 @@ public class GameManager3 : MonoBehaviour
                 //맞춘 횟수 출력
                 hitText.text = "성공 횟수 : " + hitCnt;
                 Debug.Log("Make");
-                StartCoroutine(ShowTouch());
+                StartCoroutine(ShowTouch(stageNum)); //풍선 보여주기
                 break;
 
             //state가 WRONG이면 틀렸을 경우
@@ -373,82 +379,72 @@ public class GameManager3 : MonoBehaviour
 
     }
 
-    //처음 게임에 들어왔을 때 Level에 맞춰 Pad 셋팅
+    //처음 게임에 들어왔을 때 기본 세팅
     IEnumerator MakeStage()
     {
         state = STATE.WAIT;
-
         yield return new WaitForSeconds(1f);
-
         //난이도 선택 창 비활성화
         Disappear_select3.isHide = true;
+    //SetPadPos(out sx, out sy);
 
-        //시작카드의 x좌표
-        float sx = -0.016f;
+    //배열의 행의 수만큼 반복
+    //foreach (string t in str)
+    //{
+    //    //각 행의 문자열을 단일 문자 배열로 변환(문자열 좌우의 공백 제거), 변수의 좌우 공백을 제거(Trim)하고 단일 문자배열로 변환
+    //    char[] ch = t.Trim().ToCharArray();
 
-        //시작카드의 y좌표
-        float sy = 2.046f;
+    //    //Pad의 x축 좌표
+    //    float x = 1.3f;
 
-        SetPadPos(out sx, out sy);
+    //    //1행의 문자열 길이만큼 반복
+    //    //배열의 ch의 한문자를 읽고 변수 c에 할당한다
+    //    foreach (char c in ch)
+    //    {
+    //        switch (c)
+    //        {
+    //            //맵의 내용이 *이면 그 위치에 Pad 만들어서 배치
+    //            case '*':
+    //                //Pad 만들기
+    //                //Prefap으로 만들어진 Pad를 GameObject로 설정
+    //                GameObject pad = Instantiate(Resources.Load("Prefab/Pad_VR")) as GameObject;
 
-        //배열의 행의 수만큼 반복
-        //foreach (string t in str)
-        //{
-        //    //각 행의 문자열을 단일 문자 배열로 변환(문자열 좌우의 공백 제거), 변수의 좌우 공백을 제거(Trim)하고 단일 문자배열로 변환
-        //    char[] ch = t.Trim().ToCharArray();
+    //                //Pad 좌표설정
+    //                pad.transform.position = new Vector3(x, sy, 1.1f);
 
-        //    //Pad의 x축 좌표
-        //    float x = 1.3f;
+    //                //pad1, pad2, ... pad25까지 tag로 설정되어 있음
+    //                //생성되는 Pad마다 tag를 붙여줌
+    //                //나중에 사용자가 선택한 Pad와 눌러야 되는 Pad 비교할 때 쓰임
+    //                //pad.tag = "pad" + n++;
+    //                x += 0.3f;
+    //                break;
 
-        //    //1행의 문자열 길이만큼 반복
-        //    //배열의 ch의 한문자를 읽고 변수 c에 할당한다
-        //    foreach (char c in ch)
-        //    {
-        //        switch (c)
-        //        {
-        //            //맵의 내용이 *이면 그 위치에 Pad 만들어서 배치
-        //            case '*':
-        //                //Pad 만들기
-        //                //Prefap으로 만들어진 Pad를 GameObject로 설정
-        //                GameObject pad = Instantiate(Resources.Load("Prefab/Pad_VR")) as GameObject;
+    //            //빈칸 처리
+    //            case '.':
+    //                x += 0.05f;
+    //                break;
 
-        //                //Pad 좌표설정
-        //                pad.transform.position = new Vector3(x, sy, 1.1f);
+    //            //반 칸 공백처리
+    //            case '>':
+    //                x += 0.5f;
+    //                break;
 
-        //                //pad1, pad2, ... pad25까지 tag로 설정되어 있음
-        //                //생성되는 Pad마다 tag를 붙여줌
-        //                //나중에 사용자가 선택한 Pad와 눌러야 되는 Pad 비교할 때 쓰임
-        //                //pad.tag = "pad" + n++;
-        //                x += 0.3f;
-        //                break;
+    //            //반 줄 행간 처리
+    //            case '^':
+    //                sy += 0.05f;
+    //                break;
+    //        }
 
-        //            //빈칸 처리
-        //            case '.':
-        //                x += 0.05f;
-        //                break;
+    //        //카드를 표시한 후에는 지연 시간을 두어 카드가 배치되는 과정이 보이도록함
+    //        if (c == '*')
+    //        {
+    //            yield return new WaitForSeconds(0.03f);
+    //        }
+    //    }
 
-        //            //반 칸 공백처리
-        //            case '>':
-        //                x += 0.5f;
-        //                break;
-
-        //            //반 줄 행간 처리
-        //            case '^':
-        //                sy += 0.05f;
-        //                break;
-        //        }
-
-        //        //카드를 표시한 후에는 지연 시간을 두어 카드가 배치되는 과정이 보이도록함
-        //        if (c == '*')
-        //        {
-        //            yield return new WaitForSeconds(0.03f);
-        //        }
-        //    }
-
-        //    //한 줄 아래로 이동
-        //    sy -= 0.05f;
-        //}
-        yield return new WaitForSeconds(1);
+    //    //한 줄 아래로 이동
+    //    sy -= 0.05f;
+    //}
 
         //Pad 셋팅 완료 후 문제 제시 상태로 넘어감
         state = STATE.MAKE;
@@ -456,77 +452,8 @@ public class GameManager3 : MonoBehaviour
 
 
 
-
-    //Pad의 시작 위치 계산
-    void SetPadPos(out float sx, out float sy)
-    {
-        //가로 Pad 수 반 칸 공백 포함
-        float x = 0;
-
-        //세로 행수 반줄 행간 포함
-        float y = 4;
-
-        //가로 Pad 최대 수
-        float maxX = 0;
-
-        //Pad 배열 조사 맵 배열을 읽음
-        string[] str = PadSet_VR.stage[levelNum - 1];
-
-        //행의 수만큼 반복
-        for (int i = 0; i < str.Length; i++)
-        {
-            //1행 읽기
-            string t = str[i].Trim();
-
-            //각 행의 Pad 수
-            x = 0;
-
-            //각 행의 글자 수만큼 반복
-            for (int j = 0; j < t.Length; j++)
-            {
-                //문자열(string)은 단일 문자(char)의 배열로 취급할 수 있음
-                switch (t[j])
-                {
-                    case '.':
-                    case '*':
-
-                        //Pad 배치에 필요한 공간
-                        x += 0.05f;
-
-                        break;
-                    case '>':
-                        x += 0.5f;
-                        break;
-                    case '^':
-                        y -= 0.5f;
-                        break;
-                }
-            }
-
-            //각 행의 최대 Pad 수 계산
-            if (x > maxX)
-            {
-                maxX = x;
-            }
-            //전체 행의 수
-            y++;
-        }
-        //Pad 가로 시작 위치
-        sx = -maxX / 2;
-        sy = (y - 1) / 2;
-    }
-
-
-
-
-
-
-
-
-
-
-    //사용자가 터치해야 할 Pad들을 보여줌
-    IEnumerator ShowTouch()
+    //스테이지마다 풍선 보여주기
+    IEnumerator ShowTouch(int stage)
     {
         state = STATE.WAIT;
 
@@ -534,28 +461,52 @@ public class GameManager3 : MonoBehaviour
         //stage마다 문제가 바뀔 때
         //ShuffleTouch();
 
-        //문제 제시 전에 Stage 알려줌
+            // 풍선 위치 입력
+
         StartCoroutine(ShowStageNum());
         yield return new WaitForSeconds(0.5f);
-
-        //눌러야 되는 Pad 순서 처음으로 초기화
-
-        //stageNum만큼 눌러야 되는 Pad 순서대로 보여줌
-        for (int i = 1; i <= stageNum; i++)
+        if (stage == 1)
         {
-            //pad를 tag를 이용하여 설정
-            //ShuffleTouch에서 arPads 배열 랜덤 생성
-            GameObject pad = GameObject.FindWithTag("pad" + arPads[i - 1]);
-            //문제 보여줄 때 효과음 실행
-            pad.SendMessage("PlayAud", SendMessageOptions.DontRequireReceiver);
-            //눌러야 되는 Pad 파란색으로 보여줌
-            //"ShowPad"는 PadCtrl.cs에서 확인
-            pad.SendMessage("ShowPad", SendMessageOptions.DontRequireReceiver);
-            yield return new WaitForSeconds(1f);
+            // 스테이지 1의 풍선 위치
+            stageBalloonPositions[0] = new Vector3[] { new Vector3(-1.11f, 2.047f, 2.331f) };
         }
-        //문제 보여준 후 사용자가 터치할 수 있는 순간을 알려줌
-        StartCoroutine(ShowPushTiming());
-        yield return new WaitForSeconds(1f);
+        else if (stage == 2)
+        {
+            // 스테이지 2의 풍선 위치
+            stageBalloonPositions[1] = new Vector3[] { new Vector3(1f, 2f, 1f), new Vector3(1f, 0f, 1f) };
+        }
+
+
+        // 풍선 생성 및 배치
+        foreach (Vector3 position in stageBalloonPositions[stage - 1])
+        {
+            GameObject balloon = Instantiate(balloonPrefab);
+            balloon.transform.position = position;
+            balloon.tag = "balloon"; // 풍선에 태그 추가
+
+
+            yield return null; // 한 프레임 대기
+        }
+
+
+    //눌러야 되는 Pad 순서 처음으로 초기화
+
+    //stageNum만큼 눌러야 되는 Pad 순서대로 보여줌
+    //for (int i = 1; i <= stageNum; i++)
+    //{
+    //    //pad를 tag를 이용하여 설정
+    //    //ShuffleTouch에서 arPads 배열 랜덤 생성
+    //    GameObject pad = GameObject.FindWithTag("pad" + arPads[i - 1]);
+    //    //문제 보여줄 때 효과음 실행
+    //    pad.SendMessage("PlayAud", SendMessageOptions.DontRequireReceiver);
+    //    //눌러야 되는 Pad 파란색으로 보여줌
+    //    //"ShowPad"는 PadCtrl.cs에서 확인
+    //    pad.SendMessage("ShowPad", SendMessageOptions.DontRequireReceiver);
+    //    yield return new WaitForSeconds(1f);
+    //}
+    //문제 보여준 후 사용자가 터치할 수 있는 순간을 알려줌
+    StartCoroutine(ShowPushTiming());
+        yield return new WaitForSeconds(0.5f);
 
         //터치할 수 있도록 설정
         isTouch = true;
@@ -664,5 +615,17 @@ public class GameManager3 : MonoBehaviour
     public void PrintScore()
     {
         Debug.Log("Score: " + score);
+    }
+
+    public void PrintTrue()
+    {
+        SuccessBalloon = true;
+        Debug.Log("Score: " + SuccessBalloon);
+    }
+
+    public void PrintFalse()
+    {
+        FailBalloon = true;
+        Debug.Log("Score: " + FailBalloon);
     }
 }
