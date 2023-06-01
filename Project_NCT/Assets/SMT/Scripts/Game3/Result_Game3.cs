@@ -16,13 +16,7 @@ public class Result_Game3 : MonoBehaviour
     //사용자가 선택한 level을 보여줌
     void Start()
     {
-        /*
-        resultText.text = "";
-        TotalTimeText.text = "";
-        LevelText.text = "";
-        stageNumText.text = "";
-        missNumText.text = "";
-        */
+
 
     }
 
@@ -43,7 +37,7 @@ public class Result_Game3 : MonoBehaviour
             //틀린 횟수 표시
             StartCoroutine(ShowMissNum());
             //난이도 선택 창 다시 활성화
-            Disappear_select.isShow = true;
+            Disappear_select3.isShow = true;
 
         }
 

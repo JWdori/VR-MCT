@@ -27,9 +27,10 @@ public class Balloon_Pop_Fail : MonoBehaviour
 
             // 점수 증가
             GameManager3 gameManager = FindObjectOfType<GameManager3>();
+            gameManager.PrintFalse();
             gameManager.AddScore(-99);
             gameManager.PrintScore();
-
+            GameManager3.state = GameManager3.STATE.WRONG;
             popped = true; // 한 번 실행되었음을 표시
         }
 
