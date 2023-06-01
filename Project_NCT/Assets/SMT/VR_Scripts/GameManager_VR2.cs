@@ -428,17 +428,17 @@ public class GameManager_VR2 : MonoBehaviour
                         pad.tag = "pad" + n;
                         arPads[n - 1] = 0;
                         ++n;
-                        x += 0.1f;
+                        x += 0.15f;
                         break;
 
                     //빈칸 처리
                     case '.':
-                        x += 0.1f;
+                        x += 0.15f;
                         break;
 
                     //반 칸 공백처리
                     case '>':
-                        x += 0.1f;
+                        x += 0.15f;
                         break;
 
                     //반 줄 행간 처리
@@ -497,11 +497,11 @@ public class GameManager_VR2 : MonoBehaviour
                     case '*':
 
                         //Pad 배치에 필요한 공간
-                        x += 0.1f;
+                        x += 0.15f;
 
                         break;
                     case '>':
-                        x += 0.1f;
+                        x += 0.15f;
                         break;
                     case '^':
                         y -= 0.05f;
