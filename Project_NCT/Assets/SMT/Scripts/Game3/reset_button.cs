@@ -24,7 +24,8 @@ public class reset_button : MonoBehaviour
             }
 
             // targetObject의 위치를 (1, 2, 0)으로 이동
-            targetObject.transform.position = new Vector3(0.1616356f, 1.3955f, 0.396f);
+            targetObject.transform.position = new Vector3(0.1739993f, 1.348f, 0.4169995f);
+            targetObject.transform.rotation = Quaternion.Euler(-90f, targetObject.transform.rotation.eulerAngles.y, targetObject.transform.rotation.eulerAngles.z);
 
             // 공의 운동 재개
             if (targetRigidbody)
