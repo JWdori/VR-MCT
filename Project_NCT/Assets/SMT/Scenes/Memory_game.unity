@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.55048054, g: 0.79804695, b: 0.97020334, a: 1}
+  m_IndirectSpecularColor: {r: 0.5505563, g: 0.79833186, b: 0.97029114, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 108313710}
   - component: {fileID: 108313712}
   - component: {fileID: 108313711}
+  - component: {fileID: 108313713}
   m_Layer: 0
   m_Name: HandThumbFingertip
   m_TagString: right_hand
@@ -185,6 +186,22 @@ MonoBehaviour:
   _handJointId: 5
   _localPositionOffset: {x: 0.017, y: 0, z: 0}
   _rotationOffset: {x: 0, y: 0, z: 0, w: 1}
+--- !u!54 &108313713
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 108313709}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &117748510
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -288,6 +305,22 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.02
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &140637633
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 140637627}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &162115011
 GameObject:
   m_ObjectHideFlags: 0
@@ -864,6 +897,22 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.02
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &268635242
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 268635237}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &275554460
 GameObject:
   m_ObjectHideFlags: 0
@@ -2532,6 +2581,7 @@ GameObject:
   - component: {fileID: 485268709}
   - component: {fileID: 485268711}
   - component: {fileID: 485268710}
+  - component: {fileID: 485268712}
   m_Layer: 0
   m_Name: HandThumbFingertip
   m_TagString: right_hand
@@ -2583,6 +2633,22 @@ MonoBehaviour:
   _handJointId: 5
   _localPositionOffset: {x: 0.017, y: 0, z: 0}
   _rotationOffset: {x: 0, y: 0, z: 0, w: 1}
+--- !u!54 &485268712
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 485268708}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &487203701
 GameObject:
   m_ObjectHideFlags: 0
@@ -3301,6 +3367,7 @@ GameObject:
   - component: {fileID: 653487985}
   - component: {fileID: 653487987}
   - component: {fileID: 653487986}
+  - component: {fileID: 653487988}
   m_Layer: 0
   m_Name: HandMiddleFingertip
   m_TagString: right_hand
@@ -3352,6 +3419,22 @@ MonoBehaviour:
   _handJointId: 11
   _localPositionOffset: {x: 0.017, y: 0, z: 0}
   _rotationOffset: {x: 0, y: 0, z: 0, w: 1}
+--- !u!54 &653487988
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 653487984}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &656003444
 GameObject:
   m_ObjectHideFlags: 0
@@ -3890,6 +3973,7 @@ GameObject:
   - component: {fileID: 683854394}
   - component: {fileID: 683854396}
   - component: {fileID: 683854395}
+  - component: {fileID: 683854397}
   m_Layer: 0
   m_Name: HandRingFingertip
   m_TagString: right_hand
@@ -3941,6 +4025,22 @@ MonoBehaviour:
   _handJointId: 14
   _localPositionOffset: {x: 0.017, y: 0, z: 0}
   _rotationOffset: {x: 0, y: 0, z: 0, w: 1}
+--- !u!54 &683854397
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 683854393}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &749824664 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5419937294994736467, guid: 424c2298facd2bf419beffd69e8cc855,
@@ -3960,6 +4060,22 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.02
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &749824670
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 749824664}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &762831095
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5201,6 +5317,7 @@ GameObject:
   - component: {fileID: 1008635193}
   - component: {fileID: 1008635195}
   - component: {fileID: 1008635194}
+  - component: {fileID: 1008635196}
   m_Layer: 0
   m_Name: HandMiddleFingertip
   m_TagString: right_hand
@@ -5252,6 +5369,22 @@ MonoBehaviour:
   _handJointId: 11
   _localPositionOffset: {x: 0.017, y: 0, z: 0}
   _rotationOffset: {x: 0, y: 0, z: 0, w: 1}
+--- !u!54 &1008635196
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1008635192}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1010275409 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3282029263655771837, guid: 885ecae56b16f13428a67de5ae482a72,
@@ -6362,6 +6495,22 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.02
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &1145951193
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1145951187}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1208785560
 GameObject:
   m_ObjectHideFlags: 0
@@ -9325,6 +9474,7 @@ GameObject:
   - component: {fileID: 1614148592}
   - component: {fileID: 1614148594}
   - component: {fileID: 1614148593}
+  - component: {fileID: 1614148595}
   m_Layer: 0
   m_Name: HandPinkyFingertip
   m_TagString: right_hand
@@ -9376,6 +9526,22 @@ MonoBehaviour:
   _handJointId: 18
   _localPositionOffset: {x: 0.017, y: 0, z: 0}
   _rotationOffset: {x: 0, y: 0, z: 0, w: 1}
+--- !u!54 &1614148595
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1614148591}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!114 &1615538557 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 482801000701448007, guid: 424c2298facd2bf419beffd69e8cc855,
@@ -12284,6 +12450,7 @@ GameObject:
   - component: {fileID: 1952875401}
   - component: {fileID: 1952875403}
   - component: {fileID: 1952875402}
+  - component: {fileID: 1952875404}
   m_Layer: 0
   m_Name: HandRingFingertip
   m_TagString: right_hand
@@ -12335,6 +12502,22 @@ MonoBehaviour:
   _handJointId: 14
   _localPositionOffset: {x: 0.017, y: 0, z: 0}
   _rotationOffset: {x: 0, y: 0, z: 0, w: 1}
+--- !u!54 &1952875404
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1952875400}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1953246408
 GameObject:
   m_ObjectHideFlags: 0
@@ -13313,6 +13496,7 @@ GameObject:
   - component: {fileID: 2089972108}
   - component: {fileID: 2089972110}
   - component: {fileID: 2089972109}
+  - component: {fileID: 2089972111}
   m_Layer: 0
   m_Name: HandPinkyFingertip
   m_TagString: right_hand
@@ -13364,6 +13548,22 @@ MonoBehaviour:
   _handJointId: 18
   _localPositionOffset: {x: 0.017, y: 0, z: 0}
   _rotationOffset: {x: 0, y: 0, z: 0, w: 1}
+--- !u!54 &2089972111
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2089972107}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &2090175749
 GameObject:
   m_ObjectHideFlags: 0
@@ -13745,6 +13945,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pad_VR
       objectReference: {fileID: 0}
+    - target: {fileID: 3507242182680279473, guid: ef542dc264a413d4e9734060b398f1fa,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6802852717161775190, guid: ef542dc264a413d4e9734060b398f1fa,
         type: 3}
       propertyPath: m_RootOrder
@@ -13799,6 +14004,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7759856146077296348, guid: ef542dc264a413d4e9734060b398f1fa,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef542dc264a413d4e9734060b398f1fa, type: 3}
