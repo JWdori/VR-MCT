@@ -35,7 +35,7 @@ public class GameManager3 : MonoBehaviour
     static public int levelNum = 1;
     static public int stage_temp = 0;
     //최대 스테이지 수
-    static public int stageCnt = 4;
+    static public int stageCnt = 10;
 
     //패드 문제 배열
     //ShuffleTouch에서 랜덤으로 설정
@@ -122,7 +122,7 @@ public enum STATE
         if (isStagetime)
         {
             //스테이지 게임 시간 계산
-            time2 = 2 - (int)(Time.time - stageTime);
+            time2 = 60 - (int)(Time.time - stageTime);
             //스테이지 게임 시간 출력
             stageTimeText.text = "남은 시간 : " + time2;
         }
@@ -131,11 +131,11 @@ public enum STATE
         //60초 지나면 게임 종료
         if (time2 <= 0 && !over)
         {
-            totalTime += 2 - time2;
+            totalTime += 60 - time2;
             //한 번 더 판단
             over = true;
             //시간 다시 초기화
-            time2 = 2;
+            time2 = 60;
             //시간 초과로 인한 게임 종료
             isStagetime = false;
             isTotaltime = false;
@@ -516,6 +516,8 @@ public enum STATE
                     else
                     {
                         Debug.Log("위치가 사용 중입니다. 다른 위치 시도 중...");
+                        currentAttempts = 0; // 현재 시도 횟수
+
                     }
                     currentAttempts++;
                 }
@@ -752,7 +754,6 @@ public enum STATE
         pushText.text = "성공!";
 
         //1초 후 사라짐
-        yield return new WaitForSeconds(1f);
 
         pushText.text = "";
 
