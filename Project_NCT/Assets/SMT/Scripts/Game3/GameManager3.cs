@@ -430,7 +430,7 @@ public enum STATE
         {
             float distanceToExistingBalloon = Vector3.Distance(position, balloonPosition);
 
-            if (distanceToExistingBalloon < 2 * balloonRadius)
+            if (distanceToExistingBalloon < balloonRadius*2)
             {
                 // 이 위치는 이미 존재하는 풍선과 너무 가까움
                 return false;
@@ -454,18 +454,17 @@ public enum STATE
             // 기존의 풍선 위치를 초기화
             balloonPositions.Clear();
             int balloonCount = Clearcnt[stage - 1];
-            Debug.Log("여기니 " + Clearcnt[stage - 1]);
+            int maxAttempts = 1000; // 최대 시도 횟수
+
             for (int i = 0; i < balloonCount; i++)
             {
                 GameObject spawnArea = spawnAreas[stage - 1];
                 BoxCollider spawnAreaBoxCollider = spawnArea.GetComponent<BoxCollider>();
-                Debug.Log("여기니 " + Clearcnt[stage - 1]);
-                // 이 위치에 풍선이 없을 때까지 반복
-                while (true)
+                int currentAttempts = 0; // 현재 시도 횟수
+                                         // 이 위치에 풍선이 없을 때까지 반복
+                while (currentAttempts < maxAttempts)
                 {
-                    Debug.Log("여기니 " + Clearcnt[stage - 1]);
                     Vector3 randomPosition = GetRandomPositionInBoxCollider(spawnAreaBoxCollider);
-                    Debug.Log("여기니 " + Clearcnt[stage - 1]);
                     if (IsPositionFree(randomPosition))
                     {
                         Debug.Log("여기니 " + Clearcnt[stage - 1]);
@@ -479,7 +478,13 @@ public enum STATE
                         // 풍선을 생성하고 반복문을 종료
                         break;
                     }
+                    else
+                    {
+                        Debug.Log("위치가 사용 중입니다. 다른 위치 시도 중...");
+                    }
+                    currentAttempts++;
                 }
+
             }
 
             yield return null; // 한 프레임 대기
