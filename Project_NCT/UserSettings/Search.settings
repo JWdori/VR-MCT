@@ -7,9 +7,9 @@ onBoardingDoNotAskAgain = true
 showPackageIndexes = false
 showStatusBar = false
 scopes = {
-	"last_search.DA949528" = "lighting"
+	"last_search.DA949528" = "Clean Cache "
 	"OpenInspectorPreview.DA949528" = "0"
-	"currentGroup.DA949528" = "menu"
+	"currentGroup.DA949528" = "settings"
 }
 providers = {
 	adb = {
@@ -56,6 +56,8 @@ providers = {
 objectSelectors = {
 }
 recentSearches = [
+	"Clean Cache "
+	"c"
 	"a"
 	"co"
 	"R"

@@ -11,12 +11,12 @@ public class GameManager3 : MonoBehaviour
     public TextMeshPro totalTimeText, stageTimeText, missText, hitText, stageNumText, pushText, levelText;
 
     //balloon 터치 여부
-    static public bool isTouch = true;
     public AudioClip audioClip; // 오디오 클립
     private AudioSource audioSource;
     public GameObject balloonPrefab; // 풍선 프리팹
     public GameObject Failed_balloonPrefab; // 풍선 프리팹
-
+    //박스콜리더
+    public GameObject[] spawnAreas;
 
     //눌러야 되는 패드 순서
 
@@ -26,7 +26,7 @@ public class GameManager3 : MonoBehaviour
     //스테이지의 전체 패드 수
     static public int padCnt;
     //순서 맞춘 횟수
-    int hitCnt = 0;
+
     //스테이지 번호
     static public int stageNum = 1;
 
@@ -35,7 +35,7 @@ public class GameManager3 : MonoBehaviour
     static public int levelNum = 1;
 
     //최대 스테이지 수
-    static public int stageCnt = 2;
+    static public int stageCnt = 4;
 
     //패드 문제 배열
     //ShuffleTouch에서 랜덤으로 설정
@@ -67,7 +67,12 @@ public class GameManager3 : MonoBehaviour
     bool isStagetime = false;
 
     //위치 정보 배열
-    private Vector3[][] stageBalloonPositions = new Vector3[9][];
+    private List<Vector3> balloonPositions = new List<Vector3>(); // 생성된 풍선의 위치를 저장할 리스트
+    private float balloonRadius = 1f; // 풍선의 반지름
+
+
+    List<GameObject> balloons11 = new List<GameObject>();
+
 
     int stage_temp = 0;
 
@@ -91,7 +96,9 @@ public enum STATE
     //처음 상태를 SELECT로 설정, 난이도 선택
     static public STATE state = STATE.SELECT;
     private int score = 0;
-    public int[] Clearcnt = {1,2,2,3,3,3,4,4,4,4};
+    public int[] Clearcnt = {2,2,3,3,3,4,4,5,5,6};
+    public int[] FailBalloonscnt = { 1, 1, 1, 2, 2, 2, 2, 3, 3, 3 };
+
     bool FailBalloon = false;
     bool SuccessBalloon = false;
 
@@ -128,7 +135,6 @@ public enum STATE
             //시간 다시 초기화
             time2 = 60;
             //시간 초과로 인한 게임 종료
-            isTouch = false;
             isStagetime = false;
             isTotaltime = false;
 
@@ -165,7 +171,7 @@ public enum STATE
                 //틀린 횟수 출력
                 missText.text = "목숨 : " + missNum;
                 //맞춘 횟수 출력
-                hitText.text = "성공 횟수 : " + hitCnt;
+                hitText.text = "성공 횟수 : " + score;
                 Debug.Log("????" + stage_temp);
                 Debug.Log("????" + stageCnt);
 
@@ -257,9 +263,9 @@ public enum STATE
         stageTimeText.text = "";
         stageNumText.text = "";
         levelText.text = "";
-        Debug.Log("123");
+
         //터치 패드 tag를 이용하여 제거
-        Debug.Log("12345" );
+
         GameObject balloons = GameObject.FindWithTag("balloon" );
         Destroy(balloons);
        
@@ -275,7 +281,6 @@ public enum STATE
         //STATE.WAIT인 상태에서는 마우스 클릭 안 됨
         state = STATE.WAIT;
         yield return new WaitForSeconds(0.1f);
-        isTouch = true;
         //arPads[step]은 step번째 눌러야 되는 Pad번호
         //padNum은 PadCtrl.cs에서 받아온 사용자가 누른 Pad번호
         if (FailBalloon == true)//
@@ -291,7 +296,6 @@ public enum STATE
             {
 
                 //두 번 틀리면 터치 안 되고, Fail 출력 시간도 안흐르게...
-                isTouch = false;
                 isStagetime = false;
                 isTotaltime = false;
                 totalTime += 60 - time2;
@@ -319,29 +323,26 @@ public enum STATE
         //STATE.WAIT인 상태에서는 마우스 클릭 안 됨
         state = STATE.WAIT;
         yield return new WaitForSeconds(0.1f);
-        isTouch = true;
 
         //눌러야 되는 Pad와 사용자가 누른 Pad가 같은 경우
-        if (SuccessBalloon == true)
+        if (score == Clearcnt[stageNum-1])
         {
+            //SuccessBalloon = false;
             //맞춘 횟수 증가
-            ++hitCnt;
             //맞춘 횟수 update
-            hitText.text = "성공 횟수 : " + hitCnt;
+            hitText.text = "성공 횟수 : " + score;
+            Debug.Log("히트" + score);
+            Debug.Log("클리어" + Clearcnt[stageNum - 1]);
             //해당 스테이지에서 눌러야 되는 Pad를 모두 눌렀을 경우
-            if (hitCnt == Clearcnt[stageNum-1])
+            if (score == Clearcnt[stageNum-1])
             {
                 //터치 안 되게 바꾸고, state는 CLEAR로 변환
-                isTouch = false;
                 isTotaltime = false;
                 isStagetime = false;
                 state = STATE.CLEAR;
-                yield return new WaitForSeconds(0.03f);
                 //return;
             }
             //step을 늘려서 눌러야 되는 다음 Pad 설정
-            SuccessBalloon = false;
-
         }
 
         yield return new WaitForSeconds(0.03f);
@@ -354,7 +355,6 @@ public enum STATE
     {
         state = STATE.WAIT;
 
-        isTouch = false;
         isTotaltime = false;
         isStagetime = false;
 
@@ -379,7 +379,6 @@ public enum STATE
             yield return new WaitForSeconds(0.5f);
         }
         //stage가 바뀌는 순간에는 시간이 안 흐름
-        isTouch = false;
         isTotaltime = false;
         isStagetime = false;
 
@@ -391,8 +390,8 @@ public enum STATE
 
 
         //맞춘 횟수 초기화
-        hitCnt = 0;
-        hitText.text = "성공 횟수 : " + hitCnt;
+        score = 0;
+        hitText.text = "성공 횟수 : " + score;
         //맞춰야 되는 Pad갯수 초기화
         //틀린 횟수 초기화
         missNum = totalMiss;
@@ -409,119 +408,234 @@ public enum STATE
         yield return new WaitForSeconds(1f);
         //난이도 선택 창 비활성화
         Disappear_select3.isHide = true;
-    //SetPadPos(out sx, out sy);
-
-    //배열의 행의 수만큼 반복
-    //foreach (string t in str)
-    //{
-    //    //각 행의 문자열을 단일 문자 배열로 변환(문자열 좌우의 공백 제거), 변수의 좌우 공백을 제거(Trim)하고 단일 문자배열로 변환
-    //    char[] ch = t.Trim().ToCharArray();
-
-    //    //Pad의 x축 좌표
-    //    float x = 1.3f;
-
-    //    //1행의 문자열 길이만큼 반복
-    //    //배열의 ch의 한문자를 읽고 변수 c에 할당한다
-    //    foreach (char c in ch)
-    //    {
-    //        switch (c)
-    //        {
-    //            //맵의 내용이 *이면 그 위치에 Pad 만들어서 배치
-    //            case '*':
-    //                //Pad 만들기
-    //                //Prefap으로 만들어진 Pad를 GameObject로 설정
-    //                GameObject pad = Instantiate(Resources.Load("Prefab/Pad_VR")) as GameObject;
-
-    //                //Pad 좌표설정
-    //                pad.transform.position = new Vector3(x, sy, 1.1f);
-
-    //                //pad1, pad2, ... pad25까지 tag로 설정되어 있음
-    //                //생성되는 Pad마다 tag를 붙여줌
-    //                //나중에 사용자가 선택한 Pad와 눌러야 되는 Pad 비교할 때 쓰임
-    //                //pad.tag = "pad" + n++;
-    //                x += 0.3f;
-    //                break;
-
-    //            //빈칸 처리
-    //            case '.':
-    //                x += 0.05f;
-    //                break;
-
-    //            //반 칸 공백처리
-    //            case '>':
-    //                x += 0.5f;
-    //                break;
-
-    //            //반 줄 행간 처리
-    //            case '^':
-    //                sy += 0.05f;
-    //                break;
-    //        }
-
-    //        //카드를 표시한 후에는 지연 시간을 두어 카드가 배치되는 과정이 보이도록함
-    //        if (c == '*')
-    //        {
-    //            yield return new WaitForSeconds(0.03f);
-    //        }
-    //    }
-
-    //    //한 줄 아래로 이동
-    //    sy -= 0.05f;
-    //}
-
-        //Pad 셋팅 완료 후 문제 제시 상태로 넘어감
         state = STATE.MAKE;
     }
 
+    Vector3 GetRandomPositionInBoxCollider(BoxCollider boxCollider)
+    {
+        Vector3 boxSize = boxCollider.size;
+        Vector3 boxCenter = boxCollider.center;
 
+        float randomX = Random.Range(-boxSize.x / 2, boxSize.x / 2) + boxCenter.x;
+        float randomY = Random.Range(-boxSize.y / 2, boxSize.y / 2) + boxCenter.y;
+        float randomZ = Random.Range(-boxSize.z / 2, boxSize.z / 2) + boxCenter.z;
 
-    //스테이지마다 풍선 보여주기
+        Vector3 randomPosition = boxCollider.transform.TransformPoint(new Vector3(randomX, randomY, randomZ));
+        return randomPosition;
+    }
+
+    bool IsPositionFree(Vector3 position)
+    {
+        foreach (Vector3 balloonPosition in balloonPositions)
+        {
+            float distanceToExistingBalloon = Vector3.Distance(position, balloonPosition);
+
+            if (distanceToExistingBalloon < 2 * balloonRadius)
+            {
+                // 이 위치는 이미 존재하는 풍선과 너무 가까움
+                return false;
+            }
+        }
+
+        // 이 위치는 모든 존재하는 풍선과 충분히 멀리 떨어져 있음
+        return true;
+    }
+
+    // 스테이지마다 풍선 보여주기
     IEnumerator ShowTouch(int stage)
     {
         state = STATE.WAIT;
+        StartCoroutine(ShowStageNum());
+        yield return new WaitForSeconds(0.5f);
 
-        //랜덤으로 Pad순서 생성
-        //stage마다 문제가 바뀔 때
-        //ShuffleTouch();
+        if (stageNum == 1)
+        {
 
-        // 풍선 위치 입력
-            StartCoroutine(ShowStageNum());
-            yield return new WaitForSeconds(0.5f);
-            if (stage == 1)
+            // 기존의 풍선 위치를 초기화
+            balloonPositions.Clear();
+            int balloonCount = Clearcnt[stage - 1];
+            Debug.Log("여기니 " + Clearcnt[stage - 1]);
+            for (int i = 0; i < balloonCount; i++)
             {
-                // 스테이지 1의 풍선 위치
-                stageBalloonPositions[0] = new Vector3[] { new Vector3(-1.11f, 2.047f, 2.331f) };
+                GameObject spawnArea = spawnAreas[stage - 1];
+                BoxCollider spawnAreaBoxCollider = spawnArea.GetComponent<BoxCollider>();
+                Debug.Log("여기니 " + Clearcnt[stage - 1]);
+                // 이 위치에 풍선이 없을 때까지 반복
+                while (true)
+                {
+                    Debug.Log("여기니 " + Clearcnt[stage - 1]);
+                    Vector3 randomPosition = GetRandomPositionInBoxCollider(spawnAreaBoxCollider);
+                    Debug.Log("여기니 " + Clearcnt[stage - 1]);
+                    if (IsPositionFree(randomPosition))
+                    {
+                        Debug.Log("여기니 " + Clearcnt[stage - 1]);
+                        balloonPositions.Add(randomPosition);  // 새 위치를 리스트에 추가
+                        GameObject balloon = Instantiate(balloonPrefab, randomPosition, Quaternion.Euler(-90f, 0f, 0f));
+                        Rigidbody balloonRigidbody = balloon.GetComponent<Rigidbody>();
+                        balloonRigidbody.isKinematic = true;
+                        balloon.tag = "balloon"; // 풍선에 태그 추가
+                        balloons11.Add(balloon);  // 새로 생성된 풍선을 리스트에 추가
+                        Debug.Log("생성 " + Clearcnt[stage - 1]);
+                        // 풍선을 생성하고 반복문을 종료
+                        break;
+                    }
+                }
             }
-            else if (stage == 2)
-            {
-                // 스테이지 2의 풍선 위치
-                stageBalloonPositions[1] = new Vector3[] { new Vector3(1f, 2f, 1f), new Vector3(1f, 0f, 1f) };
-            }
 
-
-            // 풍선 생성 및 배치
-            foreach (Vector3 position in stageBalloonPositions[stage - 1])
-            {
-                GameObject balloon = Instantiate(balloonPrefab);
-                balloon.transform.position = position;
-                balloon.tag = "balloon"; // 풍선에 태그 추가
-
-
-                yield return null; // 한 프레임 대기
-                audioSource = gameObject.AddComponent<AudioSource>();
-                audioSource.clip = audioClip; // 오디오 클립 할당
-                audioSource.Play();
-
-            }
+            yield return null; // 한 프레임 대기
+            audioSource = gameObject.AddComponent<AudioSource>();
+            audioSource.clip = audioClip; // 오디오 클립 할당
+            audioSource.Play();
 
             StartCoroutine(ShowPushTiming());
             yield return new WaitForSeconds(0.5f);
 
-        
-        //터치할 수 있도록 설정
-        isTouch = true;
-        state = STATE.IDLE;
+            // 모든 풍선이 생성된 후에 풍선들의 움직임을 활성화하는 부분 추가
+            foreach (GameObject balloon in balloons11)
+            {
+                Rigidbody balloonRigidbody = balloon.GetComponent<Rigidbody>();
+                balloonRigidbody.isKinematic = false;
+            }
+        }
+        else if (stageNum == 2)
+        {
+            // 기존의 풍선 위치를 초기화
+            balloonPositions.Clear();
+            int balloonCount = Clearcnt[stage - 1];
+
+            for (int i = 0; i < balloonCount; i++)
+            {
+                GameObject spawnArea = spawnAreas[stage - 1];
+                BoxCollider spawnAreaBoxCollider = spawnArea.GetComponent<BoxCollider>();
+
+                // 이 위치에 풍선이 없을 때까지 반복
+                while (true)
+                {
+                    Vector3 randomPosition = GetRandomPositionInBoxCollider(spawnAreaBoxCollider);
+
+                    if (IsPositionFree(randomPosition))
+                    {
+                        balloonPositions.Add(randomPosition);  // 새 위치를 리스트에 추가
+                        GameObject balloon;
+
+                        // 실패 풍선인 경우
+                        if (i < FailBalloonscnt[stage - 1])
+                        {
+                            balloon = Instantiate(Failed_balloonPrefab, randomPosition, Quaternion.Euler(-90f, 0f, 0f));
+                        }
+                        // 성공 풍선인 경우
+                        else
+                        {
+                            balloon = Instantiate(balloonPrefab, randomPosition, Quaternion.Euler(-90f, 0f, 0f));
+                        }
+
+                        Rigidbody balloonRigidbody = balloon.GetComponent<Rigidbody>();
+                        balloonRigidbody.isKinematic = true;
+                        balloon.tag = "balloon"; // 풍선에 태그 추가
+                        balloons11.Add(balloon);  // 새로 생성된 풍선을 리스트에 추가
+
+                        // 풍선을 생성하고 반복문을 종료
+                        break;
+                    }
+                }
+            }
+
+            yield return null; // 한 프레임 대기
+            audioSource = gameObject.AddComponent<AudioSource>();
+            audioSource.clip = audioClip; // 오디오 클립 할당
+            audioSource.Play();
+
+            StartCoroutine(ShowPushTiming());
+            yield return new WaitForSeconds(0.5f);
+
+            // 모든 풍선이 생성된 후에 풍선들의 움직임을 활성화하는 부분 추가
+            foreach (GameObject balloon in balloons11)
+            {
+                Rigidbody balloonRigidbody = balloon.GetComponent<Rigidbody>();
+                balloonRigidbody.isKinematic = false;
+            }
+        }
+
+
+
+
+            // 터치할 수 있도록 설정
+            state = STATE.IDLE;
     }
+
+
+
+
+
+
+
+
+
+
+
+
+    //// 스테이지마다 풍선 보여주기
+    //IEnumerator ShowTouch(int stage)
+    //{
+    //    state = STATE.WAIT;
+    //    Debug.Log("여기니" + Clearcnt[stage - 1]);
+
+    //    // 풍선 위치 입력
+    //    StartCoroutine(ShowStageNum());
+    //    yield return new WaitForSeconds(0.5f);
+
+    //    foreach (GameObject spawnArea in spawnAreas)
+    //    {
+    //        Collider collider = spawnArea.GetComponent<Collider>();
+
+    //        List<Vector3> validPositions = new List<Vector3>();
+    //        Debug.Log("여기니0" + Clearcnt[stage - 1]);
+
+    //        // 유효한 위치 찾기
+    //        for (int i = 0; i < Clearcnt[stage - 1]; i++)
+    //        {
+    //            bool isValidPosition = false;
+    //            Vector3 randomPosition = Vector3.zero;
+    //            Debug.Log("여기니1" + Clearcnt[stage - 1]);
+
+    //            while (!isValidPosition)
+    //            {
+
+    //                randomPosition = GetRandomPositionInCollider(collider);
+    //                Collider[] existingColliders = Physics.OverlapSphere(randomPosition, 2f);
+    //                Debug.Log("여기니2" + existingColliders.Length);
+
+    //                if (existingColliders.Length > 0)
+    //                {
+    //                    Debug.Log("여기니11111111" + Clearcnt[stage - 1]);
+    //                    // 충돌이 감지되면 다른 위치에서 다시 생성
+    //                    continue;
+    //                }
+    //                Debug.Log("여기니3" + Clearcnt[stage - 1]);
+
+    //                isValidPosition = true;
+    //            }
+
+    //            // 풍선 생성
+    //            GameObject balloon = Instantiate(balloonPrefab, randomPosition, Quaternion.identity);
+    //            balloon.tag = "balloon"; // 풍선에 태그 추가
+    //            Debug.Log("생성" + Clearcnt[stage - 1]);
+    //        }
+    //    }
+    //    yield return null; // 한 프레임 대기
+    //    audioSource = gameObject.AddComponent<AudioSource>();
+    //    audioSource.clip = audioClip; // 오디오 클립 할당
+    //    audioSource.Play();
+
+
+    //    StartCoroutine(ShowPushTiming());
+    //    yield return new WaitForSeconds(0.5f);
+
+    //    //터치할 수 있도록 설정
+    //    state = STATE.IDLE;
+    //}
+
+
 
     ////사용자가 눌러야 되는 Pad를 랜덤으로 받을 수 있도록 설정
     ////arPads 배열 설정
