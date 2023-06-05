@@ -16,6 +16,14 @@ public class MovePage : MonoBehaviour
         
     }
 
+    public GameObject p1;
+    public GameObject p2;
+    public GameObject p3;
+    public GameObject p4;
+    public GameObject button_n;
+    public GameObject button_p;
+    public GameObject exit;
+
     public void NextPage()
     {
         TutoManager.state = TutoManager.STATE.NEXT;
@@ -28,6 +36,14 @@ public class MovePage : MonoBehaviour
 
     public void ExitPage()
     {
+        p1.SetActive(false);
+        p2.SetActive(false);
+        p3.SetActive(false);
+        p4.SetActive(false);
+        button_n.SetActive(false);
+        button_p.SetActive(false);
+        exit.SetActive(false);
+
         //난이도 선택 창 비활성화
         Disappear_select.isShow = true;
 
