@@ -11,10 +11,10 @@ public class GameManager_Test : MonoBehaviour
     //게임 전체 시간, 스테이지 시간, 틀린 횟수, 맞춘 횟수, 스테이지 번호, (시작, 성공, 실패)를 나타내는 텍스트
     public TextMeshPro totalTimeText, stageTimeText, missText, hitText, stageNumText, pushText, levelText;
 
-    public GameObject loading;
-    public GameObject panel;
-    public GameObject startbutton;
-    public GameObject tuto;
+    //public GameObject loading;
+    //public GameObject panel;
+    //public GameObject startbutton;
+    //public GameObject tuto;
 
     //터치 여부
     static public bool isTouch = true;
@@ -97,6 +97,10 @@ public class GameManager_Test : MonoBehaviour
         //문제 생성
         //외워야 되는 Pad가 누적인 경우
         //ShuffleTouch();
+
+        //normal 모드는 총 11개의 터치 패드
+        padCnt = 15;
+        startTime = Time.time;
     }
 
     // Update is called once per frame
@@ -128,9 +132,6 @@ public class GameManager_Test : MonoBehaviour
         //state에 따라 알맞은 환경 실행
         switch (state)
         {
-            case STATE.EX:
-                StartCoroutine(ShowEx());
-                break;
 
             //state가 START이면 Level에 맞는 스테이지 만들기
             //MakeStage() 실행
@@ -206,21 +207,6 @@ public class GameManager_Test : MonoBehaviour
             //SceneManager.LoadScene("LevelSelect");
         }
         */
-    }
-
-    IEnumerator ShowEx()
-    {
-        state = STATE.WAIT;
-        //난이도 선택 창 비활성화
-        Disappear_select.isHide = true;
-
-        loading.SetActive(true);
-        tuto.SetActive(true);
-        yield return new WaitForSeconds(0.5f);
-        panel.SetActive(true);
-        startbutton.SetActive(true);
-        yield return new WaitForSeconds(0.1f);
-        state = STATE.IDLE;
     }
 
     //결과를 보여주는 코드
@@ -399,7 +385,7 @@ public class GameManager_Test : MonoBehaviour
     {
         state = STATE.WAIT;
 
-        loading.SetActive(false);
+        //loading.SetActive(false);
 
         //시작카드의 x좌표
         float sx = 0;
@@ -422,7 +408,7 @@ public class GameManager_Test : MonoBehaviour
             char[] ch = t.Trim().ToCharArray();
 
             //Pad의 x축 좌표
-            float x = 1.6f;
+            float x = 1f;
 
             //1행의 문자열 길이만큼 반복
             //배열의 ch의 한문자를 읽고 변수 c에 할당한다
@@ -434,7 +420,7 @@ public class GameManager_Test : MonoBehaviour
                     case '*':
                         //Pad 만들기
                         //Prefap으로 만들어진 Pad를 GameObject로 설정
-                        GameObject pad = Instantiate(Resources.Load("Prefab/Pad_VR")) as GameObject;
+                        GameObject pad = Instantiate(Resources.Load("Prefab/Pad_Test")) as GameObject;
 
                         //Pad 좌표설정
                         pad.transform.position = new Vector3(x, sy, 1.15f);
@@ -488,7 +474,7 @@ public class GameManager_Test : MonoBehaviour
         float x = 0;
 
         //세로 행수 반줄 행간 포함
-        float y = 3f;
+        float y = 4.5f;
 
         //가로 Pad 최대 수
         float maxX = 0;
