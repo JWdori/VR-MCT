@@ -141,8 +141,6 @@ public enum STATE
             //시간 초과로 인한 게임 종료
             isStagetime = false;
             isTotaltime = false;
-
-
             StartCoroutine(ShowFail());
             //state가 FINISH로 바뀜
             FailAudio.play();
@@ -207,6 +205,7 @@ public enum STATE
             //StageClear() 실행
             case STATE.CLEAR:
                 Debug.Log("Clear");
+
                 StartCoroutine(StageClear());
                 break;
 
@@ -308,7 +307,6 @@ public enum STATE
                 isStagetime = false;
                 isTotaltime = false;
                 totalTime += 60 - time2;
-
                 StartCoroutine(ShowFail());
                 yield return new WaitForSeconds(2f);
                 //state가 FINISH로 바뀜
@@ -361,6 +359,7 @@ public enum STATE
             //눌러야 되는 Pad와 사용자가 누른 Pad가 같은 경우
             if (score == (Clearcnt[stageNum - 1] - FailBalloonscnt[stageNum - 1]))
             {
+
                 //SuccessBalloon = false;
                 //맞춘 횟수 증가
                 //맞춘 횟수 update
@@ -370,6 +369,8 @@ public enum STATE
                 //해당 스테이지에서 눌러야 되는 Pad를 모두 눌렀을 경우
                 if (score == (Clearcnt[stageNum - 1] - FailBalloonscnt[stageNum - 1]))
                 {
+
+                    balloons11.Clear();
                     //터치 안 되게 바꾸고, state는 CLEAR로 변환
                     isTotaltime = false;
                     isStagetime = false;
@@ -394,8 +395,6 @@ public enum STATE
 
         isTotaltime = false;
         isStagetime = false;
-
-        yield return new WaitForSeconds(0.5f);
         //Clear 문구 보여줌
         StartCoroutine(ShowClear());
         stageTimeText.text = "남은 시간 : " + 60;
@@ -452,6 +451,7 @@ public enum STATE
         state = STATE.MAKE;
     }
 
+    //박스콜리더 위치 지정
     Vector3 GetRandomPositionInBoxCollider(BoxCollider boxCollider)
     {
         Vector3 boxSize = boxCollider.size;
@@ -513,8 +513,6 @@ public enum STATE
                         Debug.Log("여기니 " + randomPosition);
                         balloonPositions.Add(randomPosition);  // 새 위치를 리스트에 추가
                         GameObject balloon = Instantiate(balloonPrefab, randomPosition, Quaternion.Euler(-90f, 0f, 0f));
-                        Rigidbody balloonRigidbody = balloon.GetComponent<Rigidbody>();
-                        balloonRigidbody.isKinematic = true;
                         balloon.tag = "balloon"; // 풍선에 태그 추가
                         balloons11.Add(balloon);  // 새로 생성된 풍선을 리스트에 추가
                         // 풍선을 생성하고 반복문을 종료
@@ -538,13 +536,6 @@ public enum STATE
 
             StartCoroutine(ShowPushTiming());
 
-            // 모든 풍선이 생성된 후에 풍선들의 움직임을 활성화하는 부분 추가
-            foreach (GameObject balloon in balloons11)
-            {
-                Rigidbody balloonRigidbody = balloon.GetComponent<Rigidbody>();
-                balloonRigidbody.isKinematic = false;
-            }
-            balloons11.Clear();
 
         }
         else if (levelNum == 2)
@@ -590,8 +581,6 @@ public enum STATE
 
                         balloonPositions.Add(randomPosition); // 새 위치를 리스트에 추가
                         GameObject balloon = Instantiate(balloonPrefabToInstantiate, randomPosition, Quaternion.Euler(-90f, 0f, 0f));
-                        Rigidbody balloonRigidbody = balloon.GetComponent<Rigidbody>();
-                        balloonRigidbody.isKinematic = true;
                         balloon.tag = "balloon"; // 풍선에 태그 추가
                         balloons11.Add(balloon); // 새로 생성된 풍선을 리스트에 추가
                                                  // 풍선을 생성하고 반복문을 종료
@@ -606,6 +595,7 @@ public enum STATE
                     currentAttempts++;
                 }
 
+
             }
 
         
@@ -618,13 +608,7 @@ public enum STATE
             StartCoroutine(ShowPushTiming());
             yield return new WaitForSeconds(0.5f);
 
-            // 모든 풍선이 생성된 후에 풍선들의 움직임을 활성화하는 부분 추가
-            foreach (GameObject balloon in balloons11)
-            {
-                Rigidbody balloonRigidbody = balloon.GetComponent<Rigidbody>();
-                balloonRigidbody.isKinematic = false;
-            }
-            balloons11.Clear();
+
 
         }
         else if (levelNum == 3)
@@ -688,25 +672,41 @@ public enum STATE
         isTotaltime = true;
         //왜지?
         yield return new WaitForSeconds(1f);
+
     }
 
     //Stage를 Clear했다는 것을 알림
     IEnumerator ShowClear()
     {
         pushText.text = "성공!";
-
         //1초 후 사라짐
+
+        GameObject[] balloons = GameObject.FindGameObjectsWithTag("balloon");
+        foreach (GameObject balloon in balloons)
+        {
+
+            Collider balloonCollider = balloon.GetComponent<Collider>();
+            balloonCollider.isTrigger = true;
+        }
         yield return new WaitForSeconds(1f);
 
         pushText.text = "";
 
         yield return new WaitForSeconds(1f);
+
+
     }
 
     //Stage를 Clear하지 못함
     IEnumerator ShowFail()
     {
         pushText.text = "실패!";
+        GameObject[] balloons = GameObject.FindGameObjectsWithTag("balloon");
+        foreach (GameObject balloon in balloons)
+        {
+            Collider balloonCollider = balloon.GetComponent<Collider>();
+            balloonCollider.isTrigger = true;
+        }
 
         //1초 후 사라짐
         yield return new WaitForSeconds(1f);
@@ -714,6 +714,7 @@ public enum STATE
         pushText.text = "";
 
         yield return new WaitForSeconds(1f);
+
     }
 
 
@@ -730,11 +731,10 @@ public enum STATE
     }
 
 
-
     public void PrintFalse()
     {
         FailBalloon = true;
-        Debug.Log("fail: " + FailBalloon + missNum);
+        Debug.Log("fail: " + FailBalloon + missNum + " 점수는 "+score);
     }
     public void MissScore(int points)
     {

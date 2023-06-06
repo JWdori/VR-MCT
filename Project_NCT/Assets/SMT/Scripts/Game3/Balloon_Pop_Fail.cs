@@ -7,6 +7,8 @@ public class Balloon_Pop_Fail : MonoBehaviour
     public ParticleSystem particleSystem;
     private GameManager3 gameManager;
     private bool popped = false; // 충돌 시 한 번만 실행하기 위한 변수
+    private Rigidbody balloonRigidbody;
+
 
     private void Start()
     {
