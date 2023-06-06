@@ -100,6 +100,8 @@ public enum STATE
 
     public int[] Clearcnt = {2,2,3,3,3,4,4,5,5,6};
     public int[] FailBalloonscnt = { 1, 1, 1, 2, 2, 2, 2, 3, 3, 3 };
+    public int[] Clearcnt2 = { 1, 2, 2, 3, 3, 3, 4, 4, 4, 5 };
+    //public int[] FailBalloonscnt2 = { 1, 1, 1, 2, 2, 2, 2, 3, 3, 3 };
 
     bool FailBalloon = false;
     //bool SuccessBalloon = false;
@@ -366,12 +368,14 @@ public enum STATE
                 Debug.Log("히트" + score);
                 Debug.Log("클리어" + Clearcnt[stageNum - 1]);
                 //해당 스테이지에서 눌러야 되는 Pad를 모두 눌렀을 경우
-
+                if (score == (Clearcnt[stageNum - 1] - FailBalloonscnt[stageNum - 1]))
+                {
                     //터치 안 되게 바꾸고, state는 CLEAR로 변환
                     isTotaltime = false;
                     isStagetime = false;
                     state = STATE.CLEAR;
                     //return;
+                }
                 
             }
             
@@ -395,7 +399,7 @@ public enum STATE
         //Clear 문구 보여줌
         StartCoroutine(ShowClear());
         stageTimeText.text = "남은 시간 : " + 60;
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
 
         //다음 스테이지 번호
         if (stageNum < stageCnt)
@@ -430,8 +434,12 @@ public enum STATE
         missNum = totalMiss;
         missText.text = "목숨 : " + missNum;
         //다음 문제 제시
+        GameObject[] balloons = GameObject.FindGameObjectsWithTag("balloon");
+        foreach (GameObject balloon in balloons)
+        {
+            Destroy(balloon);
+        }
         state = STATE.MAKE;
-
     }
 
     //처음 게임에 들어왔을 때 기본 세팅
@@ -510,7 +518,6 @@ public enum STATE
                         balloon.tag = "balloon"; // 풍선에 태그 추가
                         balloons11.Add(balloon);  // 새로 생성된 풍선을 리스트에 추가
                         // 풍선을 생성하고 반복문을 종료
-                        balloon.tag = "balloon";
                         break;
                     }
                     else
@@ -530,7 +537,6 @@ public enum STATE
             audioSource.Play();
 
             StartCoroutine(ShowPushTiming());
-            yield return new WaitForSeconds(0.5f);
 
             // 모든 풍선이 생성된 후에 풍선들의 움직임을 활성화하는 부분 추가
             foreach (GameObject balloon in balloons11)
@@ -546,43 +552,63 @@ public enum STATE
             // 기존의 풍선 위치를 초기화
             balloonPositions.Clear();
             int balloonCount = Clearcnt[stage - 1];
+            int maxAttempts = 10000; // 최대 시도 횟수
+
+            int failedBalloonCount = FailBalloonscnt[stage - 1];
+            List<int> failedBalloonIndices = new List<int>(); // Failed_balloonPrefab을 생성할 풍선 인덱스들을 저장하는 리스트
+
+
+            while (failedBalloonIndices.Count < failedBalloonCount)
+            {
+                int randomIndex = Random.Range(0, balloonCount);
+                if (!failedBalloonIndices.Contains(randomIndex))
+                {
+                    failedBalloonIndices.Add(randomIndex);
+                }
+            }
 
             for (int i = 0; i < balloonCount; i++)
             {
                 GameObject spawnArea = spawnAreas[stage - 1];
                 BoxCollider spawnAreaBoxCollider = spawnArea.GetComponent<BoxCollider>();
-
-                // 이 위치에 풍선이 없을 때까지 반복
-                while (true)
+                int currentAttempts = 0; // 현재 시도 횟수
+                                         // 이 위치에 풍선이 없을 때까지 반복
+                while (currentAttempts < maxAttempts)
                 {
                     Vector3 randomPosition = GetRandomPositionInBoxCollider(spawnAreaBoxCollider);
+                    Debug.Log("생성 " + currentAttempts);
 
                     if (IsPositionFree(randomPosition))
                     {
-                        balloonPositions.Add(randomPosition);  // 새 위치를 리스트에 추가
-                        GameObject balloon;
+                        Debug.Log("여기니 " + randomPosition);
 
-                        // 실패 풍선인 경우
-                        if (i < FailBalloonscnt[stage - 1])
+                        GameObject balloonPrefabToInstantiate = balloonPrefab;
+                        if (failedBalloonIndices.Contains(i))
                         {
-                            balloon = Instantiate(Failed_balloonPrefab, randomPosition, Quaternion.Euler(-90f, 0f, 0f));
-                        }
-                        // 성공 풍선인 경우
-                        else
-                        {
-                            balloon = Instantiate(balloonPrefab, randomPosition, Quaternion.Euler(-90f, 0f, 0f));
+                            balloonPrefabToInstantiate = Failed_balloonPrefab;
                         }
 
+                        balloonPositions.Add(randomPosition); // 새 위치를 리스트에 추가
+                        GameObject balloon = Instantiate(balloonPrefabToInstantiate, randomPosition, Quaternion.Euler(-90f, 0f, 0f));
                         Rigidbody balloonRigidbody = balloon.GetComponent<Rigidbody>();
                         balloonRigidbody.isKinematic = true;
                         balloon.tag = "balloon"; // 풍선에 태그 추가
-                        balloons11.Add(balloon);  // 새로 생성된 풍선을 리스트에 추가
-
-                        // 풍선을 생성하고 반복문을 종료
+                        balloons11.Add(balloon); // 새로 생성된 풍선을 리스트에 추가
+                                                 // 풍선을 생성하고 반복문을 종료
                         break;
                     }
+                    else
+                    {
+                        Debug.Log("위치가 사용 중입니다. 다른 위치 시도 중...");
+                        currentAttempts = 0; // 현재 시도 횟수
+
+                    }
+                    currentAttempts++;
                 }
+
             }
+
+        
 
             yield return null; // 한 프레임 대기
             audioSource = gameObject.AddComponent<AudioSource>();
@@ -601,7 +627,10 @@ public enum STATE
             balloons11.Clear();
 
         }
+        else if (levelNum == 3)
+        {
 
+        }
 
 
 
@@ -609,93 +638,6 @@ public enum STATE
         state = STATE.IDLE;
     }
 
-
-
-
-
-
-
-
-
-
-
-
-    //// 스테이지마다 풍선 보여주기
-    //IEnumerator ShowTouch(int stage)
-    //{
-    //    state = STATE.WAIT;
-    //    Debug.Log("여기니" + Clearcnt[stage - 1]);
-
-    //    // 풍선 위치 입력
-    //    StartCoroutine(ShowStageNum());
-    //    yield return new WaitForSeconds(0.5f);
-
-    //    foreach (GameObject spawnArea in spawnAreas)
-    //    {
-    //        Collider collider = spawnArea.GetComponent<Collider>();
-
-    //        List<Vector3> validPositions = new List<Vector3>();
-    //        Debug.Log("여기니0" + Clearcnt[stage - 1]);
-
-    //        // 유효한 위치 찾기
-    //        for (int i = 0; i < Clearcnt[stage - 1]; i++)
-    //        {
-    //            bool isValidPosition = false;
-    //            Vector3 randomPosition = Vector3.zero;
-    //            Debug.Log("여기니1" + Clearcnt[stage - 1]);
-
-    //            while (!isValidPosition)
-    //            {
-
-    //                randomPosition = GetRandomPositionInCollider(collider);
-    //                Collider[] existingColliders = Physics.OverlapSphere(randomPosition, 2f);
-    //                Debug.Log("여기니2" + existingColliders.Length);
-
-    //                if (existingColliders.Length > 0)
-    //                {
-    //                    Debug.Log("여기니11111111" + Clearcnt[stage - 1]);
-    //                    // 충돌이 감지되면 다른 위치에서 다시 생성
-    //                    continue;
-    //                }
-    //                Debug.Log("여기니3" + Clearcnt[stage - 1]);
-
-    //                isValidPosition = true;
-    //            }
-
-    //            // 풍선 생성
-    //            GameObject balloon = Instantiate(balloonPrefab, randomPosition, Quaternion.identity);
-    //            balloon.tag = "balloon"; // 풍선에 태그 추가
-    //            Debug.Log("생성" + Clearcnt[stage - 1]);
-    //        }
-    //    }
-    //    yield return null; // 한 프레임 대기
-    //    audioSource = gameObject.AddComponent<AudioSource>();
-    //    audioSource.clip = audioClip; // 오디오 클립 할당
-    //    audioSource.Play();
-
-
-    //    StartCoroutine(ShowPushTiming());
-    //    yield return new WaitForSeconds(0.5f);
-
-    //    //터치할 수 있도록 설정
-    //    state = STATE.IDLE;
-    //}
-
-
-
-    ////사용자가 눌러야 되는 Pad를 랜덤으로 받을 수 있도록 설정
-    ////arPads 배열 설정
-    ////이걸로 빨간 풍선 구현하기
-    //static public void Shuffle()
-    //{
-    //    for (int i = 0; i < stageCnt; i++)
-    //    {
-    //        //1부터 pad갯수 사이에 숫자를 랜덤으로 설정
-    //        int r = Random.Range(1, padCnt + 1);
-    //        //랜덤으로 뽑은 숫자를 배열에 순서대로 설정
-    //        arPads[i] = r;
-    //    }
-    //}
 
 
     //스테이지 시작시 스테이지 번호를 보여준다.
@@ -754,6 +696,7 @@ public enum STATE
         pushText.text = "성공!";
 
         //1초 후 사라짐
+        yield return new WaitForSeconds(1f);
 
         pushText.text = "";
 
