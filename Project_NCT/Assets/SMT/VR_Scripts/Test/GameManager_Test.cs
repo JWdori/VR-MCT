@@ -101,6 +101,7 @@ public class GameManager_Test : MonoBehaviour
         //normal 모드는 총 11개의 터치 패드
         padCnt = 15;
         startTime = Time.time;
+        StartCoroutine(PadCtrl_Test.PadColor());      
     }
 
     // Update is called once per frame
@@ -140,7 +141,7 @@ public class GameManager_Test : MonoBehaviour
                 missNum = 2;
                 totalMiss = 2;
                 totalTime = 0f;
-                over = false ;                
+                over = false ;
                 StartCoroutine(MakeStage());
                 Debug.Log("Start");
                 break;
@@ -536,6 +537,7 @@ public class GameManager_Test : MonoBehaviour
         //stage마다 문제가 바뀔 때
         //ShuffleTouch();
         StartCoroutine(ShuffleTouch());
+        
         yield return new WaitForSeconds(0.1f);
 
         //문제 제시 전에 Stage 알려줌
