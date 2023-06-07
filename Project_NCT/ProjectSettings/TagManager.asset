@@ -33,6 +33,7 @@ TagManager:
   - right_hand
   - game3_terrain
   - balloon
+  - hand
   layers:
   - Default
   - TransparentFX

@@ -26,10 +26,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/SMT/Scenes/Game2.unity
     guid: d2d61fc504db2284f9aeb675cbaff717
-  - enabled: 0
+  - enabled: 1
     path: Assets/SMT/Scenes/Game3.unity
     guid: 965fc2cc322a4824284c6d38fec0b1c2
-  - enabled: 1
+  - enabled: 0
     path: Assets/Oculus/Interaction/Samples/Scenes/Examples/HandGrabExamples.unity
     guid: 39ae0e546b9edc0408d3b11c6a7c2814
   m_configObjects:
