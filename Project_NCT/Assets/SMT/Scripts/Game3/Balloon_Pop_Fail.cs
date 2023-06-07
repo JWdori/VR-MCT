@@ -7,6 +7,8 @@ public class Balloon_Pop_Fail : MonoBehaviour
     public ParticleSystem particleSystem;
     private GameManager3 gameManager;
     private bool popped = false; // 충돌 시 한 번만 실행하기 위한 변수
+    private Rigidbody balloonRigidbody;
+
 
     private void Start()
     {
@@ -27,9 +29,8 @@ public class Balloon_Pop_Fail : MonoBehaviour
 
             // 점수 증가
             GameManager3 gameManager = FindObjectOfType<GameManager3>();
+            gameManager.MissScore(1);
             gameManager.PrintFalse();
-            gameManager.AddScore(-99);
-            gameManager.PrintScore();
             GameManager3.state = GameManager3.STATE.WRONG;
             popped = true; // 한 번 실행되었음을 표시
         }

@@ -426,7 +426,7 @@ public class GameManager_VR2 : MonoBehaviour
             char[] ch = t.Trim().ToCharArray();
 
             //Pad의 x축 좌표
-            float x = 1f;
+            float x = 1.5f;
 
             //1행의 문자열 길이만큼 반복
             //배열의 ch의 한문자를 읽고 변수 c에 할당한다
@@ -441,7 +441,7 @@ public class GameManager_VR2 : MonoBehaviour
                         GameObject pad = Instantiate(Resources.Load("Prefab/Pad_VR")) as GameObject;
 
                         //Pad 좌표설정
-                        pad.transform.position = new Vector3(x, sy, 1.15f);
+                        pad.transform.position = new Vector3(x, sy, 1.2f);
 
                         //pad1, pad2, ... pad25까지 tag로 설정되어 있음
                         //생성되는 Pad마다 tag를 붙여줌

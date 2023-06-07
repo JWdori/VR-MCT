@@ -56,7 +56,7 @@ public class Result_Game3 : MonoBehaviour
     //총 게임 플레이 시간
     IEnumerator ShowPlaytime()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0);
 
         TotalTimeText.text = "소모 시간     -------------------       " + GameManager3.totalTime;
 
@@ -71,7 +71,7 @@ public class Result_Game3 : MonoBehaviour
         {
             LevelText.text = "쉬움";
 
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0);
         }
 
         //levelNum이 2이면 normal
@@ -79,7 +79,7 @@ public class Result_Game3 : MonoBehaviour
         {
             LevelText.text = "보통";
 
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0);
         }
 
         //levelNum이 3이면 hard
@@ -87,7 +87,7 @@ public class Result_Game3 : MonoBehaviour
         {
             LevelText.text = "어려움";
 
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0);
         }
 
     }
@@ -95,7 +95,7 @@ public class Result_Game3 : MonoBehaviour
     //사용자가 실패한 스테이지
     IEnumerator ShowStageNum()
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(0);
 
         stageNumText.text = "최종 단계       -------------------       " + GameManager3.stageNum;
 
@@ -105,7 +105,7 @@ public class Result_Game3 : MonoBehaviour
     //총 틀린 횟수
     IEnumerator ShowMissNum()
     {
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(0);
         // over가 true이면 시간 초과로 게임이 종료되었다는 뜻
         if (GameManager3.over)
         {

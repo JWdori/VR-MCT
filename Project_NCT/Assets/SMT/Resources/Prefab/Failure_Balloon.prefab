@@ -15,7 +15,8 @@ GameObject:
   - component: {fileID: 5835406742164342416}
   - component: {fileID: 7377892226476958608}
   - component: {fileID: 1042791213088590213}
-  m_Layer: 0
+  - component: {fileID: 166252361262755615}
+  m_Layer: 6
   m_Name: Failure_Balloon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -152,6 +153,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particleSystem: {fileID: 5780004892166661559}
+--- !u!114 &166252361262755615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 443745611346689549}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a229de486e9dbe3418c6a5ffce23903c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5307602419226649416
 GameObject:
   m_ObjectHideFlags: 0
@@ -164,7 +177,7 @@ GameObject:
   - component: {fileID: 5780004892166661559}
   - component: {fileID: 8136345674098643757}
   - component: {fileID: 5428952778963046592}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BalloonPopBlue
   m_TagString: Untagged
   m_Icon: {fileID: 0}

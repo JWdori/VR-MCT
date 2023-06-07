@@ -16,9 +16,9 @@ public class MakeStage_Game3 : MonoBehaviour
         {
             //결과창이 나와있는 상태에서 실행할 때 결과창을 없애주고 실행할 수 있도록 함
             Result_Game3.isResult = false;
-
             //easy 모드는 levelNum 1로 설정
             GameManager3.levelNum = 1;
+            GameManager3.stage_temp = 0;
             //문제 생성
             //외워야 되는 Pad가 누적인 경우
             //GameManager3.Shuffle1();
@@ -40,6 +40,7 @@ public class MakeStage_Game3 : MonoBehaviour
             Result_Game3.isResult = false;
             //normal 모드는 levelNum 2로 설정
             GameManager3.levelNum = 2;
+            GameManager3.stage_temp = 0;
 
             //문제 생성
             //외워야 되는 Pad가 누적인 경우
@@ -63,6 +64,7 @@ public class MakeStage_Game3 : MonoBehaviour
             Result_Game3.isResult = false;
             //hard 모드는 levelNum 3로 설정
             GameManager3.levelNum = 3;
+            GameManager3.stage_temp = 0;
 
             //문제 생성
             //외워야 되는 Pad가 누적인 경우

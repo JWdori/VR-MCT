@@ -28,7 +28,6 @@ public class Balloon_Pop : MonoBehaviour
 
             // 점수 증가
             GameManager3 gameManager = FindObjectOfType<GameManager3>();
-            gameManager.PrintTrue();
             gameManager.AddScore(1);
             gameManager.PrintScore();
             GameManager3.state = GameManager3.STATE.HIT;
