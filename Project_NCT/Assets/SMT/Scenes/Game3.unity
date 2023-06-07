@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.55062723, g: 0.79839694, b: 0.97013134, a: 1}
+  m_IndirectSpecularColor: {r: 0.5516851, g: 0.7989391, b: 0.9704296, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -615,6 +615,7 @@ GameObject:
   m_Component:
   - component: {fileID: 53903043}
   - component: {fileID: 53903042}
+  - component: {fileID: 53903044}
   m_Layer: 0
   m_Name: Bhaptics
   m_TagString: Untagged
@@ -634,7 +635,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 608d3d2181cb12147b5dadf079f6114e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  handGrabInteractable: {fileID: 617053272}
 --- !u!4 &53903043
 Transform:
   m_ObjectHideFlags: 0
@@ -650,6 +650,18 @@ Transform:
   m_Father: {fileID: 712804663}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &53903044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 53903041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40fb14a3949028249b81f9b7203624b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &70263129
 GameObject:
   m_ObjectHideFlags: 0
@@ -1927,6 +1939,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3282029262929392829, guid: 885ecae56b16f13428a67de5ae482a72,
+        type: 3}
+      propertyPath: m_TagString
+      value: left_hand
+      objectReference: {fileID: 0}
     - target: {fileID: 3282029263655771826, guid: 885ecae56b16f13428a67de5ae482a72,
         type: 3}
       propertyPath: m_RootOrder
@@ -1987,16 +2004,36 @@ PrefabInstance:
       propertyPath: m_Name
       value: HandGrabInteractor
       objectReference: {fileID: 0}
+    - target: {fileID: 3282029263655771837, guid: 885ecae56b16f13428a67de5ae482a72,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 5274135674856270696, guid: 885ecae56b16f13428a67de5ae482a72,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6141351533274568304, guid: 885ecae56b16f13428a67de5ae482a72,
         type: 3}
       propertyPath: _syntheticHand
       value: 
       objectReference: {fileID: 478320840320693382}
+    - target: {fileID: 7351779112159494444, guid: 885ecae56b16f13428a67de5ae482a72,
+        type: 3}
+      propertyPath: m_TagString
+      value: left_hand
+      objectReference: {fileID: 0}
     - target: {fileID: 8646129326984794350, guid: 885ecae56b16f13428a67de5ae482a72,
         type: 3}
       propertyPath: _hand
       value: 
       objectReference: {fileID: 5679112963249483629}
+    - target: {fileID: 8924745499081199448, guid: 885ecae56b16f13428a67de5ae482a72,
+        type: 3}
+      propertyPath: m_TagString
+      value: left_hand
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 885ecae56b16f13428a67de5ae482a72, type: 3}
 --- !u!1 &277474431
@@ -2068,7 +2105,6 @@ GameObject:
   - component: {fileID: 299115696}
   - component: {fileID: 299115695}
   - component: {fileID: 299115694}
-  - component: {fileID: 299115698}
   m_Layer: 0
   m_Name: DeskSurface
   m_TagString: Untagged
@@ -2154,22 +2190,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &299115698
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 299115693}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 1
 --- !u!1 &315015013
 GameObject:
   m_ObjectHideFlags: 0
@@ -4534,6 +4554,7 @@ GameObject:
   m_Component:
   - component: {fileID: 617053274}
   - component: {fileID: 617053273}
+  - component: {fileID: 617053275}
   m_Layer: 0
   m_Name: HandGrabInteractable
   m_TagString: Untagged
@@ -4602,6 +4623,88 @@ Transform:
   m_Father: {fileID: 712804663}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
+--- !u!114 &617053275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 617053272}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2f8f6e9e6f3e114b9bf9a57c2160615, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pointable: {fileID: 712804658}
+  _whenRelease:
+    m_PersistentCalls:
+      m_Calls: []
+  _whenHover:
+    m_PersistentCalls:
+      m_Calls: []
+  _whenUnhover:
+    m_PersistentCalls:
+      m_Calls: []
+  _whenSelect:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 189821951}
+        m_TargetAssemblyTypeName: Oculus.Interaction.AudioTrigger, Oculus.Interaction.OVR.Samples
+        m_MethodName: PlayAudio
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 53903042}
+        m_TargetAssemblyTypeName: Grab_bhaptics, Assembly-CSharp
+        m_MethodName: PrintGrabbing
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _whenUnselect:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 385460813}
+        m_TargetAssemblyTypeName: Oculus.Interaction.AudioTrigger, Oculus.Interaction.OVR.Samples
+        m_MethodName: PlayAudio
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 53903042}
+        m_TargetAssemblyTypeName: Grab_bhaptics, Assembly-CSharp
+        m_MethodName: PrintShot
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _whenMove:
+    m_PersistentCalls:
+      m_Calls: []
+  _whenCancel:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &630114228 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 752836557468429989, guid: e7fbb376593cff24f9db4ecf8d465aaf,
@@ -5088,9 +5191,10 @@ GameObject:
   - component: {fileID: 712804658}
   - component: {fileID: 712804657}
   - component: {fileID: 712804656}
+  - component: {fileID: 712804664}
   m_Layer: 0
-  m_Name: Dart_yellow (1)
-  m_TagString: Untagged
+  m_Name: Dart_yellow_kjh
+  m_TagString: hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5123,19 +5227,7 @@ MonoBehaviour:
   _pointable: {fileID: 712804658}
   _whenRelease:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 53903042}
-        m_TargetAssemblyTypeName: Grab_bhaptics, Assembly-CSharp
-        m_MethodName: PrintGrabbing
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   _whenHover:
     m_PersistentCalls:
       m_Calls: []
@@ -5321,6 +5413,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &712804664
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 712804655}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 7
+  m_Height: 50.78
+  m_Direction: 0
+  m_Center: {x: 0.7791502, y: 0.09499991, z: 0.3752502}
 --- !u!1 &723412000
 GameObject:
   m_ObjectHideFlags: 0
@@ -9507,11 +9613,21 @@ PrefabInstance:
       propertyPath: _syntheticHand
       value: 
       objectReference: {fileID: 992964793}
+    - target: {fileID: 7351779112159494444, guid: 885ecae56b16f13428a67de5ae482a72,
+        type: 3}
+      propertyPath: m_TagString
+      value: right_hand
+      objectReference: {fileID: 0}
     - target: {fileID: 8646129326984794350, guid: 885ecae56b16f13428a67de5ae482a72,
         type: 3}
       propertyPath: _hand
       value: 
       objectReference: {fileID: 1569644408}
+    - target: {fileID: 8924745499081199448, guid: 885ecae56b16f13428a67de5ae482a72,
+        type: 3}
+      propertyPath: m_TagString
+      value: right_hand
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 885ecae56b16f13428a67de5ae482a72, type: 3}
 --- !u!1 &1208418119
@@ -9863,11 +9979,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2143258140177466417, guid: e7fbb376593cff24f9db4ecf8d465aaf,
-        type: 3}
-      propertyPath: m_TagString
-      value: hand
-      objectReference: {fileID: 0}
     - target: {fileID: 2143258140177466423, guid: e7fbb376593cff24f9db4ecf8d465aaf,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -10045,11 +10156,21 @@ PrefabInstance:
       propertyPath: _syntheticHand
       value: 
       objectReference: {fileID: 1410729967}
+    - target: {fileID: 7351779112159494444, guid: 885ecae56b16f13428a67de5ae482a72,
+        type: 3}
+      propertyPath: m_TagString
+      value: left_hand
+      objectReference: {fileID: 0}
     - target: {fileID: 8646129326984794350, guid: 885ecae56b16f13428a67de5ae482a72,
         type: 3}
       propertyPath: _hand
       value: 
       objectReference: {fileID: 1983904807}
+    - target: {fileID: 8924745499081199448, guid: 885ecae56b16f13428a67de5ae482a72,
+        type: 3}
+      propertyPath: m_TagString
+      value: left_hand
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 885ecae56b16f13428a67de5ae482a72, type: 3}
 --- !u!1 &1297611819
@@ -10886,14 +11007,13 @@ GameObject:
   - component: {fileID: 1835404786}
   - component: {fileID: 1835404787}
   - component: {fileID: 1835404788}
-  - component: {fileID: 1835404789}
   m_Layer: 0
   m_Name: Dart_yellow
-  m_TagString: Untagged
+  m_TagString: hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1433902248
 Transform:
   m_ObjectHideFlags: 0
@@ -13646,7 +13766,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 608d3d2181cb12147b5dadf079f6114e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  handGrabInteractable: {fileID: 1092941167}
 --- !u!1001 &1791746105
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13729,11 +13848,6 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 17ca27f2173f1cb4abceecaa0b6ced1f, type: 2}
-    - target: {fileID: 8662184560477892146, guid: 94313e563929cb3499e3989be338a213,
-        type: 3}
-      propertyPath: m_TagString
-      value: hand
-      objectReference: {fileID: 0}
     - target: {fileID: 8662184560477892147, guid: 94313e563929cb3499e3989be338a213,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -13858,7 +13972,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1433403528}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 91ef38658d550474d94738c306f37379, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
@@ -13873,8 +13987,8 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1433403528}
   serializedVersion: 2
-  m_Mass: 0.3
-  m_Drag: 0.01
+  m_Mass: 1
+  m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -13988,18 +14102,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1835404789}
-        m_TargetAssemblyTypeName: DartThrow, Assembly-CSharp
-        m_MethodName: ThrowDart
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
   _whenMove:
     m_PersistentCalls:
       m_Calls: []
@@ -14018,20 +14120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06f6568b56a901042bd4bc2f4bb22378, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: 10
---- !u!114 &1835404789
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1433403528}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b63ca42f245785745a344bdf14c242ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  throwForce: 10
+  velocity: 1000
 --- !u!1 &1866458489
 GameObject:
   m_ObjectHideFlags: 0
@@ -15950,6 +16039,11 @@ PrefabInstance:
       propertyPath: m_IsKinematic
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3282029262929392829, guid: 885ecae56b16f13428a67de5ae482a72,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 3282029263655771826, guid: 885ecae56b16f13428a67de5ae482a72,
         type: 3}
       propertyPath: m_RootOrder
@@ -16010,16 +16104,31 @@ PrefabInstance:
       propertyPath: m_Name
       value: HandGrabInteractor
       objectReference: {fileID: 0}
+    - target: {fileID: 3282029263655771837, guid: 885ecae56b16f13428a67de5ae482a72,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 6141351533274568304, guid: 885ecae56b16f13428a67de5ae482a72,
         type: 3}
       propertyPath: _syntheticHand
       value: 
       objectReference: {fileID: 4654031626028690751}
+    - target: {fileID: 7351779112159494444, guid: 885ecae56b16f13428a67de5ae482a72,
+        type: 3}
+      propertyPath: m_TagString
+      value: right_hand
+      objectReference: {fileID: 0}
     - target: {fileID: 8646129326984794350, guid: 885ecae56b16f13428a67de5ae482a72,
         type: 3}
       propertyPath: _hand
       value: 
       objectReference: {fileID: 5679112963584681684}
+    - target: {fileID: 8924745499081199448, guid: 885ecae56b16f13428a67de5ae482a72,
+        type: 3}
+      propertyPath: m_TagString
+      value: right_hand
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 885ecae56b16f13428a67de5ae482a72, type: 3}
 --- !u!1 &1054113641498028

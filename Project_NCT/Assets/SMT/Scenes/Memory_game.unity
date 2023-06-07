@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.55014145, g: 0.7981636, b: 0.97020245, a: 1}
+  m_IndirectSpecularColor: {r: 0.5516851, g: 0.7989391, b: 0.9704296, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -649,7 +649,7 @@ GameObject:
   - component: {fileID: 108313713}
   m_Layer: 0
   m_Name: HandThumbFingertip
-  m_TagString: right_hand
+  m_TagString: left_hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8613,7 +8613,7 @@ GameObject:
   - component: {fileID: 683854397}
   m_Layer: 0
   m_Name: HandRingFingertip
-  m_TagString: right_hand
+  m_TagString: left_hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11762,7 +11762,7 @@ GameObject:
   - component: {fileID: 1008635196}
   m_Layer: 0
   m_Name: HandMiddleFingertip
-  m_TagString: right_hand
+  m_TagString: left_hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20688,7 +20688,7 @@ GameObject:
   - component: {fileID: 1614148595}
   m_Layer: 0
   m_Name: HandPinkyFingertip
-  m_TagString: right_hand
+  m_TagString: left_hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
