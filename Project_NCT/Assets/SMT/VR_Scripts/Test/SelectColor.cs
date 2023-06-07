@@ -23,84 +23,53 @@ public class SelectColor : MonoBehaviour
     public GameObject GP;
     public GameObject PG;
     public GameObject startbutton;
+    public GameObject result;
     //float time1;
     //float time2;
 
     public void ShowTuto()
     {
+        StartCoroutine(PadCtrl_Test.PadColor());
+        result.SetActive(false);
         startbutton.SetActive(false);
         if (PadCtrl_Test.side == 0 & PadCtrl_Test.order == 0)
-        {
-            //time1 = Time.time;
-            //time2 = Time.time;
+        {            
             BO.SetActive(true);
-            //while (time2-time1 < 3f)
-            //{
-            //    time2 = Time.time;
-            //}
-            BO.SetActive(false);
-            GameManager_Test.state = GameManager_Test.STATE.START;
+            StartCoroutine(Wait(BO));           
         }
         else if (PadCtrl_Test.side == 1 & PadCtrl_Test.order == 0)
         {
-            //time1 = Time.time;
-            //time2 = Time.time;
             OB.SetActive(true);
-            //while (time2 - time1 < 3f)
-            //{
-            //    time2 = Time.time;
-            //}
-            OB.SetActive(false);
-            GameManager_Test.state = GameManager_Test.STATE.START;
+            StartCoroutine(Wait(OB));
         }
         else if (PadCtrl_Test.side == 0 & PadCtrl_Test.order == 1)
         {
-            //time1 = Time.time;
-            //time2 = Time.time;
             IY.SetActive(true);
-            //while (time2 - time1 < 3f)
-            //{
-            //    time2 = Time.time;
-            //}
-            IY.SetActive(false);
-            GameManager_Test.state = GameManager_Test.STATE.START;
+            StartCoroutine(Wait(IY));
         }
         else if (PadCtrl_Test.side == 1 & PadCtrl_Test.order == 1)
         {
-            //time1 = Time.time;
-            //time2 = Time.time;
             YI.SetActive(true);
-            //while (time2 - time1 < 3f)
-            //{
-            //    time2 = Time.time;
-            //}
-            YI.SetActive(false);
-            GameManager_Test.state = GameManager_Test.STATE.START;
+            StartCoroutine(Wait(YI));
         }
         else if (PadCtrl_Test.side == 0 & PadCtrl_Test.order == 2)
         {
-            //time1 = Time.time;
-            //time2 = Time.time;
             GP.SetActive(true);
-            //while (time2 - time1 < 3f)
-            //{
-            //    time2 = Time.time;
-            //}
-            GP.SetActive(false);
-            GameManager_Test.state = GameManager_Test.STATE.START;
+            StartCoroutine(Wait(GP));
         }
         else if (PadCtrl_Test.side == 1 & PadCtrl_Test.order == 2)
         {
-            //time1 = Time.time;
-            //time2 = Time.time;
             PG.SetActive(true);
-            //while (time2 - time1 < 3f)
-            //{
-            //    time2 = Time.time;
-            //}
-            PG.SetActive(false);
-            GameManager_Test.state = GameManager_Test.STATE.START;
+            StartCoroutine(Wait(PG));
         }
         
+    }
+
+    IEnumerator Wait(GameObject p)
+    {
+        Debug.Log("Á¤Áö" + p);
+        yield return new WaitForSeconds(3f);
+        p.SetActive(false);
+        GameManager_Test.state = GameManager_Test.STATE.START;
     }
 }

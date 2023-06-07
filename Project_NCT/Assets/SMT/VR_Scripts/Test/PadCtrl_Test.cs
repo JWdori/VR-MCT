@@ -88,7 +88,7 @@ public class PadCtrl_Test : MonoBehaviour
 
     //문제 보여줄 때 효과음
     //GameManager에서 사용
-    void PlayAud()
+    void PlayAudTest()
     {
         audioSource.Play();
     }
