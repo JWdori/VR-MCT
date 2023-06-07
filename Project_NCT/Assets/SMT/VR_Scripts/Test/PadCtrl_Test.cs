@@ -48,23 +48,43 @@ public class PadCtrl_Test : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
-    //문제 보여주는 animaion
-    //GameManager에서 사용
-    void ShowPad()
+    static public string[] Color1 = new string[3] { "aniBlue", "aniIndigo", "aniGreen"};
+    static public string[] Color2 = new string[3] { "aniOrange", "aniYellow", "aniPurple"};
+    static public string ColorL;
+    static public string ColorR;
+    static public int order;
+    static public int side;
+
+    static public IEnumerator PadColor()
     {
-        anim.Play("aniShow_VR", -1, 0.5f);
+        side = Random.Range(0, 2);
+        if (side == 0)
+        {
+            order = Random.Range(0, 3);
+            ColorL = Color1[order];
+            ColorR = Color2[order];
+            Debug.Log("L" + ColorL + "R" + ColorR);
+            yield return new WaitForSeconds(0.1f);
+        }
+        else
+        {
+            order = Random.Range(0, 3);
+            ColorL = Color2[order];
+            ColorR = Color1[order];
+            Debug.Log("L" + ColorL + "R" + ColorR);
+            yield return new WaitForSeconds(0.1f);
+        }
     }
 
-    //Left 하늘색
     void ShowPadLeft()
     {
-        anim.Play("aniLeft_VR", -1, 0.5f);
+        anim.Play(ColorL, -1, 0.5f);
     }
-    //Right 핑크색
     void ShowPadRight()
     {
-        anim.Play("aniRight_VR", -1, 0.5f);
+        anim.Play(ColorR, -1, 0.5f);
     }
+
 
     //문제 보여줄 때 효과음
     //GameManager에서 사용
@@ -102,7 +122,7 @@ public class PadCtrl_Test : MonoBehaviour
                 BhapticsLibrary.Play(BhapticsEvent.CORRECT_LEFT);
 
                 //맞춘 animation 실행, 초록색
-                anim.Play("aniLeft_VR", -1, 0.5f);
+                anim.Play(ColorL, -1, 0.5f);
                 GameManager_Test.isTouch = false;
                 GameManager_Test.arPads[padNum - 1] = 0;
 
@@ -123,7 +143,7 @@ public class PadCtrl_Test : MonoBehaviour
                 BhapticsLibrary.Play(BhapticsEvent.CORRECT_RIGHT);
 
                 //맞춘 animation 실행, 초록색
-                anim.Play("aniRight_VR", -1, 0.5f);
+                anim.Play(ColorR, -1, 0.5f);
                 GameManager_Test.isTouch = false;
                 GameManager_Test.arPads[padNum - 1] = 0;
 
