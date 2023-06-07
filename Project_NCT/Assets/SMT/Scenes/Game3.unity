@@ -2068,6 +2068,7 @@ GameObject:
   - component: {fileID: 299115696}
   - component: {fileID: 299115695}
   - component: {fileID: 299115694}
+  - component: {fileID: 299115698}
   m_Layer: 0
   m_Name: DeskSurface
   m_TagString: Untagged
@@ -2153,6 +2154,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &299115698
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 299115693}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 1
 --- !u!1 &315015013
 GameObject:
   m_ObjectHideFlags: 0
@@ -5073,7 +5090,7 @@ GameObject:
   - component: {fileID: 712804656}
   m_Layer: 0
   m_Name: Dart_yellow (1)
-  m_TagString: hand
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9846,6 +9863,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2143258140177466417, guid: e7fbb376593cff24f9db4ecf8d465aaf,
+        type: 3}
+      propertyPath: m_TagString
+      value: hand
+      objectReference: {fileID: 0}
     - target: {fileID: 2143258140177466423, guid: e7fbb376593cff24f9db4ecf8d465aaf,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -10864,9 +10886,10 @@ GameObject:
   - component: {fileID: 1835404786}
   - component: {fileID: 1835404787}
   - component: {fileID: 1835404788}
+  - component: {fileID: 1835404789}
   m_Layer: 0
   m_Name: Dart_yellow
-  m_TagString: hand
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13706,6 +13729,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 17ca27f2173f1cb4abceecaa0b6ced1f, type: 2}
+    - target: {fileID: 8662184560477892146, guid: 94313e563929cb3499e3989be338a213,
+        type: 3}
+      propertyPath: m_TagString
+      value: hand
+      objectReference: {fileID: 0}
     - target: {fileID: 8662184560477892147, guid: 94313e563929cb3499e3989be338a213,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -13830,7 +13858,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1433403528}
-  m_Material: {fileID: 13400000, guid: 91ef38658d550474d94738c306f37379, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
@@ -13845,8 +13873,8 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1433403528}
   serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
+  m_Mass: 0.3
+  m_Drag: 0.01
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -13960,6 +13988,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1835404789}
+        m_TargetAssemblyTypeName: DartThrow, Assembly-CSharp
+        m_MethodName: ThrowDart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _whenMove:
     m_PersistentCalls:
       m_Calls: []
@@ -13978,7 +14018,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06f6568b56a901042bd4bc2f4bb22378, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: 1000
+  velocity: 10
+--- !u!114 &1835404789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1433403528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b63ca42f245785745a344bdf14c242ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  throwForce: 10
 --- !u!1 &1866458489
 GameObject:
   m_ObjectHideFlags: 0
