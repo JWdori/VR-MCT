@@ -15,14 +15,12 @@ public class StartGame_Test : MonoBehaviour
     {
         
     }
-
-    public GameObject panel;
+   
     public GameObject startbutton;
     public GameObject tuto;
 
     public void startgame()
     {
-        panel.SetActive(false);
         startbutton.SetActive(false);
         tuto.SetActive(false);
         GameManager_Test.state = GameManager_Test.STATE.START;

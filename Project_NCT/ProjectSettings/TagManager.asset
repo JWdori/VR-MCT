@@ -33,9 +33,7 @@ TagManager:
   - right_hand
   - game3_terrain
   - balloon
-  - SpawnedObject
-  - PadObject
-  - Button
+  - hand
   layers:
   - Default
   - TransparentFX
@@ -43,7 +41,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Object
   - 
   - 
   - 
