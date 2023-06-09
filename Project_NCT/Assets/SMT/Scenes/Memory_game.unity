@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.5516851, g: 0.7989391, b: 0.9704296, a: 1}
+  m_IndirectSpecularColor: {r: 0.5512895, g: 0.79874617, b: 0.97027636, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5035,8 +5035,6 @@ GameObject:
   - component: {fileID: 407025449}
   - component: {fileID: 407025448}
   - component: {fileID: 407025447}
-  - component: {fileID: 407025453}
-  - component: {fileID: 407025452}
   - component: {fileID: 407025454}
   m_Layer: 0
   m_Name: ButtonPanel
@@ -5274,30 +5272,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 407025445}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &407025452
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 407025445}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5479d79eb9f10cc4c96f5d8e2ad159ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &407025453
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 407025445}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f17b8ce30f18274e81c7e2020f2837b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &407025454
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8025,8 +7999,6 @@ GameObject:
   - component: {fileID: 656784624}
   - component: {fileID: 656784623}
   - component: {fileID: 656784622}
-  - component: {fileID: 656784628}
-  - component: {fileID: 656784627}
   - component: {fileID: 656784629}
   m_Layer: 0
   m_Name: ButtonPanel
@@ -8264,30 +8236,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 656784620}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &656784627
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 656784620}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5479d79eb9f10cc4c96f5d8e2ad159ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &656784628
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 656784620}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f17b8ce30f18274e81c7e2020f2837b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &656784629
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9851,8 +9799,6 @@ GameObject:
   - component: {fileID: 820160765}
   - component: {fileID: 820160764}
   - component: {fileID: 820160763}
-  - component: {fileID: 820160762}
-  - component: {fileID: 820160761}
   m_Layer: 0
   m_Name: ButtonPanel
   m_TagString: Untagged
@@ -9875,30 +9821,6 @@ Transform:
   m_Father: {fileID: 190916754}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &820160761
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 820160759}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5479d79eb9f10cc4c96f5d8e2ad159ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &820160762
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 820160759}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f17b8ce30f18274e81c7e2020f2837b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &820160763
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13030,8 +12952,6 @@ GameObject:
   - component: {fileID: 1098467577}
   - component: {fileID: 1098467576}
   - component: {fileID: 1098467575}
-  - component: {fileID: 1098467581}
-  - component: {fileID: 1098467580}
   - component: {fileID: 1098467582}
   m_Layer: 0
   m_Name: ButtonPanel
@@ -13269,30 +13189,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1098467573}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1098467580
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1098467573}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5479d79eb9f10cc4c96f5d8e2ad159ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1098467581
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1098467573}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f17b8ce30f18274e81c7e2020f2837b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &1098467582
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16321,8 +16217,6 @@ GameObject:
   - component: {fileID: 1290492474}
   - component: {fileID: 1290492473}
   - component: {fileID: 1290492472}
-  - component: {fileID: 1290492478}
-  - component: {fileID: 1290492477}
   - component: {fileID: 1290492479}
   m_Layer: 0
   m_Name: ButtonPanel
@@ -16560,30 +16454,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1290492470}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1290492477
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1290492470}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f17b8ce30f18274e81c7e2020f2837b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1290492478
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1290492470}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5479d79eb9f10cc4c96f5d8e2ad159ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &1290492479
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17866,8 +17736,6 @@ GameObject:
   - component: {fileID: 1437963117}
   - component: {fileID: 1437963116}
   - component: {fileID: 1437963115}
-  - component: {fileID: 1437963114}
-  - component: {fileID: 1437963113}
   - component: {fileID: 1437963112}
   m_Layer: 0
   m_Name: ButtonPanel
@@ -17904,30 +17772,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.0000002, y: 1.0000002, z: 0.00000012105602}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1437963113
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1437963110}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5479d79eb9f10cc4c96f5d8e2ad159ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1437963114
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1437963110}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f17b8ce30f18274e81c7e2020f2837b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1437963115
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18934,8 +18778,6 @@ GameObject:
   - component: {fileID: 1520476763}
   - component: {fileID: 1520476762}
   - component: {fileID: 1520476761}
-  - component: {fileID: 1520476760}
-  - component: {fileID: 1520476759}
   m_Layer: 0
   m_Name: ButtonPanel
   m_TagString: Untagged
@@ -18958,30 +18800,6 @@ Transform:
   m_Father: {fileID: 1620733945}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1520476759
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1520476757}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5479d79eb9f10cc4c96f5d8e2ad159ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1520476760
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1520476757}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f17b8ce30f18274e81c7e2020f2837b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &1520476761
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -19554,8 +19372,6 @@ GameObject:
   - component: {fileID: 1536063210}
   - component: {fileID: 1536063209}
   - component: {fileID: 1536063214}
-  - component: {fileID: 1536063216}
-  - component: {fileID: 1536063215}
   m_Layer: 0
   m_Name: ButtonPanel
   m_TagString: Untagged
@@ -19805,30 +19621,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1.0000002, z: 0.00000012105613}
   m_Center: {x: 0, y: -0.0000019073486, z: 0}
---- !u!114 &1536063215
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1536063207}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5479d79eb9f10cc4c96f5d8e2ad159ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1536063216
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1536063207}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f17b8ce30f18274e81c7e2020f2837b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1540111013
 GameObject:
   m_ObjectHideFlags: 0
@@ -22159,8 +21951,6 @@ GameObject:
   - component: {fileID: 1724775360}
   - component: {fileID: 1724775359}
   - component: {fileID: 1724775358}
-  - component: {fileID: 1724775357}
-  - component: {fileID: 1724775356}
   m_Layer: 0
   m_Name: ButtonPanel
   m_TagString: Untagged
@@ -22183,30 +21973,6 @@ Transform:
   m_Father: {fileID: 1773033344}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1724775356
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1724775354}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5479d79eb9f10cc4c96f5d8e2ad159ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1724775357
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1724775354}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f17b8ce30f18274e81c7e2020f2837b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &1724775358
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -22751,8 +22517,6 @@ GameObject:
   - component: {fileID: 1754926270}
   - component: {fileID: 1754926269}
   - component: {fileID: 1754926268}
-  - component: {fileID: 1754926267}
-  - component: {fileID: 1754926266}
   m_Layer: 0
   m_Name: ButtonPanel
   m_TagString: Untagged
@@ -22775,30 +22539,6 @@ Transform:
   m_Father: {fileID: 291520001}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1754926266
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1754926264}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5479d79eb9f10cc4c96f5d8e2ad159ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1754926267
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1754926264}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f17b8ce30f18274e81c7e2020f2837b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &1754926268
 BoxCollider:
   m_ObjectHideFlags: 0

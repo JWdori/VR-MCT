@@ -42,7 +42,8 @@ public class GameManager_Test : MonoBehaviour
 
     //패드 문제 배열
     //ShuffleTouch에서 랜덤으로 설정
-    static public int[] arPads = new int[20];
+    //static public int[] arPads = new int[20];
+    static public int[] arPads;
 
     //게임 시작 시간
     static public float startTime;
@@ -91,8 +92,6 @@ public class GameManager_Test : MonoBehaviour
 
     public void Start()
     {
-        //padCnt = 15;
-        padCnt = 16;
         startTime = Time.time;
         //StartCoroutine(PadCtrl_Test.PadColor());
         result.SetActive(false);
@@ -383,6 +382,16 @@ public class GameManager_Test : MonoBehaviour
 
         set = Random.Range(0, 2);
 
+        if (set == 0)
+        {
+            padCnt = 15;           
+        }
+        else if (set == 1)
+        {
+            padCnt = 16;
+        }
+        arPads = new int[padCnt];
+
         //loading.SetActive(false);
 
         //시작카드의 x좌표
@@ -652,6 +661,7 @@ public class GameManager_Test : MonoBehaviour
     //누르는 타이밍을 알려준다.
     IEnumerator ShowPushTiming()
     {
+        pushText.color = new Color32(0, 0, 0, 255);
         pushText.text = "시작!";
 
         //1초 후 사라짐
@@ -667,6 +677,7 @@ public class GameManager_Test : MonoBehaviour
     //Stage를 Clear했다는 것을 알림
     IEnumerator ShowClear()
     {
+        pushText.color = new Color32(0, 0, 255, 255);
         pushText.text = "성공!";
 
         //1초 후 사라짐
@@ -680,6 +691,7 @@ public class GameManager_Test : MonoBehaviour
     //Stage를 Clear하지 못함
     IEnumerator ShowFail()
     {
+        pushText.color = new Color32(255, 0, 0, 255);
         pushText.text = "실패!";
 
         //1초 후 사라짐
