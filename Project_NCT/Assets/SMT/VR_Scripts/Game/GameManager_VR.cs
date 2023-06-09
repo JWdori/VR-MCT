@@ -373,7 +373,6 @@ public class GameManager_VR : MonoBehaviour
         }
 
         //stage가 바뀌는 순간에는 시간이 안 흐름
-        isTouch = false;
         isStagetime = false;
 
         //현재까지 흐른 전체 시간 저장
