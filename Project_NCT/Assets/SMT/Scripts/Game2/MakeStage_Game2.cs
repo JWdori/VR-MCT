@@ -57,7 +57,7 @@ public class MakeStage_Game2 : MonoBehaviour
             //���â�� �����ִ� ���¿��� ������ �� ���â�� �����ְ� ������ �� �ֵ��� ��
             Result_Game2.isResult = false;
             //easy ���� levelNum 1�� ����
-            Game2Manager.CurrentDifficulty = MIDDLE;
+            Game2Manager.CurrentDifficulty = HARD;
             //���� �ð� ���
             Game2Manager.startTime = Time.time;
             //START ���·� �̵�

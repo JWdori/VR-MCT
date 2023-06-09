@@ -34,6 +34,13 @@ TagManager:
   - game3_terrain
   - balloon
   - hand
+  - SpawnedObject
+  - PadObject
+  - Button
+  - StartTextObj
+  - OverTextObj
+  - Answer
+  - HardModeExplain
   layers:
   - Default
   - TransparentFX

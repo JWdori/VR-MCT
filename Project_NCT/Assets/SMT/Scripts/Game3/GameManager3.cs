@@ -7,69 +7,69 @@ using Bhaptics.SDK2;
 
 public class GameManager3 : MonoBehaviour
 {
-    //°ÔÀÓ ÀüÃ¼ ½Ã°£, ½ºÅ×ÀÌÁö ½Ã°£, Æ²¸° È½¼ö, ¸ÂÃá È½¼ö, ½ºÅ×ÀÌÁö ¹øÈ£, (½ÃÀÛ, ¼º°ø, ½ÇÆÐ)¸¦ ³ªÅ¸³»´Â ÅØ½ºÆ®
+    //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ ï¿½Ã°ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½, Æ²ï¿½ï¿½ È½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ È½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£, (ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½)ï¿½ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½Ø½ï¿½Æ®
     public TextMeshPro totalTimeText, stageTimeText, missText, hitText, stageNumText, pushText, levelText;
-    public string targetScriptName; // È°¼ºÈ­ÇÒ ½ºÅ©¸³Æ®ÀÇ ÀÌ¸§
+    public string targetScriptName; // È°ï¿½ï¿½È­ï¿½ï¿½ ï¿½ï¿½Å©ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ì¸ï¿½
 
-    //balloon ÅÍÄ¡ ¿©ºÎ
-    public AudioClip audioClip; // ¿Àµð¿À Å¬¸³
+    //balloon ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½
+    public AudioClip audioClip; // ï¿½ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½
     private AudioSource audioSource;
-    public GameObject balloonPrefab; // Ç³¼± ÇÁ¸®ÆÕ
-    public GameObject Failed_balloonPrefab; // Ç³¼± ÇÁ¸®ÆÕ
-    //¹Ú½ºÄÝ¸®´õ
+    public GameObject balloonPrefab; // Ç³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    public GameObject Failed_balloonPrefab; // Ç³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    //ï¿½Ú½ï¿½ï¿½Ý¸ï¿½ï¿½ï¿½
     public GameObject[] spawnAreas;
 
-    //´­·¯¾ß µÇ´Â ÆÐµå ¼ø¼­
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç´ï¿½ ï¿½Ðµï¿½ ï¿½ï¿½ï¿½ï¿½
 
-    //Æ²¸° È½¼ö
+    //Æ²ï¿½ï¿½ È½ï¿½ï¿½
     private int missNum = 2;
 
-    //½ºÅ×ÀÌÁöÀÇ ÀüÃ¼ ÆÐµå ¼ö
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ ï¿½Ðµï¿½ ï¿½ï¿½
     static public int padCnt;
-    //¼ø¼­ ¸ÂÃá È½¼ö
+    //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È½ï¿½ï¿½
 
-    //½ºÅ×ÀÌÁö ¹øÈ£
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£
     static public int stageNum = 1;
     public int stage_move = 1;
-    //³­ÀÌµµ ¹øÈ£ (1 = easy, 2 = normal, 3 = hard)
-    //Easy.cs, Normal.cs, Hard.cs¿¡¼­ ¼³Á¤
+    //ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ï¿½È£ (1 = easy, 2 = normal, 3 = hard)
+    //Easy.cs, Normal.cs, Hard.csï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     static public int levelNum = 1;
     static public int stage_temp = 0;
-    //ÃÖ´ë ½ºÅ×ÀÌÁö ¼ö
+    //ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
     static public int stageCnt = 10;
 
-    //ÆÐµå ¹®Á¦ ¹è¿­
-    //ShuffleTouch¿¡¼­ ·£´ýÀ¸·Î ¼³Á¤
+    //ï¿½Ðµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½è¿­
+    //ShuffleTouchï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     static public int[] arPads = new int[20];
 
-    //°ÔÀÓ ½ÃÀÛ ½Ã°£
+    //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½
     static public float startTime;
 
-    //½ºÅ×ÀÌÁö °æ°ú ½Ã°£
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½
     float stageTime;
 
-    //ÀüÃ¼ ½Ã°£
+    //ï¿½ï¿½Ã¼ ï¿½Ã°ï¿½
     static public float totalTime;
 
-    //ÀüÃ¼ miss È½¼ö
+    //ï¿½ï¿½Ã¼ miss È½ï¿½ï¿½
     static public int totalMiss;
 
-    //½ºÅ×ÀÌÁö ½Ã°£
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½
     static public int time2 = 60;
 
-    //°ÔÀÓÀÌ ÁøÇàÁßÀÌÁö ¾ÊÀ» ¶§ ½Ã°£À» ¸ØÃè´Ù ÁøÇàÇÏ±â À§ÇÑ ½Ã°£ ÀúÀå º¯¼ö
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ã°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     int time_temp = 0;
 
-    //½Ã°£ ÃÊ°ú·Î ÀÎÇÑ Á¾·á ÆÇ´Ü
+    //ï¿½Ã°ï¿½ ï¿½Ê°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ç´ï¿½
     static public bool over = false;
 
-    //¹®Á¦°¡ Á¦½ÃµÇ°í ÀÖÀ» ¶§ ½Ã°£ Á¤Áö¸¦ ÆÇ´ÜÇÏ±â À§ÇÑ º¯¼ö
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ÃµÇ°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç´ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     bool isTotaltime = false;
     bool isStagetime = false;
 
-    //À§Ä¡ Á¤º¸ ¹è¿­
-    private List<Vector3> balloonPositions = new List<Vector3>(); // »ý¼ºµÈ Ç³¼±ÀÇ À§Ä¡¸¦ ÀúÀåÇÒ ¸®½ºÆ®
-    private float balloonRadius = 0.5f; // Ç³¼±ÀÇ ¹ÝÁö¸§
+    //ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½ ï¿½è¿­
+    private List<Vector3> balloonPositions = new List<Vector3>(); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ç³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®
+    private float balloonRadius = 0.5f; // Ç³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 
 
@@ -78,22 +78,22 @@ public class GameManager3 : MonoBehaviour
 
 
 
-//°ÔÀÓ »óÅÂ¸¦ ³ªÅ¸³»´Â STATE
+//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â¸ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ï¿½ï¿½ STATE
 public enum STATE
     {
         START, MAKE, HIT, WRONG, WAIT, IDLE, CLEAR, FINISH, SELECT, RESULT
     };
-    //START : º¯¼ö ÃÊ±âÈ­ ¹× stage ¼¼ÆÃ
-    //MAKE : ¹®Á¦¸¦ º¸¿©ÁÜ
-    //HIT : Á¤´äÀ» ¸ÂÃèÀ» °æ¿ì
-    //WRONG : Á¤´äÀ» Æ²·ÈÀ» °æ¿ì
-    //IDLE : ÅÍÄ¡¸¦ ÇÒ ¼ö ÀÖ´Â »óÅÂ
-    //CLEAR : ÇÑ ½ºÅ×ÀÌÁö ¼º°ø
-    //FINISH : °ÔÀÓ ³¡
-    //SELECT : ³­ÀÌµµ¸¦ ¼±ÅÃÇÏ´Â »óÅÂ
-    //RESULT : °ÔÀÓ Á¾·ù ÈÄ °á°ú Ã¢ Ãâ·Â
+    //START : ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­ ï¿½ï¿½ stage ï¿½ï¿½ï¿½ï¿½
+    //MAKE : ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    //HIT : ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+    //WRONG : ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Æ²ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+    //IDLE : ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½
+    //CLEAR : ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    //FINISH : ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+    //SELECT : ï¿½ï¿½ï¿½Ìµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½
+    //RESULT : ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ Ã¢ ï¿½ï¿½ï¿½
 
-    //Ã³À½ »óÅÂ¸¦ SELECT·Î ¼³Á¤, ³­ÀÌµµ ¼±ÅÃ
+    //Ã³ï¿½ï¿½ ï¿½ï¿½ï¿½Â¸ï¿½ SELECTï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½
     static public STATE state = STATE.SELECT;
     private int score = 0;
     //private int fail = 0;
@@ -101,7 +101,7 @@ public enum STATE
     public int[] Clearcnt = {2,2,3,3,3,4,4,5,5,6};
     public int[] FailBalloonscnt = { 1, 1, 1, 2, 2, 2, 2, 3, 3, 3 };
     
-    //¾î·Á¿ò ³­ÀÌµµ
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½
     public int[] Clearcnt_3 = { 1, 2, 2, 3, 3, 3, 4, 4, 4, 5 };
     public int[] FailBalloonscnt_3 = { 0, 1, 1, 2, 2, 2, 2, 3, 3, 3 };
 
@@ -111,40 +111,40 @@ public enum STATE
     // Update is called once per frame
     public void Update()
     {
-        //isTotaltimeÀÌ trueÀÌ¸é ÀüÃ¼ ½Ã°£ Èå¸§
+        //isTotaltimeï¿½ï¿½ trueï¿½Ì¸ï¿½ ï¿½ï¿½Ã¼ ï¿½Ã°ï¿½ ï¿½å¸§
         if (isTotaltime)
         {
-            //ÀüÃ¼ °ÔÀÓ ½Ã°£ °è»ê
+            //ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½
             totalTime = (int)(time_temp + (int)(Time.time - stageTime));
             /*
-            //°ÔÀÓ ÀüÃ¼ ½Ã°£ Ãâ·Â
+            //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½
             totalTimeText.text = "Total time : " + totalTime;
             */
         }
 
-        //isStagetimeÀÌ trueÀÌ¸é stage ½Ã°£ÀÌ Èå¸§
+        //isStagetimeï¿½ï¿½ trueï¿½Ì¸ï¿½ stage ï¿½Ã°ï¿½ï¿½ï¿½ ï¿½å¸§
         if (isStagetime)
         {
-            //½ºÅ×ÀÌÁö °ÔÀÓ ½Ã°£ °è»ê
+            //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½
             time2 = 60 - (int)(Time.time - stageTime);
-            //½ºÅ×ÀÌÁö °ÔÀÓ ½Ã°£ Ãâ·Â
-            stageTimeText.text = "³²Àº ½Ã°£ : " + time2;
+            //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½
+            stageTimeText.text = "ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ : " + time2;
         }
 
-        //time2´Â stage ½Ã°£
-        //60ÃÊ Áö³ª¸é °ÔÀÓ Á¾·á
+        //time2ï¿½ï¿½ stage ï¿½Ã°ï¿½
+        //60ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         if (time2 <= 0 && !over)
         {
             totalTime += 60 - time2;
-            //ÇÑ ¹ø ´õ ÆÇ´Ü
+            //ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½Ç´ï¿½
             over = true;
-            //½Ã°£ ´Ù½Ã ÃÊ±âÈ­
+            //ï¿½Ã°ï¿½ ï¿½Ù½ï¿½ ï¿½Ê±ï¿½È­
             time2 = 60;
-            //½Ã°£ ÃÊ°ú·Î ÀÎÇÑ °ÔÀÓ Á¾·á
+            //ï¿½Ã°ï¿½ ï¿½Ê°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             isStagetime = false;
             isTotaltime = false;
             StartCoroutine(ShowFail());
-            //state°¡ FINISH·Î ¹Ù²ñ
+            //stateï¿½ï¿½ FINISHï¿½ï¿½ ï¿½Ù²ï¿½
             FailAudio.play();
             BhapticsLibrary.Play(BhapticsEvent.FAIL);
             state = STATE.FINISH;
@@ -154,11 +154,11 @@ public enum STATE
 
 
 
-        //state¿¡ µû¶ó ¾Ë¸ÂÀº È¯°æ ½ÇÇà
+        //stateï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ë¸ï¿½ï¿½ï¿½ È¯ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         switch (state)
         {
-            //state°¡ STARTÀÌ¸é Level¿¡ ¸Â´Â ½ºÅ×ÀÌÁö ¸¸µé±â
-            //MakeStage() ½ÇÇà
+            //stateï¿½ï¿½ STARTï¿½Ì¸ï¿½ Levelï¿½ï¿½ ï¿½Â´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
+            //MakeStage() ï¿½ï¿½ï¿½ï¿½
             case STATE.START:
                 stageNum = 1;
                 missNum = 2;
@@ -169,20 +169,20 @@ public enum STATE
                 Debug.Log("Start");
                 break;
 
-            //state°¡ MAKEÀÌ¸é ¹®Á¦ Á¦½Ã
-            //ShowTouch() ½ÇÇà
+            //stateï¿½ï¿½ MAKEï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+            //ShowTouch() ï¿½ï¿½ï¿½ï¿½
             case STATE.MAKE:
                 
                 if (stage_temp != stageCnt)
                 {
                     StartCoroutine(ShowTouch(stageNum));
                     stage_temp++;
-                }//Ç³¼± º¸¿©ÁÖ±â
+                }//Ç³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½
 
-                //Æ²¸° È½¼ö Ãâ·Â
-                missText.text = "¸ñ¼û : " + missNum;
-                //¸ÂÃá È½¼ö Ãâ·Â
-                hitText.text = "¼º°ø È½¼ö : " + score;
+                //Æ²ï¿½ï¿½ È½ï¿½ï¿½ ï¿½ï¿½ï¿½
+                missText.text = "ï¿½ï¿½ï¿½ : " + missNum;
+                //ï¿½ï¿½ï¿½ï¿½ È½ï¿½ï¿½ ï¿½ï¿½ï¿½
+                hitText.text = "ï¿½ï¿½ï¿½ï¿½ È½ï¿½ï¿½ : " + score;
                 Debug.Log("????" + score);
                 Debug.Log("????" + stage_temp);
                 Debug.Log("????" + stageCnt);
@@ -190,53 +190,53 @@ public enum STATE
 
                 break;
 
-            //state°¡ WRONGÀÌ¸é Æ²·ÈÀ» °æ¿ì
-            //WrongPad() ½ÇÇà
-            //state¸¦ WRONGÀ¸·Î ¹Ù²Ù´Â ºÎºÐÀº PadCtrl.cs¿¡ ÀÖÀ½
+            //stateï¿½ï¿½ WRONGï¿½Ì¸ï¿½ Æ²ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+            //WrongPad() ï¿½ï¿½ï¿½ï¿½
+            //stateï¿½ï¿½ WRONGï¿½ï¿½ï¿½ï¿½ ï¿½Ù²Ù´ï¿½ ï¿½Îºï¿½ï¿½ï¿½ PadCtrl.csï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             case STATE.WRONG:
                 Debug.Log("Wrong");
                 StartCoroutine(WrongPad());
                 break;
 
-            //state°¡ HITÀÌ¸é ¸ÂÀº °æ¿ì
-            //CheckPad() ½ÇÇà
-            //state¸¦ HIT·Î ¹Ù²Ù´Â ºÎºÐÀº PadCtrl.cs¿¡ ÀÖÀ½
+            //stateï¿½ï¿½ HITï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+            //CheckPad() ï¿½ï¿½ï¿½ï¿½
+            //stateï¿½ï¿½ HITï¿½ï¿½ ï¿½Ù²Ù´ï¿½ ï¿½Îºï¿½ï¿½ï¿½ PadCtrl.csï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             case STATE.HIT:
                 Debug.Log("Hit");
                 StartCoroutine(CheckPad());
                 break;
 
-            //state°¡ CLEARÀÌ¸é ÇÑ stage ¿Ï·á
-            //StageClear() ½ÇÇà
+            //stateï¿½ï¿½ CLEARï¿½Ì¸ï¿½ ï¿½ï¿½ stage ï¿½Ï·ï¿½
+            //StageClear() ï¿½ï¿½ï¿½ï¿½
             case STATE.CLEAR:
                 Debug.Log("Clear");
 
                 StartCoroutine(StageClear());
                 break;
 
-            //state°¡ FINISHÀÌ¸é °ÔÀÓ ³¡
-            //Result È­¸éÀ¸·Î ³Ñ¾î°¨
-            //ÅÍÄ¡ÆÐµå Á¦°Å
+            //stateï¿½ï¿½ FINISHï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+            //Result È­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ¾î°¨
+            //ï¿½ï¿½Ä¡ï¿½Ðµï¿½ ï¿½ï¿½ï¿½ï¿½
             case STATE.FINISH:
                 Debug.Log("Finish");
            
-                //°ÔÀÓ ³¡, ½Ã°£µµ Á¾·á
+                //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½, ï¿½Ã°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                 isStagetime = false;
                 //isTotaltime = false;
-                //ÅÍÄ¡ ÆÐµå Á¦°Å
+                //ï¿½ï¿½Ä¡ ï¿½Ðµï¿½ ï¿½ï¿½ï¿½ï¿½
                 StartCoroutine(DestroyPad());
                 //SceneManager.LoadScene("Result_VR");
                 break;
 
-            // °á°ú¸¦ º¸¿©ÁÖ´Â »óÅÂ
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½
             case STATE.RESULT:
                 Debug.Log("Result");
                 StartCoroutine(ShowResult());
                 break;
         }
         /*
-        //ÀÏ´Ü Esc ¹öÆ° ´©¸£¸é ³­ÀÌµµ ¼±ÅÃÀ¸·Î ³Ñ¾î°¡°Ô ¼³Á¤
-        //³ªÁß¿¡ ¼öÁ¤
+        //ï¿½Ï´ï¿½ Esc ï¿½ï¿½Æ° ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ¾î°¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        //ï¿½ï¿½ï¿½ß¿ï¿½ ï¿½ï¿½ï¿½ï¿½
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             //SceneManager.LoadScene("LevelSelect");
@@ -245,35 +245,35 @@ public enum STATE
     }
 
 
-    //°á°ú¸¦ º¸¿©ÁÖ´Â ÄÚµå
-    //Result_VR.cs ÆÄÀÏ¿¡ Update ºÎºÐ ½ÇÇà
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ ï¿½Úµï¿½
+    //Result_VR.cs ï¿½ï¿½ï¿½Ï¿ï¿½ Update ï¿½Îºï¿½ ï¿½ï¿½ï¿½ï¿½
     IEnumerator ShowResult()
     {
         state = STATE.WAIT;
-        //°á°ú UI¸¦ º¸¿©ÁÖ±â À§ÇØ true·Î ¼³Á¤
+        //ï¿½ï¿½ï¿½ UIï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½ ï¿½ï¿½ï¿½ï¿½ trueï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         Result_Game3.isResult = true;
-        //°á°ú¸¦ º» ÈÄ¿¡ ´Ù½Ã ³­ÀÌµµ¸¦ ¼±ÅÃÇÒ ¼ö ÀÖ´Â »óÅÂ·Î º¯È¯
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ä¿ï¿½ ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½Â·ï¿½ ï¿½ï¿½È¯
         state = STATE.SELECT;
         yield return new WaitForSeconds(1);
     }
 
 
-    //°ÔÀÓ Á¾·á ÈÄ ÅÍÄ¡ ÆÐµå Á¦°Å
+    //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½Ðµï¿½ ï¿½ï¿½ï¿½ï¿½
     IEnumerator DestroyPad()
     {
         state = STATE.WAIT;
         yield return new WaitForSeconds(1);
 
-        //ÅÍÄ¡ ÆÐµå Á¦°ÅÇÏ¸é¼­ °ÔÀÓ Áß°£¿¡ ³ª¿À´Â UIµµ °°ÀÌ Á¦°Å
-        //Æ²¸° È½¼ö Ãâ·Â
+        //ï¿½ï¿½Ä¡ ï¿½Ðµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸é¼­ ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ UIï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        //Æ²ï¿½ï¿½ È½ï¿½ï¿½ ï¿½ï¿½ï¿½
         missText.text = "";
-        //¸ÂÃá È½¼ö Ãâ·Â
+        //ï¿½ï¿½ï¿½ï¿½ È½ï¿½ï¿½ ï¿½ï¿½ï¿½
         hitText.text = "";
         stageTimeText.text = "";
         stageNumText.text = "";
         levelText.text = "";
 
-        //ÅÍÄ¡ ÆÐµå tag¸¦ ÀÌ¿ëÇÏ¿© Á¦°Å
+        //ï¿½ï¿½Ä¡ ï¿½Ðµï¿½ tagï¿½ï¿½ ï¿½Ì¿ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½
 
         //GameObject balloons = GameObject.FindWithTag("balloon" );
         //Destroy(balloons);
@@ -282,48 +282,48 @@ public enum STATE
         {
             Destroy(balloon);
         }
-        //ÅÍÄ¡ÆÐµå Á¦°Å ÈÄ °á°ú¸¦ º¸¿©ÁÖ´Â »óÅÂ·Î º¯È¯
+        //ï¿½ï¿½Ä¡ï¿½Ðµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½Â·ï¿½ ï¿½ï¿½È¯
         state = STATE.RESULT;
     }
 
 
-    //»¡°£ Ç³¼± ¸ÂÃèÀ» ‹šÆ²·ÈÀ» °æ¿ì ½ÇÇàµÇ´Â È¯°æ
+    //ï¿½ï¿½ï¿½ï¿½ Ç³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ²ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç´ï¿½ È¯ï¿½ï¿½
     IEnumerator WrongPad()
     {
-        //STATE.WAITÀÌ¶û isTouch´Â PadCtrl.cs¿¡¼­ ¸¶¿ì½º Å¬¸¯ °¡´ÉÇÑ È¯°æ ¼³Á¤
-        //STATE.WAITÀÎ »óÅÂ¿¡¼­´Â ¸¶¿ì½º Å¬¸¯ ¾È µÊ
+        //STATE.WAITï¿½Ì¶ï¿½ isTouchï¿½ï¿½ PadCtrl.csï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ì½º Å¬ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È¯ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        //STATE.WAITï¿½ï¿½ ï¿½ï¿½ï¿½Â¿ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ì½º Å¬ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½
         state = STATE.WAIT;
         yield return new WaitForSeconds(0.1f);
-        //arPads[step]Àº step¹øÂ° ´­·¯¾ß µÇ´Â Pad¹øÈ£
-        //padNumÀº PadCtrl.cs¿¡¼­ ¹Þ¾Æ¿Â »ç¿ëÀÚ°¡ ´©¸¥ Pad¹øÈ£
+        //arPads[step]ï¿½ï¿½ stepï¿½ï¿½Â° ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç´ï¿½ Padï¿½ï¿½È£
+        //padNumï¿½ï¿½ PadCtrl.csï¿½ï¿½ï¿½ï¿½ ï¿½Þ¾Æ¿ï¿½ ï¿½ï¿½ï¿½ï¿½Ú°ï¿½ ï¿½ï¿½ï¿½ï¿½ Padï¿½ï¿½È£
         if (FailBalloon == true)//
         {
-            //Æ²·ÈÀ» °æ¿ì missNum°ú totalMiss ÇÏ³ª ¾¿ Áõ°¡
-            //--missNum; //½ºÅ×ÀÌÁö¸¶´Ù ÃÊ±âÈ­
-            --totalMiss; //´©Àû
-            //Æ²¸° È½¼ö update
-            missText.text = "¸ñ¼û : " + missNum;
+            //Æ²ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ missNumï¿½ï¿½ totalMiss ï¿½Ï³ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+            //--missNum; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­
+            --totalMiss; //ï¿½ï¿½ï¿½ï¿½
+            //Æ²ï¿½ï¿½ È½ï¿½ï¿½ update
+            missText.text = "ï¿½ï¿½ï¿½ : " + missNum;
 
-            // missNumÀÌ 1º¸´Ù Å©´Ù´Â °ÍÀº ÇÑ ½ºÅ×ÀÌÁö¿¡¼­ µÎ ¹ø Æ²·È´Ù´Â ¶æ
+            // missNumï¿½ï¿½ 1ï¿½ï¿½ï¿½ï¿½ Å©ï¿½Ù´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ Æ²ï¿½È´Ù´ï¿½ ï¿½ï¿½
             if (missNum < 1)
             {
 
-                //µÎ ¹ø Æ²¸®¸é ÅÍÄ¡ ¾È µÇ°í, Fail Ãâ·Â ½Ã°£µµ ¾ÈÈå¸£°Ô...
+                //ï¿½ï¿½ ï¿½ï¿½ Æ²ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ ï¿½Ç°ï¿½, Fail ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½å¸£ï¿½ï¿½...
                 isStagetime = false;
                 isTotaltime = false;
                 totalTime += 60 - time2;
                 StartCoroutine(ShowFail());
                 yield return new WaitForSeconds(2f);
-                //state°¡ FINISH·Î ¹Ù²ñ
+                //stateï¿½ï¿½ FINISHï¿½ï¿½ ï¿½Ù²ï¿½
                 FailAudio.play();
                 BhapticsLibrary.Play(BhapticsEvent.FAIL);
                 state = STATE.FINISH;
             }
-            FailBalloon = false; // ´Ù½Ã false·Î
+            FailBalloon = false; // ï¿½Ù½ï¿½ falseï¿½ï¿½
             yield return new WaitForSeconds(0.03f);
         }
         yield return new WaitForSeconds(0.03f);
-        //missNumÀÌ 1ÀÎ °æ¿ì´Â ÀÌ¾î¼­ ÇÃ·¹ÀÌ
+        //missNumï¿½ï¿½ 1ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¾î¼­ ï¿½Ã·ï¿½ï¿½ï¿½
    
         state = STATE.IDLE;
 
@@ -331,25 +331,25 @@ public enum STATE
 
     IEnumerator CheckPad()
     {
-        //STATE.WAITÀÌ¶û isTouch´Â PadCtrl.cs¿¡¼­ ¸¶¿ì½º Å¬¸¯ °¡´ÉÇÑ È¯°æ ¼³Á¤
-        //STATE.WAITÀÎ »óÅÂ¿¡¼­´Â ¸¶¿ì½º Å¬¸¯ ¾È µÊ
+        //STATE.WAITï¿½Ì¶ï¿½ isTouchï¿½ï¿½ PadCtrl.csï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ì½º Å¬ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È¯ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        //STATE.WAITï¿½ï¿½ ï¿½ï¿½ï¿½Â¿ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ì½º Å¬ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½
         state = STATE.WAIT;
         yield return new WaitForSeconds(0.1f);
         if (levelNum == 1)
         {
-            //´­·¯¾ß µÇ´Â Pad¿Í »ç¿ëÀÚ°¡ ´©¸¥ Pad°¡ °°Àº °æ¿ì
+            //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç´ï¿½ Padï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ú°ï¿½ ï¿½ï¿½ï¿½ï¿½ Padï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
             if (score == Clearcnt[stageNum - 1])
             {
                 //SuccessBalloon = false;
-                //¸ÂÃá È½¼ö Áõ°¡
-                //¸ÂÃá È½¼ö update
-                hitText.text = "¼º°ø È½¼ö : " + score;
-                Debug.Log("È÷Æ®" + score);
-                Debug.Log("Å¬¸®¾î" + Clearcnt[stageNum - 1]);
-                //ÇØ´ç ½ºÅ×ÀÌÁö¿¡¼­ ´­·¯¾ß µÇ´Â Pad¸¦ ¸ðµÎ ´­·¶À» °æ¿ì
+                //ï¿½ï¿½ï¿½ï¿½ È½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+                //ï¿½ï¿½ï¿½ï¿½ È½ï¿½ï¿½ update
+                hitText.text = "ï¿½ï¿½ï¿½ï¿½ È½ï¿½ï¿½ : " + score;
+                Debug.Log("ï¿½ï¿½Æ®" + score);
+                Debug.Log("Å¬ï¿½ï¿½ï¿½ï¿½" + Clearcnt[stageNum - 1]);
+                //ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç´ï¿½ Padï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
                 if (score == Clearcnt[stageNum - 1])
                 {
-                    //ÅÍÄ¡ ¾È µÇ°Ô ¹Ù²Ù°í, state´Â CLEAR·Î º¯È¯
+                    //ï¿½ï¿½Ä¡ ï¿½ï¿½ ï¿½Ç°ï¿½ ï¿½Ù²Ù°ï¿½, stateï¿½ï¿½ CLEARï¿½ï¿½ ï¿½ï¿½È¯
                     isTotaltime = false;
                     isStagetime = false;
                     state = STATE.CLEAR;
@@ -360,22 +360,22 @@ public enum STATE
         }
         else if (levelNum == 2)
         {
-            Debug.Log("È÷Æ®" + score+"/"+ (Clearcnt[stageNum - 1] - FailBalloonscnt[stageNum - 1]));
-            //´­·¯¾ß µÇ´Â Pad¿Í »ç¿ëÀÚ°¡ ´©¸¥ Pad°¡ °°Àº °æ¿ì
+            Debug.Log("ï¿½ï¿½Æ®" + score+"/"+ (Clearcnt[stageNum - 1] - FailBalloonscnt[stageNum - 1]));
+            //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç´ï¿½ Padï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ú°ï¿½ ï¿½ï¿½ï¿½ï¿½ Padï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
             if (score == (Clearcnt[stageNum - 1] - FailBalloonscnt[stageNum - 1]))
             {
 
                 //SuccessBalloon = false;
-                //¸ÂÃá È½¼ö Áõ°¡
-                //¸ÂÃá È½¼ö update
-                hitText.text = "¼º°ø È½¼ö : " + score;
-                Debug.Log("È÷Æ®" + score);
-                Debug.Log("Å¬¸®¾î" + Clearcnt[stageNum - 1]);
-                //ÇØ´ç ½ºÅ×ÀÌÁö¿¡¼­ ´­·¯¾ß µÇ´Â Pad¸¦ ¸ðµÎ ´­·¶À» °æ¿ì
+                //ï¿½ï¿½ï¿½ï¿½ È½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+                //ï¿½ï¿½ï¿½ï¿½ È½ï¿½ï¿½ update
+                hitText.text = "ï¿½ï¿½ï¿½ï¿½ È½ï¿½ï¿½ : " + score;
+                Debug.Log("ï¿½ï¿½Æ®" + score);
+                Debug.Log("Å¬ï¿½ï¿½ï¿½ï¿½" + Clearcnt[stageNum - 1]);
+                //ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç´ï¿½ Padï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
                 if (score == (Clearcnt[stageNum - 1] - FailBalloonscnt[stageNum - 1]))
                 {
 
-                    //ÅÍÄ¡ ¾È µÇ°Ô ¹Ù²Ù°í, state´Â CLEAR·Î º¯È¯
+                    //ï¿½ï¿½Ä¡ ï¿½ï¿½ ï¿½Ç°ï¿½ ï¿½Ù²Ù°ï¿½, stateï¿½ï¿½ CLEARï¿½ï¿½ ï¿½ï¿½È¯
                     isTotaltime = false;
                     isStagetime = false;
                     state = STATE.CLEAR;
@@ -388,22 +388,22 @@ public enum STATE
         }
         else if (levelNum == 3)
         {
-            Debug.Log("È÷Æ®" + score + "/" + (Clearcnt_3[stageNum - 1] - FailBalloonscnt_3[stageNum - 1]));
-            //´­·¯¾ß µÇ´Â Pad¿Í »ç¿ëÀÚ°¡ ´©¸¥ Pad°¡ °°Àº °æ¿ì
+            Debug.Log("ï¿½ï¿½Æ®" + score + "/" + (Clearcnt_3[stageNum - 1] - FailBalloonscnt_3[stageNum - 1]));
+            //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç´ï¿½ Padï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ú°ï¿½ ï¿½ï¿½ï¿½ï¿½ Padï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
             if (score == (Clearcnt_3[stageNum - 1] - FailBalloonscnt_3[stageNum - 1]))
             {
 
                 //SuccessBalloon = false;
-                //¸ÂÃá È½¼ö Áõ°¡
-                //¸ÂÃá È½¼ö update
-                hitText.text = "¼º°ø È½¼ö : " + score;
-                Debug.Log("È÷Æ®" + score);
-                Debug.Log("Å¬¸®¾î" + Clearcnt_3[stageNum - 1]);
-                //ÇØ´ç ½ºÅ×ÀÌÁö¿¡¼­ ´­·¯¾ß µÇ´Â Pad¸¦ ¸ðµÎ ´­·¶À» °æ¿ì
+                //ï¿½ï¿½ï¿½ï¿½ È½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+                //ï¿½ï¿½ï¿½ï¿½ È½ï¿½ï¿½ update
+                hitText.text = "ï¿½ï¿½ï¿½ï¿½ È½ï¿½ï¿½ : " + score;
+                Debug.Log("ï¿½ï¿½Æ®" + score);
+                Debug.Log("Å¬ï¿½ï¿½ï¿½ï¿½" + Clearcnt_3[stageNum - 1]);
+                //ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç´ï¿½ Padï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
                 if (score == (Clearcnt_3[stageNum - 1] - FailBalloonscnt_3[stageNum - 1]))
                 {
 
-                    //ÅÍÄ¡ ¾È µÇ°Ô ¹Ù²Ù°í, state´Â CLEAR·Î º¯È¯
+                    //ï¿½ï¿½Ä¡ ï¿½ï¿½ ï¿½Ç°ï¿½ ï¿½Ù²Ù°ï¿½, stateï¿½ï¿½ CLEARï¿½ï¿½ ï¿½ï¿½È¯
                     isTotaltime = false;
                     isStagetime = false;
                     state = STATE.CLEAR;
@@ -416,22 +416,22 @@ public enum STATE
         }
         else if (levelNum == 4)
         {
-            Debug.Log("È÷Æ®" + score + "/" + (Clearcnt_3[stageNum - 1] - FailBalloonscnt_3[stageNum - 1]));
-            //´­·¯¾ß µÇ´Â Pad¿Í »ç¿ëÀÚ°¡ ´©¸¥ Pad°¡ °°Àº °æ¿ì
+            Debug.Log("ï¿½ï¿½Æ®" + score + "/" + (Clearcnt_3[stageNum - 1] - FailBalloonscnt_3[stageNum - 1]));
+            //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç´ï¿½ Padï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ú°ï¿½ ï¿½ï¿½ï¿½ï¿½ Padï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
             if (score == (Clearcnt_3[stageNum - 1] - FailBalloonscnt_3[stageNum - 1]))
             {
 
                 //SuccessBalloon = false;
-                //¸ÂÃá È½¼ö Áõ°¡
-                //¸ÂÃá È½¼ö update
-                hitText.text = "¼º°ø È½¼ö : " + score;
-                Debug.Log("È÷Æ®" + score);
-                Debug.Log("Å¬¸®¾î" + Clearcnt_3[stageNum - 1]);
-                //ÇØ´ç ½ºÅ×ÀÌÁö¿¡¼­ ´­·¯¾ß µÇ´Â Pad¸¦ ¸ðµÎ ´­·¶À» °æ¿ì
+                //ï¿½ï¿½ï¿½ï¿½ È½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+                //ï¿½ï¿½ï¿½ï¿½ È½ï¿½ï¿½ update
+                hitText.text = "ï¿½ï¿½ï¿½ï¿½ È½ï¿½ï¿½ : " + score;
+                Debug.Log("ï¿½ï¿½Æ®" + score);
+                Debug.Log("Å¬ï¿½ï¿½ï¿½ï¿½" + Clearcnt_3[stageNum - 1]);
+                //ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç´ï¿½ Padï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
                 if (score == (Clearcnt_3[stageNum - 1] - FailBalloonscnt_3[stageNum - 1]))
                 {
 
-                    //ÅÍÄ¡ ¾È µÇ°Ô ¹Ù²Ù°í, state´Â CLEAR·Î º¯È¯
+                    //ï¿½ï¿½Ä¡ ï¿½ï¿½ ï¿½Ç°ï¿½ ï¿½Ù²Ù°ï¿½, stateï¿½ï¿½ CLEARï¿½ï¿½ ï¿½ï¿½È¯
                     isTotaltime = false;
                     isStagetime = false;
                     state = STATE.CLEAR;
@@ -453,55 +453,55 @@ public enum STATE
 
 
         yield return new WaitForSeconds(0.03f);
-        //ÇØ´ç ½ºÅ×ÀÌÁö¿¡ ´­·¯¾ß µÇ´Â Pad°¡ ³²¾ÒÀ» °æ¿ì ÀÌ¾î¼­ ÇÃ·¹ÀÌ
+        //ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç´ï¿½ Padï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ì¾î¼­ ï¿½Ã·ï¿½ï¿½ï¿½
         state = STATE.IDLE;
     }
 
-    //ÇØ´ç ½ºÅ×ÀÌÁö¿¡¼­ ÁÖ¾îÁø Pad ¸ðµÎ ´­·¶À» °æ¿ì
+    //ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½ï¿½ Pad ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
     IEnumerator StageClear()
     {
         state = STATE.WAIT;
 
         isTotaltime = false;
         isStagetime = false;
-        //Clear ¹®±¸ º¸¿©ÁÜ
+        //Clear ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         StartCoroutine(ShowClear());
-        stageTimeText.text = "³²Àº ½Ã°£ : " + 60;
+        stageTimeText.text = "ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ : " + 60;
         yield return new WaitForSeconds(1f);
 
-        //´ÙÀ½ ½ºÅ×ÀÌÁö ¹øÈ£
+        //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£
         if (stageNum < stageCnt)
         {
             ++stageNum;
         }
-        //ÃÖ´ë ½ºÅ×ÀÌÁö°¡ µÇ¾úÀ» °æ¿ì
+        //ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
         else if(stageNum == stageCnt)
         {
             BhapticsLibrary.Play(BhapticsEvent.CLEAR);
             ClearAudio.play();
-            //°ÔÀÓ ³¡, FINISH »óÅÂ·Î
+            //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½, FINISH ï¿½ï¿½ï¿½Â·ï¿½
             state = STATE.FINISH;
             yield return new WaitForSeconds(0.5f);
         }
-        //stage°¡ ¹Ù²î´Â ¼ø°£¿¡´Â ½Ã°£ÀÌ ¾È Èå¸§
+        //stageï¿½ï¿½ ï¿½Ù²ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½å¸§
         isTotaltime = false;
         isStagetime = false;
 
-        //ÇöÀç±îÁö Èå¸¥ ÀüÃ¼ ½Ã°£ ÀúÀå
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½å¸¥ ï¿½ï¿½Ã¼ ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½
         time_temp = (int)(totalTime);
 
-        //½ºÅ×ÀÌÁö ½Ã°£ ÃÊ±âÈ­
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ ï¿½Ê±ï¿½È­
         stageTime = Time.time;
 
 
-        //¸ÂÃá È½¼ö ÃÊ±âÈ­
-        hitText.text = "¼º°ø È½¼ö : " + score;
-        //¸ÂÃç¾ß µÇ´Â Pad°¹¼ö ÃÊ±âÈ­
-        //Æ²¸° È½¼ö ÃÊ±âÈ­
+        //ï¿½ï¿½ï¿½ï¿½ È½ï¿½ï¿½ ï¿½Ê±ï¿½È­
+        hitText.text = "ï¿½ï¿½ï¿½ï¿½ È½ï¿½ï¿½ : " + score;
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç´ï¿½ Padï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­
+        //Æ²ï¿½ï¿½ È½ï¿½ï¿½ ï¿½Ê±ï¿½È­
         missNum = totalMiss;
         score = 0;
-        missText.text = "¸ñ¼û : " + missNum;
-        //´ÙÀ½ ¹®Á¦ Á¦½Ã
+        missText.text = "ï¿½ï¿½ï¿½ : " + missNum;
+        //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         GameObject[] balloons = GameObject.FindGameObjectsWithTag("balloon");
         foreach (GameObject balloon in balloons)
         {
@@ -510,17 +510,17 @@ public enum STATE
         state = STATE.MAKE;
     }
 
-    //Ã³À½ °ÔÀÓ¿¡ µé¾î¿ÔÀ» ¶§ ±âº» ¼¼ÆÃ
+    //Ã³ï¿½ï¿½ ï¿½ï¿½ï¿½Ó¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½âº» ï¿½ï¿½ï¿½ï¿½
     IEnumerator MakeStage()
     {
         state = STATE.WAIT;
         yield return new WaitForSeconds(1f);
-        //³­ÀÌµµ ¼±ÅÃ Ã¢ ºñÈ°¼ºÈ­
+        //ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½ Ã¢ ï¿½ï¿½È°ï¿½ï¿½È­
         Disappear_select3.isHide = true;
         state = STATE.MAKE;
     }
 
-    //¹Ú½ºÄÝ¸®´õ À§Ä¡ ÁöÁ¤
+    //ï¿½Ú½ï¿½ï¿½Ý¸ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½
     Vector3 GetRandomPositionInBoxCollider(BoxCollider boxCollider)
     {
         Vector3 boxSize = boxCollider.size;
@@ -534,7 +534,7 @@ public enum STATE
         return randomPosition;
     }
 
-    //3¹Ú½ºÄÝ¸®´õ À§Ä¡ ÁöÁ¤
+    //3ï¿½Ú½ï¿½ï¿½Ý¸ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½
     Vector3 GetRandomPositionInBoxCollider_3(BoxCollider boxCollider)
     {
 
@@ -542,7 +542,7 @@ public enum STATE
         Vector3 boxCenter = boxCollider.center;
 
 
-        // BoxCollider ¿µ¿ªÀ» 2¸¸Å­ ´Ã¸®´Â ÄÚµå
+        // BoxCollider ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 2ï¿½ï¿½Å­ ï¿½Ã¸ï¿½ï¿½ï¿½ ï¿½Úµï¿½
         float randomX = Random.Range(-boxSize.x / 2, boxSize.x / 2) + boxCenter.x;
         float randomY = Random.Range(-boxSize.y / 2, boxSize.y / 2) + boxCenter.y;
         float randomZ = Random.Range(-boxSize.z / 2, boxSize.z / 2) + boxCenter.z;
@@ -562,11 +562,11 @@ public enum STATE
 
             if (distanceToExistingBalloon < balloonRadius*2)
             {
-                // ÀÌ À§Ä¡´Â ÀÌ¹Ì Á¸ÀçÇÏ´Â Ç³¼±°ú ³Ê¹« °¡±î¿ò
+                // ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½Ì¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ Ç³ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
                 return false;
             }
         }
-        // ÀÌ À§Ä¡´Â ¸ðµç Á¸ÀçÇÏ´Â Ç³¼±°ú ÃæºÐÈ÷ ¸Ö¸® ¶³¾îÁ® ÀÖÀ½
+        // ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ Ç³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         return true;
     }
 
@@ -578,18 +578,18 @@ public enum STATE
 
             if (distanceToExistingBalloon < balloonRadius * 2)
             {
-                // ÀÌ À§Ä¡´Â ÀÌ¹Ì Á¸ÀçÇÏ´Â Ç³¼±°ú ³Ê¹« °¡±î¿ò
+                // ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½Ì¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ Ç³ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
                 return false;
             }
         }
-        // ÀÌ À§Ä¡´Â ¸ðµç Á¸ÀçÇÏ´Â Ç³¼±°ú ÃæºÐÈ÷ ¸Ö¸® ¶³¾îÁ® ÀÖÀ½
+        // ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ Ç³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         return true;
     }
 
 
 
 
-    // ½ºÅ×ÀÌÁö¸¶´Ù Ç³¼± º¸¿©ÁÖ±â
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ç³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½
     IEnumerator ShowTouch(int stage)
     {
         state = STATE.WAIT;
@@ -599,32 +599,32 @@ public enum STATE
         if (levelNum == 1)
         {
 
-            // ±âÁ¸ÀÇ Ç³¼± À§Ä¡¸¦ ÃÊ±âÈ­
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ç³ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½Ê±ï¿½È­
             balloonPositions.Clear();
             int balloonCount = Clearcnt[stage - 1];
-            int maxAttempts = 10000; // ÃÖ´ë ½Ãµµ È½¼ö
+            int maxAttempts = 10000; // ï¿½Ö´ï¿½ ï¿½Ãµï¿½ È½ï¿½ï¿½
 
             for (int i = 0; i < balloonCount; i++)
             {
                 GameObject spawnArea = spawnAreas[stage - 1];
                 BoxCollider spawnAreaBoxCollider = spawnArea.GetComponent<BoxCollider>();
-                int currentAttempts = 0; // ÇöÀç ½Ãµµ È½¼ö
-                                         // ÀÌ À§Ä¡¿¡ Ç³¼±ÀÌ ¾øÀ» ¶§±îÁö ¹Ýº¹
+                int currentAttempts = 0; // ï¿½ï¿½ï¿½ï¿½ ï¿½Ãµï¿½ È½ï¿½ï¿½
+                                         // ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ Ç³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ýºï¿½
                 while (currentAttempts < maxAttempts)
                 {
                     Vector3 randomPosition = GetRandomPositionInBoxCollider(spawnAreaBoxCollider);
                     if (IsPositionFree(randomPosition))
                     {
-                        balloonPositions.Add(randomPosition);  // »õ À§Ä¡¸¦ ¸®½ºÆ®¿¡ Ãß°¡
+                        balloonPositions.Add(randomPosition);  // ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ß°ï¿½
                         GameObject balloon = Instantiate(balloonPrefab, randomPosition, Quaternion.Euler(-90f, 0f, 0f));
-                        balloon.tag = "balloon"; // Ç³¼±¿¡ ÅÂ±× Ãß°¡
-                        // Ç³¼±À» »ý¼ºÇÏ°í ¹Ýº¹¹®À» Á¾·á
+                        balloon.tag = "balloon"; // Ç³ï¿½ï¿½ï¿½ï¿½ ï¿½Â±ï¿½ ï¿½ß°ï¿½
+                        // Ç³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½Ýºï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                         break;
                     }
                     else
                     {
-                        Debug.Log("À§Ä¡°¡ »ç¿ë ÁßÀÔ´Ï´Ù. ´Ù¸¥ À§Ä¡ ½Ãµµ Áß...");
-                        currentAttempts = 0; // ÇöÀç ½Ãµµ È½¼ö
+                        Debug.Log("ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ô´Ï´ï¿½. ï¿½Ù¸ï¿½ ï¿½ï¿½Ä¡ ï¿½Ãµï¿½ ï¿½ï¿½...");
+                        currentAttempts = 0; // ï¿½ï¿½ï¿½ï¿½ ï¿½Ãµï¿½ È½ï¿½ï¿½
 
                     }
                     currentAttempts++;
@@ -632,9 +632,9 @@ public enum STATE
 
             }
 
-            yield return null; // ÇÑ ÇÁ·¹ÀÓ ´ë±â
+            yield return null; // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
             audioSource = gameObject.AddComponent<AudioSource>();
-            audioSource.clip = audioClip; // ¿Àµð¿À Å¬¸³ ÇÒ´ç
+            audioSource.clip = audioClip; // ï¿½ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ ï¿½Ò´ï¿½
             audioSource.Play();
 
             StartCoroutine(ShowPushTiming());
@@ -643,13 +643,13 @@ public enum STATE
         }
         else if (levelNum == 2)
         {
-            // ±âÁ¸ÀÇ Ç³¼± À§Ä¡¸¦ ÃÊ±âÈ­
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ç³ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½Ê±ï¿½È­
             balloonPositions.Clear();
             int balloonCount = Clearcnt[stage - 1];
-            int maxAttempts = 10000; // ÃÖ´ë ½Ãµµ È½¼ö
+            int maxAttempts = 10000; // ï¿½Ö´ï¿½ ï¿½Ãµï¿½ È½ï¿½ï¿½
 
             int failedBalloonCount = FailBalloonscnt[stage - 1];
-            List<int> failedBalloonIndices = new List<int>(); // Failed_balloonPrefabÀ» »ý¼ºÇÒ Ç³¼± ÀÎµ¦½ºµéÀ» ÀúÀåÇÏ´Â ¸®½ºÆ®
+            List<int> failedBalloonIndices = new List<int>(); // Failed_balloonPrefabï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ç³ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®
 
 
             while (failedBalloonIndices.Count < failedBalloonCount)
@@ -665,8 +665,8 @@ public enum STATE
             {
                 GameObject spawnArea = spawnAreas[stage - 1];
                 BoxCollider spawnAreaBoxCollider = spawnArea.GetComponent<BoxCollider>();
-                int currentAttempts = 0; // ÇöÀç ½Ãµµ È½¼ö
-                                         // ÀÌ À§Ä¡¿¡ Ç³¼±ÀÌ ¾øÀ» ¶§±îÁö ¹Ýº¹
+                int currentAttempts = 0; // ï¿½ï¿½ï¿½ï¿½ ï¿½Ãµï¿½ È½ï¿½ï¿½
+                                         // ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ Ç³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ýºï¿½
                 while (currentAttempts < maxAttempts)
                 {
                     Vector3 randomPosition = GetRandomPositionInBoxCollider(spawnAreaBoxCollider);
@@ -678,15 +678,15 @@ public enum STATE
                             balloonPrefabToInstantiate = Failed_balloonPrefab;
                         }
 
-                        balloonPositions.Add(randomPosition); // »õ À§Ä¡¸¦ ¸®½ºÆ®¿¡ Ãß°¡
+                        balloonPositions.Add(randomPosition); // ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ß°ï¿½
                         GameObject balloon = Instantiate(balloonPrefabToInstantiate, randomPosition, Quaternion.Euler(-90f, 0f, 0f));
-                        balloon.tag = "balloon"; // Ç³¼±¿¡ ÅÂ±× Ãß°¡
+                        balloon.tag = "balloon"; // Ç³ï¿½ï¿½ï¿½ï¿½ ï¿½Â±ï¿½ ï¿½ß°ï¿½
                         break;
                     }
                     else
                     {
-                        Debug.Log("À§Ä¡°¡ »ç¿ë ÁßÀÔ´Ï´Ù. ´Ù¸¥ À§Ä¡ ½Ãµµ Áß...");
-                        currentAttempts = 0; // ÇöÀç ½Ãµµ È½¼ö
+                        Debug.Log("ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ô´Ï´ï¿½. ï¿½Ù¸ï¿½ ï¿½ï¿½Ä¡ ï¿½Ãµï¿½ ï¿½ï¿½...");
+                        currentAttempts = 0; // ï¿½ï¿½ï¿½ï¿½ ï¿½Ãµï¿½ È½ï¿½ï¿½
 
                     }
                     currentAttempts++;
@@ -697,9 +697,9 @@ public enum STATE
 
         
 
-            yield return null; // ÇÑ ÇÁ·¹ÀÓ ´ë±â
+            yield return null; // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
             audioSource = gameObject.AddComponent<AudioSource>();
-            audioSource.clip = audioClip; // ¿Àµð¿À Å¬¸³ ÇÒ´ç
+            audioSource.clip = audioClip; // ï¿½ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ ï¿½Ò´ï¿½
             audioSource.Play();
 
             StartCoroutine(ShowPushTiming());
@@ -710,13 +710,13 @@ public enum STATE
         }
         else if (levelNum == 3)
         {
-            // ±âÁ¸ÀÇ Ç³¼± À§Ä¡¸¦ ÃÊ±âÈ­
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ç³ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½Ê±ï¿½È­
             balloonPositions.Clear();
             int balloonCount = Clearcnt_3[stage - 1];
-            int maxAttempts = 10000; // ÃÖ´ë ½Ãµµ È½¼ö
+            int maxAttempts = 10000; // ï¿½Ö´ï¿½ ï¿½Ãµï¿½ È½ï¿½ï¿½
 
             int failedBalloonCount = FailBalloonscnt_3[stage - 1];
-            List<int> failedBalloonIndices = new List<int>(); // Failed_balloonPrefabÀ» »ý¼ºÇÒ Ç³¼± ÀÎµ¦½ºµéÀ» ÀúÀåÇÏ´Â ¸®½ºÆ®
+            List<int> failedBalloonIndices = new List<int>(); // Failed_balloonPrefabï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ç³ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®
 
 
             while (failedBalloonIndices.Count < failedBalloonCount)
@@ -732,8 +732,8 @@ public enum STATE
             {
                 GameObject spawnArea = spawnAreas[stage - 1];
                 BoxCollider spawnAreaBoxCollider = spawnArea.GetComponent<BoxCollider>();
-                int currentAttempts = 0; // ÇöÀç ½Ãµµ È½¼ö
-                                         // ÀÌ À§Ä¡¿¡ Ç³¼±ÀÌ ¾øÀ» ¶§±îÁö ¹Ýº¹
+                int currentAttempts = 0; // ï¿½ï¿½ï¿½ï¿½ ï¿½Ãµï¿½ È½ï¿½ï¿½
+                                         // ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ Ç³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ýºï¿½
                 while (currentAttempts < maxAttempts)
                 {
                     Vector3 randomPosition = GetRandomPositionInBoxCollider_3(spawnAreaBoxCollider);
@@ -746,12 +746,12 @@ public enum STATE
                             balloonPrefabToInstantiate = Failed_balloonPrefab;
                         }
 
-                        balloonPositions.Add(randomPosition); // »õ À§Ä¡¸¦ ¸®½ºÆ®¿¡ Ãß°¡
+                        balloonPositions.Add(randomPosition); // ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ß°ï¿½
                         GameObject balloon = Instantiate(balloonPrefabToInstantiate, randomPosition, Quaternion.Euler(-90f, 0f, 0f));
-                        balloon.tag = "balloon"; // Ç³¼±¿¡ ÅÂ±× Ãß°¡
+                        balloon.tag = "balloon"; // Ç³ï¿½ï¿½ï¿½ï¿½ ï¿½Â±ï¿½ ï¿½ß°ï¿½
                         stage_move = stageNum;
 
-                       //ÀÌ°É·Î ¿òÁ÷ÀÌ´Â ÄÚµå ½ÇÇà
+                       //ï¿½Ì°É·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì´ï¿½ ï¿½Úµï¿½ ï¿½ï¿½ï¿½ï¿½
                        MonoBehaviour targetScript = balloon.GetComponent(targetScriptName) as MonoBehaviour;
                         if (targetScript != null)
                         {
@@ -761,13 +761,13 @@ public enum STATE
                         {
                             Debug.LogWarning("Script " + targetScriptName + " not found on GameObject " + balloon.name);
                         }
-                        Debug.Log("»ý¼º " + targetScript + "/" + targetScriptName + "/" + balloon.name) ;
+                        Debug.Log("ï¿½ï¿½ï¿½ï¿½ " + targetScript + "/" + targetScriptName + "/" + balloon.name) ;
                         break;
                     }
                     else
                     {
-                        Debug.Log("À§Ä¡°¡ »ç¿ë ÁßÀÔ´Ï´Ù. ´Ù¸¥ À§Ä¡ ½Ãµµ Áß...");
-                        currentAttempts = 0; // ÇöÀç ½Ãµµ È½¼ö
+                        Debug.Log("ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ô´Ï´ï¿½. ï¿½Ù¸ï¿½ ï¿½ï¿½Ä¡ ï¿½Ãµï¿½ ï¿½ï¿½...");
+                        currentAttempts = 0; // ï¿½ï¿½ï¿½ï¿½ ï¿½Ãµï¿½ È½ï¿½ï¿½
 
                     }
                     currentAttempts++;
@@ -778,9 +778,9 @@ public enum STATE
 
 
 
-            yield return null; // ÇÑ ÇÁ·¹ÀÓ ´ë±â
+            yield return null; // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
             audioSource = gameObject.AddComponent<AudioSource>();
-            audioSource.clip = audioClip; // ¿Àµð¿À Å¬¸³ ÇÒ´ç
+            audioSource.clip = audioClip; // ï¿½ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ ï¿½Ò´ï¿½
             audioSource.Play();
 
             StartCoroutine(ShowPushTiming());
@@ -791,17 +791,17 @@ public enum STATE
         }
         else if (levelNum == 4)
         {
-            // ±âÁ¸ÀÇ Ç³¼± À§Ä¡¸¦ ÃÊ±âÈ­
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ç³ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½Ê±ï¿½È­
             balloonPositions.Clear();
             if (stage == 0)
             {
                 yield return new WaitForSeconds(5f);
             }
             int balloonCount = Clearcnt_3[stage - 1];
-            int maxAttempts = 10000; // ÃÖ´ë ½Ãµµ È½¼ö
+            int maxAttempts = 10000; // ï¿½Ö´ï¿½ ï¿½Ãµï¿½ È½ï¿½ï¿½
 
             int failedBalloonCount = FailBalloonscnt_3[stage - 1];
-            List<int> failedBalloonIndices = new List<int>(); // Failed_balloonPrefabÀ» »ý¼ºÇÒ Ç³¼± ÀÎµ¦½ºµéÀ» ÀúÀåÇÏ´Â ¸®½ºÆ®
+            List<int> failedBalloonIndices = new List<int>(); // Failed_balloonPrefabï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ç³ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®
 
 
             while (failedBalloonIndices.Count < failedBalloonCount)
@@ -817,8 +817,8 @@ public enum STATE
             {
                 GameObject spawnArea = spawnAreas[stage - 1];
                 BoxCollider spawnAreaBoxCollider = spawnArea.GetComponent<BoxCollider>();
-                int currentAttempts = 0; // ÇöÀç ½Ãµµ È½¼ö
-                                         // ÀÌ À§Ä¡¿¡ Ç³¼±ÀÌ ¾øÀ» ¶§±îÁö ¹Ýº¹
+                int currentAttempts = 0; // ï¿½ï¿½ï¿½ï¿½ ï¿½Ãµï¿½ È½ï¿½ï¿½
+                                         // ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ Ç³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ýºï¿½
                 while (currentAttempts < maxAttempts)
                 {
                     Vector3 randomPosition = GetRandomPositionInBoxCollider_3(spawnAreaBoxCollider);
@@ -831,13 +831,13 @@ public enum STATE
                             balloonPrefabToInstantiate = Failed_balloonPrefab;
                         }
 
-                        balloonPositions.Add(randomPosition); // »õ À§Ä¡¸¦ ¸®½ºÆ®¿¡ Ãß°¡
+                        balloonPositions.Add(randomPosition); // ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ß°ï¿½
                         GameObject balloon = Instantiate(balloonPrefabToInstantiate, randomPosition, Quaternion.Euler(-90f, 0f, 0f));
-                        balloon.tag = "balloon"; // Ç³¼±¿¡ ÅÂ±× Ãß°¡
+                        balloon.tag = "balloon"; // Ç³ï¿½ï¿½ï¿½ï¿½ ï¿½Â±ï¿½ ï¿½ß°ï¿½
                         stage_move = stageNum;
                         if (balloonPrefabToInstantiate != Failed_balloonPrefab)
                         {
-                            // ÇöÀç Å©±â¿¡¼­ ·£´ýÇÑ ºñÀ²À» Àû¿ëÇÏ¿© Å©±â Á¶Á¤
+                            // ï¿½ï¿½ï¿½ï¿½ Å©ï¿½â¿¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                             if (stage - 1 > 9) //10
                             {
                                 float currentScale = balloon.transform.localScale.x;
@@ -868,7 +868,7 @@ public enum STATE
                             }
                         }
 
-                        //ÀÌ°É·Î ¿òÁ÷ÀÌ´Â ÄÚµå ½ÇÇà
+                        //ï¿½Ì°É·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì´ï¿½ ï¿½Úµï¿½ ï¿½ï¿½ï¿½ï¿½
                         MonoBehaviour targetScript = balloon.GetComponent(targetScriptName) as MonoBehaviour;
                         if (targetScript != null)
                         {
@@ -878,13 +878,13 @@ public enum STATE
                         {
                             Debug.LogWarning("Script " + targetScriptName + " not found on GameObject " + balloon.name);
                         }
-                        Debug.Log("»ý¼º " + targetScript + "/" + targetScriptName + "/" + balloon.name);
+                        Debug.Log("ï¿½ï¿½ï¿½ï¿½ " + targetScript + "/" + targetScriptName + "/" + balloon.name);
                         break;
                     }
                     else
                     {
-                        Debug.Log("À§Ä¡°¡ »ç¿ë ÁßÀÔ´Ï´Ù. ´Ù¸¥ À§Ä¡ ½Ãµµ Áß...");
-                        currentAttempts = 0; // ÇöÀç ½Ãµµ È½¼ö
+                        Debug.Log("ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ô´Ï´ï¿½. ï¿½Ù¸ï¿½ ï¿½ï¿½Ä¡ ï¿½Ãµï¿½ ï¿½ï¿½...");
+                        currentAttempts = 0; // ï¿½ï¿½ï¿½ï¿½ ï¿½Ãµï¿½ È½ï¿½ï¿½
 
                     }
                     currentAttempts++;
@@ -895,9 +895,9 @@ public enum STATE
 
 
 
-            yield return null; // ÇÑ ÇÁ·¹ÀÓ ´ë±â
+            yield return null; // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
             audioSource = gameObject.AddComponent<AudioSource>();
-            audioSource.clip = audioClip; // ¿Àµð¿À Å¬¸³ ÇÒ´ç
+            audioSource.clip = audioClip; // ï¿½ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ ï¿½Ò´ï¿½
             audioSource.Play();
 
             StartCoroutine(ShowPushTiming());
@@ -908,74 +908,74 @@ public enum STATE
         }
 
 
-        // ÅÍÄ¡ÇÒ ¼ö ÀÖµµ·Ï ¼³Á¤
+        // ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ ï¿½Öµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         state = STATE.IDLE;
     }
 
 
 
-    //½ºÅ×ÀÌÁö ½ÃÀÛ½Ã ½ºÅ×ÀÌÁö ¹øÈ£¸¦ º¸¿©ÁØ´Ù.
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Û½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø´ï¿½.
     IEnumerator ShowStageNum()
     {
-        stageNumText.text = stageNum + " ´Ü°è";
-        //levelNumÀÌ 1ÀÌ¸é easy
+        stageNumText.text = stageNum + " ï¿½Ü°ï¿½";
+        //levelNumï¿½ï¿½ 1ï¿½Ì¸ï¿½ easy
         if (levelNum == 1)
         {
-            levelText.text = "½¬¿ò";
+            levelText.text = "ï¿½ï¿½ï¿½ï¿½";
 
             yield return new WaitForSeconds(0.5f);
         }
 
-        //levelNumÀÌ 2ÀÌ¸é normal
+        //levelNumï¿½ï¿½ 2ï¿½Ì¸ï¿½ normal
         else if (levelNum == 2)
         {
-            levelText.text = "º¸Åë";
+            levelText.text = "ï¿½ï¿½ï¿½ï¿½";
 
             yield return new WaitForSeconds(0.5f);
         }
 
-        //levelNumÀÌ 3ÀÌ¸é hard
+        //levelNumï¿½ï¿½ 3ï¿½Ì¸ï¿½ hard
         else if (levelNum == 3)
         {
-            levelText.text = "¾î·Á¿ò";
+            levelText.text = "ï¿½ï¿½ï¿½ï¿½ï¿½";
 
             yield return new WaitForSeconds(0.5f);
         }
         else if (levelNum == 4)
         {
-            levelText.text = "°Ë»ç ¸ðµå!";
+            levelText.text = "ï¿½Ë»ï¿½ ï¿½ï¿½ï¿½!";
 
             yield return new WaitForSeconds(0.5f);
         }
 
-        //1ÃÊ ÈÄ »ç¶óÁü
+        //1ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
         yield return new WaitForSeconds(1f);
     }
 
 
 
-    //´©¸£´Â Å¸ÀÌ¹ÖÀ» ¾Ë·ÁÁØ´Ù.
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½Ë·ï¿½ï¿½Ø´ï¿½.
     IEnumerator ShowPushTiming()
     {
-        pushText.text = "½ÃÀÛ!";
+        pushText.text = "ï¿½ï¿½ï¿½ï¿½!";
 
-        //1ÃÊ ÈÄ »ç¶óÁü
+        //1ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
         yield return new WaitForSeconds(1f);
 
         stageTime = Time.time;
         pushText.text = "";
         isStagetime = true;
         isTotaltime = true;
-        //¿ÖÁö?
+        //ï¿½ï¿½ï¿½ï¿½?
         yield return new WaitForSeconds(1f);
 
     }
 
-    //Stage¸¦ ClearÇß´Ù´Â °ÍÀ» ¾Ë¸²
+    //Stageï¿½ï¿½ Clearï¿½ß´Ù´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ë¸ï¿½
     IEnumerator ShowClear()
     {
-        pushText.text = "¼º°ø!";
-        //1ÃÊ ÈÄ »ç¶óÁü
+        pushText.text = "ï¿½ï¿½ï¿½ï¿½!";
+        //1ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
 
         GameObject[] balloons = GameObject.FindGameObjectsWithTag("balloon");
         foreach (GameObject balloon in balloons)
@@ -993,10 +993,10 @@ public enum STATE
 
     }
 
-    //Stage¸¦ ClearÇÏÁö ¸øÇÔ
+    //Stageï¿½ï¿½ Clearï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     IEnumerator ShowFail()
     {
-        pushText.text = "½ÇÆÐ!";
+        pushText.text = "ï¿½ï¿½ï¿½ï¿½!";
         GameObject[] balloons = GameObject.FindGameObjectsWithTag("balloon");
         foreach (GameObject balloon in balloons)
         {
@@ -1004,7 +1004,7 @@ public enum STATE
             balloonCollider.isTrigger = true;
         }
 
-        //1ÃÊ ÈÄ »ç¶óÁü
+        //1ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
         yield return new WaitForSeconds(1f);
 
         pushText.text = "";
@@ -1024,7 +1024,7 @@ public enum STATE
     public void PrintScore()
     {
         Debug.Log("Score: " + score);
-        hitText.text = "¼º°ø È½¼ö : " + score;
+        hitText.text = "ï¿½ï¿½ï¿½ï¿½ È½ï¿½ï¿½ : " + score;
 
     }
 
@@ -1032,7 +1032,7 @@ public enum STATE
     public void PrintFalse()
     {
         FailBalloon = true;
-        Debug.Log("fail: " + FailBalloon + missNum + " Á¡¼ö´Â "+score);
+        Debug.Log("fail: " + FailBalloon + missNum + " ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ "+score);
     }
     public void MissScore(int points)
     {

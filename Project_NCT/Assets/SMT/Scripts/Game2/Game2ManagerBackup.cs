@@ -3,6 +3,10 @@
 // using UnityEngine;
 // using UnityEngine.UI;
 // using UnityEngine.SceneManagement;
+// using TMPro;
+// using Bhaptics.SDK2;
+
+
 // //using System.IO;
 // using System.Linq;
 // //using System.Text;
@@ -11,25 +15,32 @@
 
 // public class Game2Manager : MonoBehaviour
 // {
+//     public TextMeshPro totalTimeText, stageTimeText, WrongAnswerCntText, stageNumText, CorrectAnswerCntText, DifficultyText;
+
 //     ///Game///
-//     int EASY = 2;
-//     int MIDDLE = 3;
-//     int HARD = 4;
-//     float startTime; // 게임 시작했을때의 시간
-//     float stageTime;// 새로운 stage 들어갈때의 시간
-//     int stageCnt = 10; // stage 총 개수
+//     static public int EASY = 2;
+//     static public int MIDDLE = 3;
+//     static public int HARD = 4;
+
+//     static public float startTime; // 게임 시작했을때의 시간
+//     static public float stageTime;// 새로운 stage 들어갈때의 시간
+//     public int stageCnt = 10; // stage 총 개수
+
+
 //     static public int stageNum = 1; // 현재 stage
-//     static public int LIFE = 2;// 틀리면 -1
 //     static public int WrongAnswerCnt = 0; // 틀린 횟수 보여주기용
-//     public int CurrentDifficulty;
+//     static public int CorrectAnswerCnt = 0;
+//     static public int CurrentDifficulty;
+
+//     static public float totalTime;
 
 //     ///Game///
 //     //////STATE//////
 //     public enum STATE
 //     {
-//         START, HIT, WAIT, IDLE, CLEAR ,FINISH
+//         START, HIT, WAIT, IDLE, CLEAR ,RESULT, SELECT , TIMEOUT5
 //     };
-//     static public STATE state = STATE.START;
+//     static public STATE state = STATE.SELECT;
 
 //     ///Game///
 //     //////Attribute//////
@@ -102,6 +113,34 @@
 //     public GameObject[] Pads = new GameObject[0];
 //     public bool Pads_Spawned = false;
 
+//     ///Startannouncement///
+
+//     /// stage 시작! 안내 text
+//     public GameObject[] StageStartAnnouncement = new GameObject[0];
+//     public bool StageStartAnnouncement_Spanwed = false;
+//     public static int time2;
+//     //// 시간초과 text 담겨있음
+//     public GameObject[] StageOverAnnouncement = new GameObject[0];
+
+//     public int check5sec;
+//     public bool Is_check5sec_True = false;
+//     public int check10sec;
+//     public bool Is_showstageover = false;
+
+
+//     public bool scorepannel = false;
+
+//     /// 정답, 오답 text 담겨있음
+//     public GameObject[] AnswerObj = new GameObject[0];
+
+
+//     /// hardmode 설명이 담긴 obj
+//     public GameObject[] HardModeExplainText = new GameObject[0];
+
+//     public bool Is_HardModeExplain_Already_Done = false;
+
+//     //동물들 소리 저장
+//     public AudioClip[] AnimalSounds = new AudioClip[18];
 
 //     // Start is called before the first frame update
 //     void Start()
@@ -197,18 +236,82 @@
 //         Pads_Spawned = false;
 //         buttonsSpawned = false;
 
+//         //stage가 시작되면 5초내에 답을 해야 하는데 이를 체크하는 변수이다.
+//         check5sec = 0;
+//         Is_check5sec_True = false;
+//         Is_showstageover = false;
+//         scorepannel = false;
+
+
+//         /// hard mode 설명 한번 해야됨
+//         /// make stage에 들어있어서
+//         /// stage 바뀔때마다 생김
+//         /// 한번 설명하면 true로 바뀌어서 더이상 설명 나오지 않음
+//         Is_HardModeExplain_Already_Done = false;
+
 //     }
 
 //     // Update is called once per frame
 //     void Update()
 //     {
 //         Debug.Log("Update");
-//         int time1 = (int)(Time.time - startTime);
-//         int time2 = (int)(Time.time - stageTime);
+
+//         totalTime = (int)(Time.time - startTime);
+
+//         //stage time은 stage 시작 time임
+//         //time 2라는게 stage에서 총 걸린 시간임
+//         time2 = (int)(Time.time - stageTime);
+
+//         if(scorepannel == true)
+//         {
+//             stageNumText.text = "스테이지 " + stageNum;
+//             if (Is_check5sec_True&& (Time.time - check5sec) < 5)
+//             {
+//                 stageTimeText.text = "스테이지 시간 : " + (int)(Time.time - check5sec);
+//             }
+//             else
+//             {
+//                 stageTimeText.text = "스테이지 시간 : 0";
+//             }
+            
+//             totalTimeText.text = "게임 시간 : " + (int)totalTime;
+//             WrongAnswerCntText.text = "틀림 : " + WrongAnswerCnt;
+//             CorrectAnswerCntText.text = "맞춤 : " + CorrectAnswerCnt;
+//             if(CurrentDifficulty == EASY)
+//             {
+//                 DifficultyText.text = "난이도 : 쉬움";
+//             }
+//             else if(CurrentDifficulty == MIDDLE)
+//             {
+//                 DifficultyText.text = "난이도 : 보통";
+//             }
+//             else
+//             {
+//                 DifficultyText.text = "난이도 : 어려움";
+//             }
+//         }
+//         else{
+//             stageNumText.text = "";
+//             stageTimeText.text = "";
+//             totalTimeText.text = "" ;
+//             WrongAnswerCntText.text = "";
+//             CorrectAnswerCntText.text = "";
+//             DifficultyText.text = "";
+//         }
+
+//         // stagetime_in_5sec = time2 - 1;
+//         // if (stagetime_in_5sec>0){
+//         //     state = STATE.TIMEOUT;
+//         // }
+//         if (Is_check5sec_True && (Time.time - check5sec) > 5)
+//         {
+//             state = STATE.TIMEOUT5;
+//         }
 
 //         switch (state)
 //         {
 //             case STATE.START:
+//                 scorepannel =true;
 //                 Debug.Log("inswitch Start");
 //                 Debug.Log("objectAttributes");
 //                 Debug.Log(objectAttributes[0].Color);
@@ -232,15 +335,22 @@
 //                 StartCoroutine(MakeStage(CurrentDifficulty));
 //                 break;
 //             case STATE.HIT:
+//                 Is_check5sec_True = false;
+//                 check5sec = 0;
 //                 StartCoroutine(IsItRightAnswer(CurrentDifficulty));
+//                 break;
+//             case STATE.TIMEOUT5:
+//                 Is_check5sec_True = false;
+//                 StartCoroutine(ShowOver());
 //                 break;
 //             case STATE.CLEAR:
 //                 StartCoroutine(StageClear());
 //                 break;
-//             case STATE.FINISH:
+//             case STATE.RESULT:
+//                 scorepannel = false;
 //                 Debug.Log("Finish");
 //                 //SceneManager.LoadScene("Result");
-//                 GameOver();
+//                 StartCoroutine(ShowResult());
 //                 break;
 //         }
 //         if (Input.GetKeyDown(KeyCode.Escape))
@@ -249,6 +359,83 @@
 //         }
 //     }
 
+//     IEnumerator PlaySound(AudioClip soundClip)
+//     {
+//         // AudioSource 컴포넌트를 가진 임시 GameObject를 생성합니다.
+//         GameObject audioObject = new GameObject("AudioObject");
+//         AudioSource audioSource = audioObject.AddComponent<AudioSource>();
+        
+//         // AudioClip을 설정합니다.
+//         audioSource.clip = soundClip;
+        
+//         // 소리를 재생합니다.
+//         audioSource.Play();
+
+//         //////////////////////////////////////////
+//         ///////////////[일반 play]////////////////
+//         //yield return new WaitForSeconds(2f);
+//         //////////////////////////////////////////
+//         //////////////////////////////////////////
+
+
+//         //////////////////////////////////////////
+//         ////////////[2초간 소리 Fadeout]///////////
+//         float fadeDuration = 2f;
+//         float fadeTimer = 0f;
+//         float startVolume = audioSource.volume;
+//         while (fadeTimer < fadeDuration)
+//         {
+//             fadeTimer += Time.deltaTime;
+//             audioSource.volume = Mathf.Lerp(startVolume, 0f, fadeTimer / fadeDuration);
+//             yield return null;
+//         }
+//         //////////////////////////////////////////
+//         //////////////////////////////////////////
+
+//         audioSource.Stop();
+//         // 소리 재생이 끝나면 GameObject를 파괴합니다.
+//         //Destroy(audioObject, soundClip.length);
+//         Destroy(audioObject);
+//     }
+
+
+// ///시간 초과 text보여주는 code이다.
+//     IEnumerator ShowOver()
+//     {
+//         state = STATE.WAIT;
+//         Is_showstageover = true;
+//         Debug.Log("HapticHere - StageTimeOver - 5sec");
+//         WrongAnswerCnt = WrongAnswerCnt+1;
+//         showstageover();
+//         yield return new WaitForSeconds(0.001f);
+//         state = STATE.CLEAR;
+//     }
+//     public void showstageover()
+//     {
+//         Vector3 overtextpos1 =  new Vector3(20.197f,2.253f,21.563f);
+//         GameObject StageOverObj = Instantiate(StageOverAnnouncement[0], overtextpos1, Quaternion.Euler(0,36.149f,0));
+//         StageOverObj.tag =  "OverTextObj";
+//     }
+//     public void showstageoverdestroy()
+//     {
+//         if (Is_showstageover)
+//         {
+//             GameObject[] OverTextObj = GameObject.FindGameObjectsWithTag("OverTextObj");
+//             foreach (GameObject obj in OverTextObj)
+//             {
+//                 Destroy(obj);
+//             }
+//         }
+//     }
+
+// ////stage가 모두 끝나면, 실행되는 script이다. state = state.result
+//     IEnumerator ShowResult()
+//     {
+//         state = STATE.WAIT;
+//         Result_Game2.isResult = true;
+//         state = STATE.SELECT;
+//         yield return new WaitForSeconds(1);
+//     }
 // ///Game///
 // //////Update switch case function//////
 //     IEnumerator IsItRightAnswer(int difficulty)
@@ -258,44 +445,73 @@
 //         yield return new WaitForSeconds(0.1f);
 //         //EASY에서 TrueButtonLocation 1 이면 왼쪽 3이면 오른쪽
 //         //MIDDLE에서 TrueButtonLocation 1 이면 왼쪽 3이면 오른쪽
-//          if (TrueButtonLocation == WhichButtonTouch){
+
+//         //맞았을때
+//         if (TrueButtonLocation == WhichButtonTouch){
+//             CorrectAnswer();
+//             Debug.Log("HapticHere - RightAnswer");
+//             CorrectAnswerCnt = CorrectAnswerCnt +1;
+//             yield return new WaitForSeconds(1f);
+//             wrongCorrectAnswerDestroy();
 //             Debug.Log("IsItRightAnswer - IF");
 //             state = STATE.CLEAR;
 //         }
+//         //틀렸을때
 //         else{
+//             WrongAnswer();
+//             Debug.Log("HapticHere - WrongAnswer");
 //             Debug.Log("IsItRightAnswer - ELSE");
-//             LIFE = LIFE-1;
-//             if(LIFE == 0){
-//                 GameOver();
-//                 state = STATE.CLEAR;
-//             }
+//             WrongAnswerCnt = WrongAnswerCnt +1;
+//             yield return new WaitForSeconds(1f);
+//             wrongCorrectAnswerDestroy();
 //             state = STATE.CLEAR;
-//             stageNum = stageNum+1;
-//             if (stageNum == stageCnt){
-//                 GameOver();
-//                 state = STATE.CLEAR;
-//             }
 //         }
 //     }
-// ///Game///
-// //////GameOver//////
-//     void GameOver(){
-//         // code here
 
-//         // data 보여주고
-//         // 게임 선택 Scene으로 돌아가기
+// /// 맞음 글자 나타나게
+//     public void CorrectAnswer()
+//     {
+//         Vector3 AnswerPos =  new Vector3(20.432f,2.342f,21.928f);
+//         GameObject Answer = Instantiate(AnswerObj[0], AnswerPos, Quaternion.Euler(0,36.149f,0));
+//         Answer.tag =  "Answer";
 //     }
+
+// /// 틀림 글자 나타나게
+//     public void WrongAnswer()
+//     {
+//         Vector3 AnswerPos =  new Vector3(20.432f,2.342f,21.928f);
+//         GameObject Answer = Instantiate(AnswerObj[1], AnswerPos, Quaternion.Euler(0,36.149f,0));
+//         Answer.tag =  "Answer";
+//     }
+//     public void wrongCorrectAnswerDestroy()
+//     {
+//         GameObject[] AnswerObject = GameObject.FindGameObjectsWithTag("Answer");
+//         foreach (GameObject obj in AnswerObject)
+//         {
+//             Destroy(obj);
+//         }
+//     }
+
 // ///Game///
 // //////Update switch case function//////
 //     IEnumerator MakeStage(int difficulty)
 //     {
         
 //         state = STATE.WAIT;
+
+//         Disappear_selectMenu.isHide = true;
+
 //         Debug.Log("MakeStage");
         
 //         Debug.Log("MakeStage - state:Wait");
-//         StartCoroutine(ShowStageInfo());
-//         Debug.Log("ShowStageInfo");
+
+//         if ((difficulty == HARD) && (Is_HardModeExplain_Already_Done == false))
+//         {
+//             HardModeExplain();
+//             yield return new WaitForSeconds(5f);
+//             Is_HardModeExplain_Already_Done = true;
+//             HardModeExplainDestroy();
+//         }
 
 //         int IsItHard = 0;
 
@@ -352,10 +568,26 @@
 //         while(Sum==0 || Sum > (Att_Array.Length-difficulty+1) || ColorMixCondition == 1);
 //         //
 //         //(위에서 찾은 object idx2개로 object 생성)
-        
+
+//         ////////////////////////////////
+//         /////////[Obj 보여주기]//////////
+
 //         Debug.Log("MakeObj");
 //         TwoObjSpawner(I1,I2,IsItHard);
 //         Debug.Log("BeforeMakeCategoryPad");
+
+//         /////////////////////////////////
+//         /////////[시작 보여주기]//////////
+//         StageStartAnouncment();
+//         yield return new WaitForSeconds(1.0f);
+//         StageStartAnouncmentDestroy();
+
+//         ////////////////////////////////
+//         ///////[stagetime count]////////
+//         ////////////////////////////////
+//         check5sec = (int)Time.time;
+//         Is_check5sec_True = true;
+
 
 //         True_Button = MakeCategoryPad(I1,I2, difficulty);
 //         Debug.Log("AfterMakeCategoryPad");
@@ -393,6 +625,54 @@
 //         // Debug.Log("after yield");
 //         state = STATE.IDLE;
         
+//     }
+
+//     ///Hardmode는 Hard mode에 대한 설명이 필요하다.
+//     public void HardModeExplain()
+//     {
+//         Vector3 HardModeExplain_Pos =  new Vector3(20.432f,2.592f,21.928f);
+//         GameObject HModeExp = Instantiate(HardModeExplainText[0], HardModeExplain_Pos, Quaternion.Euler(0,36.149f,0));
+//         HModeExp.tag =  "HardModeExplain";
+//     }
+//     public void HardModeExplainDestroy()
+//     {
+//         GameObject[] HExp = GameObject.FindGameObjectsWithTag("HardModeExplain");
+//         foreach (GameObject obj in HExp)
+//         {
+//             Destroy(obj);
+//         }
+//     }
+
+//     ///stage start Anouncement
+//     public void StageStartAnouncment()
+//     {
+//         if (!StageStartAnnouncement_Spanwed)
+//         {
+//             ////////////////////////////////
+//             //////[시작 뜨게 만드는 곳]//////
+
+//             ///start
+//             Vector3 starttextpos0 =  new Vector3(20.432f,2.642f,21.928f);
+//             GameObject Start0 = Instantiate(StageStartAnnouncement[0], starttextpos0, Quaternion.Euler(0,36.149f,0));
+//             Start0.tag =  "StartTextObj";
+            
+//             //설명
+//             Vector3 starttextpos1 =  new Vector3(20.432f,2.253f,21.928f);
+//             GameObject Start1 = Instantiate(StageStartAnnouncement[1], starttextpos1, Quaternion.Euler(0,36.149f,0));
+//             Start1.tag =  "StartTextObj";
+//             StageStartAnnouncement_Spanwed = true;
+//         }
+//     }
+
+//     public void StageStartAnouncmentDestroy()
+//     {
+//         GameObject[] spawnedStartAnnounceObj = GameObject.FindGameObjectsWithTag("StartTextObj");
+//         foreach (GameObject obj in spawnedStartAnnounceObj)
+//         {
+//             Destroy(obj);
+//         }
+
+//         StageStartAnnouncement_Spanwed = false;
 //     }
 
 
@@ -447,7 +727,7 @@
 //                     Distance = Vector3.Distance(position1,position2);
 //                     Debug.Log("After TwoObjSpawner-Coordinate_Distance-DoWhile");
 //                     }
-//                     while(Distance<1);
+//                     while(Distance<1.6);
                     
 //                     break;
 
@@ -472,10 +752,30 @@
 //             Obj1 = Instantiate(Objects[I1], position1, Quaternion.identity);
 //             Debug.Log("TwoObjSpawn_Obj1");
 //             Obj1.tag = "SpawnedObject";
+
+
+// //////////////////////////////////////////////////////////
+// //////////////////////////////////////////////////////////
+//             // 해당 동물의 오디오 파일을 가져옵니다.
+//             AudioClip soundClip = AnimalSounds[I1];
+//             // 동물 소리를 재생합니다.
+//             StartCoroutine(PlaySound(soundClip));
+// //////////////////////////////////////////////////////////
+// //////////////////////////////////////////////////////////
+
 //             Obj2 = Instantiate(Objects[I2], position2, Quaternion.identity);
 //             Debug.Log("TwoObjSpawn_Obj2");
 //             Obj2.tag = "SpawnedObject";
 //             spawn = true;
+
+// //////////////////////////////////////////////////////////
+// //////////////////////////////////////////////////////////
+//             // 해당 동물의 오디오 파일을 가져옵니다.
+//             soundClip = AnimalSounds[I2];
+//             // 동물 소리를 재생합니다.
+//             StartCoroutine(PlaySound(soundClip));
+// //////////////////////////////////////////////////////////
+// //////////////////////////////////////////////////////////
 //         }
 //     }
 
@@ -875,13 +1175,6 @@
 //     IEnumerator StageClear()
 //     {
 //         state = STATE.WAIT;
-//         yield return new WaitForSeconds(2f);
-//         // 기존 오브젝트 제거
-
-//         if (spawn)
-//         {
-//             RemoveObjects();
-//         }
 //         if (Pads_Spawned)
 //         {
 //             RemovePads();
@@ -891,30 +1184,33 @@
 //             ButtonsDeActive();
 //         }
 
-//         ++stageNum;
+//         yield return new WaitForSeconds(0.5f);
+//         showstageoverdestroy();
+
+//         yield return new WaitForSeconds(1f);
+//         // 기존 오브젝트 제거
+//         if (spawn)
+//         {
+//             RemoveObjects();
+//         }
+        
+
+//         stageNum = stageNum+1;
+//         stageTime = Time.time;
+
+//         check5sec = 0;
+//         Is_check5sec_True = false;
 
 //         if (stageNum>stageCnt)
 //         {
-//             state = STATE.FINISH;
+//             state = STATE.RESULT;
 //             yield return new WaitForSeconds(0.5f);
 //         }
-
-//         stageTime = Time.time;
-//         state = STATE.START;
-//     }
-
-//     IEnumerator ShowStageInfo()
-//     {
-//         Debug.Log("InSHowStageInfo");
-//         ////////////////////////[TextNotNow]////////
-//         //stageNumText.text = "Stage" +stageNum;
-//         //stageInfoText.text = "두 동물의 공통점을 파악해 패드를 누르세요.";
-//         ////////////////////////[TextNotNow]////////
-
-//         yield return new WaitForSeconds(0.0001f);
-
-//         ////////////////////////[TextNotNow]////////
-//         //stageNumText.text = "";
-//         ////////////////////////[TextNotNow]////////
+//         else
+//         {
+//             state = STATE.START;
+//             yield return new WaitForSeconds(0.5f);
+//         }
+        
 //     }
 // }
