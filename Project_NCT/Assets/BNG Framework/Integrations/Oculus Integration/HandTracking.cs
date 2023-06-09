@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Bhaptics.SDK2;
 
 
 using static OVRHand;
@@ -69,8 +70,7 @@ namespace BNG {
         void Update() {
 
             updateHandTracking();
-
-            if(IsHandTracking) {
+            if (IsHandTracking) {
                 LeftHandConfidence = LeftHand.GetFingerConfidence(HandFinger.Index);
                 RightHandConfidence = RightHand.GetFingerConfidence(HandFinger.Index);
 
@@ -93,6 +93,15 @@ namespace BNG {
 
                 IsRightIndexPinching = RightHand.GetFingerIsPinching(HandFinger.Index) && RightHandConfidence == TrackingConfidence.High;
                 RightIndexPinchStrength = RightHand.GetFingerPinchStrength(HandFinger.Index);
+                
+                if (IsLeftIndexPinching)
+                {
+                    BhapticsLibrary.Play(BhapticsEvent.DART_LEFT);
+                }
+                else if (IsRightIndexPinching)
+                {
+                    BhapticsLibrary.Play(BhapticsEvent.DART_RIGHT);
+                }
             }
 
             updateGrabbers();
@@ -121,7 +130,7 @@ namespace BNG {
                 LeftGrabber.gameObject.SetActive(IsHandTracking);
 
                 if (IsHandTracking) {
-
+                    //BhapticsLibrary.Play(BhapticsEvent.DART_LEFT);
                     LeftGrabber.transform.position = LeftIndexPosition;
                     LeftGrabber.ForceGrab = DoPinchToGrab && IsLeftIndexPinching;
                     LeftGrabber.ForceRelease = DoPinchToGrab && IsLeftIndexPinching == false;
@@ -132,6 +141,7 @@ namespace BNG {
                 RightGrabber.gameObject.SetActive(IsHandTracking);
 
                 if (IsHandTracking) {
+                    //BhapticsLibrary.Play(BhapticsEvent.DART_RIGHT);
                     RightGrabber.transform.position = RightIndexPosition;
                     RightGrabber.ForceGrab = DoPinchToGrab && IsRightIndexPinching;
                     RightGrabber.ForceRelease = DoPinchToGrab && IsRightIndexPinching == false;

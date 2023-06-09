@@ -11,7 +11,6 @@ public class dart_shot : MonoBehaviour
 
     }
 
-
     private void OnTriggerStay(Collider collision)
     {
         if (collision.tag == "right_hand" & Grab_bhaptics.bhaptics_grab)
@@ -28,12 +27,12 @@ public class dart_shot : MonoBehaviour
 
     private void OnTriggerExit(Collider collision)
     {
-        if (collision.tag == "right_hand" & Grab_bhaptics.bhaptics_throw)
+        if (collision.tag == "right_hand")
         {
             Debug.Log("Right Hand Throw");
             BhapticsLibrary.Play(BhapticsEvent.DART_SHOT_RIGHT);
         }
-        else if (collision.tag == "left_hand" & Grab_bhaptics.bhaptics_throw)
+        else if (collision.tag == "left_hand")
         {
             Debug.Log("Left Hand Throw");
             BhapticsLibrary.Play(BhapticsEvent.DART_SHOT_LEFT);
