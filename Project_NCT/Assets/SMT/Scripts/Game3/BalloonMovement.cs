@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class BalloonMovement : MonoBehaviour
 {
-    public float movementSpeed = 1f;
     private GameManager3 gameManager;
     private bool movingUp;
     private Rigidbody rb;
     private BoxCollider currentSpawnAreaCollider; // 현재 사용 중인 박스 콜라이더
+
+    public float minSpeed = 1f;
+    public float maxSpeed = 10f;
+    private float movementSpeed;
 
     void Start()
     {
@@ -16,6 +19,17 @@ public class BalloonMovement : MonoBehaviour
         gameManager = FindObjectOfType<GameManager3>();
         movingUp = (Random.Range(0, 2) == 0); // 0 또는 1 중 랜덤으로 선택하여 movingUp 값을 설정
         currentSpawnAreaCollider = null;
+
+        // 풍선의 속도를 조건에 따라 설정
+        if (GameManager3.levelNum == 4)
+        {
+            float randomSpeed = Random.Range(1f, 2.2f);
+            SetMovementSpeed(randomSpeed);
+        }
+        else
+        {
+            SetMovementSpeed(1f);
+        }
     }
 
     void Update()
@@ -53,5 +67,11 @@ public class BalloonMovement : MonoBehaviour
         {
             movingUp = true;
         }
+    }
+
+    // 풍선의 속도를 설정하는 함수
+    public void SetMovementSpeed(float speed)
+    {
+        movementSpeed = speed;
     }
 }

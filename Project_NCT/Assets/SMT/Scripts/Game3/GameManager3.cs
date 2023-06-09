@@ -172,19 +172,22 @@ public enum STATE
             //state가 MAKE이면 문제 제시
             //ShowTouch() 실행
             case STATE.MAKE:
+                
+                if (stage_temp != stageCnt)
+                {
+                    StartCoroutine(ShowTouch(stageNum));
+                    stage_temp++;
+                }//풍선 보여주기
+
                 //틀린 횟수 출력
                 missText.text = "목숨 : " + missNum;
                 //맞춘 횟수 출력
                 hitText.text = "성공 횟수 : " + score;
+                Debug.Log("????" + score);
                 Debug.Log("????" + stage_temp);
                 Debug.Log("????" + stageCnt);
 
-                if (stage_temp != stageCnt)
-                {
-                    
-                    StartCoroutine(ShowTouch(stageNum));
-                    stage_temp++;
-                }//풍선 보여주기
+
                 break;
 
             //state가 WRONG이면 틀렸을 경우
@@ -411,6 +414,34 @@ public enum STATE
 
 
         }
+        else if (levelNum == 4)
+        {
+            Debug.Log("히트" + score + "/" + (Clearcnt_3[stageNum - 1] - FailBalloonscnt_3[stageNum - 1]));
+            //눌러야 되는 Pad와 사용자가 누른 Pad가 같은 경우
+            if (score == (Clearcnt_3[stageNum - 1] - FailBalloonscnt_3[stageNum - 1]))
+            {
+
+                //SuccessBalloon = false;
+                //맞춘 횟수 증가
+                //맞춘 횟수 update
+                hitText.text = "성공 횟수 : " + score;
+                Debug.Log("히트" + score);
+                Debug.Log("클리어" + Clearcnt_3[stageNum - 1]);
+                //해당 스테이지에서 눌러야 되는 Pad를 모두 눌렀을 경우
+                if (score == (Clearcnt_3[stageNum - 1] - FailBalloonscnt_3[stageNum - 1]))
+                {
+
+                    //터치 안 되게 바꾸고, state는 CLEAR로 변환
+                    isTotaltime = false;
+                    isStagetime = false;
+                    state = STATE.CLEAR;
+                    //return;
+                }
+
+            }
+
+
+        }
 
 
 
@@ -464,11 +495,11 @@ public enum STATE
 
 
         //맞춘 횟수 초기화
-        score = 0;
         hitText.text = "성공 횟수 : " + score;
         //맞춰야 되는 Pad갯수 초기화
         //틀린 횟수 초기화
         missNum = totalMiss;
+        score = 0;
         missText.text = "목숨 : " + missNum;
         //다음 문제 제시
         GameObject[] balloons = GameObject.FindGameObjectsWithTag("balloon");
@@ -758,6 +789,123 @@ public enum STATE
 
 
         }
+        else if (levelNum == 4)
+        {
+            // 기존의 풍선 위치를 초기화
+            balloonPositions.Clear();
+            if (stage == 0)
+            {
+                yield return new WaitForSeconds(5f);
+            }
+            int balloonCount = Clearcnt_3[stage - 1];
+            int maxAttempts = 10000; // 최대 시도 횟수
+
+            int failedBalloonCount = FailBalloonscnt_3[stage - 1];
+            List<int> failedBalloonIndices = new List<int>(); // Failed_balloonPrefab을 생성할 풍선 인덱스들을 저장하는 리스트
+
+
+            while (failedBalloonIndices.Count < failedBalloonCount)
+            {
+                int randomIndex = Random.Range(0, balloonCount);
+                if (!failedBalloonIndices.Contains(randomIndex))
+                {
+                    failedBalloonIndices.Add(randomIndex);
+                }
+            }
+
+            for (int i = 0; i < balloonCount; i++)
+            {
+                GameObject spawnArea = spawnAreas[stage - 1];
+                BoxCollider spawnAreaBoxCollider = spawnArea.GetComponent<BoxCollider>();
+                int currentAttempts = 0; // 현재 시도 횟수
+                                         // 이 위치에 풍선이 없을 때까지 반복
+                while (currentAttempts < maxAttempts)
+                {
+                    Vector3 randomPosition = GetRandomPositionInBoxCollider_3(spawnAreaBoxCollider);
+
+                    if (IsPositionFree_3(randomPosition))
+                    {
+                        GameObject balloonPrefabToInstantiate = balloonPrefab;
+                        if (failedBalloonIndices.Contains(i))
+                        {
+                            balloonPrefabToInstantiate = Failed_balloonPrefab;
+                        }
+
+                        balloonPositions.Add(randomPosition); // 새 위치를 리스트에 추가
+                        GameObject balloon = Instantiate(balloonPrefabToInstantiate, randomPosition, Quaternion.Euler(-90f, 0f, 0f));
+                        balloon.tag = "balloon"; // 풍선에 태그 추가
+                        stage_move = stageNum;
+                        if (balloonPrefabToInstantiate != Failed_balloonPrefab)
+                        {
+                            // 현재 크기에서 랜덤한 비율을 적용하여 크기 조정
+                            if (stage - 1 > 9) //10
+                            {
+                                float currentScale = balloon.transform.localScale.x;
+                                float randomScaleFactor = Random.Range(0.25f, 0.25f);
+                                float newScale = currentScale * randomScaleFactor;
+                                balloon.transform.localScale = new Vector3(newScale, newScale, newScale);
+                            }
+                            else if (stage - 1 > 7) //8,9,
+                            {
+                                float currentScale = balloon.transform.localScale.x;
+                                float randomScaleFactor = Random.Range(0.25f, 0.5f);
+                                float newScale = currentScale * randomScaleFactor;
+                                balloon.transform.localScale = new Vector3(newScale, newScale, newScale);
+                            }
+                            else if (stage - 1 > 4) //567
+                            {
+                                float currentScale = balloon.transform.localScale.x;
+                                float randomScaleFactor = Random.Range(0.4f, 0.6f);
+                                float newScale = currentScale * randomScaleFactor;
+                                balloon.transform.localScale = new Vector3(newScale, newScale, newScale);
+                            }
+                            else 
+                            {
+                                float currentScale = balloon.transform.localScale.x;
+                                float randomScaleFactor = Random.Range(0.5f, 0.7f);
+                                float newScale = currentScale * randomScaleFactor;
+                                balloon.transform.localScale = new Vector3(newScale, newScale, newScale);
+                            }
+                        }
+
+                        //이걸로 움직이는 코드 실행
+                        MonoBehaviour targetScript = balloon.GetComponent(targetScriptName) as MonoBehaviour;
+                        if (targetScript != null)
+                        {
+                            targetScript.enabled = true;
+                        }
+                        else
+                        {
+                            Debug.LogWarning("Script " + targetScriptName + " not found on GameObject " + balloon.name);
+                        }
+                        Debug.Log("생성 " + targetScript + "/" + targetScriptName + "/" + balloon.name);
+                        break;
+                    }
+                    else
+                    {
+                        Debug.Log("위치가 사용 중입니다. 다른 위치 시도 중...");
+                        currentAttempts = 0; // 현재 시도 횟수
+
+                    }
+                    currentAttempts++;
+                }
+
+
+            }
+
+
+
+            yield return null; // 한 프레임 대기
+            audioSource = gameObject.AddComponent<AudioSource>();
+            audioSource.clip = audioClip; // 오디오 클립 할당
+            audioSource.Play();
+
+            StartCoroutine(ShowPushTiming());
+            yield return new WaitForSeconds(0.5f);
+
+
+
+        }
 
 
         // 터치할 수 있도록 설정
@@ -793,6 +941,12 @@ public enum STATE
 
             yield return new WaitForSeconds(0.5f);
         }
+        else if (levelNum == 4)
+        {
+            levelText.text = "검사 모드!";
+
+            yield return new WaitForSeconds(0.5f);
+        }
 
         //1초 후 사라짐
         yield return new WaitForSeconds(1f);
@@ -820,7 +974,10 @@ public enum STATE
     //Stage를 Clear했다는 것을 알림
     IEnumerator ShowClear()
     {
+        pushText.color = Color.green; // Change the text color to green
+
         pushText.text = "성공!";
+
         //1초 후 사라짐
 
         GameObject[] balloons = GameObject.FindGameObjectsWithTag("balloon");
@@ -833,6 +990,7 @@ public enum STATE
         yield return new WaitForSeconds(1f);
 
         pushText.text = "";
+        pushText.color = Color.black; // Change the text color to green
 
         yield return new WaitForSeconds(1f);
 
@@ -842,6 +1000,8 @@ public enum STATE
     //Stage를 Clear하지 못함
     IEnumerator ShowFail()
     {
+        pushText.color = Color.red; // Change the text color to green
+
         pushText.text = "실패!";
         GameObject[] balloons = GameObject.FindGameObjectsWithTag("balloon");
         foreach (GameObject balloon in balloons)
@@ -854,6 +1014,7 @@ public enum STATE
         yield return new WaitForSeconds(1f);
 
         pushText.text = "";
+        pushText.color = Color.black; // Change the text color to green
 
         yield return new WaitForSeconds(1f);
 
@@ -870,6 +1031,8 @@ public enum STATE
     public void PrintScore()
     {
         Debug.Log("Score: " + score);
+        hitText.text = "성공 횟수 : " + score;
+
     }
 
 
