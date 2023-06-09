@@ -12,4 +12,9 @@ public class Exit_VR : MonoBehaviour
     {
         SceneManager.LoadScene("Gamestart");
     }
+
+    public void move()
+    {
+        SceneManager.LoadScene("TestMode_Memory");
+    }
 }

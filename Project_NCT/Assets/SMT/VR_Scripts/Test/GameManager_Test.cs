@@ -14,7 +14,7 @@ public class GameManager_Test : MonoBehaviour
     //public GameObject loading;
     //public GameObject panel;
     //public GameObject startbutton;
-    //public GameObject tuto;
+    public GameObject result;
 
     //터치 여부
     static public bool isTouch = true;
@@ -68,6 +68,9 @@ public class GameManager_Test : MonoBehaviour
     //ShuffleTouch에서 사용
     int r = 0;
 
+    //pad 배치
+    int set = 0;
+
     //게임 상태를 나타내는 STATE
     public enum STATE
     {
@@ -88,20 +91,11 @@ public class GameManager_Test : MonoBehaviour
 
     public void Start()
     {
-        //Screen.orientation = ScreenOrientation.LandscapeRight;
-        //  Screen.sleepTimeout = SleepTimeout.NeverSleep;
-
-        //시간 초기화
-        //startTime = Time.time;
-
-        //문제 생성
-        //외워야 되는 Pad가 누적인 경우
-        //ShuffleTouch();
-
-        //normal 모드는 총 11개의 터치 패드
-        padCnt = 15;
+        //padCnt = 15;
+        padCnt = 16;
         startTime = Time.time;
-        StartCoroutine(PadCtrl_Test.PadColor());      
+        //StartCoroutine(PadCtrl_Test.PadColor());
+        result.SetActive(false);
     }
 
     // Update is called once per frame
@@ -215,6 +209,7 @@ public class GameManager_Test : MonoBehaviour
     IEnumerator ShowResult()
     {
         state = STATE.WAIT;
+        result.SetActive(true);
         //결과 UI를 보여주기 위해 true로 설정
         Result_Test.isResult = true;
         
@@ -386,6 +381,8 @@ public class GameManager_Test : MonoBehaviour
     {
         state = STATE.WAIT;
 
+        set = Random.Range(0, 2);
+
         //loading.SetActive(false);
 
         //시작카드의 x좌표
@@ -400,7 +397,7 @@ public class GameManager_Test : MonoBehaviour
         int n = 1;
 
         //PadSet.cs에서 Pad배열 읽기 배열의 1행을 읽고 변수 t에 할당한다
-        string[] str = PadSet_Test.stage[0];
+        string[] str = PadSet_Test.stage[set];
 
         //배열의 행의 수만큼 반복
         foreach (string t in str)
@@ -474,14 +471,25 @@ public class GameManager_Test : MonoBehaviour
         //가로 Pad 수 반 칸 공백 포함
         float x = 0;
 
+        float y = 0;
+
         //세로 행수 반줄 행간 포함
-        float y = 4.5f;
+        if (set == 0)
+        {
+            y = 4.5f;
+        }
+        else if (set == 1)
+        {
+            y = 4f;
+        }
+        //float y = 4.5f;
+        //float y = 4f;
 
         //가로 Pad 최대 수
         float maxX = 0;
 
         //Pad 배열 조사 맵 배열을 읽음
-        string[] str = PadSet_Test.stage[0];
+        string[] str = PadSet_Test.stage[set];
 
         //행의 수만큼 반복
         for (int i = 0; i < str.Length; i++)
@@ -557,7 +565,7 @@ public class GameManager_Test : MonoBehaviour
                 //ShuffleTouch에서 arPads 배열 랜덤 생성
                 GameObject padL = GameObject.FindWithTag("pad" + (i+1));
                 //문제 보여줄 때 효과음 실행
-                padL.SendMessage("PlayAud", SendMessageOptions.DontRequireReceiver);
+                padL.SendMessage("PlayAudTest", SendMessageOptions.DontRequireReceiver);
                 //눌러야 되는 Pad 파란색으로 보여줌
                 //"ShowPad"는 PadCtrl.cs에서 확인
                 padL.SendMessage("ShowPadLeft", SendMessageOptions.DontRequireReceiver);
@@ -570,7 +578,7 @@ public class GameManager_Test : MonoBehaviour
                 //ShuffleTouch에서 arPads 배열 랜덤 생성
                 GameObject padR = GameObject.FindWithTag("pad" + (i + 1));
                 //문제 보여줄 때 효과음 실행
-                padR.SendMessage("PlayAud", SendMessageOptions.DontRequireReceiver);
+                padR.SendMessage("PlayAudTest", SendMessageOptions.DontRequireReceiver);
                 //눌러야 되는 Pad 파란색으로 보여줌
                 //"ShowPad"는 PadCtrl.cs에서 확인
                 padR.SendMessage("ShowPadRight", SendMessageOptions.DontRequireReceiver);
@@ -659,12 +667,15 @@ public class GameManager_Test : MonoBehaviour
     //Stage를 Clear했다는 것을 알림
     IEnumerator ShowClear()
     {
+        pushText.color = Color.green; // Change the text color to green
+
         pushText.text = "성공!";
 
         //1초 후 사라짐
         yield return new WaitForSeconds(1f);
 
         pushText.text = "";
+        pushText.color = Color.black; // Change the text color to green
 
         yield return new WaitForSeconds(1f);
     }
@@ -672,12 +683,15 @@ public class GameManager_Test : MonoBehaviour
     //Stage를 Clear하지 못함
     IEnumerator ShowFail()
     {
+        pushText.color = Color.red; // Change the text color to green
+
         pushText.text = "실패!";
 
         //1초 후 사라짐
         yield return new WaitForSeconds(1f);
 
         pushText.text = "";
+        pushText.color = Color.black; // Change the text color to green
 
         yield return new WaitForSeconds(1f);
     }

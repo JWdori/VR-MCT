@@ -10,12 +10,17 @@ public class Result_Test : MonoBehaviour
     //게임 전체 시간, 사용자가 선택한 Level, 사용자가 틀린 스테이지, 전체 게임에서 틀린 횟수
     public TextMeshPro TotalTimeText, LevelText, stageNumText, missNumText, resultText;
 
+    public GameObject exit;
+    public GameObject again;
+
     //결과창이 보이는 상황가 안 보이는 상황 구별
     static public bool isResult = false;
 
     //사용자가 선택한 level을 보여줌
     void Start()
     {
+        exit.SetActive(false);
+        again.SetActive(false);
         /*
         resultText.text = "";
         TotalTimeText.text = "";
@@ -44,6 +49,8 @@ public class Result_Test : MonoBehaviour
             StartCoroutine(ShowMissNum());
             //난이도 선택 창 다시 활성화
             Disappear_select.isShow = true;
+            exit.SetActive(true);
+            again.SetActive(true);
 
         }
 

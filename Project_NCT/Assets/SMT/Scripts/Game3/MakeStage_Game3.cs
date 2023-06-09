@@ -10,11 +10,7 @@ public class MakeStage_Game3 : MonoBehaviour
     public bool testmode = false;
     void Start()
     {
-        if (testmode == true)
-        {
-            Make_Test();
-            testmode = false;
-        }
+
     }
     //easy 버튼을 눌렀을 때 실행
     public void Make_easy()
