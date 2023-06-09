@@ -974,7 +974,10 @@ public enum STATE
     //Stage를 Clear했다는 것을 알림
     IEnumerator ShowClear()
     {
+        pushText.color = Color.green; // Change the text color to green
+
         pushText.text = "성공!";
+
         //1초 후 사라짐
 
         GameObject[] balloons = GameObject.FindGameObjectsWithTag("balloon");
@@ -987,6 +990,7 @@ public enum STATE
         yield return new WaitForSeconds(1f);
 
         pushText.text = "";
+        pushText.color = Color.black; // Change the text color to green
 
         yield return new WaitForSeconds(1f);
 
@@ -996,6 +1000,8 @@ public enum STATE
     //Stage를 Clear하지 못함
     IEnumerator ShowFail()
     {
+        pushText.color = Color.red; // Change the text color to green
+
         pushText.text = "실패!";
         GameObject[] balloons = GameObject.FindGameObjectsWithTag("balloon");
         foreach (GameObject balloon in balloons)
@@ -1008,6 +1014,7 @@ public enum STATE
         yield return new WaitForSeconds(1f);
 
         pushText.text = "";
+        pushText.color = Color.black; // Change the text color to green
 
         yield return new WaitForSeconds(1f);
 

@@ -4,36 +4,13 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - pad1
-  - pad2
-  - pad3
-  - pad4
-  - pad5
-  - pad6
-  - pad7
-  - pad8
-  - pad9
-  - pad10
-  - pad11
-  - pad12
-  - pad13
-  - pad14
-  - pad15
-  - pad16
-  - pad17
-  - pad18
-  - pad19
-  - pad20
-  - pad21
-  - pad22
-  - pad23
-  - pad24
-  - pad25
-  - left_hand
-  - right_hand
   - game3_terrain
-  - balloon
   - hand
+  - left_hand
+  - balloon
+  - right_hand
+  - SamplesInfoPanel
+  - dart
   layers:
   - Default
   - TransparentFX
@@ -41,11 +18,11 @@ TagManager:
   - 
   - Water
   - UI
-  - Object
   - 
   - 
-  - 
-  - 
+  - Restricted
+  - Player
+  - Grabbable
   - 
   - 
   - 

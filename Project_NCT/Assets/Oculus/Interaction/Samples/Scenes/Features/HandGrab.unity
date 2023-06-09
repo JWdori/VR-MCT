@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44202673, g: 0.4502241, b: 0.47379225, a: 1}
+  m_IndirectSpecularColor: {r: 0.44202876, g: 0.45022064, b: 0.47379425, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -178,6 +178,7 @@ RectTransform:
   m_LocalRotation: {x: 0.3420201, y: -0, z: -0, w: 0.9396927}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.00061, y: 0.00061, z: 0.00061}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1359806556}
   - {fileID: 158917350}
@@ -362,6 +363,7 @@ RectTransform:
   m_LocalRotation: {x: 0.3420201, y: -0, z: -0, w: 0.9396927}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.00061, y: 0.00061, z: 0.00061}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1994541418}
   - {fileID: 242414406}
@@ -541,6 +543,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 124464967}
   m_RootOrder: 1
@@ -678,6 +681,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 130071075}
   m_RootOrder: 1
@@ -811,8 +815,8 @@ MonoBehaviour:
   _data: {fileID: 0}
   _pointableElement: {fileID: 1551646517987401748}
   _rigidbody: {fileID: 8580307721887672292}
-  _resetGrabOnGrabsUpdated: 1
   _physicsGrabbable: {fileID: 0}
+  _resetGrabOnGrabsUpdated: 1
   _scoringModifier:
     _positionRotationWeight: 0
   _supportedGrabTypes: 3
@@ -848,8 +852,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 622db80eec0bd344f920b1aa056ae8d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _relativeTo: {fileID: 3292654314392453898}
   _surface: {fileID: 0}
+  _relativeTo: {fileID: 3292654314392453898}
   _usesHandPose: 1
   _handPose:
     _handedness: 1
@@ -900,6 +904,7 @@ Transform:
   m_LocalRotation: {x: -0.33989227, y: 0.7024762, z: -0.56948406, w: -0.2582409}
   m_LocalPosition: {x: -0.14848712, y: -0.0026984122, z: 0.047829527}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1790920183}
   - {fileID: 853177514}
@@ -924,7 +929,6 @@ MonoBehaviour:
     arcOffset: 0
     arcLength: 360
   _relativeTo: {fileID: 3292654314392453898}
-  _referencePoint: {fileID: 394249851}
 --- !u!114 &394249849
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -937,8 +941,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 622db80eec0bd344f920b1aa056ae8d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _relativeTo: {fileID: 3292654314392453898}
   _surface: {fileID: 394249848}
+  _relativeTo: {fileID: 3292654314392453898}
   _usesHandPose: 1
   _handPose:
     _handedness: 1
@@ -989,6 +993,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0.0000000074505797, w: 1}
   m_LocalPosition: {x: 0.019999988, y: 0.006999999, z: 0.000000029802322}
   m_LocalScale: {x: 1.2, y: 1.2000002, z: 1.2000002}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1115446225}
   m_RootOrder: 1
@@ -1004,6 +1009,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 302807359957465671, guid: c19a2d64274b96e46aa2fae15534447c,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.053
       objectReference: {fileID: 0}
     - target: {fileID: 626672760788952484, guid: c19a2d64274b96e46aa2fae15534447c,
         type: 3}
@@ -1105,6 +1115,7 @@ RectTransform:
   m_LocalRotation: {x: 0.3420201, y: -0, z: -0, w: 0.9396927}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.00061, y: 0.00061, z: 0.00061}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1263955685}
   - {fileID: 1594770781}
@@ -1282,6 +1293,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.855, z: 0.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 124464967}
   - {fileID: 781974330}
@@ -1299,6 +1311,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.023329778, y: 0.008398875, z: 0.0071024764}
   m_LocalScale: {x: 1.2000002, y: 1.2, z: 1.2}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 343007805}
   m_RootOrder: 1
@@ -1315,8 +1328,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 622db80eec0bd344f920b1aa056ae8d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _relativeTo: {fileID: 3292654314392453898}
   _surface: {fileID: 0}
+  _relativeTo: {fileID: 3292654314392453898}
   _usesHandPose: 1
   _handPose:
     _handedness: 1
@@ -1368,8 +1381,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 622db80eec0bd344f920b1aa056ae8d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _relativeTo: {fileID: 3292654314392453898}
   _surface: {fileID: 854328347}
+  _relativeTo: {fileID: 3292654314392453898}
   _usesHandPose: 1
   _handPose:
     _handedness: 1
@@ -1402,6 +1415,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.021470426, y: -0.001779766, z: 0.0019096937}
   m_LocalScale: {x: 0.8, y: 0.8000001, z: 0.8}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1356177279}
   m_RootOrder: 0
@@ -1424,7 +1438,6 @@ MonoBehaviour:
     arcOffset: 0
     arcLength: 98.05295
   _relativeTo: {fileID: 3292654314392453898}
-  _referencePoint: {fileID: 854328346}
 --- !u!1 &854328349
 GameObject:
   m_ObjectHideFlags: 0
@@ -1455,8 +1468,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 622db80eec0bd344f920b1aa056ae8d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _relativeTo: {fileID: 3292654314392453898}
   _surface: {fileID: 856886797}
+  _relativeTo: {fileID: 3292654314392453898}
   _usesHandPose: 1
   _handPose:
     _handedness: 1
@@ -1489,6 +1502,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0.0000000074505797, w: 1}
   m_LocalPosition: {x: -0.0217573, y: -0.012133209, z: 0.0009858645}
   m_LocalScale: {x: 0.79999995, y: 0.80000013, z: 0.80000013}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1115446225}
   m_RootOrder: 0
@@ -1511,7 +1525,6 @@ MonoBehaviour:
     arcOffset: 0
     arcLength: 360
   _relativeTo: {fileID: 3292654314392453898}
-  _referencePoint: {fileID: 856886796}
 --- !u!1 &856886799
 GameObject:
   m_ObjectHideFlags: 0
@@ -1583,6 +1596,7 @@ Transform:
   m_LocalRotation: {x: -0.17090197, y: -0.6147533, z: -0.07364767, w: -0.76645094}
   m_LocalPosition: {x: 0.02792134, y: 0.14511827, z: -0.083550006}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 856886796}
   - {fileID: 394249851}
@@ -1601,8 +1615,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 622db80eec0bd344f920b1aa056ae8d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _relativeTo: {fileID: 3292654314392453898}
   _surface: {fileID: 1115446239}
+  _relativeTo: {fileID: 3292654314392453898}
   _usesHandPose: 1
   _handPose:
     _handedness: 1
@@ -1643,8 +1657,8 @@ MonoBehaviour:
   _data: {fileID: 0}
   _pointableElement: {fileID: 1551646517987401748}
   _rigidbody: {fileID: 8580307721887672292}
-  _resetGrabOnGrabsUpdated: 1
   _physicsGrabbable: {fileID: 0}
+  _resetGrabOnGrabsUpdated: 1
   _scoringModifier:
     _positionRotationWeight: 0.5
   _supportedGrabTypes: 3
@@ -1686,7 +1700,6 @@ MonoBehaviour:
     arcOffset: 0
     arcLength: 360
   _relativeTo: {fileID: 3292654314392453898}
-  _referencePoint: {fileID: 1115446225}
 --- !u!1001 &1129233009
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1948,6 +1961,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 781974330}
   m_RootOrder: 0
@@ -2069,8 +2083,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 622db80eec0bd344f920b1aa056ae8d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _relativeTo: {fileID: 3292654314392453898}
   _surface: {fileID: 1356177277}
+  _relativeTo: {fileID: 3292654314392453898}
   _usesHandPose: 1
   _handPose:
     _handedness: 1
@@ -2111,8 +2125,8 @@ MonoBehaviour:
   _data: {fileID: 0}
   _pointableElement: {fileID: 1551646517987401748}
   _rigidbody: {fileID: 8580307721887672292}
-  _resetGrabOnGrabsUpdated: 1
   _physicsGrabbable: {fileID: 0}
+  _resetGrabOnGrabsUpdated: 1
   _scoringModifier:
     _positionRotationWeight: 1
   _supportedGrabTypes: 3
@@ -2154,7 +2168,6 @@ MonoBehaviour:
     arcOffset: 0
     arcLength: 98.05295
   _relativeTo: {fileID: 3292654314392453898}
-  _referencePoint: {fileID: 1356177279}
 --- !u!1 &1356177278
 GameObject:
   m_ObjectHideFlags: 0
@@ -2184,6 +2197,7 @@ Transform:
   m_LocalRotation: {x: -0.37154788, y: -0.50300634, z: 0.4676759, w: -0.62467283}
   m_LocalPosition: {x: 0.06942187, y: 0.016891098, z: -0.10933803}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 854328346}
   - {fileID: 1852785691}
@@ -2216,8 +2230,9 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1359806555}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 124464967}
   m_RootOrder: 0
@@ -2442,6 +2457,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 781974330}
   m_RootOrder: 1
@@ -2668,8 +2684,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 622db80eec0bd344f920b1aa056ae8d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _relativeTo: {fileID: 3292654314392453898}
   _surface: {fileID: 0}
+  _relativeTo: {fileID: 3292654314392453898}
   _usesHandPose: 1
   _handPose:
     _handedness: 1
@@ -2719,6 +2735,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.020518973, y: -0.0066746515, z: -0.0029435935}
   m_LocalScale: {x: 0.79999995, y: 0.79999995, z: 0.7999999}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 343007805}
   m_RootOrder: 0
@@ -2741,7 +2758,6 @@ MonoBehaviour:
     arcOffset: 0
     arcLength: 98.05295
   _relativeTo: {fileID: 3292654314392453898}
-  _referencePoint: {fileID: 1852785691}
 --- !u!114 &1852785689
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2754,8 +2770,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 622db80eec0bd344f920b1aa056ae8d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _relativeTo: {fileID: 3292654314392453898}
   _surface: {fileID: 1852785688}
+  _relativeTo: {fileID: 3292654314392453898}
   _usesHandPose: 1
   _handPose:
     _handedness: 1
@@ -2806,6 +2822,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.020000003, y: 0.0070000277, z: -0.000000014901161}
   m_LocalScale: {x: 1.2000003, y: 1.2, z: 1.2000002}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1356177279}
   m_RootOrder: 1
@@ -2880,6 +2897,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 130071075}
   m_RootOrder: 0
@@ -3258,7 +3276,6 @@ MonoBehaviour:
     arcOffset: 0
     arcLength: 360
   _relativeTo: {fileID: 3292654314392453898}
-  _referencePoint: {fileID: 8275431943731175679}
 --- !u!4 &868067429118550059
 Transform:
   m_ObjectHideFlags: 0
@@ -3269,6 +3286,7 @@ Transform:
   m_LocalRotation: {x: -0.0179866, y: 0.024476754, z: -0.07986339, w: 0.9963429}
   m_LocalPosition: {x: 0.01248575, y: 0.017001785, z: 0.004779072}
   m_LocalScale: {x: 0.80000013, y: 0.80000013, z: 0.80000013}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5594023334309902113}
   m_RootOrder: 0
@@ -3284,6 +3302,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -3360,6 +3379,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6029929498727219826}
   m_RootOrder: 1
@@ -3399,6 +3419,7 @@ MonoBehaviour:
   _forwardElement: {fileID: 0}
   _oneGrabTransformer: {fileID: 0}
   _twoGrabTransformer: {fileID: 0}
+  _targetTransform: {fileID: 0}
   _maxGrabPoints: -1
 --- !u!114 &1552897396114712683
 MonoBehaviour:
@@ -3441,6 +3462,7 @@ Transform:
   m_LocalRotation: {x: 0.00012048334, y: 0.00034712185, z: -0.000063956715, w: 1}
   m_LocalPosition: {x: -0.02000541, y: -0.0069840737, z: 0.00007637122}
   m_LocalScale: {x: 1.2000002, y: 1.2000002, z: 1.2000002}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3390984311547889796}
   m_RootOrder: 1
@@ -3463,7 +3485,6 @@ MonoBehaviour:
     arcOffset: 0
     arcLength: 98.05295
   _relativeTo: {fileID: 3292654314392453898}
-  _referencePoint: {fileID: 868067429118550059}
 --- !u!114 &1798685866095294519
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3482,8 +3503,8 @@ MonoBehaviour:
   _data: {fileID: 0}
   _pointableElement: {fileID: 1551646517987401748}
   _rigidbody: {fileID: 8580307721887672292}
-  _resetGrabOnGrabsUpdated: 1
   _physicsGrabbable: {fileID: 0}
+  _resetGrabOnGrabsUpdated: 1
   _scoringModifier:
     _positionRotationWeight: 1
   _supportedGrabTypes: 3
@@ -3517,6 +3538,7 @@ Transform:
   m_LocalRotation: {x: 0.0054208967, y: -0.0073769195, z: 0.024069678, w: 0.99966836}
   m_LocalPosition: {x: -0.01632035, y: -0.0132341115, z: -0.002739365}
   m_LocalScale: {x: 1.2000005, y: 1.2000005, z: 1.2000005}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5594023334309902113}
   m_RootOrder: 1
@@ -3568,8 +3590,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 622db80eec0bd344f920b1aa056ae8d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _relativeTo: {fileID: 3292654314392453898}
   _surface: {fileID: 8241815226230553489}
+  _relativeTo: {fileID: 3292654314392453898}
   _usesHandPose: 1
   _handPose:
     _handedness: 0
@@ -3604,8 +3626,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 622db80eec0bd344f920b1aa056ae8d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _relativeTo: {fileID: 3292654314392453898}
   _surface: {fileID: 0}
+  _relativeTo: {fileID: 3292654314392453898}
   _usesHandPose: 1
   _handPose:
     _handedness: 0
@@ -3702,8 +3724,8 @@ MonoBehaviour:
   _data: {fileID: 0}
   _pointableElement: {fileID: 1551646517987401748}
   _rigidbody: {fileID: 8580307721887672292}
-  _resetGrabOnGrabsUpdated: 1
   _physicsGrabbable: {fileID: 0}
+  _resetGrabOnGrabsUpdated: 1
   _scoringModifier:
     _positionRotationWeight: 0
   _supportedGrabTypes: 3
@@ -3764,6 +3786,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.020518973, y: 0.0066746334, z: 0.0029435824}
   m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6442259750464493183}
   m_RootOrder: 0
@@ -3776,8 +3799,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2808569462766524848}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.80439997, z: 0.2018}
+  m_LocalPosition: {x: 0, y: 1.184, z: 0.2018}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6266428648093376880}
   - {fileID: 1356177279}
@@ -3817,6 +3841,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6029929498727219828}
   m_RootOrder: 1
@@ -3831,6 +3856,7 @@ Transform:
   m_LocalRotation: {x: 0.53208226, y: -0.015681894, z: 0.82598853, w: -0.18543339}
   m_LocalPosition: {x: 0.027921379, y: 0.14511824, z: -0.083550006}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8275431943731175679}
   - {fileID: 1745172746285604793}
@@ -3880,8 +3906,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 622db80eec0bd344f920b1aa056ae8d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _relativeTo: {fileID: 3292654314392453898}
   _surface: {fileID: 8925208856784496763}
+  _relativeTo: {fileID: 3292654314392453898}
   _usesHandPose: 1
   _handPose:
     _handedness: 0
@@ -3922,7 +3948,6 @@ MonoBehaviour:
     arcOffset: 0
     arcLength: 360
   _relativeTo: {fileID: 3292654314392453898}
-  _referencePoint: {fileID: 3390984311547889796}
 --- !u!4 &3838937391347160176
 Transform:
   m_ObjectHideFlags: 0
@@ -3933,6 +3958,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7873140053003993150}
   m_Father: {fileID: 6266428648093376880}
@@ -4091,8 +4117,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 622db80eec0bd344f920b1aa056ae8d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _relativeTo: {fileID: 3292654314392453898}
   _surface: {fileID: 0}
+  _relativeTo: {fileID: 3292654314392453898}
   _usesHandPose: 1
   _handPose:
     _handedness: 0
@@ -4235,8 +4261,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 622db80eec0bd344f920b1aa056ae8d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _relativeTo: {fileID: 3292654314392453898}
   _surface: {fileID: 8561602611217347551}
+  _relativeTo: {fileID: 3292654314392453898}
   _usesHandPose: 1
   _handPose:
     _handedness: 0
@@ -4285,6 +4311,7 @@ Transform:
   m_LocalRotation: {x: 0.2577368, y: 0.5939711, z: 0.7594756, w: -0.06298392}
   m_LocalPosition: {x: 0.06942189, y: 0.016891118, z: -0.109338045}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 868067429118550059}
   - {fileID: 1806393559225847577}
@@ -4303,8 +4330,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 622db80eec0bd344f920b1aa056ae8d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _relativeTo: {fileID: 3292654314392453898}
   _surface: {fileID: 814098395380644007}
+  _relativeTo: {fileID: 3292654314392453898}
   _usesHandPose: 1
   _handPose:
     _handedness: 0
@@ -4482,6 +4509,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.0233298, y: -0.008398925, z: -0.007102439}
   m_LocalScale: {x: 1.2000003, y: 1.2000003, z: 1.2000003}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6442259750464493183}
   m_RootOrder: 1
@@ -4513,6 +4541,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3838937391347160176}
   m_Father: {fileID: 3292654314392453898}
@@ -4528,6 +4557,7 @@ Transform:
   m_LocalRotation: {x: -0.7024759, y: -0.33989283, z: -0.2582407, w: 0.5694842}
   m_LocalPosition: {x: -0.14848705, y: -0.0026984252, z: -0.047829658}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3026977779643855649}
   - {fileID: 6183460078511583782}
@@ -4546,8 +4576,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 622db80eec0bd344f920b1aa056ae8d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _relativeTo: {fileID: 3292654314392453898}
   _surface: {fileID: 0}
+  _relativeTo: {fileID: 3292654314392453898}
   _usesHandPose: 1
   _handPose:
     _handedness: 0
@@ -4580,6 +4610,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3838937391347160176}
   m_RootOrder: 0
@@ -4596,8 +4627,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 622db80eec0bd344f920b1aa056ae8d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _relativeTo: {fileID: 3292654314392453898}
   _surface: {fileID: 1768232643324309118}
+  _relativeTo: {fileID: 3292654314392453898}
   _usesHandPose: 1
   _handPose:
     _handedness: 0
@@ -4638,7 +4669,6 @@ MonoBehaviour:
     arcOffset: 0
     arcLength: 98.05295
   _relativeTo: {fileID: 3292654314392453898}
-  _referencePoint: {fileID: 1806393559225847577}
 --- !u!4 &8275431943731175679
 Transform:
   m_ObjectHideFlags: 0
@@ -4649,6 +4679,7 @@ Transform:
   m_LocalRotation: {x: -0.0000061020255, y: -0.000017708167, z: 0.0000032410026, w: 1}
   m_LocalPosition: {x: 0.021757482, y: 0.012132629, z: -0.0009884683}
   m_LocalScale: {x: 0.80000013, y: 0.80000013, z: 0.80000013}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3390984311547889796}
   m_RootOrder: 0
@@ -4671,8 +4702,8 @@ MonoBehaviour:
   _data: {fileID: 0}
   _pointableElement: {fileID: 1551646517987401748}
   _rigidbody: {fileID: 8580307721887672292}
-  _resetGrabOnGrabsUpdated: 1
   _physicsGrabbable: {fileID: 0}
+  _resetGrabOnGrabsUpdated: 1
   _scoringModifier:
     _positionRotationWeight: 0.5
   _supportedGrabTypes: 3
@@ -4714,7 +4745,6 @@ MonoBehaviour:
     arcOffset: 0
     arcLength: 98.05295
   _relativeTo: {fileID: 3292654314392453898}
-  _referencePoint: {fileID: 5594023334309902113}
 --- !u!54 &8580307721887672292
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4726,8 +4756,8 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -4743,8 +4773,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 622db80eec0bd344f920b1aa056ae8d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _relativeTo: {fileID: 3292654314392453898}
   _surface: {fileID: 3713163361999244357}
+  _relativeTo: {fileID: 3292654314392453898}
   _usesHandPose: 1
   _handPose:
     _handedness: 0
@@ -4785,4 +4815,3 @@ MonoBehaviour:
     arcOffset: 0
     arcLength: 360
   _relativeTo: {fileID: 3292654314392453898}
-  _referencePoint: {fileID: 1745172746285604793}
