@@ -12,9 +12,9 @@ public class GameManager_VR : MonoBehaviour
     public TextMeshPro totalTimeText, stageTimeText, missText, hitText, stageNumText, pushText, levelText;
 
     public GameObject loading;
-    public GameObject panel;
-    public GameObject startbutton;
-    public GameObject tuto;
+    //public GameObject panel;
+    //public GameObject startbutton;
+    //public GameObject tuto;
 
     //터치 여부
     static public bool isTouch = true;
@@ -218,12 +218,12 @@ public class GameManager_VR : MonoBehaviour
         Disappear_select.isHide = true;
 
         loading.SetActive(true);
-        tuto.SetActive(true);
-        yield return new WaitForSeconds(0.5f);
-        panel.SetActive(true);
-        startbutton.SetActive(true);
-        yield return new WaitForSeconds(0.1f);
-        state = STATE.IDLE;
+        //tuto.SetActive(true);
+        yield return new WaitForSeconds(1);
+        //panel.SetActive(true);
+        //startbutton.SetActive(true);
+        loading.SetActive(true);
+        state = STATE.START;
     }
 
     //결과를 보여주는 코드
