@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17337978, g: 0.21672827, b: 0.29879543, a: 1}
+  m_IndirectSpecularColor: {r: 0.17337927, g: 0.21672769, b: 0.2987943, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1867,6 +1867,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0931abce030fe0243b4f9a8b2d3b966c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  messageObject: {fileID: 0}
+  delayTime: 2
 --- !u!4 &286056914
 Transform:
   m_ObjectHideFlags: 0
@@ -9542,7 +9544,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uAE30\uC5B5\uB825 \uAC8C\uC784 \\n\n\uB09C\uC774\uB3C4 \uC5B4\uB824\uC6C0"
+  m_text: "\uAE30\uC5B5\uB825 \uAC8C\uC784 \\n\n\uD14C\uC2A4\uD2B8 \uBAA8\uB4DC"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c61be827aa69d754aa81bea5281ff516, type: 2}
   m_sharedMaterial: {fileID: -4553947801052687371, guid: c61be827aa69d754aa81bea5281ff516,

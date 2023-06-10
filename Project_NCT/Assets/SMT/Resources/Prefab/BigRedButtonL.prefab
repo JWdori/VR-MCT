@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7665088042794736540}
   m_LocalRotation: {x: -0.7071026, y: -0, z: -0, w: 0.7071111}
-  m_LocalPosition: {x: 4.656613e-10, y: -0.0007, z: 0.0371}
+  m_LocalPosition: {x: 0, y: -0.0007, z: 0.0371}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -769,6 +769,9 @@ GameObject:
   - component: {fileID: 7665088043774484532}
   - component: {fileID: 7665088043774484535}
   - component: {fileID: 7665088043774484534}
+  - component: {fileID: 5456094334719935174}
+  - component: {fileID: 7448309031822204738}
+  - component: {fileID: 8978033759877503404}
   m_Layer: 0
   m_Name: Button
   m_TagString: Untagged
@@ -784,7 +787,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7665088043774484533}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0.0069, y: 0.0805, z: -0.0205}
+  m_LocalPosition: {x: 0.008, y: 0.0805, z: -0.0205}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -945,6 +948,48 @@ MonoBehaviour:
   _whenSelectingInteractorViewRemoved:
     m_PersistentCalls:
       m_Calls: []
+--- !u!65 &5456094334719935174
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7665088043774484533}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.1, y: 0.1, z: 0.06}
+  m_Center: {x: 0, y: 0, z: -0.07}
+--- !u!54 &7448309031822204738
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7665088043774484533}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
+--- !u!114 &8978033759877503404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7665088043774484533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fa9055d8351f224687839ef7ffef313, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isbuttonPressed: 0
 --- !u!1 &7665088043839375542
 GameObject:
   m_ObjectHideFlags: 0
