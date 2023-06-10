@@ -253,8 +253,7 @@ GameObject:
   - component: {fileID: 7759856146077296348}
   - component: {fileID: 6722376874963017852}
   - component: {fileID: 4739899358177851640}
-  - component: {fileID: 6510474007540903174}
-  - component: {fileID: 7884016904587978633}
+  - component: {fileID: 7022341719048747760}
   m_Layer: 0
   m_Name: Pad_Hard
   m_TagString: Untagged
@@ -479,7 +478,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
---- !u!114 &6510474007540903174
+--- !u!114 &7022341719048747760
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -489,18 +488,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0cbe00c676a54e242b9b6a19cf5e3f16, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &7884016904587978633
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 725852190913782599}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae110dff88f6f0549b507e4f2a6b4cd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &876233262641207688
@@ -659,8 +646,8 @@ MonoBehaviour:
   _whenSelect:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6510474007540903174}
-        m_TargetAssemblyTypeName: PadCtrl_HARD_Left, Assembly-CSharp
+      - m_Target: {fileID: 7022341719048747760}
+        m_TargetAssemblyTypeName: PadCtrl_HARD, Assembly-CSharp
         m_MethodName: TouchPad
         m_Mode: 1
         m_Arguments:
@@ -671,7 +658,7 @@ MonoBehaviour:
           m_StringArgument: print
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 7884016904587978633}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PadCtrl_HARD_Right, Assembly-CSharp
         m_MethodName: TouchPad
         m_Mode: 1
@@ -2062,8 +2049,8 @@ MonoBehaviour:
   _whenSelect:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6510474007540903174}
-        m_TargetAssemblyTypeName: PadCtrl_HARD_Left, Assembly-CSharp
+      - m_Target: {fileID: 7022341719048747760}
+        m_TargetAssemblyTypeName: PadCtrl_HARD, Assembly-CSharp
         m_MethodName: TouchPad
         m_Mode: 1
         m_Arguments:
@@ -2074,7 +2061,7 @@ MonoBehaviour:
           m_StringArgument: print
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 7884016904587978633}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PadCtrl_HARD_Right, Assembly-CSharp
         m_MethodName: TouchPad
         m_Mode: 1
@@ -3809,8 +3796,8 @@ MonoBehaviour:
   _whenSelect:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6510474007540903174}
-        m_TargetAssemblyTypeName: PadCtrl_HARD_Left, Assembly-CSharp
+      - m_Target: {fileID: 7022341719048747760}
+        m_TargetAssemblyTypeName: PadCtrl_HARD, Assembly-CSharp
         m_MethodName: TouchPad
         m_Mode: 1
         m_Arguments:
@@ -3821,7 +3808,7 @@ MonoBehaviour:
           m_StringArgument: print
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 7884016904587978633}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PadCtrl_HARD_Right, Assembly-CSharp
         m_MethodName: TouchPad
         m_Mode: 1
@@ -4070,8 +4057,8 @@ MonoBehaviour:
   _whenSelect:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6510474007540903174}
-        m_TargetAssemblyTypeName: PadCtrl_HARD_Left, Assembly-CSharp
+      - m_Target: {fileID: 7022341719048747760}
+        m_TargetAssemblyTypeName: PadCtrl_HARD, Assembly-CSharp
         m_MethodName: TouchPad
         m_Mode: 1
         m_Arguments:
@@ -4082,7 +4069,7 @@ MonoBehaviour:
           m_StringArgument: print
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 7884016904587978633}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PadCtrl_HARD_Right, Assembly-CSharp
         m_MethodName: TouchPad
         m_Mode: 1
@@ -5064,8 +5051,8 @@ MonoBehaviour:
   _whenSelect:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6510474007540903174}
-        m_TargetAssemblyTypeName: PadCtrl_HARD_Left, Assembly-CSharp
+      - m_Target: {fileID: 7022341719048747760}
+        m_TargetAssemblyTypeName: PadCtrl_HARD, Assembly-CSharp
         m_MethodName: TouchPad
         m_Mode: 1
         m_Arguments:
@@ -5076,7 +5063,7 @@ MonoBehaviour:
           m_StringArgument: print
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 7884016904587978633}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PadCtrl_HARD_Right, Assembly-CSharp
         m_MethodName: TouchPad
         m_Mode: 1
@@ -5368,8 +5355,8 @@ MonoBehaviour:
   _whenSelect:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6510474007540903174}
-        m_TargetAssemblyTypeName: PadCtrl_HARD_Left, Assembly-CSharp
+      - m_Target: {fileID: 7022341719048747760}
+        m_TargetAssemblyTypeName: PadCtrl_HARD, Assembly-CSharp
         m_MethodName: TouchPad
         m_Mode: 1
         m_Arguments:
@@ -5380,7 +5367,7 @@ MonoBehaviour:
           m_StringArgument: print
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 7884016904587978633}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PadCtrl_HARD_Right, Assembly-CSharp
         m_MethodName: TouchPad
         m_Mode: 1
@@ -5996,7 +5983,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9081004958916402431}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
