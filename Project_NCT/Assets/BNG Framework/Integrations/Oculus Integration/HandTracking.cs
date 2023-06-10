@@ -50,9 +50,17 @@ namespace BNG {
         public float RightIndexPinchStrength;
         public Vector3 RightIndexPosition;
         public Vector3 LeftIndexPosition;
-       
 
- 
+        public float throwSpeedThreshold = 1.0f;
+        private bool wasRightHandThrowing = false;
+        private bool wasLeftHandThrowing = false;
+        private Grabbable lastRightHandGrabbable = null;
+        private Grabbable lastLeftHandGrabbable = null;
+        bool wasRightHandThrown = false;
+        bool wasLeftHandThrown = false;
+
+        private Vector3 previousRightHandPosition;
+        private Vector3 previousLeftHandPosition;
 
         void Awake() {
 
@@ -67,44 +75,94 @@ namespace BNG {
             rightSkele = RightHand.GetComponent<OVRSkeleton>();
         }
 
-        void Update() {
+        void Update()
+        {
 
             updateHandTracking();
-            if (IsHandTracking) {
+            if (IsHandTracking)
+            {
+
+                previousRightHandPosition = RightIndexPosition;
+                previousLeftHandPosition = LeftIndexPosition;
+
+                Vector3 rightHandSpeed = (RightIndexPosition - previousRightHandPosition) / Time.deltaTime;
+                Vector3 leftHandSpeed = (LeftIndexPosition - previousLeftHandPosition) / Time.deltaTime;
+
+
+
                 LeftHandConfidence = LeftHand.GetFingerConfidence(HandFinger.Index);
                 RightHandConfidence = RightHand.GetFingerConfidence(HandFinger.Index);
 
-                if(leftSkele != null && leftSkele.Bones != null) {
+                if (leftSkele != null && leftSkele.Bones != null)
+                {
                     leftIndexBone = leftSkele.Bones.FirstOrDefault(x => x.Id == OVRSkeleton.BoneId.Hand_IndexTip);
-                    if (leftIndexBone != null) {
+                    if (leftIndexBone != null)
+                    {
                         LeftIndexPosition = leftIndexBone.Transform.position;
                     }
                 }
-                
+
                 IsLeftIndexPinching = LeftHand.GetFingerIsPinching(HandFinger.Index) && LeftHandConfidence == TrackingConfidence.High;
                 LeftIndexPinchStrength = LeftHand.GetFingerPinchStrength(HandFinger.Index);
 
-                if(rightSkele && rightSkele.Bones != null) {
+                if (rightSkele && rightSkele.Bones != null)
+                {
                     rightIndexBone = rightSkele.Bones.FirstOrDefault(x => x.Id == OVRSkeleton.BoneId.Hand_IndexTip);
-                    if (rightIndexBone != null) {
+                    if (rightIndexBone != null)
+                    {
                         RightIndexPosition = rightIndexBone.Transform.position;
                     }
                 }
 
                 IsRightIndexPinching = RightHand.GetFingerIsPinching(HandFinger.Index) && RightHandConfidence == TrackingConfidence.High;
                 RightIndexPinchStrength = RightHand.GetFingerPinchStrength(HandFinger.Index);
-                
-                if (IsLeftIndexPinching)
-                {
-                    BhapticsLibrary.Play(BhapticsEvent.DART_LEFT);
-                }
-                else if (IsRightIndexPinching)
+
+                if (IsRightIndexPinching && RightGrabber.HeldGrabbable != null
+   && RightGrabber.HeldGrabbable.tag == "DART")
                 {
                     BhapticsLibrary.Play(BhapticsEvent.DART_RIGHT);
                 }
-            }
 
-            updateGrabbers();
+                // If pinching with the left hand and holding the specific object
+                if (IsLeftIndexPinching && LeftGrabber.HeldGrabbable != null
+                   && LeftGrabber.HeldGrabbable.tag == "DART")
+                {
+                    BhapticsLibrary.Play(BhapticsEvent.DART_LEFT);
+                }
+
+
+
+
+
+                // Right hand throwing condition
+                if (!IsRightIndexPinching && wasRightHandThrowing && RightGrabber.HeldGrabbable != null && RightGrabber.HeldGrabbable.CompareTag("DART"))
+                {
+                                                                                BhapticsLibrary.Play(BhapticsEvent.DART_SHOT_LEFT);
+                    wasRightHandThrowing = false;
+                }
+                else if (IsRightIndexPinching)
+                {
+                    wasRightHandThrowing = true;
+                }
+
+                // Left hand throwing condition
+                if (!IsLeftIndexPinching && wasLeftHandThrowing && LeftGrabber.HeldGrabbable != null && LeftGrabber.HeldGrabbable.CompareTag("DART"))
+                {
+                    BhapticsLibrary.Play(BhapticsEvent.DART_SHOT_RIGHT);
+                    wasLeftHandThrowing = false;
+                }
+                else if (IsLeftIndexPinching)
+                {
+                    wasLeftHandThrowing = true;
+                }
+
+
+            }
+        
+                //                                                            BhapticsLibrary.Play(BhapticsEvent.DART_SHOT_LEFT);
+                //BhapticsLibrary.Play(BhapticsEvent.DART_SHOT_RIGHT);
+            
+                updateGrabbers();
         }
 
         void updateHandTracking() {
@@ -130,10 +188,10 @@ namespace BNG {
                 LeftGrabber.gameObject.SetActive(IsHandTracking);
 
                 if (IsHandTracking) {
-                    //BhapticsLibrary.Play(BhapticsEvent.DART_LEFT);
                     LeftGrabber.transform.position = LeftIndexPosition;
                     LeftGrabber.ForceGrab = DoPinchToGrab && IsLeftIndexPinching;
                     LeftGrabber.ForceRelease = DoPinchToGrab && IsLeftIndexPinching == false;
+
                 }
             }
 
@@ -141,10 +199,10 @@ namespace BNG {
                 RightGrabber.gameObject.SetActive(IsHandTracking);
 
                 if (IsHandTracking) {
-                    //BhapticsLibrary.Play(BhapticsEvent.DART_RIGHT);
                     RightGrabber.transform.position = RightIndexPosition;
                     RightGrabber.ForceGrab = DoPinchToGrab && IsRightIndexPinching;
                     RightGrabber.ForceRelease = DoPinchToGrab && IsRightIndexPinching == false;
+
                 }
             }
         }
