@@ -274,7 +274,7 @@ public class GameManager_VR1 : MonoBehaviour
         //STATE.WAIT이랑 isTouch는 PadCtrl.cs에서 마우스 클릭 가능한 환경 설정
         //STATE.WAIT인 상태에서는 마우스 클릭 안 됨
         state1 = STATE.WAIT;
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.5f);
         isTouch1 = true;
         //arPads[step]은 step번째 눌러야 되는 Pad번호
         //padNum은 PadCtrl.cs에서 받아온 사용자가 누른 Pad번호
@@ -313,7 +313,7 @@ public class GameManager_VR1 : MonoBehaviour
         //STATE.WAIT이랑 isTouch는 PadCtrl.cs에서 마우스 클릭 가능한 환경 설정
         //STATE.WAIT인 상태에서는 마우스 클릭 안 됨
         state1 = STATE.WAIT;
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.5f);
         isTouch1 = true;
         //Debug.Log(step1);
 
@@ -439,7 +439,7 @@ public class GameManager_VR1 : MonoBehaviour
                     case '*':
                         //Pad 만들기
                         //Prefap으로 만들어진 Pad를 GameObject로 설정
-                        GameObject pad = Instantiate(Resources.Load("Prefab/Pad_VR")) as GameObject;
+                        GameObject pad = Instantiate(Resources.Load("Prefab/Pad_Normal")) as GameObject;
 
                         //Pad 좌표설정
                         pad.transform.position = new Vector3(x, sy, 1.2f);
