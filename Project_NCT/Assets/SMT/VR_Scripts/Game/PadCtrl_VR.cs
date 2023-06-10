@@ -9,28 +9,28 @@ public class PadCtrl_VR : MonoBehaviour
     bool isRight = false;
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("left_hand"))
-        {
-            Debug.Log("Left Hand");
-            isLeft = true;
-        }
-        else if (collision.gameObject.CompareTag("right_hand"))
+        if (collision.gameObject.CompareTag("right_hand"))
         {
             Debug.Log("Right Hand");
             isRight = true;
         }
+        else if (collision.gameObject.CompareTag("left_hand"))
+        {
+            Debug.Log("Left Hand");
+            isLeft = true;
+        }
     }
     private void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.CompareTag("left_hand"))
-        {
-            Debug.Log("Left Hand");
-            isLeft = false;
-        }
-        else if (collision.gameObject.CompareTag("right_hand"))
+        if (collision.gameObject.CompareTag("right_hand"))
         {
             Debug.Log("Right Hand");
             isRight = false;
+        }
+        else if (collision.gameObject.CompareTag("left_hand"))
+        {
+            Debug.Log("Left Hand");
+            isLeft = false;
         }
     }
 

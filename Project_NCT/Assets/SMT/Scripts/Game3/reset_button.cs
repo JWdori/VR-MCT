@@ -69,10 +69,12 @@ public class reset_button : MonoBehaviour
         {
             if (isLeft)
             {
+                Debug.Log("Left");
                 BhapticsLibrary.Play(BhapticsEvent.CORRECT_LEFT);
             }
             else if (isRight)
             {
+                Debug.Log("Right");
                 BhapticsLibrary.Play(BhapticsEvent.CORRECT_RIGHT);
             }
             for (int i = 0; i < targetRigidbodies.Length; i++)

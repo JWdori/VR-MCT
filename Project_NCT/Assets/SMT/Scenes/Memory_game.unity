@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.5514421, g: 0.79881203, b: 0.9702196, a: 1}
+  m_IndirectSpecularColor: {r: 0.5499907, g: 0.7981459, b: 0.9702302, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -12101,7 +12101,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1061445442}
   m_LocalRotation: {x: 0.09460188, y: 0.70075, z: -0.09460188, w: 0.70075}
-  m_LocalPosition: {x: 3, y: 3.022, z: 0.545}
+  m_LocalPosition: {x: 2.873, y: 3.057, z: 0.545}
   m_LocalScale: {x: 4, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -20320,9 +20320,6 @@ MonoBehaviour:
   pushText: {fileID: 306635870}
   levelText: {fileID: 1076339051}
   loading: {fileID: 999618074}
-  panel: {fileID: 1780592743}
-  startbutton: {fileID: 1866441435}
-  tuto: {fileID: 586818478}
 --- !u!4 &1605164221
 Transform:
   m_ObjectHideFlags: 0
@@ -20371,9 +20368,6 @@ MonoBehaviour:
   pushText: {fileID: 306635870}
   levelText: {fileID: 1076339051}
   loading: {fileID: 999618074}
-  panel: {fileID: 1865620641}
-  startbutton: {fileID: 1866441435}
-  tuto: {fileID: 586818478}
 --- !u!114 &1605164224
 MonoBehaviour:
   m_ObjectHideFlags: 0

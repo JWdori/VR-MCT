@@ -137,7 +137,8 @@ namespace BNG {
                 // Right hand throwing condition
                 if (!IsRightIndexPinching && wasRightHandThrowing && RightGrabber.HeldGrabbable != null && RightGrabber.HeldGrabbable.CompareTag("DART"))
                 {
-                                                                                BhapticsLibrary.Play(BhapticsEvent.DART_SHOT_LEFT);
+                    BhapticsLibrary.Play(BhapticsEvent.DART_SHOT_RIGHT);
+
                     wasRightHandThrowing = false;
                 }
                 else if (IsRightIndexPinching)
@@ -148,7 +149,7 @@ namespace BNG {
                 // Left hand throwing condition
                 if (!IsLeftIndexPinching && wasLeftHandThrowing && LeftGrabber.HeldGrabbable != null && LeftGrabber.HeldGrabbable.CompareTag("DART"))
                 {
-                    BhapticsLibrary.Play(BhapticsEvent.DART_SHOT_RIGHT);
+                    BhapticsLibrary.Play(BhapticsEvent.DART_SHOT_LEFT);
                     wasLeftHandThrowing = false;
                 }
                 else if (IsLeftIndexPinching)
