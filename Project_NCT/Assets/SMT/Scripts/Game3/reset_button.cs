@@ -8,15 +8,33 @@ public class reset_button : MonoBehaviour
     public GameObject[] targetObjects;
     private Rigidbody[] targetRigidbodies;
 
-    private void OnCollisionStay(Collision collision)
+    bool isLeft = false;
+    bool isRight = false;
+
+    private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("left_hand"))
         {
-            BhapticsLibrary.Play(BhapticsEvent.CORRECT_RIGHT);
+            //BhapticsLibrary.Play(BhapticsEvent.CORRECT_LEFT);
+            isLeft = true;
         }
         else if (collision.gameObject.CompareTag("right_hand"))
         {
-            BhapticsLibrary.Play(BhapticsEvent.CORRECT_LEFT);
+            //BhapticsLibrary.Play(BhapticsEvent.CORRECT_RIGHT);
+            isRight = true;
+        }
+    }
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("left_hand"))
+        {
+            //Debug.Log("Left Hand");
+            isLeft = false;
+        }
+        else if (collision.gameObject.CompareTag("right_hand"))
+        {
+            //Debug.Log("Right Hand");
+            isRight = false;
         }
     }
 
@@ -46,9 +64,17 @@ public class reset_button : MonoBehaviour
     }
 
     public void MoveObjectsToPosition()
-    {
+    {       
         if (targetObjects != null && targetRigidbodies != null)
         {
+            if (isLeft)
+            {
+                BhapticsLibrary.Play(BhapticsEvent.CORRECT_LEFT);
+            }
+            else if (isRight)
+            {
+                BhapticsLibrary.Play(BhapticsEvent.CORRECT_RIGHT);
+            }
             for (int i = 0; i < targetRigidbodies.Length; i++)
             {
                 Rigidbody targetRigidbody = targetRigidbodies[i];
