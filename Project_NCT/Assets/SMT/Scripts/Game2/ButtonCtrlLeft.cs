@@ -7,19 +7,17 @@ public class ButtonCtrlLeft : MonoBehaviour
 {
     public int isbuttonPressed = 0;
 
-    bool isLeft = false;
-    bool isRight = false;
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionStay(Collision collision)
     {
         if (collision.gameObject.CompareTag("left_hand"))
         {
             Debug.Log("Left Hand");
-            isLeft = true;
+            Game2Manager.isLeft = true;
         }
         else if (collision.gameObject.CompareTag("right_hand"))
         {
             Debug.Log("Right Hand");
-            isRight = true;
+            Game2Manager.isRight = true;
         }
     }
     private void OnCollisionExit(Collision collision)
@@ -27,12 +25,12 @@ public class ButtonCtrlLeft : MonoBehaviour
         if (collision.gameObject.CompareTag("left_hand"))
         {
             Debug.Log("Left Hand");
-            isLeft = false;
+            Game2Manager.isLeft = false;
         }
         else if (collision.gameObject.CompareTag("right_hand"))
         {
             Debug.Log("Right Hand");
-            isRight = false;
+            Game2Manager.isRight = false;
         }
     }
 
@@ -41,6 +39,9 @@ public class ButtonCtrlLeft : MonoBehaviour
         Debug.Log("Left Button Touch");
         // GameManager2.WhichButtonTouch = "L";
         // GameManager2.state = GameManager2.STATE.HIT;
+
+        //BhapticsLibrary.Play(BhapticsEvent.CORRECT_RIGHT);
+        //BhapticsLibrary.Play(BhapticsEvent.CORRECT_LEFT);
         Game2Manager.WhichButtonTouch = "L";
         Game2Manager.state = Game2Manager.STATE.HIT;
     }

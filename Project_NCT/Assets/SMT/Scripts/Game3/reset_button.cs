@@ -8,6 +8,18 @@ public class reset_button : MonoBehaviour
     public GameObject[] targetObjects;
     private Rigidbody[] targetRigidbodies;
 
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("left_hand"))
+        {
+            BhapticsLibrary.Play(BhapticsEvent.CORRECT_RIGHT);
+        }
+        else if (collision.gameObject.CompareTag("right_hand"))
+        {
+            BhapticsLibrary.Play(BhapticsEvent.CORRECT_LEFT);
+        }
+    }
+
     // 아래의 0부터 9까지의 위치는 편의상 0,0,0으로 초기화하였으며, 유니티 인스펙터에서 각각 원하는 위치로 수정하시면 됩니다.
     public Vector3[] targetPositions = new Vector3[10]
     {
