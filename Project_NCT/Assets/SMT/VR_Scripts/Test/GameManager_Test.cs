@@ -406,7 +406,7 @@ public class GameManager_Test : MonoBehaviour
             char[] ch = t.Trim().ToCharArray();
 
             //Pad의 x축 좌표
-            float x = 1f;
+            float x = 1.3f;
 
             //1행의 문자열 길이만큼 반복
             //배열의 ch의 한문자를 읽고 변수 c에 할당한다
@@ -480,7 +480,7 @@ public class GameManager_Test : MonoBehaviour
         }
         else if (set == 1)
         {
-            y = 4f;
+            y = 4.5f;
         }
         //float y = 4.5f;
         //float y = 4f;

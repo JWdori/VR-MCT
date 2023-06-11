@@ -23,6 +23,7 @@ public class MovePage : MonoBehaviour
     public GameObject button_n;
     public GameObject button_p;
     public GameObject exit;
+    public GameObject menu;
 
     public void NextPage()
     {
@@ -43,6 +44,7 @@ public class MovePage : MonoBehaviour
         button_n.SetActive(false);
         button_p.SetActive(false);
         exit.SetActive(false);
+        menu.SetActive(true);
 
         //난이도 선택 창 비활성화
         Disappear_select.isShow = true;

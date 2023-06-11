@@ -9,16 +9,17 @@ public class PadCtrl_HARD : MonoBehaviour
     bool isRight = false;
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("left_hand"))
-        {
-            Debug.Log("Left Hand");
-            isLeft = true;
-        }
-        else if (collision.gameObject.CompareTag("right_hand"))
+        if (collision.gameObject.CompareTag("right_hand"))
         {
             Debug.Log("Right Hand");
             isRight = true;
         }
+        else if (collision.gameObject.CompareTag("left_hand"))
+        {
+            Debug.Log("Left Hand");
+            isLeft = true;
+        }
+        
     }
     private void OnCollisionExit(Collision collision)
     {
@@ -86,12 +87,15 @@ public class PadCtrl_HARD : MonoBehaviour
             //위에서 설정한 padNum을 GameManager에 있는 padNum에도 설정
             GameManager_VR2.padNum2 = padNum;
             Debug.Log(tag);
-             
-             
+
+
             //어려움 난이도
 
 
                 //맞춘 경우
+
+         
+
             if (isRight & GameManager_VR2.state2 == GameManager_VR2.STATE.IDLE & GameManager_VR2.isTouch2 & GameManager_VR2.arPads[padNum - 1] == 2)
             {
 
@@ -103,27 +107,6 @@ public class PadCtrl_HARD : MonoBehaviour
 
                 //맞춘 animation 실행, 초록색
                 anim.Play("aniRight_VR", -1, 0.5f);
-                GameManager_VR2.isTouch2 = false;
-                GameManager_VR2.arPads[padNum - 1] = 0;
-
-
-                //state를 HIT로 설정
-                GameManager_VR2.state2 = GameManager_VR2.STATE.HIT;
-            }
-
-            //맞춘 경우
-            else if (isLeft & GameManager_VR2.state2 == GameManager_VR2.STATE.IDLE & GameManager_VR2.isTouch2 & GameManager_VR2.arPads[padNum - 1] == 1)
-            {
-
-
-                //Debug.Log("RC" + Collision_HandR.isRight + GameManager_VR2.arPadsR[padNum - 1] + (padNum - 1));
-                isLeft = false;
-                isRight = false;
-                CorrectAudio.play();
-                BhapticsLibrary.Play(BhapticsEvent.CORRECT_LEFT);
-
-                //맞춘 animation 실행, 초록색
-                anim.Play("aniLeft_VR", -1, 0.5f);
                 GameManager_VR2.isTouch2 = false;
                 GameManager_VR2.arPads[padNum - 1] = 0;
 
@@ -151,8 +134,25 @@ public class PadCtrl_HARD : MonoBehaviour
                 GameManager_VR2.state2 = GameManager_VR2.STATE.WRONG;
             }
 
+            else if (isLeft & GameManager_VR2.state2 == GameManager_VR2.STATE.IDLE & GameManager_VR2.isTouch2 & GameManager_VR2.arPads[padNum - 1] == 1)
+            {
 
 
+                //Debug.Log("RC" + Collision_HandR.isRight + GameManager_VR2.arPadsR[padNum - 1] + (padNum - 1));
+                isLeft = false;
+                isRight = false;
+                CorrectAudio.play();
+                BhapticsLibrary.Play(BhapticsEvent.CORRECT_LEFT);
+
+                //맞춘 animation 실행, 초록색
+                anim.Play("aniLeft_VR", -1, 0.5f);
+                GameManager_VR2.isTouch2 = false;
+                GameManager_VR2.arPads[padNum - 1] = 0;
+
+
+                //state를 HIT로 설정
+                GameManager_VR2.state2 = GameManager_VR2.STATE.HIT;
+            }
 
             //틀린 경우
             else if (isLeft & GameManager_VR2.state2 == GameManager_VR2.STATE.IDLE & GameManager_VR2.isTouch2 & GameManager_VR2.arPads[padNum - 1] != 1)
@@ -171,7 +171,10 @@ public class PadCtrl_HARD : MonoBehaviour
 
                 //state를 WRONG으로 설정
                 GameManager_VR2.state2 = GameManager_VR2.STATE.WRONG;
-            }            
+            }
+
+
+
         }
     }
 }
