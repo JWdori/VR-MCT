@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// Gamestart Scene¿¡¼­ ¸Þ¸ð¸® °ÔÀÓÀ¸·Î ³Ñ¾î¿À´Â ÄÚµå
+// Gamestart Sceneï¿½ï¿½ï¿½ï¿½ ï¿½Þ¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½
 public class Gamestart_move : MonoBehaviour
 {
-    public GameObject messageObject; // "ÀÌµ¿ÇÕ´Ï´Ù" ¸Þ½ÃÁö¸¦ ´ã°í ÀÖ´Â °ÔÀÓ ¿ÀºêÁ§Æ®
-    public float delayTime = 2f; // Áö¿¬ ½Ã°£
+    public GameObject messageObject; // "ï¿½Ìµï¿½ï¿½Õ´Ï´ï¿½" ï¿½Þ½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
+    public float delayTime = 2f; // ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½
 
     public void memory()
     {
@@ -16,11 +16,11 @@ public class Gamestart_move : MonoBehaviour
 
     IEnumerator Move()
     {
-        messageObject.SetActive(true); // "ÀÌµ¿ÇÕ´Ï´Ù" ¸Þ½ÃÁö °ÔÀÓ ¿ÀºêÁ§Æ®¸¦ È°¼ºÈ­ÇÕ´Ï´Ù.
+        messageObject.SetActive(true); // "ï¿½Ìµï¿½ï¿½Õ´Ï´ï¿½" ï¿½Þ½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ È°ï¿½ï¿½È­ï¿½Õ´Ï´ï¿½.
 
         yield return new WaitForSeconds(delayTime);
 
-        // SceneÀ» ÀÌµ¿ÇÏ´Â ÄÚµå, "Memory_game" SceneÀ¸·Î ³Ñ¾î°©´Ï´Ù.
+        // Sceneï¿½ï¿½ ï¿½Ìµï¿½ï¿½Ï´ï¿½ ï¿½Úµï¿½, "Memory_game" Sceneï¿½ï¿½ï¿½ï¿½ ï¿½Ñ¾î°©ï¿½Ï´ï¿½.
         SceneManager.LoadScene("Gamestart");
     }
 }
