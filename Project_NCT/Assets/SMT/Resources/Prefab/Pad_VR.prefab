@@ -250,10 +250,10 @@ GameObject:
   - component: {fileID: 5639073702832964083}
   - component: {fileID: 5574701072055845083}
   - component: {fileID: 1612778340550882045}
-  - component: {fileID: 4469969096873638967}
   - component: {fileID: 7759856146077296348}
   - component: {fileID: 6722376874963017852}
   - component: {fileID: 4739899358177851640}
+  - component: {fileID: 5129618571306375937}
   m_Layer: 0
   m_Name: Pad_VR
   m_TagString: Untagged
@@ -353,18 +353,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &4469969096873638967
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 725852190913782599}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ef346e2c1f05f14dafa026f9d878f05, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!82 &7759856146077296348
 AudioSource:
   m_ObjectHideFlags: 0
@@ -490,6 +478,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!114 &5129618571306375937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 725852190913782599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ef346e2c1f05f14dafa026f9d878f05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &876233262641207688
 GameObject:
   m_ObjectHideFlags: 0
@@ -646,7 +646,7 @@ MonoBehaviour:
   _whenSelect:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4469969096873638967}
+      - m_Target: {fileID: 5129618571306375937}
         m_TargetAssemblyTypeName: PadCtrl_VR, Assembly-CSharp
         m_MethodName: TouchPad
         m_Mode: 1
@@ -2037,7 +2037,7 @@ MonoBehaviour:
   _whenSelect:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4469969096873638967}
+      - m_Target: {fileID: 5129618571306375937}
         m_TargetAssemblyTypeName: PadCtrl_VR, Assembly-CSharp
         m_MethodName: TouchPad
         m_Mode: 1
@@ -3772,7 +3772,7 @@ MonoBehaviour:
   _whenSelect:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4469969096873638967}
+      - m_Target: {fileID: 5129618571306375937}
         m_TargetAssemblyTypeName: PadCtrl_VR, Assembly-CSharp
         m_MethodName: TouchPad
         m_Mode: 1
@@ -4021,7 +4021,7 @@ MonoBehaviour:
   _whenSelect:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4469969096873638967}
+      - m_Target: {fileID: 5129618571306375937}
         m_TargetAssemblyTypeName: PadCtrl_VR, Assembly-CSharp
         m_MethodName: TouchPad
         m_Mode: 1
@@ -5003,7 +5003,7 @@ MonoBehaviour:
   _whenSelect:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4469969096873638967}
+      - m_Target: {fileID: 5129618571306375937}
         m_TargetAssemblyTypeName: PadCtrl_VR, Assembly-CSharp
         m_MethodName: TouchPad
         m_Mode: 1
@@ -5295,7 +5295,7 @@ MonoBehaviour:
   _whenSelect:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4469969096873638967}
+      - m_Target: {fileID: 5129618571306375937}
         m_TargetAssemblyTypeName: PadCtrl_VR, Assembly-CSharp
         m_MethodName: TouchPad
         m_Mode: 1

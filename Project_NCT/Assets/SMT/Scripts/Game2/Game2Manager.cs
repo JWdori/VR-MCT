@@ -32,6 +32,10 @@ public class Game2Manager : MonoBehaviour
     static public int CorrectAnswerCnt = 0;
     static public int CurrentDifficulty;
 
+    static public bool isLeft = false;
+    static public bool isRight = false;
+    bool isStage = false;
+
     static public float totalTime;
 
     ///Game///
@@ -257,7 +261,7 @@ public class Game2Manager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Update");
+        //Debug.Log("Update");
 
         totalTime = (int)(Time.time - startTime);
 
@@ -271,6 +275,12 @@ public class Game2Manager : MonoBehaviour
             if (Is_check5sec_True&& (Time.time - check5sec) < 5)
             {
                 stageTimeText.text = "스테이지 시간 : " + (int)(Time.time - check5sec);
+                //if (isStage)
+                //{
+                //    BhapticsLibrary.Play(BhapticsEvent.TIME);
+                //    isStage = false;
+                //}
+                
             }
             else
             {
@@ -343,10 +353,12 @@ public class Game2Manager : MonoBehaviour
             case STATE.HIT:
                 Is_check5sec_True = false;
                 check5sec = 0;
+                isStage = true;
                 StartCoroutine(IsItRightAnswer(CurrentDifficulty));
                 break;
             case STATE.TIMEOUT5:
                 Is_check5sec_True = false;
+                isStage = true;
                 StartCoroutine(ShowOver());
                 break;
             case STATE.CLEAR:
@@ -422,6 +434,8 @@ public class Game2Manager : MonoBehaviour
         state = STATE.WAIT;
         Is_showstageover = true;
         Debug.Log("HapticHere - StageTimeOver - 5sec");
+        BhapticsLibrary.Play(BhapticsEvent.WRONG_LEFT);
+        BhapticsLibrary.Play(BhapticsEvent.WRONG_RIGHT);
         WrongAnswerCnt = WrongAnswerCnt+1;
 
 
@@ -472,6 +486,15 @@ public class Game2Manager : MonoBehaviour
         if (TrueButtonLocation == WhichButtonTouch){
             CorrectAnswer();
             Debug.Log("HapticHere - RightAnswer");
+            if (isRight)
+            {
+                BhapticsLibrary.Play(BhapticsEvent.CORRECT_RIGHT);
+            }
+            else if (isLeft)
+            {
+                BhapticsLibrary.Play(BhapticsEvent.CORRECT_LEFT);
+            }
+            
             CorrectAnswerCnt = CorrectAnswerCnt +1;
             yield return new WaitForSeconds(1f);
             wrongCorrectAnswerDestroy();
@@ -483,6 +506,14 @@ public class Game2Manager : MonoBehaviour
             WrongAnswer();
             Debug.Log("HapticHere - WrongAnswer");
             Debug.Log("IsItRightAnswer - ELSE");
+            if (isRight)
+            {
+                BhapticsLibrary.Play(BhapticsEvent.WRONG_RIGHT);
+            }
+            else if (isLeft)
+            {
+                BhapticsLibrary.Play(BhapticsEvent.WRONG_LEFT);
+            }
             WrongAnswerCnt = WrongAnswerCnt +1;
             yield return new WaitForSeconds(1f);
             wrongCorrectAnswerDestroy();
@@ -620,6 +651,7 @@ public class Game2Manager : MonoBehaviour
         ////////////////////////////////
         check5sec = (int)Time.time;
         Is_check5sec_True = true;
+        isStage = true;
 
 
         True_Button = MakeCategoryPad(I1,I2, difficulty);

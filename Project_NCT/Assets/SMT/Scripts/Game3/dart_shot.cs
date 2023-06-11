@@ -12,31 +12,37 @@ public class dart_shot : MonoBehaviour
     }
 
 
-    private void OnTriggerStay(Collider collision)
+    public void hi()
     {
-        if (collision.tag == "right_hand" & Grab_bhaptics.bhaptics_grab)
-        {
-            Debug.Log("Right Hand");
-            BhapticsLibrary.Play(BhapticsEvent.DART_RIGHT);
-        }
-        else if (collision.tag == "left_hand" & Grab_bhaptics.bhaptics_grab)
-        {
-            Debug.Log("Left Hand");
-            BhapticsLibrary.Play(BhapticsEvent.DART_LEFT);
-        }
+          BhapticsLibrary.Play(BhapticsEvent.DART_RIGHT);
+
     }
 
-    private void OnTriggerExit(Collider collision)
-    {
-        if (collision.tag == "right_hand" & Grab_bhaptics.bhaptics_throw)
-        {
-            Debug.Log("Right Hand Throw");
-            BhapticsLibrary.Play(BhapticsEvent.DART_SHOT_RIGHT);
-        }
-        else if (collision.tag == "left_hand" & Grab_bhaptics.bhaptics_throw)
-        {
-            Debug.Log("Left Hand Throw");
-            BhapticsLibrary.Play(BhapticsEvent.DART_SHOT_LEFT);
-        }
-    }
+    //private void OnTriggerStay(Collider collision)
+    //{
+    //    if (collision.tag == "right_hand" & Grab_bhaptics.bhaptics_grab)
+    //    {
+    //        Debug.Log("Right Hand");
+    //        BhapticsLibrary.Play(BhapticsEvent.DART_RIGHT);
+    //    }
+    //    else if (collision.tag == "left_hand" & Grab_bhaptics.bhaptics_grab)
+    //    {
+    //        Debug.Log("Left Hand");
+    //        BhapticsLibrary.Play(BhapticsEvent.DART_LEFT);
+    //    }
+    //}
+
+    //private void OnTriggerExit(Collider collision)
+    //{
+    //    if (collision.tag == "right_hand")
+    //    {
+    //        Debug.Log("Right Hand Throw");
+    //        BhapticsLibrary.Play(BhapticsEvent.DART_SHOT_RIGHT);
+    //    }
+    //    else if (collision.tag == "left_hand")
+    //    {
+    //        Debug.Log("Left Hand Throw");
+    //        BhapticsLibrary.Play(BhapticsEvent.DART_SHOT_LEFT);
+    //    }
+    //}
 }

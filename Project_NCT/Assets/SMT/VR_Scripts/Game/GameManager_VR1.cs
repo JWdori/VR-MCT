@@ -12,9 +12,9 @@ public class GameManager_VR1 : MonoBehaviour
     public TextMeshPro totalTimeText, stageTimeText, missText, hitText, stageNumText, pushText, levelText;
 
     public GameObject loading;
-    public GameObject panel;
-    public GameObject startbutton;
-    public GameObject tuto;
+    //public GameObject panel;
+    //public GameObject startbutton;
+    //public GameObject tuto;
 
     //터치 여부
     static public bool isTouch1 = true;
@@ -220,12 +220,12 @@ public class GameManager_VR1 : MonoBehaviour
         Disappear_select.isHide = true;
 
         loading.SetActive(true);
-        tuto.SetActive(true);
-        yield return new WaitForSeconds(0.5f);
-        panel.SetActive(true);
-        startbutton.SetActive(true);
-        yield return new WaitForSeconds(0.1f);
-        state1 = STATE.IDLE;
+        //tuto.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        //panel.SetActive(true);
+        //startbutton.SetActive(true);
+        loading.SetActive(false);
+        state1 = STATE.START;
     }
 
     //결과를 보여주는 코드
@@ -274,7 +274,7 @@ public class GameManager_VR1 : MonoBehaviour
         //STATE.WAIT이랑 isTouch는 PadCtrl.cs에서 마우스 클릭 가능한 환경 설정
         //STATE.WAIT인 상태에서는 마우스 클릭 안 됨
         state1 = STATE.WAIT;
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.5f);
         isTouch1 = true;
         //arPads[step]은 step번째 눌러야 되는 Pad번호
         //padNum은 PadCtrl.cs에서 받아온 사용자가 누른 Pad번호
@@ -313,7 +313,7 @@ public class GameManager_VR1 : MonoBehaviour
         //STATE.WAIT이랑 isTouch는 PadCtrl.cs에서 마우스 클릭 가능한 환경 설정
         //STATE.WAIT인 상태에서는 마우스 클릭 안 됨
         state1 = STATE.WAIT;
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.5f);
         isTouch1 = true;
         //Debug.Log(step1);
 
@@ -427,7 +427,7 @@ public class GameManager_VR1 : MonoBehaviour
             char[] ch = t.Trim().ToCharArray();
 
             //Pad의 x축 좌표
-            float x = 1.5f;
+            float x = 1.3f;
 
             //1행의 문자열 길이만큼 반복
             //배열의 ch의 한문자를 읽고 변수 c에 할당한다
@@ -439,7 +439,7 @@ public class GameManager_VR1 : MonoBehaviour
                     case '*':
                         //Pad 만들기
                         //Prefap으로 만들어진 Pad를 GameObject로 설정
-                        GameObject pad = Instantiate(Resources.Load("Prefab/Pad_VR")) as GameObject;
+                        GameObject pad = Instantiate(Resources.Load("Prefab/Pad_Normal")) as GameObject;
 
                         //Pad 좌표설정
                         pad.transform.position = new Vector3(x, sy, 1.2f);

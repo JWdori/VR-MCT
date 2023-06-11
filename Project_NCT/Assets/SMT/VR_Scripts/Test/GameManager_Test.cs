@@ -251,7 +251,7 @@ public class GameManager_Test : MonoBehaviour
         //STATE.WAIT이랑 isTouch는 PadCtrl.cs에서 마우스 클릭 가능한 환경 설정
         //STATE.WAIT인 상태에서는 마우스 클릭 안 됨
         state = STATE.WAIT;
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.5f);
         isTouch = true;
         //arPads[step]은 step번째 눌러야 되는 Pad번호
         //padNum은 PadCtrl.cs에서 받아온 사용자가 누른 Pad번호
@@ -290,7 +290,7 @@ public class GameManager_Test : MonoBehaviour
         //STATE.WAIT이랑 isTouch는 PadCtrl.cs에서 마우스 클릭 가능한 환경 설정
         //STATE.WAIT인 상태에서는 마우스 클릭 안 됨
         state = STATE.WAIT;
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.5f);
         isTouch = true;
         //Debug.Log(step1);
 
@@ -406,7 +406,7 @@ public class GameManager_Test : MonoBehaviour
             char[] ch = t.Trim().ToCharArray();
 
             //Pad의 x축 좌표
-            float x = 1f;
+            float x = 1.3f;
 
             //1행의 문자열 길이만큼 반복
             //배열의 ch의 한문자를 읽고 변수 c에 할당한다
@@ -480,7 +480,7 @@ public class GameManager_Test : MonoBehaviour
         }
         else if (set == 1)
         {
-            y = 4f;
+            y = 4.5f;
         }
         //float y = 4.5f;
         //float y = 4f;

@@ -18,6 +18,7 @@ public class Disappear_select: MonoBehaviour
 
     void Update()
     {
+        
         if (isShow)
         {
             //활성화 코드
@@ -30,5 +31,6 @@ public class Disappear_select: MonoBehaviour
             menu.SetActive(false);
             isHide = false;
         }
+
     }
 }
