@@ -98,9 +98,9 @@ public class Game2Manager_TestMode : MonoBehaviour
 
     public bool buttonsSpawned = false;
 
-    Vector3 ButtonPosition_Left = new Vector3(19.7f,1.81f,22.0f);
-    Vector3 ButtonPosition_Middle = new Vector3(20.14f,1.81f,21.67f);
-    Vector3 ButtonPosition_Right = new Vector3(20.6f,1.81f,21.35f);
+    Vector3 ButtonPosition_Left = new Vector3(20.02f, 1.81f, 22.231f);
+    Vector3 ButtonPosition_Middle = new Vector3(20.382f, 1.81f, 21.951f);
+    Vector3 ButtonPosition_Right = new Vector3(20.73f, 1.81f, 21.674f);
 
     ///Spawner///
     //public GameObject[] Objects = new GameObject[0];
@@ -156,8 +156,7 @@ public class Game2Manager_TestMode : MonoBehaviour
     void Start()
     {
         Debug.Log("Start");
-        Screen.orientation = ScreenOrientation.LandscapeRight;
-        Screen.sleepTimeout = SleepTimeout.NeverSleep;
+
         
         ///Game///
         startTime = stageTime = Time.time;
@@ -272,7 +271,7 @@ public class Game2Manager_TestMode : MonoBehaviour
 
     IEnumerator testmodeExplain()
     {
-        Vector3 HardModeExplain_Pos =  new Vector3(20.432f,2.792f,21.928f);
+        Vector3 HardModeExplain_Pos =  new Vector3(20.569f, 2.792f, 22.233f);
         GameObject HModeExp = Instantiate(HardModeExplainText[1], HardModeExplain_Pos, Quaternion.Euler(0,36.149f,0));
         HModeExp.tag =  "HardModeExplain";
 
@@ -282,7 +281,7 @@ public class Game2Manager_TestMode : MonoBehaviour
     }
     IEnumerator testmodeHapticExplain()
     {
-        Vector3 TestExplain_Pos =  new Vector3(20.432f,2.792f,21.928f);
+        Vector3 TestExplain_Pos =  new Vector3(20.569f, 2.792f, 22.233f);
 
         //0~1
         GameObject TModeExp0 = Instantiate(Testmode10secExplain[0], TestExplain_Pos, Quaternion.Euler(0,36.149f,-180f));
@@ -466,7 +465,7 @@ public class Game2Manager_TestMode : MonoBehaviour
                 scorepannel = false;
                 Debug.Log("Finish");
                 //SceneManager.LoadScene("Result");
-                StartCoroutine(ShowResult());
+                StartCoroutine(ShowResult()); 
                 break;
         }
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -544,7 +543,7 @@ public class Game2Manager_TestMode : MonoBehaviour
     }
     public void showstageover()
     {
-        Vector3 overtextpos1 =  new Vector3(20.197f,2.253f,21.563f);
+        Vector3 overtextpos1 =  new Vector3(20.596f, 2.253f, 22.233f);
         GameObject StageOverObj = Instantiate(StageOverAnnouncement[0], overtextpos1, Quaternion.Euler(0,36.149f,0));
         StageOverObj.tag =  "OverTextObj";
     }
@@ -566,6 +565,8 @@ public class Game2Manager_TestMode : MonoBehaviour
         state = STATE.WAIT;
         Result_Game2_Test.isResult = true;
         state = STATE.SELECT;
+        stageNum = 1;
+        LIFE = 2;
         yield return new WaitForSeconds(1);
     }
 ///Game///
@@ -627,7 +628,7 @@ public class Game2Manager_TestMode : MonoBehaviour
 /// 맞음 글자 나타나게
     public void CorrectAnswer()
     {
-        Vector3 AnswerPos =  new Vector3(20.432f,2.342f,21.928f);
+        Vector3 AnswerPos =  new Vector3(20.569f, 2.342f, 22.233f);
         GameObject Answer = Instantiate(AnswerObj[0], AnswerPos, Quaternion.Euler(0,36.149f,0));
         Answer.tag =  "Answer";
     }
@@ -635,21 +636,21 @@ public class Game2Manager_TestMode : MonoBehaviour
 /// 틀림 글자 나타나게
     public void WrongAnswer()
     {
-        Vector3 AnswerPos =  new Vector3(20.432f,2.342f,21.928f);
+        Vector3 AnswerPos =  new Vector3(20.569f, 2.342f, 22.233f);
         GameObject Answer = Instantiate(AnswerObj[1], AnswerPos, Quaternion.Euler(0,36.149f,0));
         Answer.tag =  "Answer";
     }
 
     public void TimePeriodCorrect()
     {
-        Vector3 AnswerPos =  new Vector3(20.432f,2.342f,21.928f);
+        Vector3 AnswerPos =  new Vector3(20.569f, 2.342f, 22.233f);
         GameObject Answer = Instantiate(AnswerObj[2], AnswerPos, Quaternion.Euler(0,36.149f,0));
         Answer.tag =  "Answer";
     }
 
     public void TimePeriodWrong()
     {
-        Vector3 AnswerPos =  new Vector3(20.432f,2.342f,21.928f);
+        Vector3 AnswerPos =  new Vector3(20.569f, 2.342f, 22.233f);
         GameObject Answer = Instantiate(AnswerObj[3], AnswerPos, Quaternion.Euler(0,36.149f,0));
         Answer.tag =  "Answer";
     }
@@ -805,7 +806,7 @@ public class Game2Manager_TestMode : MonoBehaviour
     ///Hardmode는 Hard mode에 대한 설명이 필요하다.
     public void HardModeExplain()
     {
-        Vector3 HardModeExplain_Pos =  new Vector3(20.432f,2.592f,21.928f);
+        Vector3 HardModeExplain_Pos =  new Vector3(20.569f, 2.592f, 22.233f);
         GameObject HModeExp = Instantiate(HardModeExplainText[0], HardModeExplain_Pos, Quaternion.Euler(0,36.149f,0));
         HModeExp.tag =  "HardModeExplain";
     }
@@ -827,12 +828,12 @@ public class Game2Manager_TestMode : MonoBehaviour
             //////[시작 뜨게 만드는 곳]//////
 
             ///start
-            Vector3 starttextpos0 =  new Vector3(20.432f,3.1f,21.928f);
+            Vector3 starttextpos0 =  new Vector3(20.569f, 2.57f, 22.233f);
             GameObject Start0 = Instantiate(StageStartAnnouncement[0], starttextpos0, Quaternion.Euler(0,36.149f,0));
             Start0.tag =  "StartTextObj";
             
             //설명
-            Vector3 starttextpos1 =  new Vector3(20.432f,2.5f,21.928f);
+            Vector3 starttextpos1 =  new Vector3(20.569f, 2.253f, 22.233f);
             GameObject Start1 = Instantiate(StageStartAnnouncement[1], starttextpos1, Quaternion.Euler(0,36.149f,0));
             Start1.tag =  "StartTextObj";
             StageStartAnnouncement_Spanwed = true;
@@ -852,22 +853,27 @@ public class Game2Manager_TestMode : MonoBehaviour
 
 
 
-/////Scene Make
-////////ObjectSpawn
+    /////Scene Make
+    ////////ObjectSpawn
     public (int, int) Make2IDX()
     {
         int index1 = 0;
         int index2 = 0;
         Debug.Log("TwoObjIndex");
-        index1=Random.Range(0,Objects.Length);
+        do
+        {
+            index1 = Random.Range(0, Objects.Length);
+        }
+        while (index1 == 1);
+
         do
         {
             Debug.Log("make 2 Obj_Index In_Do-while");
-            index2 = Random.Range(0,Objects.Length);
+            index2 = Random.Range(0, Objects.Length);
         }
-        while(index1 == index2);
+        while (index1 == index2 || index2 == 1);
 
-        return (index1,index2);
+        return (index1, index2);
     }
 
     public void TwoObjSpawner(int I1, int I2, int Is_It_Hard)
@@ -1066,11 +1072,11 @@ public class Game2Manager_TestMode : MonoBehaviour
     public int Pad_2_Spawn(int [] idx_T, int [] idx_F)
     {
         Quaternion [] PadRot = new Quaternion[2];
-        PadRot[0].eulerAngles = new Vector3(0,26,0);
+        PadRot[0].eulerAngles = new Vector3(0,21,0);
         Debug.Log(PadRot[0]);
         Debug.Log(PadRot[0]);
         Debug.Log(PadRot[0]);
-        PadRot[1].eulerAngles = new Vector3(0,46,0);
+        PadRot[1].eulerAngles = new Vector3(0,51,0);
         Debug.Log(PadRot[1]);
         Debug.Log(PadRot[1]);
         Debug.Log(PadRot[1]);
@@ -1092,8 +1098,8 @@ public class Game2Manager_TestMode : MonoBehaviour
         int idxF = idx_F[F1];
 
         Vector3 [] coord = new Vector3[2];
-        coord[0] = new Vector3(19.7f,2.1f,22.0f);
-        coord[1] = new Vector3(20.6f,2.1f,21.35f);
+        coord[0] = new Vector3(20.02f, 2.1f, 22.231f);
+        coord[1] = new Vector3(20.73f, 2.1f, 21.674f);
 
         //위의 coord값에 대해 idx를 random하게 접근해서
         //true 와 false의 위치가 매번 랜덤하게 생성되게 함
@@ -1166,9 +1172,9 @@ public class Game2Manager_TestMode : MonoBehaviour
         int idxF2 = idx_F[F2];
 
         Vector3 [] coord = new Vector3[3];
-        coord[0] = new Vector3(19.7f,2.1f,22.0f);
-        coord[1] = new Vector3(20.14f,2.1f,21.67f);
-        coord[2] = new Vector3(20.6f,2.1f,21.35f);
+        coord[0] = new Vector3(20.02f, 2.1f, 22.231f);
+        coord[1] = new Vector3(20.382f,2.1f,21.951f);
+        coord[2] = new Vector3(20.73f, 2.1f, 21.674f);
 
         //위의 coord값에 대해 idx를 random하게 접근해서
         //true 와 false의 위치가 매번 랜덤하게 생성되게 함

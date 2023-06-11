@@ -16,7 +16,7 @@ using System.Linq;
 public class Game2Manager : MonoBehaviour
 {
     public TextMeshPro totalTimeText, stageTimeText, WrongAnswerCntText, stageNumText, CorrectAnswerCntText, DifficultyText, LIFEText;
-
+    
     ///Game///
     static public int EASY = 2;
     static public int MIDDLE = 3;
@@ -103,9 +103,9 @@ public class Game2Manager : MonoBehaviour
 
     public bool buttonsSpawned = false;
 
-    Vector3 ButtonPosition_Left = new Vector3(19.7f,1.81f,22.0f);
-    Vector3 ButtonPosition_Middle = new Vector3(20.14f,1.81f,21.67f);
-    Vector3 ButtonPosition_Right = new Vector3(20.6f,1.81f,21.35f);
+    Vector3 ButtonPosition_Left = new Vector3(20.02f,1.81f,22.231f);
+    Vector3 ButtonPosition_Middle = new Vector3(20.382f, 1.81f, 21.951f);
+    Vector3 ButtonPosition_Right = new Vector3(20.73f,1.81f,21.674f);
 
     ///Spawner///
     //public GameObject[] Objects = new GameObject[0];
@@ -151,9 +151,7 @@ public class Game2Manager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("Start");
-        Screen.orientation = ScreenOrientation.LandscapeRight;
-        Screen.sleepTimeout = SleepTimeout.NeverSleep;
+
         
         ///Game///
         startTime = stageTime = Time.time;
@@ -448,7 +446,7 @@ public class Game2Manager : MonoBehaviour
     }
     public void showstageover()
     {
-        Vector3 overtextpos1 =  new Vector3(20.197f,2.253f,21.563f);
+        Vector3 overtextpos1 =  new Vector3(20.596f,2.253f,22.233f);
         GameObject StageOverObj = Instantiate(StageOverAnnouncement[0], overtextpos1, Quaternion.Euler(0,36.149f,0));
         StageOverObj.tag =  "OverTextObj";
     }
@@ -470,6 +468,8 @@ public class Game2Manager : MonoBehaviour
         state = STATE.WAIT;
         Result_Game2.isResult = true;
         state = STATE.SELECT;
+        stageNum = 1;
+        LIFE = 2;
         yield return new WaitForSeconds(1);
     }
 ///Game///
@@ -531,7 +531,7 @@ public class Game2Manager : MonoBehaviour
 /// 맞음 글자 나타나게
     public void CorrectAnswer()
     {
-        Vector3 AnswerPos =  new Vector3(20.432f,2.342f,21.928f);
+        Vector3 AnswerPos =  new Vector3(20.569f,2.342f,22.233f);
         GameObject Answer = Instantiate(AnswerObj[0], AnswerPos, Quaternion.Euler(0,36.149f,0));
         Answer.tag =  "Answer";
     }
@@ -539,7 +539,7 @@ public class Game2Manager : MonoBehaviour
 /// 틀림 글자 나타나게
     public void WrongAnswer()
     {
-        Vector3 AnswerPos =  new Vector3(20.432f,2.342f,21.928f);
+        Vector3 AnswerPos =  new Vector3(20.569f, 2.342f, 22.233f);
         GameObject Answer = Instantiate(AnswerObj[1], AnswerPos, Quaternion.Euler(0,36.149f,0));
         Answer.tag =  "Answer";
     }
@@ -643,7 +643,7 @@ public class Game2Manager : MonoBehaviour
         /////////////////////////////////
         /////////[시작 보여주기]//////////
         StageStartAnouncment();
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(4.0f);
         StageStartAnouncmentDestroy();
 
         ////////////////////////////////
@@ -695,7 +695,7 @@ public class Game2Manager : MonoBehaviour
     ///Hardmode는 Hard mode에 대한 설명이 필요하다.
     public void HardModeExplain()
     {
-        Vector3 HardModeExplain_Pos =  new Vector3(20.432f,2.592f,21.928f);
+        Vector3 HardModeExplain_Pos =  new Vector3(20.569f,2.592f,22.233f);
         GameObject HModeExp = Instantiate(HardModeExplainText[0], HardModeExplain_Pos, Quaternion.Euler(0,36.149f,0));
         HModeExp.tag =  "HardModeExplain";
     }
@@ -717,12 +717,12 @@ public class Game2Manager : MonoBehaviour
             //////[시작 뜨게 만드는 곳]//////
 
             ///start
-            Vector3 starttextpos0 =  new Vector3(20.432f,3.1f,21.928f);
+            Vector3 starttextpos0 =  new Vector3(20.569f,2.57f,22.233f);
             GameObject Start0 = Instantiate(StageStartAnnouncement[0], starttextpos0, Quaternion.Euler(0,36.149f,0));
             Start0.tag =  "StartTextObj";
             
             //설명
-            Vector3 starttextpos1 =  new Vector3(20.432f,2.453f,21.928f);
+            Vector3 starttextpos1 =  new Vector3(20.569f, 2.253f, 22.233f);
             GameObject Start1 = Instantiate(StageStartAnnouncement[1], starttextpos1, Quaternion.Euler(0,36.149f,0));
             Start1.tag =  "StartTextObj";
             StageStartAnnouncement_Spanwed = true;
@@ -749,13 +749,18 @@ public class Game2Manager : MonoBehaviour
         int index1 = 0;
         int index2 = 0;
         Debug.Log("TwoObjIndex");
-        index1=Random.Range(0,Objects.Length);
+        do
+        {
+            index1 = Random.Range(0, Objects.Length);
+        }
+        while (index1 == 1);
+        
         do
         {
             Debug.Log("make 2 Obj_Index In_Do-while");
             index2 = Random.Range(0,Objects.Length);
         }
-        while(index1 == index2);
+        while(index1 == index2 || index2 ==1);
 
         return (index1,index2);
     }
@@ -956,11 +961,11 @@ public class Game2Manager : MonoBehaviour
     public int Pad_2_Spawn(int [] idx_T, int [] idx_F)
     {
         Quaternion [] PadRot = new Quaternion[2];
-        PadRot[0].eulerAngles = new Vector3(0,26,0);
+        PadRot[0].eulerAngles = new Vector3(0,21,0);
         Debug.Log(PadRot[0]);
         Debug.Log(PadRot[0]);
         Debug.Log(PadRot[0]);
-        PadRot[1].eulerAngles = new Vector3(0,46,0);
+        PadRot[1].eulerAngles = new Vector3(0,51,0);
         Debug.Log(PadRot[1]);
         Debug.Log(PadRot[1]);
         Debug.Log(PadRot[1]);
@@ -980,10 +985,10 @@ public class Game2Manager : MonoBehaviour
 
         int idxT = idx_T[T1];
         int idxF = idx_F[F1];
-
+        
         Vector3 [] coord = new Vector3[2];
-        coord[0] = new Vector3(19.7f,2.1f,22.0f);
-        coord[1] = new Vector3(20.6f,2.1f,21.35f);
+        coord[0] = new Vector3(20.02f, 2.1f, 22.231f);
+        coord[1] = new Vector3(20.73f, 2.1f, 21.674f);
 
         //coord[0] = new Vector3(19.526f,2.1f,22.431f);
         //coord[1] = new Vector3(20.894f,2.1f,21.457f);
@@ -1059,9 +1064,9 @@ public class Game2Manager : MonoBehaviour
         int idxF2 = idx_F[F2];
 
         Vector3 [] coord = new Vector3[3];
-        coord[0] = new Vector3(19.7f,2.1f,22.0f);
-        coord[1] = new Vector3(20.14f,2.1f,21.67f);
-        coord[2] = new Vector3(20.6f,2.1f,21.35f);
+        coord[0] = new Vector3(20.02f, 2.1f, 22.231f);
+        coord[1] = new Vector3(20.382f,2.1f,21.951f);
+        coord[2] = new Vector3(20.73f, 2.1f, 21.674f);
 
         // coord[0] = new Vector3(19.526f,2.1f,22.431f);
         // coord[1] = new Vector3(20.382f,2.1f,21.976f);
@@ -1271,7 +1276,7 @@ public class Game2Manager : MonoBehaviour
             ButtonsDeActive();
         }
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
         showstageoverdestroy();
 
         yield return new WaitForSeconds(1f);
