@@ -509,6 +509,14 @@ public class Game2Manager : MonoBehaviour
     IEnumerator ShowResult()
     {
         state = STATE.WAIT;
+        if (stageNum == stageCnt)
+        {
+            BhapticsLibrary.Play(BhapticsEvent.CLEAR);
+        }
+        else
+        {
+            BhapticsLibrary.Play(BhapticsEvent.FAIL);
+        }
         Result_Game2.isResult = true;
         state = STATE.SELECT;
         stageNum = 1;
@@ -531,10 +539,12 @@ public class Game2Manager : MonoBehaviour
             Debug.Log("HapticHere - RightAnswer");
             if (isRight)
             {
+                BhapticsLibrary.StopByEventId(BhapticsEvent.FIVETIME);
                 BhapticsLibrary.Play(BhapticsEvent.CORRECT_RIGHT);
             }
             else if (isLeft)
             {
+                BhapticsLibrary.StopByEventId(BhapticsEvent.FIVETIME);
                 BhapticsLibrary.Play(BhapticsEvent.CORRECT_LEFT);
             }
             
@@ -551,10 +561,12 @@ public class Game2Manager : MonoBehaviour
             Debug.Log("IsItRightAnswer - ELSE");
             if (isRight)
             {
+                BhapticsLibrary.StopByEventId(BhapticsEvent.FIVETIME);
                 BhapticsLibrary.Play(BhapticsEvent.WRONG_RIGHT);
             }
             else if (isLeft)
             {
+                BhapticsLibrary.StopByEventId(BhapticsEvent.FIVETIME);
                 BhapticsLibrary.Play(BhapticsEvent.WRONG_LEFT);
             }
             WrongAnswerCnt = WrongAnswerCnt +1;

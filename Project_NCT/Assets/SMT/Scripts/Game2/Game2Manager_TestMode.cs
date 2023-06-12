@@ -155,6 +155,10 @@ public class Game2Manager_TestMode : MonoBehaviour
 
     public GameObject[] TestmodeZeroToTen = new GameObject[0];
 
+    static public bool isLeft = false;
+    static public bool isRight = false;
+    bool isStage = false;
+
 
     // Start is called before the first frame update
     void Start()
@@ -267,7 +271,7 @@ public class Game2Manager_TestMode : MonoBehaviour
         Is_Stage_Start = false;
 
         StartCoroutine(testmodeExplain());
-
+        BhapticsLibrary.Play(BhapticsEvent.TENTIME);
         StartCoroutine(testmodeHapticExplain());
         
 
@@ -288,6 +292,8 @@ public class Game2Manager_TestMode : MonoBehaviour
     {
         Vector3 TestExplain_Pos =  new Vector3(20.569f, 2.792f, 22.233f);
         Vector3 TestZeroToTen_Pos = new Vector3(20.728f,2.487f,21.655f);
+
+
         
         //0~1
         GameObject TModeExp0 = Instantiate(Testmode10secExplain[0], TestExplain_Pos, Quaternion.Euler(0,36.149f,-180f));
@@ -487,10 +493,12 @@ public class Game2Manager_TestMode : MonoBehaviour
             case STATE.HIT:
                 Is_check10sec_True = false;
                 check10sec = 0;
+                isStage = true;
                 StartCoroutine(IsItRightAnswer(Middle));
                 break;
             case STATE.TIMEOUT5:
                 Is_check10sec_True = false;
+                isStage = true;
                 StartCoroutine(ShowOver());
                 break;
             case STATE.CLEAR:
@@ -567,6 +575,8 @@ public class Game2Manager_TestMode : MonoBehaviour
         state = STATE.WAIT;
         Is_showstageover = true;
         Debug.Log("HapticHere - StageTimeOver - 5sec");
+        BhapticsLibrary.Play(BhapticsEvent.WRONG_LEFT);
+        BhapticsLibrary.Play(BhapticsEvent.WRONG_RIGHT);
         WrongAnswerCnt = WrongAnswerCnt+1;
 
 
@@ -627,6 +637,16 @@ public class Game2Manager_TestMode : MonoBehaviour
             if (TrueButtonLocation == WhichButtonTouch){
                 CorrectAnswer();
                 Debug.Log("HapticHere - RightAnswer");
+                if (isRight)
+                {
+                    BhapticsLibrary.StopByEventId(BhapticsEvent.TENTIME);
+                    BhapticsLibrary.Play(BhapticsEvent.CORRECT_RIGHT);
+                }
+                else if (isLeft)
+                {
+                    BhapticsLibrary.StopByEventId(BhapticsEvent.TENTIME);
+                    BhapticsLibrary.Play(BhapticsEvent.CORRECT_LEFT);
+                }
                 CorrectAnswerCnt = CorrectAnswerCnt +1;
                 yield return new WaitForSeconds(1f);
                 wrongCorrectAnswerDestroy();
@@ -638,6 +658,16 @@ public class Game2Manager_TestMode : MonoBehaviour
                 WrongAnswer();
                 Debug.Log("HapticHere - WrongAnswer");
                 Debug.Log("IsItRightAnswer - ELSE");
+                if (isRight)
+                {
+                    BhapticsLibrary.StopByEventId(BhapticsEvent.TENTIME);
+                    BhapticsLibrary.Play(BhapticsEvent.WRONG_RIGHT);
+                }
+                else if (isLeft)
+                {
+                    BhapticsLibrary.StopByEventId(BhapticsEvent.TENTIME);
+                    BhapticsLibrary.Play(BhapticsEvent.WRONG_LEFT);
+                }
                 WrongAnswerCnt = WrongAnswerCnt +1;
                 yield return new WaitForSeconds(1f);
                 wrongCorrectAnswerDestroy();
@@ -649,6 +679,16 @@ public class Game2Manager_TestMode : MonoBehaviour
         {
             TimePeriodWrong();
             LIFE = LIFE-1;
+            if (isRight)
+            {
+                BhapticsLibrary.StopByEventId(BhapticsEvent.TENTIME);
+                BhapticsLibrary.Play(BhapticsEvent.WRONG_RIGHT);
+            }
+            else if (isLeft)
+            {
+                BhapticsLibrary.StopByEventId(BhapticsEvent.TENTIME);
+                BhapticsLibrary.Play(BhapticsEvent.WRONG_LEFT);
+            }
             yield return new WaitForSeconds(1f);
             wrongCorrectAnswerDestroy();
 
@@ -711,6 +751,8 @@ public class Game2Manager_TestMode : MonoBehaviour
         state = STATE.WAIT;
 
         Disappear_selectMenu.isHide = true;
+
+        isStage = true;
 
         Debug.Log("MakeStage");
         
@@ -807,6 +849,15 @@ public class Game2Manager_TestMode : MonoBehaviour
         ////////////////////////////////
         check10sec = (int)Time.time;
         Is_check10sec_True = true;
+        if (Is_check10sec_True && (Time.time - check10sec) < 10)
+        {
+            if (isStage)
+            {
+                BhapticsLibrary.Play(BhapticsEvent.TENTIME);
+                isStage = false;
+            }
+
+        }
 
 
         True_Button = MakeCategoryPad(I1,I2, difficulty);
