@@ -36,7 +36,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 20.432, y: 2.592}
-  m_SizeDelta: {x: 4, y: 1.8}
+  m_SizeDelta: {x: 2, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &676425956977488475
 MeshRenderer:
@@ -100,11 +100,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "[\uD14C\uC2A4\uD2B8]\n\uB3D9\uBB3C\uB4E4\uC758 \uACF5\uD1B5\uC810\uC744
-    \uACE0\uB974\uC138\uC694\n\uB2E8, \uC815\uD574\uC9C4 \uC2DC\uAC04 \uAD6C\uAC04
-    \uB0B4\uC5D0\n\uC815\uB2F5 \uBC84\uD2BC\uC744 \uB20C\uB7EC\uC57C \uD569\uB2C8\uB2E4\n\uD604\uC7AC
-    \uC2DC\uAC04\uC5D0 \uB300\uD55C \uC815\uBCF4\uB294\n\uC624\uC9C1 \uD585\uD2F1\uAE00\uB7EC\uBE0C\uB85C\uB9CC
-    \uC54C \uC218 \uC788\uC2B5\uB2C8\uB2E4"
+  m_text: "[\uD14C\uC2A4\uD2B8] \uB450 \uB3D9\uBB3C\uC758 \uACF5\uD1B5\uC810\n\n*\uC8FC\uC758*\n\uC815\uD574\uC9C4
+    \uC2DC\uAC04\uC5D0 \uBC84\uD2BC\uC744 \uB20C\uB7EC\uC57C \uD568\n\uD604\uC7AC
+    \uC2DC\uAC04\uC740 \uAE00\uB7EC\uBE0C\uB85C \uC720\uCD94\uD574\uC57C \uD568"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c61be827aa69d754aa81bea5281ff516, type: 2}
   m_sharedMaterial: {fileID: -4553947801052687371, guid: c61be827aa69d754aa81bea5281ff516,
@@ -132,8 +130,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 1.3
-  m_fontSizeBase: 1.3
+  m_fontSize: 1
+  m_fontSizeBase: 1
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

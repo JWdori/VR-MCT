@@ -16,7 +16,7 @@
 // public class Game2Manager : MonoBehaviour
 // {
 //     public TextMeshPro totalTimeText, stageTimeText, WrongAnswerCntText, stageNumText, CorrectAnswerCntText, DifficultyText, LIFEText;
-
+    
 //     ///Game///
 //     static public int EASY = 2;
 //     static public int MIDDLE = 3;
@@ -31,6 +31,10 @@
 //     static public int WrongAnswerCnt = 0; // 틀린 횟수 보여주기용
 //     static public int CorrectAnswerCnt = 0;
 //     static public int CurrentDifficulty;
+
+//     static public bool isLeft = false;
+//     static public bool isRight = false;
+//     bool isStage = false;
 
 //     static public float totalTime;
 
@@ -99,9 +103,9 @@
 
 //     public bool buttonsSpawned = false;
 
-//     Vector3 ButtonPosition_Left = new Vector3(19.7f,1.81f,22.0f);
-//     Vector3 ButtonPosition_Middle = new Vector3(20.14f,1.81f,21.67f);
-//     Vector3 ButtonPosition_Right = new Vector3(20.6f,1.81f,21.35f);
+//     Vector3 ButtonPosition_Left = new Vector3(20.02f,1.81f,22.231f);
+//     Vector3 ButtonPosition_Middle = new Vector3(20.382f, 1.81f, 21.951f);
+//     Vector3 ButtonPosition_Right = new Vector3(20.73f,1.81f,21.674f);
 
 //     ///Spawner///
 //     //public GameObject[] Objects = new GameObject[0];
@@ -147,9 +151,7 @@
 //     // Start is called before the first frame update
 //     void Start()
 //     {
-//         Debug.Log("Start");
-//         Screen.orientation = ScreenOrientation.LandscapeRight;
-//         Screen.sleepTimeout = SleepTimeout.NeverSleep;
+
         
 //         ///Game///
 //         startTime = stageTime = Time.time;
@@ -257,7 +259,7 @@
 //     // Update is called once per frame
 //     void Update()
 //     {
-//         Debug.Log("Update");
+//         //Debug.Log("Update");
 
 //         totalTime = (int)(Time.time - startTime);
 
@@ -271,6 +273,12 @@
 //             if (Is_check5sec_True&& (Time.time - check5sec) < 5)
 //             {
 //                 stageTimeText.text = "스테이지 시간 : " + (int)(Time.time - check5sec);
+//                 //if (isStage)
+//                 //{
+//                 //    BhapticsLibrary.Play(BhapticsEvent.TIME);
+//                 //    isStage = false;
+//                 //}
+                
 //             }
 //             else
 //             {
@@ -343,10 +351,12 @@
 //             case STATE.HIT:
 //                 Is_check5sec_True = false;
 //                 check5sec = 0;
+//                 isStage = true;
 //                 StartCoroutine(IsItRightAnswer(CurrentDifficulty));
 //                 break;
 //             case STATE.TIMEOUT5:
 //                 Is_check5sec_True = false;
+//                 isStage = true;
 //                 StartCoroutine(ShowOver());
 //                 break;
 //             case STATE.CLEAR:
@@ -422,6 +432,8 @@
 //         state = STATE.WAIT;
 //         Is_showstageover = true;
 //         Debug.Log("HapticHere - StageTimeOver - 5sec");
+//         BhapticsLibrary.Play(BhapticsEvent.WRONG_LEFT);
+//         BhapticsLibrary.Play(BhapticsEvent.WRONG_RIGHT);
 //         WrongAnswerCnt = WrongAnswerCnt+1;
 
 
@@ -434,7 +446,7 @@
 //     }
 //     public void showstageover()
 //     {
-//         Vector3 overtextpos1 =  new Vector3(20.197f,2.253f,21.563f);
+//         Vector3 overtextpos1 =  new Vector3(20.596f,2.253f,22.233f);
 //         GameObject StageOverObj = Instantiate(StageOverAnnouncement[0], overtextpos1, Quaternion.Euler(0,36.149f,0));
 //         StageOverObj.tag =  "OverTextObj";
 //     }
@@ -456,6 +468,8 @@
 //         state = STATE.WAIT;
 //         Result_Game2.isResult = true;
 //         state = STATE.SELECT;
+//         stageNum = 1;
+//         LIFE = 2;
 //         yield return new WaitForSeconds(1);
 //     }
 // ///Game///
@@ -472,6 +486,15 @@
 //         if (TrueButtonLocation == WhichButtonTouch){
 //             CorrectAnswer();
 //             Debug.Log("HapticHere - RightAnswer");
+//             if (isRight)
+//             {
+//                 BhapticsLibrary.Play(BhapticsEvent.CORRECT_RIGHT);
+//             }
+//             else if (isLeft)
+//             {
+//                 BhapticsLibrary.Play(BhapticsEvent.CORRECT_LEFT);
+//             }
+            
 //             CorrectAnswerCnt = CorrectAnswerCnt +1;
 //             yield return new WaitForSeconds(1f);
 //             wrongCorrectAnswerDestroy();
@@ -483,6 +506,14 @@
 //             WrongAnswer();
 //             Debug.Log("HapticHere - WrongAnswer");
 //             Debug.Log("IsItRightAnswer - ELSE");
+//             if (isRight)
+//             {
+//                 BhapticsLibrary.Play(BhapticsEvent.WRONG_RIGHT);
+//             }
+//             else if (isLeft)
+//             {
+//                 BhapticsLibrary.Play(BhapticsEvent.WRONG_LEFT);
+//             }
 //             WrongAnswerCnt = WrongAnswerCnt +1;
 //             yield return new WaitForSeconds(1f);
 //             wrongCorrectAnswerDestroy();
@@ -500,7 +531,7 @@
 // /// 맞음 글자 나타나게
 //     public void CorrectAnswer()
 //     {
-//         Vector3 AnswerPos =  new Vector3(20.432f,2.342f,21.928f);
+//         Vector3 AnswerPos =  new Vector3(20.569f,2.342f,22.233f);
 //         GameObject Answer = Instantiate(AnswerObj[0], AnswerPos, Quaternion.Euler(0,36.149f,0));
 //         Answer.tag =  "Answer";
 //     }
@@ -508,7 +539,7 @@
 // /// 틀림 글자 나타나게
 //     public void WrongAnswer()
 //     {
-//         Vector3 AnswerPos =  new Vector3(20.432f,2.342f,21.928f);
+//         Vector3 AnswerPos =  new Vector3(20.569f, 2.342f, 22.233f);
 //         GameObject Answer = Instantiate(AnswerObj[1], AnswerPos, Quaternion.Euler(0,36.149f,0));
 //         Answer.tag =  "Answer";
 //     }
@@ -612,7 +643,7 @@
 //         /////////////////////////////////
 //         /////////[시작 보여주기]//////////
 //         StageStartAnouncment();
-//         yield return new WaitForSeconds(2.0f);
+//         yield return new WaitForSeconds(4.0f);
 //         StageStartAnouncmentDestroy();
 
 //         ////////////////////////////////
@@ -620,6 +651,7 @@
 //         ////////////////////////////////
 //         check5sec = (int)Time.time;
 //         Is_check5sec_True = true;
+//         isStage = true;
 
 
 //         True_Button = MakeCategoryPad(I1,I2, difficulty);
@@ -663,7 +695,7 @@
 //     ///Hardmode는 Hard mode에 대한 설명이 필요하다.
 //     public void HardModeExplain()
 //     {
-//         Vector3 HardModeExplain_Pos =  new Vector3(20.432f,2.592f,21.928f);
+//         Vector3 HardModeExplain_Pos =  new Vector3(20.569f,2.592f,22.233f);
 //         GameObject HModeExp = Instantiate(HardModeExplainText[0], HardModeExplain_Pos, Quaternion.Euler(0,36.149f,0));
 //         HModeExp.tag =  "HardModeExplain";
 //     }
@@ -685,12 +717,12 @@
 //             //////[시작 뜨게 만드는 곳]//////
 
 //             ///start
-//             Vector3 starttextpos0 =  new Vector3(20.432f,3.1f,21.928f);
+//             Vector3 starttextpos0 =  new Vector3(20.569f,2.57f,22.233f);
 //             GameObject Start0 = Instantiate(StageStartAnnouncement[0], starttextpos0, Quaternion.Euler(0,36.149f,0));
 //             Start0.tag =  "StartTextObj";
             
 //             //설명
-//             Vector3 starttextpos1 =  new Vector3(20.432f,2.453f,21.928f);
+//             Vector3 starttextpos1 =  new Vector3(20.569f, 2.253f, 22.233f);
 //             GameObject Start1 = Instantiate(StageStartAnnouncement[1], starttextpos1, Quaternion.Euler(0,36.149f,0));
 //             Start1.tag =  "StartTextObj";
 //             StageStartAnnouncement_Spanwed = true;
@@ -717,13 +749,18 @@
 //         int index1 = 0;
 //         int index2 = 0;
 //         Debug.Log("TwoObjIndex");
-//         index1=Random.Range(0,Objects.Length);
+//         do
+//         {
+//             index1 = Random.Range(0, Objects.Length);
+//         }
+//         while (index1 == 1);
+        
 //         do
 //         {
 //             Debug.Log("make 2 Obj_Index In_Do-while");
 //             index2 = Random.Range(0,Objects.Length);
 //         }
-//         while(index1 == index2);
+//         while(index1 == index2 || index2 ==1);
 
 //         return (index1,index2);
 //     }
@@ -924,11 +961,11 @@
 //     public int Pad_2_Spawn(int [] idx_T, int [] idx_F)
 //     {
 //         Quaternion [] PadRot = new Quaternion[2];
-//         PadRot[0].eulerAngles = new Vector3(0,26,0);
+//         PadRot[0].eulerAngles = new Vector3(0,21,0);
 //         Debug.Log(PadRot[0]);
 //         Debug.Log(PadRot[0]);
 //         Debug.Log(PadRot[0]);
-//         PadRot[1].eulerAngles = new Vector3(0,46,0);
+//         PadRot[1].eulerAngles = new Vector3(0,51,0);
 //         Debug.Log(PadRot[1]);
 //         Debug.Log(PadRot[1]);
 //         Debug.Log(PadRot[1]);
@@ -948,10 +985,13 @@
 
 //         int idxT = idx_T[T1];
 //         int idxF = idx_F[F1];
-
+        
 //         Vector3 [] coord = new Vector3[2];
-//         coord[0] = new Vector3(19.526f,2.1f,22.431f);
-//         coord[1] = new Vector3(20.894f,2.1f,21.457f);
+//         coord[0] = new Vector3(20.02f, 2.1f, 22.231f);
+//         coord[1] = new Vector3(20.73f, 2.1f, 21.674f);
+
+//         //coord[0] = new Vector3(19.526f,2.1f,22.431f);
+//         //coord[1] = new Vector3(20.894f,2.1f,21.457f);
 
 //         //위의 coord값에 대해 idx를 random하게 접근해서
 //         //true 와 false의 위치가 매번 랜덤하게 생성되게 함
@@ -1024,9 +1064,13 @@
 //         int idxF2 = idx_F[F2];
 
 //         Vector3 [] coord = new Vector3[3];
-//         coord[0] = new Vector3(19.526f,2.1f,22.431f);
-//         coord[1] = new Vector3(20.382f,2.1f,21.976f);
-//         coord[2] = new Vector3(20.894f,2.1f,21.457f);
+//         coord[0] = new Vector3(20.02f, 2.1f, 22.231f);
+//         coord[1] = new Vector3(20.382f,2.1f,21.951f);
+//         coord[2] = new Vector3(20.73f, 2.1f, 21.674f);
+
+//         // coord[0] = new Vector3(19.526f,2.1f,22.431f);
+//         // coord[1] = new Vector3(20.382f,2.1f,21.976f);
+//         // coord[2] = new Vector3(20.894f,2.1f,21.457f);
 
 //         //위의 coord값에 대해 idx를 random하게 접근해서
 //         //true 와 false의 위치가 매번 랜덤하게 생성되게 함
@@ -1232,7 +1276,7 @@
 //             ButtonsDeActive();
 //         }
 
-//         yield return new WaitForSeconds(0.5f);
+//         yield return new WaitForSeconds(1f);
 //         showstageoverdestroy();
 
 //         yield return new WaitForSeconds(1f);

@@ -36,7 +36,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 20.432, y: 2.592}
-  m_SizeDelta: {x: 2.6, y: 1.4}
+  m_SizeDelta: {x: 2.8, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &676425956977488475
 MeshRenderer:
@@ -101,8 +101,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "[\uC5B4\uB824\uC6C0 \uB09C\uC774\uB3C4]\n\uB098\uBB34 \uB4A4\uC5D0 \uC228\uC740\n\uB3D9\uBB3C
-    \uB450\uB9C8\uB9AC\uC758\n\uC18C\uB9AC\uB97C \uB4E3\uACE0\n\uBB38\uC81C\uB97C
-    \uB9DE\uCDB0\uBCF4\uC138\uC694\n"
+    \uB450\uB9C8\uB9AC\uC758 \uACF5\uD1B5\uC810 \uCC3E\uAE30\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c61be827aa69d754aa81bea5281ff516, type: 2}
   m_sharedMaterial: {fileID: -4553947801052687371, guid: c61be827aa69d754aa81bea5281ff516,
@@ -130,8 +129,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 2.5
-  m_fontSizeBase: 2.5
+  m_fontSize: 1.5
+  m_fontSizeBase: 1.5
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

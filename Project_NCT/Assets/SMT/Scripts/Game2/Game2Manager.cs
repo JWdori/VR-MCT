@@ -91,6 +91,8 @@ public class Game2Manager : MonoBehaviour
     public int True_Button = 0;
     public int ColorMixCondition = 0;
     public int [] ComparisionResult = new int[10];
+    public int [] ComparisionCorrect = new int[10];
+    public int [] ComparisionWrong = new int[10];
     
     ///Game///
     //////Button//////
@@ -103,9 +105,9 @@ public class Game2Manager : MonoBehaviour
 
     public bool buttonsSpawned = false;
 
-    Vector3 ButtonPosition_Left = new Vector3(20.02f,1.81f,22.231f);
-    Vector3 ButtonPosition_Middle = new Vector3(20.382f, 1.81f, 21.951f);
-    Vector3 ButtonPosition_Right = new Vector3(20.73f,1.81f,21.674f);
+    Vector3 ButtonPosition_Left = new Vector3(19.924f,1.81f,22.114f);
+    Vector3 ButtonPosition_Middle = new Vector3(20.311f, 1.81f, 21.831f);
+    Vector3 ButtonPosition_Right = new Vector3(20.657f,1.81f,21.579f);
 
     ///Spawner///
     //public GameObject[] Objects = new GameObject[0];
@@ -270,22 +272,54 @@ public class Game2Manager : MonoBehaviour
         if(scorepannel == true)
         {
             stageNumText.text = "스테이지 " + stageNum;
-            if (Is_check5sec_True&& (Time.time - check5sec) < 5)
+///////////////////////////////////////////////////
+///////////////////////////////////////////////////
+            if(CurrentDifficulty == HARD)
             {
-                stageTimeText.text = "스테이지 시간 : " + (int)(Time.time - check5sec);
-                //if (isStage)
-                //{
-                //    BhapticsLibrary.Play(BhapticsEvent.TIME);
-                //    isStage = false;
-                //}
-                
+                stageTimeText.text = "";
+                totalTimeText.text = "";
             }
+
             else
             {
-                stageTimeText.text = "스테이지 시간 : 0";
+                if (Is_check5sec_True&& (Time.time - check5sec) < 5)
+                {
+                    stageTimeText.text = "스테이지 시간 : " + (int)(Time.time - check5sec);
+                    //if (isStage)
+                    //{
+                    //    BhapticsLibrary.Play(BhapticsEvent.TIME);
+                    //    isStage = false;
+                    //}
+                    
+                }
+                else
+                {
+                    stageTimeText.text = "스테이지 시간 : 0";
+                }
+                totalTimeText.text = "게임 시간 : " + (int)totalTime;
             }
             
-            totalTimeText.text = "게임 시간 : " + (int)totalTime;
+///////////////////////////////////////////////////
+///////////////////////////////////////////////////
+            // if (Is_check5sec_True&& (Time.time - check5sec) < 5)
+            // {
+            //     stageTimeText.text = "스테이지 시간 : " + (int)(Time.time - check5sec);
+            //     //if (isStage)
+            //     //{
+            //     //    BhapticsLibrary.Play(BhapticsEvent.TIME);
+            //     //    isStage = false;
+            //     //}
+                
+            // }
+            // else
+            // {
+            //     stageTimeText.text = "스테이지 시간 : 0";
+            // }
+            
+            // totalTimeText.text = "게임 시간 : " + (int)totalTime;
+////////////////////////////////////////////////////
+////////////////////////////////////////////////////
+
             WrongAnswerCntText.text = "틀림 : " + WrongAnswerCnt;
             CorrectAnswerCntText.text = "맞춤 : " + CorrectAnswerCnt;
             LIFEText.text = "스테이지 기회 :" + LIFE;
@@ -587,6 +621,12 @@ public class Game2Manager : MonoBehaviour
         Debug.Log("before yield");
         yield return new WaitForSeconds(0.1f);
         Debug.Log("after yield");
+///////////////////////////////////////
+///////////////////////////////////////
+        int CorrectSum = 0;
+        int WrongSum = 0;
+///////////////////////////////////////
+///////////////////////////////////////
         ////조건에 맞는 obj 2개 찾기 (idx)
         do
         {
@@ -596,37 +636,35 @@ public class Game2Manager : MonoBehaviour
 
             ComparisionResult= AttCompare_0or1(I1,I2);
             Debug.Log("ComparisionResult_INMakeStageDoWhile");
-            Debug.Log(ComparisionResult);
-            Debug.Log("1st");
-            Debug.Log(ComparisionResult[0]);
-            Debug.Log("2nd");
-            Debug.Log(ComparisionResult[1]);
-            Debug.Log("3rd");
-            Debug.Log(ComparisionResult[2]);
-            Debug.Log("4th");
-            Debug.Log(ComparisionResult[3]);
-            Debug.Log("5th");
-            Debug.Log(ComparisionResult[4]);
-            Debug.Log("6th");
-            Debug.Log(ComparisionResult[5]);
-            Debug.Log("7th");
-            Debug.Log(ComparisionResult[6]);
-            Debug.Log("8th");
-            Debug.Log(ComparisionResult[7]);
-            Debug.Log("9th");
-            Debug.Log(ComparisionResult[8]);
-            Debug.Log("10th");
-            Debug.Log(ComparisionResult[9]);
+/////////////////////////////////////////////
+/////////////////////////////////////////////
+            /////정답 목록(not use (F,F) 제외)
+            ComparisionCorrect = AttCompare_Correct(I1,I2);
+            /////오답 목록
+            ComparisionWrong = AttCompare_Wrong(I1,I2);
+/////////////////////////////////////////////
+/////////////////////////////////////////////
             
             Sum =  ComparisionResult.Sum();
+/////////////////////////////////////////////
+/////////////////////////////////////////////
+            CorrectSum = ComparisionCorrect.Sum();
+            WrongSum = ComparisionWrong.Sum();
+/////////////////////////////////////////////
+/////////////////////////////////////////////
             ////둘다 MIX면 안됨
             if (objectAttributes[I1].Color =="Mix" && objectAttributes[I2].Color =="Mix")
             {
                 ColorMixCondition = 1;
             }
         }
-        while(Sum==0 || Sum > (Att_Array.Length-difficulty+1) || ColorMixCondition == 1);
-        //
+/////////////////////////////////////////////
+/////////////////////////////////////////////
+        while(CorrectSum==0 || WrongSum < (difficulty-1) || ColorMixCondition == 1);
+        //while(Sum==0 || Sum > (Att_Array.Length-difficulty+1) || ColorMixCondition == 1);
+/////////////////////////////////////////////
+/////////////////////////////////////////////
+        
         //(위에서 찾은 object idx2개로 object 생성)
 
         ////////////////////////////////
@@ -691,6 +729,98 @@ public class Game2Manager : MonoBehaviour
         state = STATE.IDLE;
         
     }
+///////////////////////////////////////
+///////////////////////////////////////
+
+    public int[] AttCompare_Correct(int idx1, int idx2)
+    {
+        int[] result = new int[10]{0,0,0,0,0,0,0,0,0,0};
+
+        ///일반항목은 같으면 정답
+        result[0] = (objectAttributes[idx1].Color == objectAttributes[idx2].Color) ? 1 : 0;
+        result[1] = (objectAttributes[idx1].Size == objectAttributes[idx2].Size) ? 1 : 0;
+        result[2] = (objectAttributes[idx1].NumofLeg == objectAttributes[idx2].NumofLeg) ? 1 : 0;
+        result[8] = (objectAttributes[idx1].fur == objectAttributes[idx2].fur) ? 1 : 0;
+
+        ///True and False 항목
+
+        //result[3]
+        //값 같음
+        if (objectAttributes[idx1].Tail == objectAttributes[idx2].Tail)
+        {
+            ///같은데 true임
+            if(objectAttributes[idx1].Tail == true)
+            {
+                result[3] = 1;
+            }
+        }
+        //result[4]
+        //값 같음
+        if (objectAttributes[idx1].Flight == objectAttributes[idx2].Flight)
+        {
+            //같은데 true임
+            if(objectAttributes[idx1].Flight == true)
+            {
+                result[4] = 1;
+            }
+        }
+        //result[5]
+        if (objectAttributes[idx1].Wings == objectAttributes[idx2].Wings)
+        {
+            if(objectAttributes[idx1].Wings == true)
+            {
+                result[5] = 1;
+            }
+        }
+        //result[6]
+        if(objectAttributes[idx1].horn == objectAttributes[idx2].horn)
+        {
+            if(objectAttributes[idx1].horn == true)
+            {
+                result[6] = 1;
+            }
+        }
+        //result[7]
+        if(objectAttributes[idx1].beak == objectAttributes[idx2].beak)
+        {
+            if(objectAttributes[idx1].beak == true)
+            {
+                result[7] = 1;
+            }
+        }
+        //result[9]
+        if(objectAttributes[idx1].mane == objectAttributes[idx2].mane)
+        {
+            if(objectAttributes[idx1].mane == true)
+            {
+                result[9] = 1;
+            }
+        }
+        
+        return result;
+    }
+
+    public int[] AttCompare_Wrong(int idx1, int idx2)
+    {
+        int[] result = new int[10];
+
+        ///삼항연산자 반전
+        /// 다르면 1
+        /// 같은건 관심 없음 0임
+        result[0] = (objectAttributes[idx1].Color == objectAttributes[idx2].Color) ? 0 : 1;
+        result[1] = (objectAttributes[idx1].Size == objectAttributes[idx2].Size) ? 0 : 1;
+        result[2] = (objectAttributes[idx1].NumofLeg == objectAttributes[idx2].NumofLeg) ? 0 : 1;
+        result[3] = (objectAttributes[idx1].Tail == objectAttributes[idx2].Tail) ? 0 : 1;
+        result[4] = (objectAttributes[idx1].Flight == objectAttributes[idx2].Flight) ? 0 : 1;
+        result[5] = (objectAttributes[idx1].Wings == objectAttributes[idx2].Wings) ? 0 : 1;
+        result[6] = (objectAttributes[idx1].horn == objectAttributes[idx2].horn) ? 0 : 1;
+        result[7] = (objectAttributes[idx1].beak == objectAttributes[idx2].beak) ? 0 : 1;
+        result[8] = (objectAttributes[idx1].fur == objectAttributes[idx2].fur) ? 0 : 1;
+        result[9] = (objectAttributes[idx1].mane == objectAttributes[idx2].mane) ? 0 : 1;
+        return result;
+    }
+///////////////////////////////////////
+///////////////////////////////////////
 
     ///Hardmode는 Hard mode에 대한 설명이 필요하다.
     public void HardModeExplain()
@@ -987,8 +1117,8 @@ public class Game2Manager : MonoBehaviour
         int idxF = idx_F[F1];
         
         Vector3 [] coord = new Vector3[2];
-        coord[0] = new Vector3(20.02f, 2.1f, 22.231f);
-        coord[1] = new Vector3(20.73f, 2.1f, 21.674f);
+        coord[0] = new Vector3(19.924f, 2.1f, 22.114f);
+        coord[1] = new Vector3(20.657f, 2.1f, 21.579f);
 
         //coord[0] = new Vector3(19.526f,2.1f,22.431f);
         //coord[1] = new Vector3(20.894f,2.1f,21.457f);
@@ -1064,9 +1194,9 @@ public class Game2Manager : MonoBehaviour
         int idxF2 = idx_F[F2];
 
         Vector3 [] coord = new Vector3[3];
-        coord[0] = new Vector3(20.02f, 2.1f, 22.231f);
-        coord[1] = new Vector3(20.382f,2.1f,21.951f);
-        coord[2] = new Vector3(20.73f, 2.1f, 21.674f);
+        coord[0] = new Vector3(19.924f, 2.1f, 22.114f);
+        coord[1] = new Vector3(20.311f,2.1f,21.831f);
+        coord[2] = new Vector3(20.657f, 2.1f, 21.597f);
 
         // coord[0] = new Vector3(19.526f,2.1f,22.431f);
         // coord[1] = new Vector3(20.382f,2.1f,21.976f);
@@ -1138,6 +1268,20 @@ public class Game2Manager : MonoBehaviour
         Debug.Log("MakeCategoryPad");
         // ComparisionResult - 두 object의 att 비교, 같 = 1 다 = 0
         int [] ComparisionResult= AttCompare_0or1(obj1,obj2);
+
+
+////////////////////////////////////////////
+////////////////////////////////////////////
+        /////정답 목록(not use (F,F) 제외)
+        ComparisionCorrect = AttCompare_Correct(obj1,obj2);
+        /////오답 목록
+        ComparisionWrong = AttCompare_Wrong(obj1,obj2);
+
+        int CorrectSum = ComparisionCorrect.Sum();
+        int WrongSum = ComparisionWrong.Sum();
+////////////////////////////////////////////
+////////////////////////////////////////////
+
         Debug.Log("ComparisionResult");
         Debug.Log(ComparisionResult);
         int Sum =  ComparisionResult.Sum();
@@ -1146,12 +1290,23 @@ public class Game2Manager : MonoBehaviour
         //1 or 0 으로 이루어진 데이터임
         // Sum = true 개수임
         //true인 index를 저장하는 array
-        int [] idx_T = new int [Sum];// true개수에 맞게
+////////////////////////////////////////////
+////////////////////////////////////////////
+        int [] idx_T = new int [CorrectSum];
+        //int [] idx_T = new int [Sum];// true개수에 맞게
+////////////////////////////////////////////
+////////////////////////////////////////////
+        
 
         int Location = 0;
-
+////////////////////////////////////////////
+////////////////////////////////////////////
+        
+        int [] idx_F = new int [WrongSum];
         //false인 index를 저장하는 array
-        int [] idx_F = new int [Att_Array.Length - Sum];//false개수에 맞게
+        //int [] idx_F = new int [Att_Array.Length - Sum];//false개수에 맞게
+////////////////////////////////////////////
+////////////////////////////////////////////
         Debug.Log("idx_T Length");
         Debug.Log(Sum);
         Debug.Log(idx_T.Length);
@@ -1165,20 +1320,47 @@ public class Game2Manager : MonoBehaviour
         int t = 0;
         int f = 0;
         //T,F인 곳의 idx를 따로 저장
-        for (t = 0; t+f<Att_Array.Length;)
+////////////////////////////////////////////
+////////////////////////////////////////////
+//ComparisionCorrect
+//ComparisionWrong
+        int a = 0;
+
+        for (t = 0; t+f+a<Att_Array.Length;)
         {
-            ///t+f = idx
-            if (ComparisionResult[t+f]==1)
+            ///t+f+a = idx
+            if (ComparisionCorrect[t+f+a]==1)
             {
-                idx_T[t] = t+f;
+                idx_T[t] = t+f+a;
                 t = t+1;
+            }
+            else if(ComparisionWrong[t+f+a]==1)
+            {
+                idx_F[f] = t+f+a;
+                f = f+1;
             }
             else
             {
-                idx_F[f] = t+f;
-                f = f+1;
+                a = a+1; // 정답도 오답도 아닌 경우 //NotUse
             }
         }
+
+        // for (t = 0; t+f<Att_Array.Length;)
+        // {
+        //     ///t+f = idx
+        //     if (ComparisionResult[t+f]==1)
+        //     {
+        //         idx_T[t] = t+f;
+        //         t = t+1;
+        //     }
+        //     else
+        //     {
+        //         idx_F[f] = t+f;
+        //         f = f+1;
+        //     }
+        // }
+////////////////////////////////////////////
+////////////////////////////////////////////
 
         Debug.Log("idx_T Length");
         Debug.Log(Sum);
