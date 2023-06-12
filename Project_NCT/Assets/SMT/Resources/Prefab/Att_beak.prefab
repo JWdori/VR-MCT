@@ -36,7 +36,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -4.17, y: 0}
-  m_SizeDelta: {x: 0.35, y: 0.14}
+  m_SizeDelta: {x: 0.2, y: 0.05}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &7495722779458228260
 MeshRenderer:
@@ -100,8 +100,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uB458\uB2E4 \uBD80\uB9AC\uAC00 \uC788\uB098\uC694?\n\uD639\uC740\n\uB458\uB2E4
-    \uBD80\uB9AC\uAC00 \uC5C6\uB098\uC694?"
+  m_text: "\uBD80\uB9AC \uC720\uBB34"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c61be827aa69d754aa81bea5281ff516, type: 2}
   m_sharedMaterial: {fileID: -4553947801052687371, guid: c61be827aa69d754aa81bea5281ff516,
