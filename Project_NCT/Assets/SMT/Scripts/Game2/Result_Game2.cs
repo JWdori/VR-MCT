@@ -13,7 +13,11 @@ public class Result_Game2 : MonoBehaviour
     //���â�� ���̴� ��Ȳ�� �� ���̴� ��Ȳ ����
     static public bool isResult = false;
 
-    public int totalgametime = 0;
+///////////////////////////////////////////////////////////
+    public bool forresulttotaltimebool = false;
+    public int totaltimecheck = 0;
+//////////////////////////////////////////////////////////
+
 
     //����ڰ� ������ level�� ������
     void Start()
@@ -25,6 +29,9 @@ public class Result_Game2 : MonoBehaviour
         stageNumText.text = "";
         missNumText.text = "";
         */
+////////////////////////////////////////////////////////////
+        forresulttotaltimebool = false;
+////////////////////////////////////////////////////////////
     }
 
     // ���� ����� ������� ������
@@ -33,12 +40,20 @@ public class Result_Game2 : MonoBehaviour
         //����� ������� �� �� isResult�� true
         if (isResult)
         {
+////////////////////[Result에서 시간 고정]//////////////////////
+            if (forresulttotaltimebool == false)
+            {
+                totaltimecheck = (int)Game2Manager.totalTime;
+                forresulttotaltimebool = true;
+            }
+///////////////////////////////////////////////////////////////
+
             resultText.text = "게임종료";
             //Level�� �˷���
             StartCoroutine(ShowLevel());
             //BhapticsLibrary.Play(BhapticsEvent.FINISH);
             //��ü �÷��� �ð� ǥ��
-            StartCoroutine(ShowPlaytime());
+            StartCoroutine(ShowPlaytime(totaltimecheck));
             //������ stage number ǥ��
             StartCoroutine(ShowStageNum());
             //Ʋ�� Ƚ�� ǥ��
@@ -47,7 +62,6 @@ public class Result_Game2 : MonoBehaviour
             //���̵� ���� â �ٽ� Ȱ��ȭ
             Disappear_selectMenu.isShow = true;
             //Disappear_result.isShow = true;
-
         }
 
         else if (!isResult)
@@ -62,11 +76,11 @@ public class Result_Game2 : MonoBehaviour
     }
 
     //�� ���� �÷��� �ð�
-    IEnumerator ShowPlaytime()
+    IEnumerator ShowPlaytime(int totalT)
     {
         //yield return new WaitForSeconds(0.5f);
-        totalgametime =(int)Game2Manager.totalTime;
-        TotalTimeText.text = "게임 총 시간     -------------------       " + totalgametime;
+        //totalgametime =(int)Game2Manager.totalTime;
+        TotalTimeText.text = "게임 총 시간     -------------------       " + totalT;
 
         yield return new WaitForSeconds(0.5f);
     }

@@ -253,8 +253,7 @@ GameObject:
   - component: {fileID: 7759856146077296348}
   - component: {fileID: 6722376874963017852}
   - component: {fileID: 4739899358177851640}
-  - component: {fileID: 6677543978502755029}
-  - component: {fileID: 2000916287332164627}
+  - component: {fileID: 1829526811977864680}
   m_Layer: 0
   m_Name: Pad_Easy
   m_TagString: Untagged
@@ -479,19 +478,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
---- !u!114 &6677543978502755029
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 725852190913782599}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90086f48dc4ef0947af3f609c20a528e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &2000916287332164627
+--- !u!114 &1829526811977864680
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -659,8 +646,8 @@ MonoBehaviour:
   _whenSelect:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2000916287332164627}
-        m_TargetAssemblyTypeName: PadCtrl_EASY, Assembly-CSharp
+      - m_Target: {fileID: 1829526811977864680}
+        m_TargetAssemblyTypeName: PadCtrl_EASY_Left, Assembly-CSharp
         m_MethodName: TouchPad
         m_Mode: 1
         m_Arguments:
@@ -671,9 +658,12 @@ MonoBehaviour:
           m_StringArgument: print
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 6677543978502755029}
-        m_TargetAssemblyTypeName: PadCtrl_EASY_Right, Assembly-CSharp
-        m_MethodName: TouchPad
+  _whenUnselect:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: Unselect, Assembly-CSharp
+        m_MethodName: unselect
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -683,9 +673,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  _whenUnselect:
-    m_PersistentCalls:
-      m_Calls: []
   _whenInteractorViewAdded:
     m_PersistentCalls:
       m_Calls: []
@@ -2062,8 +2049,8 @@ MonoBehaviour:
   _whenSelect:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2000916287332164627}
-        m_TargetAssemblyTypeName: PadCtrl_EASY, Assembly-CSharp
+      - m_Target: {fileID: 1829526811977864680}
+        m_TargetAssemblyTypeName: PadCtrl_EASY_Left, Assembly-CSharp
         m_MethodName: TouchPad
         m_Mode: 1
         m_Arguments:
@@ -2074,9 +2061,12 @@ MonoBehaviour:
           m_StringArgument: print
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 6677543978502755029}
-        m_TargetAssemblyTypeName: PadCtrl_EASY_Right, Assembly-CSharp
-        m_MethodName: TouchPad
+  _whenUnselect:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: Unselect, Assembly-CSharp
+        m_MethodName: unselect
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2086,9 +2076,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  _whenUnselect:
-    m_PersistentCalls:
-      m_Calls: []
   _whenInteractorViewAdded:
     m_PersistentCalls:
       m_Calls: []
@@ -3809,8 +3796,8 @@ MonoBehaviour:
   _whenSelect:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2000916287332164627}
-        m_TargetAssemblyTypeName: PadCtrl_EASY, Assembly-CSharp
+      - m_Target: {fileID: 1829526811977864680}
+        m_TargetAssemblyTypeName: PadCtrl_EASY_Left, Assembly-CSharp
         m_MethodName: TouchPad
         m_Mode: 1
         m_Arguments:
@@ -3821,9 +3808,12 @@ MonoBehaviour:
           m_StringArgument: print
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 6677543978502755029}
-        m_TargetAssemblyTypeName: PadCtrl_EASY_Right, Assembly-CSharp
-        m_MethodName: TouchPad
+  _whenUnselect:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: Unselect, Assembly-CSharp
+        m_MethodName: unselect
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3833,9 +3823,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  _whenUnselect:
-    m_PersistentCalls:
-      m_Calls: []
   _whenInteractorViewAdded:
     m_PersistentCalls:
       m_Calls: []
@@ -4070,8 +4057,8 @@ MonoBehaviour:
   _whenSelect:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2000916287332164627}
-        m_TargetAssemblyTypeName: PadCtrl_EASY, Assembly-CSharp
+      - m_Target: {fileID: 1829526811977864680}
+        m_TargetAssemblyTypeName: PadCtrl_EASY_Left, Assembly-CSharp
         m_MethodName: TouchPad
         m_Mode: 1
         m_Arguments:
@@ -4082,9 +4069,12 @@ MonoBehaviour:
           m_StringArgument: print
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 6677543978502755029}
-        m_TargetAssemblyTypeName: PadCtrl_EASY_Right, Assembly-CSharp
-        m_MethodName: TouchPad
+  _whenUnselect:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: Unselect, Assembly-CSharp
+        m_MethodName: unselect
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4094,9 +4084,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  _whenUnselect:
-    m_PersistentCalls:
-      m_Calls: []
   _whenInteractorViewAdded:
     m_PersistentCalls:
       m_Calls: []
@@ -5064,8 +5051,8 @@ MonoBehaviour:
   _whenSelect:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2000916287332164627}
-        m_TargetAssemblyTypeName: PadCtrl_EASY, Assembly-CSharp
+      - m_Target: {fileID: 1829526811977864680}
+        m_TargetAssemblyTypeName: PadCtrl_EASY_Left, Assembly-CSharp
         m_MethodName: TouchPad
         m_Mode: 1
         m_Arguments:
@@ -5076,9 +5063,12 @@ MonoBehaviour:
           m_StringArgument: print
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 6677543978502755029}
-        m_TargetAssemblyTypeName: PadCtrl_EASY_Right, Assembly-CSharp
-        m_MethodName: TouchPad
+  _whenUnselect:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: Unselect, Assembly-CSharp
+        m_MethodName: unselect
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5088,9 +5078,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  _whenUnselect:
-    m_PersistentCalls:
-      m_Calls: []
   _whenInteractorViewAdded:
     m_PersistentCalls:
       m_Calls: []
@@ -5368,8 +5355,8 @@ MonoBehaviour:
   _whenSelect:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2000916287332164627}
-        m_TargetAssemblyTypeName: PadCtrl_EASY, Assembly-CSharp
+      - m_Target: {fileID: 1829526811977864680}
+        m_TargetAssemblyTypeName: PadCtrl_EASY_Left, Assembly-CSharp
         m_MethodName: TouchPad
         m_Mode: 1
         m_Arguments:
@@ -5380,9 +5367,12 @@ MonoBehaviour:
           m_StringArgument: print
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 6677543978502755029}
-        m_TargetAssemblyTypeName: PadCtrl_EASY_Right, Assembly-CSharp
-        m_MethodName: TouchPad
+  _whenUnselect:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: Unselect, Assembly-CSharp
+        m_MethodName: unselect
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5392,9 +5382,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  _whenUnselect:
-    m_PersistentCalls:
-      m_Calls: []
   _whenInteractorViewAdded:
     m_PersistentCalls:
       m_Calls: []

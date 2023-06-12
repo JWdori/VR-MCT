@@ -8,9 +8,18 @@ using Bhaptics.SDK2;
 // Hierachy에 있는 SelectLevel 하위 Easy, Normal, Hard "When Select" 부분에 들어가 있는 코드
 public class MakeStage_VR : MonoBehaviour
 {
+
+    public GameObject gm1;
+    public GameObject gm2;
+    public GameObject gm3;
+
     //easy 버튼을 눌렀을 때 실행
     public void Make_easy()
     {
+
+        gm1.SetActive(true);
+        gm2.SetActive(false);
+        gm3.SetActive(false);
         //SELECT 상태일 때 실행 가능
         if (GameManager_VR.state == GameManager_VR.STATE.SELECT)
         {
@@ -39,6 +48,9 @@ public class MakeStage_VR : MonoBehaviour
     //normal 버튼을 눌렀을 때 실행
     public void Make_normal()
     {
+        gm1.SetActive(false);
+        gm2.SetActive(true);
+        gm3.SetActive(false);
         //SELECT 상태일 때 실행 가능
         if (GameManager_VR1.state1 == GameManager_VR1.STATE.SELECT)
         {
@@ -67,6 +79,9 @@ public class MakeStage_VR : MonoBehaviour
     //hard 버튼을 눌렀을 때 실행
     public void Make_hard()
     {
+        gm1.SetActive(false);
+        gm2.SetActive(false);
+        gm3.SetActive(true);
         //SELECT 상태일 때 실행 가능
         if (GameManager_VR2.state2 == GameManager_VR2.STATE.SELECT)
         {

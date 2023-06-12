@@ -15,8 +15,8 @@ using System.Linq;
 
 public class Game2Manager : MonoBehaviour
 {
-    public TextMeshPro totalTimeText, stageTimeText, WrongAnswerCntText, stageNumText, CorrectAnswerCntText, DifficultyText;
-
+    public TextMeshPro totalTimeText, stageTimeText, WrongAnswerCntText, stageNumText, CorrectAnswerCntText, DifficultyText, LIFEText;
+    
     ///Game///
     static public int EASY = 2;
     static public int MIDDLE = 3;
@@ -103,9 +103,9 @@ public class Game2Manager : MonoBehaviour
 
     public bool buttonsSpawned = false;
 
-    Vector3 ButtonPosition_Left = new Vector3(19.7f,1.81f,22.0f);
-    Vector3 ButtonPosition_Middle = new Vector3(20.14f,1.81f,21.67f);
-    Vector3 ButtonPosition_Right = new Vector3(20.6f,1.81f,21.35f);
+    Vector3 ButtonPosition_Left = new Vector3(20.02f,1.81f,22.231f);
+    Vector3 ButtonPosition_Middle = new Vector3(20.382f, 1.81f, 21.951f);
+    Vector3 ButtonPosition_Right = new Vector3(20.73f,1.81f,21.674f);
 
     ///Spawner///
     //public GameObject[] Objects = new GameObject[0];
@@ -146,12 +146,12 @@ public class Game2Manager : MonoBehaviour
     //동물들 소리 저장
     public AudioClip[] AnimalSounds = new AudioClip[18];
 
+    public int LIFE = 2;
+
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("Start");
-        Screen.orientation = ScreenOrientation.LandscapeRight;
-        Screen.sleepTimeout = SleepTimeout.NeverSleep;
+
         
         ///Game///
         startTime = stageTime = Time.time;
@@ -252,6 +252,7 @@ public class Game2Manager : MonoBehaviour
         /// stage 바뀔때마다 생김
         /// 한번 설명하면 true로 바뀌어서 더이상 설명 나오지 않음
         Is_HardModeExplain_Already_Done = false;
+        LIFE = 2;
 
     }
 
@@ -287,6 +288,8 @@ public class Game2Manager : MonoBehaviour
             totalTimeText.text = "게임 시간 : " + (int)totalTime;
             WrongAnswerCntText.text = "틀림 : " + WrongAnswerCnt;
             CorrectAnswerCntText.text = "맞춤 : " + CorrectAnswerCnt;
+            LIFEText.text = "스테이지 기회 :" + LIFE;
+            
             if(CurrentDifficulty == EASY)
             {
                 DifficultyText.text = "난이도 : 쉬움";
@@ -307,6 +310,7 @@ public class Game2Manager : MonoBehaviour
             WrongAnswerCntText.text = "";
             CorrectAnswerCntText.text = "";
             DifficultyText.text = "";
+            LIFEText.text = "";
         }
 
         // stagetime_in_5sec = time2 - 1;
@@ -431,13 +435,18 @@ public class Game2Manager : MonoBehaviour
         BhapticsLibrary.Play(BhapticsEvent.WRONG_LEFT);
         BhapticsLibrary.Play(BhapticsEvent.WRONG_RIGHT);
         WrongAnswerCnt = WrongAnswerCnt+1;
+
+
+        LIFE = LIFE-1;
+
+
         showstageover();
         yield return new WaitForSeconds(0.001f);
         state = STATE.CLEAR;
     }
     public void showstageover()
     {
-        Vector3 overtextpos1 =  new Vector3(20.197f,2.253f,21.563f);
+        Vector3 overtextpos1 =  new Vector3(20.596f,2.253f,22.233f);
         GameObject StageOverObj = Instantiate(StageOverAnnouncement[0], overtextpos1, Quaternion.Euler(0,36.149f,0));
         StageOverObj.tag =  "OverTextObj";
     }
@@ -459,6 +468,8 @@ public class Game2Manager : MonoBehaviour
         state = STATE.WAIT;
         Result_Game2.isResult = true;
         state = STATE.SELECT;
+        stageNum = 1;
+        LIFE = 2;
         yield return new WaitForSeconds(1);
     }
 ///Game///
@@ -506,14 +517,21 @@ public class Game2Manager : MonoBehaviour
             WrongAnswerCnt = WrongAnswerCnt +1;
             yield return new WaitForSeconds(1f);
             wrongCorrectAnswerDestroy();
+
+
+            LIFE = LIFE-1;
+
+
             state = STATE.CLEAR;
+
+            
         }
     }
 
 /// 맞음 글자 나타나게
     public void CorrectAnswer()
     {
-        Vector3 AnswerPos =  new Vector3(20.432f,2.342f,21.928f);
+        Vector3 AnswerPos =  new Vector3(20.569f,2.342f,22.233f);
         GameObject Answer = Instantiate(AnswerObj[0], AnswerPos, Quaternion.Euler(0,36.149f,0));
         Answer.tag =  "Answer";
     }
@@ -521,7 +539,7 @@ public class Game2Manager : MonoBehaviour
 /// 틀림 글자 나타나게
     public void WrongAnswer()
     {
-        Vector3 AnswerPos =  new Vector3(20.432f,2.342f,21.928f);
+        Vector3 AnswerPos =  new Vector3(20.569f, 2.342f, 22.233f);
         GameObject Answer = Instantiate(AnswerObj[1], AnswerPos, Quaternion.Euler(0,36.149f,0));
         Answer.tag =  "Answer";
     }
@@ -625,7 +643,7 @@ public class Game2Manager : MonoBehaviour
         /////////////////////////////////
         /////////[시작 보여주기]//////////
         StageStartAnouncment();
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(4.0f);
         StageStartAnouncmentDestroy();
 
         ////////////////////////////////
@@ -677,7 +695,7 @@ public class Game2Manager : MonoBehaviour
     ///Hardmode는 Hard mode에 대한 설명이 필요하다.
     public void HardModeExplain()
     {
-        Vector3 HardModeExplain_Pos =  new Vector3(20.432f,2.592f,21.928f);
+        Vector3 HardModeExplain_Pos =  new Vector3(20.569f,2.592f,22.233f);
         GameObject HModeExp = Instantiate(HardModeExplainText[0], HardModeExplain_Pos, Quaternion.Euler(0,36.149f,0));
         HModeExp.tag =  "HardModeExplain";
     }
@@ -699,12 +717,12 @@ public class Game2Manager : MonoBehaviour
             //////[시작 뜨게 만드는 곳]//////
 
             ///start
-            Vector3 starttextpos0 =  new Vector3(20.432f,2.642f,21.928f);
+            Vector3 starttextpos0 =  new Vector3(20.569f,2.57f,22.233f);
             GameObject Start0 = Instantiate(StageStartAnnouncement[0], starttextpos0, Quaternion.Euler(0,36.149f,0));
             Start0.tag =  "StartTextObj";
             
             //설명
-            Vector3 starttextpos1 =  new Vector3(20.432f,2.253f,21.928f);
+            Vector3 starttextpos1 =  new Vector3(20.569f, 2.253f, 22.233f);
             GameObject Start1 = Instantiate(StageStartAnnouncement[1], starttextpos1, Quaternion.Euler(0,36.149f,0));
             Start1.tag =  "StartTextObj";
             StageStartAnnouncement_Spanwed = true;
@@ -731,13 +749,18 @@ public class Game2Manager : MonoBehaviour
         int index1 = 0;
         int index2 = 0;
         Debug.Log("TwoObjIndex");
-        index1=Random.Range(0,Objects.Length);
+        do
+        {
+            index1 = Random.Range(0, Objects.Length);
+        }
+        while (index1 == 1);
+        
         do
         {
             Debug.Log("make 2 Obj_Index In_Do-while");
             index2 = Random.Range(0,Objects.Length);
         }
-        while(index1 == index2);
+        while(index1 == index2 || index2 ==1);
 
         return (index1,index2);
     }
@@ -769,8 +792,8 @@ public class Game2Manager : MonoBehaviour
                 case 0: /// not hard mode (easy, middle)
                     do{
                     Debug.Log("TwoObjSpawner_NotHard-MakeCoordinate_Distance-InDoWhile");
-                    position1 = MakeCoordinate_in_Area();
-                    position2 = MakeCoordinate_in_Area();
+                    position1 = MakeCoordinate_in_Area(I1);
+                    position2 = MakeCoordinate_in_Area(I2);
                     Distance = Vector3.Distance(position1,position2);
                     Debug.Log("After TwoObjSpawner-Coordinate_Distance-DoWhile");
                     }
@@ -815,20 +838,46 @@ public class Game2Manager : MonoBehaviour
         }
     }
 
-    public Vector3 MakeCoordinate_in_Area()
+    public Vector3 MakeCoordinate_in_Area(int i)
     {
+        float y = 1.2f;
+        
+        
         Debug.Log("MakeCorrdinate_in_Area");
 
         float x = 0f;
         float z = 0f;
+
+        float Random_range_x_start = 20.1f;
+        float Random_range_x_end = 27.6f;
+        float Random_range_z_start = 22.8f;
+        float Random_range_z_end = 27.1f;
+
+        // 박쥐 위치 예외처리 index = 1
+        if (i == 1)
+        {
+            y = 2.4f;
+        }
+
+        // 작은 동물 예외처리
+        // Bat  Rabbit Raven Rooster Stork
+    //index 1     10    11      12     14
+        if (i==1||i==10||i==11||i==12||i==14)
+        {
+            Random_range_x_start = 20.285f;
+            Random_range_x_end = 24.0f;
+            Random_range_z_start = 23.2f;
+            Random_range_z_end = 25.2f;
+        }
+
         do{
-            x = (float)Random.Range(20.1f,27.6f); 
-            z = (float)Random.Range(22.8f,27.1f);
+            x = (float)Random.Range(Random_range_x_start,Random_range_x_end); 
+            z = (float)Random.Range(Random_range_z_start,Random_range_z_end);
             Debug.Log("MakeCoordinate_in_Area_In_Do-While");
         }
         while((((1.13*(x-20.1)+25.3)<z) || ((0.76*(x-27.6)+25.0)>z) || ((-0.54*(x-20.1)+25.3)>z)||((-0.36*(x-21.7)+27.1)<z)));
 
-        Vector3 coordinates = new Vector3(x,1.2f,z);
+        Vector3 coordinates = new Vector3(x,y,z);
         return coordinates;
     }
 
@@ -912,11 +961,11 @@ public class Game2Manager : MonoBehaviour
     public int Pad_2_Spawn(int [] idx_T, int [] idx_F)
     {
         Quaternion [] PadRot = new Quaternion[2];
-        PadRot[0].eulerAngles = new Vector3(0,26,0);
+        PadRot[0].eulerAngles = new Vector3(0,21,0);
         Debug.Log(PadRot[0]);
         Debug.Log(PadRot[0]);
         Debug.Log(PadRot[0]);
-        PadRot[1].eulerAngles = new Vector3(0,46,0);
+        PadRot[1].eulerAngles = new Vector3(0,51,0);
         Debug.Log(PadRot[1]);
         Debug.Log(PadRot[1]);
         Debug.Log(PadRot[1]);
@@ -936,10 +985,13 @@ public class Game2Manager : MonoBehaviour
 
         int idxT = idx_T[T1];
         int idxF = idx_F[F1];
-
+        
         Vector3 [] coord = new Vector3[2];
-        coord[0] = new Vector3(19.526f,2.1f,22.431f);
-        coord[1] = new Vector3(20.894f,2.1f,21.457f);
+        coord[0] = new Vector3(20.02f, 2.1f, 22.231f);
+        coord[1] = new Vector3(20.73f, 2.1f, 21.674f);
+
+        //coord[0] = new Vector3(19.526f,2.1f,22.431f);
+        //coord[1] = new Vector3(20.894f,2.1f,21.457f);
 
         //위의 coord값에 대해 idx를 random하게 접근해서
         //true 와 false의 위치가 매번 랜덤하게 생성되게 함
@@ -1012,9 +1064,13 @@ public class Game2Manager : MonoBehaviour
         int idxF2 = idx_F[F2];
 
         Vector3 [] coord = new Vector3[3];
-        coord[0] = new Vector3(19.526f,2.1f,22.431f);
-        coord[1] = new Vector3(20.382f,2.1f,21.976f);
-        coord[2] = new Vector3(20.894f,2.1f,21.457f);
+        coord[0] = new Vector3(20.02f, 2.1f, 22.231f);
+        coord[1] = new Vector3(20.382f,2.1f,21.951f);
+        coord[2] = new Vector3(20.73f, 2.1f, 21.674f);
+
+        // coord[0] = new Vector3(19.526f,2.1f,22.431f);
+        // coord[1] = new Vector3(20.382f,2.1f,21.976f);
+        // coord[2] = new Vector3(20.894f,2.1f,21.457f);
 
         //위의 coord값에 대해 idx를 random하게 접근해서
         //true 와 false의 위치가 매번 랜덤하게 생성되게 함
@@ -1220,7 +1276,7 @@ public class Game2Manager : MonoBehaviour
             ButtonsDeActive();
         }
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
         showstageoverdestroy();
 
         yield return new WaitForSeconds(1f);
@@ -1237,7 +1293,9 @@ public class Game2Manager : MonoBehaviour
         check5sec = 0;
         Is_check5sec_True = false;
 
-        if (stageNum>stageCnt)
+
+
+        if (stageNum>stageCnt || LIFE<=0)
         {
             state = STATE.RESULT;
             yield return new WaitForSeconds(0.5f);

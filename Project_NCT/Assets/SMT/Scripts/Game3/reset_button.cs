@@ -69,10 +69,12 @@ public class reset_button : MonoBehaviour
         {
             if (isLeft)
             {
+                Debug.Log("Left");
                 BhapticsLibrary.Play(BhapticsEvent.CORRECT_LEFT);
             }
             else if (isRight)
             {
+                Debug.Log("Right");
                 BhapticsLibrary.Play(BhapticsEvent.CORRECT_RIGHT);
             }
             for (int i = 0; i < targetRigidbodies.Length; i++)
@@ -87,8 +89,9 @@ public class reset_button : MonoBehaviour
 
                 // 각 오브젝트를 해당하는 위치로 이동합니다.
                 targetObject.transform.position = targetPositions[i];
-                targetObject.transform.rotation = Quaternion.Euler(0f, targetObject.transform.rotation.eulerAngles.y, targetObject.transform.rotation.eulerAngles.z);
-
+                targetObject.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+                
+                
                 if (targetRigidbody)
                 {
                     targetRigidbody.isKinematic = false;

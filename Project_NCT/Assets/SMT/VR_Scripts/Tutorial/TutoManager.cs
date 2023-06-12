@@ -11,6 +11,7 @@ public class TutoManager : MonoBehaviour
     public GameObject button_n;
     public GameObject button_p;
     public GameObject exit;
+    public GameObject menu;
 
     // Start is called before the first frame update
     void Start()
@@ -36,7 +37,7 @@ public class TutoManager : MonoBehaviour
     };
 
     static public PAGE page = PAGE.PAGE1;
-    static public STATE state = STATE.START;
+    static public STATE state = STATE.WAIT;
 
     // Update is called once per frame
     public void Update()
@@ -62,6 +63,7 @@ public class TutoManager : MonoBehaviour
     {
         state = STATE.WAIT;
         yield return new WaitForSeconds(0.1f);
+        menu.SetActive(false);
         p1.SetActive(true);
         button_n.SetActive(true);
         exit.SetActive(true);

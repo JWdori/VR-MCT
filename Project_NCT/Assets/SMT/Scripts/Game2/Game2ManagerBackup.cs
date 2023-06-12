@@ -15,7 +15,7 @@
 
 // public class Game2Manager : MonoBehaviour
 // {
-//     public TextMeshPro totalTimeText, stageTimeText, WrongAnswerCntText, stageNumText, CorrectAnswerCntText, DifficultyText;
+//     public TextMeshPro totalTimeText, stageTimeText, WrongAnswerCntText, stageNumText, CorrectAnswerCntText, DifficultyText, LIFEText;
 
 //     ///Game///
 //     static public int EASY = 2;
@@ -142,6 +142,8 @@
 //     //동물들 소리 저장
 //     public AudioClip[] AnimalSounds = new AudioClip[18];
 
+//     public int LIFE = 2;
+
 //     // Start is called before the first frame update
 //     void Start()
 //     {
@@ -248,6 +250,7 @@
 //         /// stage 바뀔때마다 생김
 //         /// 한번 설명하면 true로 바뀌어서 더이상 설명 나오지 않음
 //         Is_HardModeExplain_Already_Done = false;
+//         LIFE = 2;
 
 //     }
 
@@ -277,6 +280,8 @@
 //             totalTimeText.text = "게임 시간 : " + (int)totalTime;
 //             WrongAnswerCntText.text = "틀림 : " + WrongAnswerCnt;
 //             CorrectAnswerCntText.text = "맞춤 : " + CorrectAnswerCnt;
+//             LIFEText.text = "스테이지 기회 :" + LIFE;
+            
 //             if(CurrentDifficulty == EASY)
 //             {
 //                 DifficultyText.text = "난이도 : 쉬움";
@@ -297,6 +302,7 @@
 //             WrongAnswerCntText.text = "";
 //             CorrectAnswerCntText.text = "";
 //             DifficultyText.text = "";
+//             LIFEText.text = "";
 //         }
 
 //         // stagetime_in_5sec = time2 - 1;
@@ -359,42 +365,53 @@
 //         }
 //     }
 
-//     IEnumerator PlaySound(AudioClip soundClip)
+//     IEnumerator PlaySoundsWithDelay1sec(int index1, int index2)
+//     {
+//         // 첫 번째 소리 재생
+//         AudioClip soundClip1 = AnimalSounds[index1];
+//         StartCoroutine(PlaySound(soundClip1, 2f)); // 2초 동안 재생
+
+//         yield return new WaitForSeconds(1f); // 1초 대기
+
+//         // 두 번째 소리 재생
+//         AudioClip soundClip2 = AnimalSounds[index2];
+//         StartCoroutine(PlaySound(soundClip2, 2f)); // 2초 동안 재생
+//     }
+
+//     IEnumerator PlaySound(AudioClip soundClip, float duration)
 //     {
 //         // AudioSource 컴포넌트를 가진 임시 GameObject를 생성합니다.
 //         GameObject audioObject = new GameObject("AudioObject");
 //         AudioSource audioSource = audioObject.AddComponent<AudioSource>();
-        
+
 //         // AudioClip을 설정합니다.
 //         audioSource.clip = soundClip;
-        
+
 //         // 소리를 재생합니다.
 //         audioSource.Play();
 
-//         //////////////////////////////////////////
-//         ///////////////[일반 play]////////////////
-//         //yield return new WaitForSeconds(2f);
-//         //////////////////////////////////////////
-//         //////////////////////////////////////////
-
-
-//         //////////////////////////////////////////
-//         ////////////[2초간 소리 Fadeout]///////////
-//         float fadeDuration = 2f;
+//         float fadeDuration = 1f;
 //         float fadeTimer = 0f;
 //         float startVolume = audioSource.volume;
-//         while (fadeTimer < fadeDuration)
+
+//         // 지정된 시간 동안 소리를 출력합니다.
+//         while (fadeTimer < duration)
 //         {
 //             fadeTimer += Time.deltaTime;
-//             audioSource.volume = Mathf.Lerp(startVolume, 0f, fadeTimer / fadeDuration);
+
+//             // 마지막 1초 동안 Fade Out 효과를 적용합니다.
+//             if (fadeTimer >= duration - 1f)
+//             {
+//                 audioSource.volume = Mathf.Lerp(startVolume, 0f, (fadeTimer - (duration - 1f)) / 1f);
+//             }
+
 //             yield return null;
 //         }
-//         //////////////////////////////////////////
-//         //////////////////////////////////////////
 
+//         // 소리를 정지합니다.
 //         audioSource.Stop();
-//         // 소리 재생이 끝나면 GameObject를 파괴합니다.
-//         //Destroy(audioObject, soundClip.length);
+
+//         // GameObject를 파괴합니다.
 //         Destroy(audioObject);
 //     }
 
@@ -406,6 +423,11 @@
 //         Is_showstageover = true;
 //         Debug.Log("HapticHere - StageTimeOver - 5sec");
 //         WrongAnswerCnt = WrongAnswerCnt+1;
+
+
+//         LIFE = LIFE-1;
+
+
 //         showstageover();
 //         yield return new WaitForSeconds(0.001f);
 //         state = STATE.CLEAR;
@@ -464,7 +486,14 @@
 //             WrongAnswerCnt = WrongAnswerCnt +1;
 //             yield return new WaitForSeconds(1f);
 //             wrongCorrectAnswerDestroy();
+
+
+//             LIFE = LIFE-1;
+
+
 //             state = STATE.CLEAR;
+
+            
 //         }
 //     }
 
@@ -573,13 +602,17 @@
 //         /////////[Obj 보여주기]//////////
 
 //         Debug.Log("MakeObj");
+//         /// object2개를 생성하고
+//         /// 소리를 출력하기
 //         TwoObjSpawner(I1,I2,IsItHard);
 //         Debug.Log("BeforeMakeCategoryPad");
+
+//         yield return new WaitForSeconds(2.0f);
 
 //         /////////////////////////////////
 //         /////////[시작 보여주기]//////////
 //         StageStartAnouncment();
-//         yield return new WaitForSeconds(1.0f);
+//         yield return new WaitForSeconds(2.0f);
 //         StageStartAnouncmentDestroy();
 
 //         ////////////////////////////////
@@ -652,12 +685,12 @@
 //             //////[시작 뜨게 만드는 곳]//////
 
 //             ///start
-//             Vector3 starttextpos0 =  new Vector3(20.432f,2.642f,21.928f);
+//             Vector3 starttextpos0 =  new Vector3(20.432f,3.1f,21.928f);
 //             GameObject Start0 = Instantiate(StageStartAnnouncement[0], starttextpos0, Quaternion.Euler(0,36.149f,0));
 //             Start0.tag =  "StartTextObj";
             
 //             //설명
-//             Vector3 starttextpos1 =  new Vector3(20.432f,2.253f,21.928f);
+//             Vector3 starttextpos1 =  new Vector3(20.432f,2.453f,21.928f);
 //             GameObject Start1 = Instantiate(StageStartAnnouncement[1], starttextpos1, Quaternion.Euler(0,36.149f,0));
 //             Start1.tag =  "StartTextObj";
 //             StageStartAnnouncement_Spanwed = true;
@@ -722,8 +755,8 @@
 //                 case 0: /// not hard mode (easy, middle)
 //                     do{
 //                     Debug.Log("TwoObjSpawner_NotHard-MakeCoordinate_Distance-InDoWhile");
-//                     position1 = MakeCoordinate_in_Area();
-//                     position2 = MakeCoordinate_in_Area();
+//                     position1 = MakeCoordinate_in_Area(I1);
+//                     position2 = MakeCoordinate_in_Area(I2);
 //                     Distance = Vector3.Distance(position1,position2);
 //                     Debug.Log("After TwoObjSpawner-Coordinate_Distance-DoWhile");
 //                     }
@@ -753,16 +786,6 @@
 //             Debug.Log("TwoObjSpawn_Obj1");
 //             Obj1.tag = "SpawnedObject";
 
-
-// //////////////////////////////////////////////////////////
-// //////////////////////////////////////////////////////////
-//             // 해당 동물의 오디오 파일을 가져옵니다.
-//             AudioClip soundClip = AnimalSounds[I1];
-//             // 동물 소리를 재생합니다.
-//             StartCoroutine(PlaySound(soundClip));
-// //////////////////////////////////////////////////////////
-// //////////////////////////////////////////////////////////
-
 //             Obj2 = Instantiate(Objects[I2], position2, Quaternion.identity);
 //             Debug.Log("TwoObjSpawn_Obj2");
 //             Obj2.tag = "SpawnedObject";
@@ -770,29 +793,54 @@
 
 // //////////////////////////////////////////////////////////
 // //////////////////////////////////////////////////////////
-//             // 해당 동물의 오디오 파일을 가져옵니다.
-//             soundClip = AnimalSounds[I2];
-//             // 동물 소리를 재생합니다.
-//             StartCoroutine(PlaySound(soundClip));
+//             // 인덱스에 해당하는 동물의 오디오 출력
+//             // 1초 텀을 두고 출력된다.
+//             StartCoroutine(PlaySoundsWithDelay1sec(I1,I2));
 // //////////////////////////////////////////////////////////
 // //////////////////////////////////////////////////////////
 //         }
 //     }
 
-//     public Vector3 MakeCoordinate_in_Area()
+//     public Vector3 MakeCoordinate_in_Area(int i)
 //     {
+//         float y = 1.2f;
+        
+        
 //         Debug.Log("MakeCorrdinate_in_Area");
 
 //         float x = 0f;
 //         float z = 0f;
+
+//         float Random_range_x_start = 20.1f;
+//         float Random_range_x_end = 27.6f;
+//         float Random_range_z_start = 22.8f;
+//         float Random_range_z_end = 27.1f;
+
+//         // 박쥐 위치 예외처리 index = 1
+//         if (i == 1)
+//         {
+//             y = 2.4f;
+//         }
+
+//         // 작은 동물 예외처리
+//         // Bat  Rabbit Raven Rooster Stork
+//     //index 1     10    11      12     14
+//         if (i==1||i==10||i==11||i==12||i==14)
+//         {
+//             Random_range_x_start = 20.285f;
+//             Random_range_x_end = 24.0f;
+//             Random_range_z_start = 23.2f;
+//             Random_range_z_end = 25.2f;
+//         }
+
 //         do{
-//             x = (float)Random.Range(20.1f,27.6f); 
-//             z = (float)Random.Range(22.8f,27.1f);
+//             x = (float)Random.Range(Random_range_x_start,Random_range_x_end); 
+//             z = (float)Random.Range(Random_range_z_start,Random_range_z_end);
 //             Debug.Log("MakeCoordinate_in_Area_In_Do-While");
 //         }
 //         while((((1.13*(x-20.1)+25.3)<z) || ((0.76*(x-27.6)+25.0)>z) || ((-0.54*(x-20.1)+25.3)>z)||((-0.36*(x-21.7)+27.1)<z)));
 
-//         Vector3 coordinates = new Vector3(x,1.2f,z);
+//         Vector3 coordinates = new Vector3(x,y,z);
 //         return coordinates;
 //     }
 
@@ -1201,7 +1249,9 @@
 //         check5sec = 0;
 //         Is_check5sec_True = false;
 
-//         if (stageNum>stageCnt)
+
+
+//         if (stageNum>stageCnt || LIFE<=0)
 //         {
 //             state = STATE.RESULT;
 //             yield return new WaitForSeconds(0.5f);
