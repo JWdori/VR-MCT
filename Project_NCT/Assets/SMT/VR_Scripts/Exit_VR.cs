@@ -22,7 +22,7 @@ public class Exit_VR : MonoBehaviour
         yield return new WaitForSeconds(delayTime);
 
         // 랜덤으로 선택된 게임 씬으로 이동합니다.
-        int randomGame = UnityEngine.Random.Range(1, 3); // UnityEngine.Random 사용
+        int randomGame = UnityEngine.Random.Range(1, 4); // UnityEngine.Random 사용
         string sceneName;
 
         switch (randomGame)
@@ -32,6 +32,9 @@ public class Exit_VR : MonoBehaviour
                 break;
             case 2:
                 sceneName = "Test_Game3";
+                break;
+            case 3:
+                sceneName = "Text_Game2";
                 break;
             default:
                 sceneName = "Gamestart"; // 예외 상황에 대비하여 기본값 설정

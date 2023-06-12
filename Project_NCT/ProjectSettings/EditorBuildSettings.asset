@@ -35,24 +35,27 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Oculus/Interaction/Samples/Scenes/Features/TouchHandGrab.unity
     guid: be6ac2db53044a540a337805c97f39df
-  - enabled: 0
+  - enabled: 1
     path: Assets/SMT/Scenes/Gamestart.unity
     guid: 8b5a9f9d98c073743bc0091e00425a97
-  - enabled: 0
+  - enabled: 1
     path: Assets/SMT/Scenes/Test_Game3.unity
     guid: ad21f870f91ef2b4c9e310c17fc9390e
-  - enabled: 0
+  - enabled: 1
     path: Assets/SMT/Scenes/TestMode_Memory.unity
     guid: 128bff77d904e3d45a6957f0f407a5d9
-  - enabled: 0
+  - enabled: 1
     path: Assets/SMT/Scenes/Memory_game.unity
     guid: 33419b875f22df646b2de99130d4a4a4
-  - enabled: 0
+  - enabled: 1
     path: Assets/SMT/Scenes/Game3.unity
     guid: 965fc2cc322a4824284c6d38fec0b1c2
   - enabled: 1
     path: Assets/SMT/Scenes/Game2.unity
     guid: d2d61fc504db2284f9aeb675cbaff717
+  - enabled: 1
+    path: Assets/SMT/Scenes/Text_Game2.unity
+    guid: 766c2422ea355dd49880e809ce4ad2f7
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: bfa1182bd221b4ca89619141f66f1260,
       type: 2}

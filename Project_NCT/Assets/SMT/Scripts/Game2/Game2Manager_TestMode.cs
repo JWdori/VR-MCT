@@ -37,7 +37,7 @@ public class Game2Manager_TestMode : MonoBehaviour
     //////STATE//////
     public enum STATE
     {
-        START, HIT, WAIT, IDLE, CLEAR ,RESULT, SELECT , TIMEOUT5
+        START, HIT, WAIT, IDLE, CLEAR ,RESULT, SELECT , TIMEOUT5,EXPLAIN
     };
     static public STATE state = STATE.IDLE;
 
@@ -159,6 +159,8 @@ public class Game2Manager_TestMode : MonoBehaviour
     static public bool isRight = false;
     bool isStage = false;
 
+    bool isexplain = false;
+
 
     // Start is called before the first frame update
     void Start()
@@ -270,9 +272,7 @@ public class Game2Manager_TestMode : MonoBehaviour
 
         Is_Stage_Start = false;
 
-        StartCoroutine(testmodeExplain());
-        BhapticsLibrary.Play(BhapticsEvent.TENTIME);
-        StartCoroutine(testmodeHapticExplain());
+        
         
 
     }
@@ -468,6 +468,10 @@ public class Game2Manager_TestMode : MonoBehaviour
         {
             case STATE.START:
                 scorepannel =true;
+                StartCoroutine(MakeStage(Middle));
+
+                break;
+            case STATE.EXPLAIN:
                 Debug.Log("inswitch Start");
                 Debug.Log("objectAttributes");
                 Debug.Log(objectAttributes[0].Color);
@@ -488,7 +492,15 @@ public class Game2Manager_TestMode : MonoBehaviour
                 Debug.Log(objectAttributes[15].Color);
                 Debug.Log(objectAttributes[16].Color);
                 Debug.Log(objectAttributes[17].Color);
-                StartCoroutine(MakeStage(Middle));
+                if (isexplain == false)
+                {
+                    StartCoroutine(testmodeExplain());
+                    BhapticsLibrary.Play(BhapticsEvent.TENTIME);
+                    StartCoroutine(testmodeHapticExplain());
+                    isexplain = true;
+                }
+                
+                
                 break;
             case STATE.HIT:
                 Is_check10sec_True = false;
@@ -573,6 +585,7 @@ public class Game2Manager_TestMode : MonoBehaviour
     IEnumerator ShowOver()
     {
         state = STATE.WAIT;
+        WrongAudio.play();
         Is_showstageover = true;
         Debug.Log("HapticHere - StageTimeOver - 5sec");
         BhapticsLibrary.Play(BhapticsEvent.WRONG_LEFT);
@@ -609,6 +622,16 @@ public class Game2Manager_TestMode : MonoBehaviour
     IEnumerator ShowResult()
     {
         state = STATE.WAIT;
+        if (stageNum == stageCnt)
+        {
+            BhapticsLibrary.Play(BhapticsEvent.CLEAR);
+            ClearAudio.play();
+        }
+        else
+        {
+            BhapticsLibrary.Play(BhapticsEvent.FAIL);
+            FailAudio.play();
+        }
         Result_Game2_Test.isResult = true;
         state = STATE.SELECT;
         stageNum = 1;
@@ -621,6 +644,7 @@ public class Game2Manager_TestMode : MonoBehaviour
     {
         Debug.Log("IsItRightAnswer");
         state = STATE.WAIT;
+        
         yield return new WaitForSeconds(0.1f);
         //EASY에서 TrueButtonLocation 1 이면 왼쪽 3이면 오른쪽
         //MIDDLE에서 TrueButtonLocation 1 이면 왼쪽 3이면 오른쪽
@@ -636,6 +660,7 @@ public class Game2Manager_TestMode : MonoBehaviour
             //맞았을때
             if (TrueButtonLocation == WhichButtonTouch){
                 CorrectAnswer();
+                CorrectAudio.play();
                 Debug.Log("HapticHere - RightAnswer");
                 if (isRight)
                 {
@@ -656,6 +681,7 @@ public class Game2Manager_TestMode : MonoBehaviour
             //틀렸을때
             else{
                 WrongAnswer();
+                WrongAudio.play();
                 Debug.Log("HapticHere - WrongAnswer");
                 Debug.Log("IsItRightAnswer - ELSE");
                 if (isRight)

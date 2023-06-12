@@ -474,7 +474,7 @@ public class Game2Manager : MonoBehaviour
     {
         state = STATE.WAIT;
         Is_showstageover = true;
-        WrongAudio.play()
+        WrongAudio.play();
         Debug.Log("HapticHere - StageTimeOver - 5sec");
         BhapticsLibrary.Play(BhapticsEvent.WRONG_LEFT);
         BhapticsLibrary.Play(BhapticsEvent.WRONG_RIGHT);
@@ -513,10 +513,12 @@ public class Game2Manager : MonoBehaviour
         if (stageNum == stageCnt)
         {
             BhapticsLibrary.Play(BhapticsEvent.CLEAR);
+            ClearAudio.play();
         }
         else
         {
             BhapticsLibrary.Play(BhapticsEvent.FAIL);
+            FailAudio.play();
         }
         Result_Game2.isResult = true;
         state = STATE.SELECT;
