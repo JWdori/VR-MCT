@@ -276,6 +276,15 @@ public class Game2Manager : MonoBehaviour
 ///////////////////////////////////////////////////
             if(CurrentDifficulty == HARD)
             {
+                if (Is_check5sec_True && (Time.time - check5sec) < 5)
+                {
+                    if (isStage)
+                    {
+                        BhapticsLibrary.Play(BhapticsEvent.FIVETIME);
+                        isStage = false;
+                    }
+
+                }
                 stageTimeText.text = "";
                 totalTimeText.text = "";
             }
@@ -285,11 +294,11 @@ public class Game2Manager : MonoBehaviour
                 if (Is_check5sec_True&& (Time.time - check5sec) < 5)
                 {
                     stageTimeText.text = "스테이지 시간 : " + (int)(Time.time - check5sec);
-                    //if (isStage)
-                    //{
-                    //    BhapticsLibrary.Play(BhapticsEvent.TIME);
-                    //    isStage = false;
-                    //}
+                    if (isStage)
+                    {
+                        BhapticsLibrary.Play(BhapticsEvent.FIVETIME);
+                        isStage = false;
+                    }
                     
                 }
                 else
@@ -593,6 +602,8 @@ public class Game2Manager : MonoBehaviour
         
         state = STATE.WAIT;
 
+        isStage = true;
+
         Disappear_selectMenu.isHide = true;
 
         Debug.Log("MakeStage");
@@ -689,7 +700,7 @@ public class Game2Manager : MonoBehaviour
         ////////////////////////////////
         check5sec = (int)Time.time;
         Is_check5sec_True = true;
-        isStage = true;
+        
 
 
         True_Button = MakeCategoryPad(I1,I2, difficulty);
