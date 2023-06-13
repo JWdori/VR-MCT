@@ -24,10 +24,12 @@ EditorBuildSettings:
     path: Assets/nonfree/nonfree/BNG Framework/Scenes/Quest Demo.unity
     guid: eac0312c32df12949a47d07747a9d1cd
   - enabled: 0
-    path: Assets/BNG Framework/Integrations/Oculus Integration/Oculus Demo.unity
+    path: Assets/nonfree/nonfree/BNG Framework/Integrations/Oculus Integration/Oculus
+      Demo.unity
     guid: 85d23a53fe036634f8e1a858d8290193
   - enabled: 0
-    path: Assets/BNG Framework/Integrations/Oculus Integration/Hand Tracking.unity
+    path: Assets/nonfree/nonfree/BNG Framework/Integrations/Oculus Integration/Hand
+      Tracking.unity
     guid: 8dee22924e05c964880504e0eabc4550
   - enabled: 0
     path: Assets/Oculus/Interaction/Samples/Scenes/Features/HandGrab.unity
