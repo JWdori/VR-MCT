@@ -705,7 +705,7 @@ MonoBehaviour:
   - {fileID: 863617048780891534, guid: 6b42cd5b4e25fe442a8fe3372ea82b8d, type: 3}
   - {fileID: 5008518353105054508, guid: a1572dde8a95d5649802d64626610ca1, type: 3}
   - {fileID: 1725529207780017103, guid: 2afaeb1c00437fa4e87952fa48cb402f, type: 3}
-  - {fileID: 4752113027321539656, guid: 0fe57ca9396928c44b6e9311913ac2ed, type: 3}
+  - {fileID: 3151828032170445441, guid: 0fe57ca9396928c44b6e9311913ac2ed, type: 3}
   - {fileID: 436273136342454945, guid: 15d45176fa9846e4abf84bf061adb0d6, type: 3}
   Pads:
   - {fileID: 4154577665158624305, guid: 8bc720ed2e7d3db4ca659567b2729ea2, type: 3}
@@ -755,7 +755,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 3a7d30ad475d74b8ba31e6040b1de09f, type: 3}
   - {fileID: 8300000, guid: 751cfcf6d6c70b446b4bc831cb38d5ba, type: 3}
   - {fileID: 8300000, guid: 85cf6b7cca7aa23408e16fe8b958ff5f, type: 3}
-  LIFE: 2
 --- !u!114 &86223914
 MonoBehaviour:
   m_ObjectHideFlags: 0

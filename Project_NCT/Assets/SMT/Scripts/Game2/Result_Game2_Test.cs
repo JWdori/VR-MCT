@@ -61,7 +61,9 @@ public class Result_Game2_Test : MonoBehaviour
             StartCoroutine(ShowCorrectNum());
             //���̵� ���� â �ٽ� Ȱ��ȭ
             Disappear_selectMenu.isShow = true;
+            Game2Manager_TestMode.isexplain = false;
             //Disappear_result.isShow = true;
+
         }
 
         else if (!isResult)

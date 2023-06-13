@@ -22,7 +22,9 @@ public class MakeStage_Game2 : MonoBehaviour
             Result_Game2.isResult = false;
             //새로 게임 시작할때 마다 초기화
             Game2Manager.stageNum = 1;
-            Game2Manager.LIFE = 2; 
+            Game2Manager.LIFE = 2;
+            Game2Manager.WrongAnswerCnt = 0;
+            Game2Manager.CorrectAnswerCnt = 0; 
             //easy ���� levelNum 1�� ����
             Game2Manager.CurrentDifficulty = EASY;
             //���� �ð� ���
@@ -44,6 +46,8 @@ public class MakeStage_Game2 : MonoBehaviour
             //새로 게임 시작할때 마다 초기화
             Game2Manager.stageNum = 1;
             Game2Manager.LIFE = 2;
+            Game2Manager.WrongAnswerCnt = 0;
+            Game2Manager.CorrectAnswerCnt = 0;
             //easy ���� levelNum 1�� ����
             Game2Manager.CurrentDifficulty = MIDDLE;
             //���� �ð� ���
@@ -65,6 +69,8 @@ public class MakeStage_Game2 : MonoBehaviour
             //새로 게임 시작할때 마다 초기화
             Game2Manager.stageNum = 1;
             Game2Manager.LIFE = 2;
+            Game2Manager.WrongAnswerCnt = 0;
+            Game2Manager.CorrectAnswerCnt = 0;
             //easy ���� levelNum 1�� ����
             Game2Manager.CurrentDifficulty = HARD;
             //���� �ð� ���
