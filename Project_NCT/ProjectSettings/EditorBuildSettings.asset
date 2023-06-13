@@ -6,28 +6,28 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/nonfree/nonfree/BNG Framework/Scenes/XR Demo.unity
+    path: Assets/nonfree/BNG Framework/Scenes/XR Demo.unity
     guid: a1360534006d3f845bc79b46b93cfec5
   - enabled: 0
-    path: Assets/nonfree/nonfree/BNG Framework/Scenes/Scene Transitioning.unity
+    path: Assets/nonfree/BNG Framework/Scenes/Scene Transitioning.unity
     guid: 9d7c9629abf9c99449e358b0938b47d0
   - enabled: 0
-    path: Assets/nonfree/nonfree/BNG Framework/Scenes/Physics Hands.unity
+    path: Assets/nonfree/BNG Framework/Scenes/Physics Hands.unity
     guid: 34a4579517c578e4080d0a6ef2c96294
   - enabled: 0
-    path: Assets/nonfree/nonfree/BNG Framework/Scenes/Rigidbody Player.unity
+    path: Assets/nonfree/BNG Framework/Scenes/Rigidbody Player.unity
     guid: 57fc97c5771a777449aa8bd02514df22
   - enabled: 0
-    path: Assets/nonfree/nonfree/BNG Framework/Scenes/Vehicle Example.unity
+    path: Assets/nonfree/BNG Framework/Scenes/Vehicle Example.unity
     guid: d96233ee44d985d4fb8dc23a907c06eb
   - enabled: 0
-    path: Assets/nonfree/nonfree/BNG Framework/Scenes/Quest Demo.unity
+    path: Assets/nonfree/BNG Framework/Scenes/Quest Demo.unity
     guid: eac0312c32df12949a47d07747a9d1cd
   - enabled: 0
-    path: Assets/BNG Framework/Integrations/Oculus Integration/Oculus Demo.unity
+    path: Assets/nonfree/BNG Framework/Integrations/Oculus Integration/Oculus Demo.unity
     guid: 85d23a53fe036634f8e1a858d8290193
   - enabled: 0
-    path: Assets/BNG Framework/Integrations/Oculus Integration/Hand Tracking.unity
+    path: Assets/nonfree/BNG Framework/Integrations/Oculus Integration/Hand Tracking.unity
     guid: 8dee22924e05c964880504e0eabc4550
   - enabled: 0
     path: Assets/Oculus/Interaction/Samples/Scenes/Features/HandGrab.unity
@@ -35,19 +35,19 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Oculus/Interaction/Samples/Scenes/Features/TouchHandGrab.unity
     guid: be6ac2db53044a540a337805c97f39df
-  - enabled: 1
+  - enabled: 0
     path: Assets/SMT/Scenes/Gamestart.unity
     guid: 8b5a9f9d98c073743bc0091e00425a97
-  - enabled: 1
+  - enabled: 0
     path: Assets/SMT/Scenes/Test_Game3.unity
     guid: ad21f870f91ef2b4c9e310c17fc9390e
-  - enabled: 1
+  - enabled: 0
     path: Assets/SMT/Scenes/TestMode_Memory.unity
     guid: 128bff77d904e3d45a6957f0f407a5d9
-  - enabled: 1
+  - enabled: 0
     path: Assets/SMT/Scenes/Memory_game.unity
     guid: 33419b875f22df646b2de99130d4a4a4
-  - enabled: 1
+  - enabled: 0
     path: Assets/SMT/Scenes/Game3.unity
     guid: 965fc2cc322a4824284c6d38fec0b1c2
   - enabled: 1

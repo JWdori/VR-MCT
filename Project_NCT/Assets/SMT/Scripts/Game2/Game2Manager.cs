@@ -148,7 +148,7 @@ public class Game2Manager : MonoBehaviour
     //동물들 소리 저장
     public AudioClip[] AnimalSounds = new AudioClip[18];
 
-    public int LIFE = 2;
+    static public int LIFE = 2;
 
     // Start is called before the first frame update
     void Start()
@@ -511,8 +511,6 @@ public class Game2Manager : MonoBehaviour
         state = STATE.WAIT;
         Result_Game2.isResult = true;
         state = STATE.SELECT;
-        stageNum = 1;
-        LIFE = 2;
         yield return new WaitForSeconds(1);
     }
 ///Game///
