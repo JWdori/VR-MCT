@@ -20,9 +20,9 @@ public class Instruction : MonoBehaviour
     public void ShowInstruction()
     {
         //난이도 선택 창 비활성화
-        Disappear_select3.isHide = true;
-        Disappear_ex_3.isShow = true;
-        TutoManager_3.state = TutoManager_3.STATE.START;
+        Disappear_select.isHide = true;
+        Disappear_ex.isShow = true;
+        TutoManager.state = TutoManager.STATE.START;
 
     }
         
