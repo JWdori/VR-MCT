@@ -148,7 +148,9 @@ public class Game2Manager : MonoBehaviour
     //동물들 소리 저장
     public AudioClip[] AnimalSounds = new AudioClip[18];
 
-    public int LIFE = 2;
+    static public int LIFE = 2;
+
+    static public bool IsButtonClick = false;
 
     // Start is called before the first frame update
     void Start()
@@ -392,10 +394,15 @@ public class Game2Manager : MonoBehaviour
                 StartCoroutine(MakeStage(CurrentDifficulty));
                 break;
             case STATE.HIT:
-                Is_check5sec_True = false;
-                check5sec = 0;
-                isStage = true;
-                StartCoroutine(IsItRightAnswer(CurrentDifficulty));
+                if(IsButtonClick == false)
+                {
+                    IsButtonClick = true;
+                    Is_check5sec_True = false;
+                    check5sec = 0;
+                    isStage = true;
+                    StartCoroutine(IsItRightAnswer(CurrentDifficulty));
+                }
+                
                 break;
             case STATE.TIMEOUT5:
                 Is_check5sec_True = false;
@@ -465,7 +472,7 @@ public class Game2Manager : MonoBehaviour
         audioSource.Stop();
 
         // GameObject를 파괴합니다.
-        Destroy(audioObject);
+        Destroy(audioObject); 
     }
 
 
@@ -520,12 +527,9 @@ public class Game2Manager : MonoBehaviour
             BhapticsLibrary.Play(BhapticsEvent.FAIL);
             FailAudio.play();
         }
+        Result_Game2.IsResultShow = false;
         Result_Game2.isResult = true;
         state = STATE.SELECT;
-        stageNum = 1;
-        LIFE = 2;
-        WrongAnswerCnt = 0; // 틀린 횟수
-        CorrectAnswerCnt = 0;
         yield return new WaitForSeconds(1);
     }
 ///Game///
@@ -620,6 +624,8 @@ public class Game2Manager : MonoBehaviour
     {
         
         state = STATE.WAIT;
+
+        IsButtonClick = false;
 
         isStage = true;
 

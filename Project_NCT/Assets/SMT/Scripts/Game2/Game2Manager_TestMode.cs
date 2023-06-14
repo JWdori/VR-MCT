@@ -143,7 +143,7 @@ public class Game2Manager_TestMode : MonoBehaviour
     //동물들 소리 저장
     public AudioClip[] AnimalSounds = new AudioClip[18];
 
-    public int LIFE = 2;
+    static public int LIFE = 2;
 
     public int [] timeperiod_start = new int[] {2,4,6,8};
     public int timeperiod_start_idx;
@@ -159,7 +159,8 @@ public class Game2Manager_TestMode : MonoBehaviour
     static public bool isRight = false;
     bool isStage = false;
 
-    bool isexplain = false;
+    static public bool isexplain = false;
+    static public bool IsButtonClick_Test = false;
 
 
     // Start is called before the first frame update
@@ -467,6 +468,7 @@ public class Game2Manager_TestMode : MonoBehaviour
         switch (state)
         {
             case STATE.START:
+                Disappear_selectMenu.isHide = true;
                 scorepannel =true;
                 StartCoroutine(MakeStage(Middle));
 
@@ -492,6 +494,7 @@ public class Game2Manager_TestMode : MonoBehaviour
                 Debug.Log(objectAttributes[15].Color);
                 Debug.Log(objectAttributes[16].Color);
                 Debug.Log(objectAttributes[17].Color);
+                Disappear_selectMenu.isHide = true;
                 if (isexplain == false)
                 {
                     StartCoroutine(testmodeExplain());
@@ -503,10 +506,15 @@ public class Game2Manager_TestMode : MonoBehaviour
                 
                 break;
             case STATE.HIT:
-                Is_check10sec_True = false;
-                check10sec = 0;
-                isStage = true;
-                StartCoroutine(IsItRightAnswer(Middle));
+                if(IsButtonClick_Test == false)
+                {
+                    IsButtonClick_Test = true;
+                    Is_check10sec_True = false;
+                    check10sec = 0;
+                    isStage = true;
+                    StartCoroutine(IsItRightAnswer(Middle));
+                }
+                
                 break;
             case STATE.TIMEOUT5:
                 Is_check10sec_True = false;
@@ -634,8 +642,6 @@ public class Game2Manager_TestMode : MonoBehaviour
         }
         Result_Game2_Test.isResult = true;
         state = STATE.SELECT;
-        stageNum = 1;
-        LIFE = 2;
         yield return new WaitForSeconds(1);
     }
 ///Game///
@@ -776,7 +782,7 @@ public class Game2Manager_TestMode : MonoBehaviour
         
         state = STATE.WAIT;
 
-        Disappear_selectMenu.isHide = true;
+        IsButtonClick_Test = false;
 
         isStage = true;
 

@@ -4028,6 +4028,7 @@ GameObject:
   m_Component:
   - component: {fileID: 726980529}
   - component: {fileID: 726980528}
+  - component: {fileID: 726980530}
   m_Layer: 0
   m_Name: GameManager_Test
   m_TagString: Untagged
@@ -4085,7 +4086,7 @@ MonoBehaviour:
   - {fileID: 863617048780891534, guid: 6b42cd5b4e25fe442a8fe3372ea82b8d, type: 3}
   - {fileID: 5008518353105054508, guid: a1572dde8a95d5649802d64626610ca1, type: 3}
   - {fileID: 1725529207780017103, guid: 2afaeb1c00437fa4e87952fa48cb402f, type: 3}
-  - {fileID: 4752113027321539656, guid: 0fe57ca9396928c44b6e9311913ac2ed, type: 3}
+  - {fileID: 3151828032170445441, guid: 0fe57ca9396928c44b6e9311913ac2ed, type: 3}
   - {fileID: 436273136342454945, guid: 15d45176fa9846e4abf84bf061adb0d6, type: 3}
   Pads:
   - {fileID: 4154577665158624305, guid: 8bc720ed2e7d3db4ca659567b2729ea2, type: 3}
@@ -4137,7 +4138,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 3a7d30ad475d74b8ba31e6040b1de09f, type: 3}
   - {fileID: 8300000, guid: 751cfcf6d6c70b446b4bc831cb38d5ba, type: 3}
   - {fileID: 8300000, guid: 85cf6b7cca7aa23408e16fe8b958ff5f, type: 3}
-  LIFE: 2
   timeperiod_start: 02000000040000000600000008000000
   timeperiod_start_idx: 0
   Is_Stage_Start: 0
@@ -4178,6 +4178,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &726980530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 726980527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32814c0f181558348a2a806361befcb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menu: {fileID: 536373768}
 --- !u!1 &750798870
 GameObject:
   m_ObjectHideFlags: 0
