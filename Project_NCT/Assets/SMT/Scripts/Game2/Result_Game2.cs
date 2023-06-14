@@ -16,6 +16,7 @@ public class Result_Game2 : MonoBehaviour
 ///////////////////////////////////////////////////////////
     public bool forresulttotaltimebool = false;
     public int totaltimecheck = 0;
+    static public bool IsResultShow = false;
 //////////////////////////////////////////////////////////
 
 
@@ -40,6 +41,7 @@ public class Result_Game2 : MonoBehaviour
         //����� ������� �� �� isResult�� true
         if (isResult)
         {
+            
 ////////////////////[Result에서 시간 고정]//////////////////////
             if (forresulttotaltimebool == false)
             {
@@ -60,7 +62,11 @@ public class Result_Game2 : MonoBehaviour
             StartCoroutine(ShowMissNum());
             StartCoroutine(ShowCorrectNum());
             //���̵� ���� â �ٽ� Ȱ��ȭ
-            Disappear_selectMenu.isShow = true;
+            if(IsResultShow == false){
+                Disappear_selectMenu.isShow = true;
+                IsResultShow = true;
+            }
+            
             //Disappear_result.isShow = true;
         }
 

@@ -527,6 +527,7 @@ public class Game2Manager : MonoBehaviour
             BhapticsLibrary.Play(BhapticsEvent.FAIL);
             FailAudio.play();
         }
+        Result_Game2.IsResultShow = false;
         Result_Game2.isResult = true;
         state = STATE.SELECT;
         yield return new WaitForSeconds(1);
