@@ -46,7 +46,7 @@ public class MovePage : MonoBehaviour
         exit.SetActive(false);
         menu.SetActive(true);
 
-        //³­ÀÌµµ ¼±ÅÃ Ã¢ ºñÈ°¼ºÈ­
+        //ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½ Ã¢ ï¿½ï¿½È°ï¿½ï¿½È­
         Disappear_select.isShow = true;
 
         Disappear_ex.isHide = true;

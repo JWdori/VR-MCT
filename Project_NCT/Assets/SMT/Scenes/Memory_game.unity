@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.55049187, g: 0.7982962, b: 0.9703398, a: 1}
+  m_IndirectSpecularColor: {r: 0.5520574, g: 0.7972927, b: 0.96367925, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2074,8 +2074,8 @@ GameObject:
   - component: {fileID: 209007380}
   - component: {fileID: 209007379}
   - component: {fileID: 209007378}
-  - component: {fileID: 209007382}
   - component: {fileID: 209007377}
+  - component: {fileID: 209007382}
   m_Layer: 0
   m_Name: Tuto
   m_TagString: Untagged
