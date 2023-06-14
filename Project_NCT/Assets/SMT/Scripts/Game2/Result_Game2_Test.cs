@@ -82,7 +82,7 @@ public class Result_Game2_Test : MonoBehaviour
     {
         //yield return new WaitForSeconds(0.5f);
         //totalgametime =(int)Game2Manager.totalTime;
-        TotalTimeText.text = "게임 총 시간     -------------------       " + totalT;
+        TotalTimeText.text = "";
 
         yield return new WaitForSeconds(0.5f);
     }
@@ -104,14 +104,14 @@ public class Result_Game2_Test : MonoBehaviour
     //�� Ʋ�� Ƚ��
     IEnumerator ShowMissNum()
     {
-        missNumText.text = "틀린횟수            -------------------       " + Game2Manager_TestMode.WrongAnswerCnt;
+        missNumText.text = "";
         yield return new WaitForSeconds(0.5f);
     }
 //CorrectAnswerCnt
 //WrongAnswerCnt
     IEnumerator ShowCorrectNum()
     {  
-        correctNumText.text = "맞춘횟수            -------------------       " + Game2Manager_TestMode.CorrectAnswerCnt;
+        correctNumText.text = "";
         yield return new WaitForSeconds(0.5f);
     }
 }

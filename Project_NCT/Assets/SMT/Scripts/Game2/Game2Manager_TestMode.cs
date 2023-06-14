@@ -167,8 +167,8 @@ public class Game2Manager_TestMode : MonoBehaviour
     void Start()
     {
         Debug.Log("Start");
+        Result_Game2_Test.isResult = false;
 
-        
         ///Game///
         startTime = stageTime = Time.time;
         ///Game///
@@ -452,7 +452,7 @@ public class Game2Manager_TestMode : MonoBehaviour
         }
 
 
-////
+////    
 ////
 
 
@@ -470,6 +470,7 @@ public class Game2Manager_TestMode : MonoBehaviour
             case STATE.START:
                 Disappear_selectMenu.isHide = true;
                 scorepannel =true;
+                Result_Game2_Test.isResult = false;
                 StartCoroutine(MakeStage(Middle));
 
                 break;
@@ -510,7 +511,6 @@ public class Game2Manager_TestMode : MonoBehaviour
                 {
                     IsButtonClick_Test = true;
                     Is_check10sec_True = false;
-                    check10sec = 0;
                     isStage = true;
                     StartCoroutine(IsItRightAnswer(Middle));
                 }
@@ -522,7 +522,7 @@ public class Game2Manager_TestMode : MonoBehaviour
                 StartCoroutine(ShowOver());
                 break;
             case STATE.CLEAR:
-                Is_Stage_Start = false; 
+                Is_Stage_Start = false;
                 StartCoroutine(StageClear());
                 break;
             case STATE.RESULT:

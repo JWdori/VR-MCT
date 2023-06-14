@@ -103,7 +103,7 @@ MonoBehaviour:
   m_text: "[\uC5B4\uB824\uC6C0 \uB09C\uC774\uB3C4]\n\uB098\uBB34 \uB4A4\uC5D0 \uC228\uC740\n\uB3D9\uBB3C
     \uB450\uB9C8\uB9AC\uC758 \uACF5\uD1B5\uC810 \uCC3E\uAE30\n"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: c61be827aa69d754aa81bea5281ff516, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a1c1e4c57fb7d7741a694eb1fbd494bd, type: 2}
   m_sharedMaterial: {fileID: -4553947801052687371, guid: c61be827aa69d754aa81bea5281ff516,
     type: 2}
   m_fontSharedMaterials: []
@@ -171,6 +171,6 @@ MonoBehaviour:
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_renderer: {fileID: 676425956977488475}
   m_maskType: 0
