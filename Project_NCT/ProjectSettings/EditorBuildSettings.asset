@@ -24,10 +24,12 @@ EditorBuildSettings:
     path: Assets/nonfree/nonfree/BNG Framework/Scenes/Quest Demo.unity
     guid: eac0312c32df12949a47d07747a9d1cd
   - enabled: 0
-    path: Assets/BNG Framework/Integrations/Oculus Integration/Oculus Demo.unity
+    path: Assets/nonfree/nonfree/BNG Framework/Integrations/Oculus Integration/Oculus
+      Demo.unity
     guid: 85d23a53fe036634f8e1a858d8290193
   - enabled: 0
-    path: Assets/BNG Framework/Integrations/Oculus Integration/Hand Tracking.unity
+    path: Assets/nonfree/nonfree/BNG Framework/Integrations/Oculus Integration/Hand
+      Tracking.unity
     guid: 8dee22924e05c964880504e0eabc4550
   - enabled: 0
     path: Assets/Oculus/Interaction/Samples/Scenes/Features/HandGrab.unity
@@ -53,6 +55,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/SMT/Scenes/Game2.unity
     guid: d2d61fc504db2284f9aeb675cbaff717
+  - enabled: 1
+    path: Assets/SMT/Scenes/Text_Game2.unity
+    guid: 766c2422ea355dd49880e809ce4ad2f7
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: bfa1182bd221b4ca89619141f66f1260,
       type: 2}

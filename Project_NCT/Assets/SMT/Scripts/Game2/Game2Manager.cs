@@ -474,6 +474,7 @@ public class Game2Manager : MonoBehaviour
     {
         state = STATE.WAIT;
         Is_showstageover = true;
+        WrongAudio.play();
         Debug.Log("HapticHere - StageTimeOver - 5sec");
         BhapticsLibrary.Play(BhapticsEvent.WRONG_LEFT);
         BhapticsLibrary.Play(BhapticsEvent.WRONG_RIGHT);
@@ -512,15 +513,19 @@ public class Game2Manager : MonoBehaviour
         if (stageNum == stageCnt)
         {
             BhapticsLibrary.Play(BhapticsEvent.CLEAR);
+            ClearAudio.play();
         }
         else
         {
             BhapticsLibrary.Play(BhapticsEvent.FAIL);
+            FailAudio.play();
         }
         Result_Game2.isResult = true;
         state = STATE.SELECT;
         stageNum = 1;
         LIFE = 2;
+        WrongAnswerCnt = 0; // 틀린 횟수
+        CorrectAnswerCnt = 0;
         yield return new WaitForSeconds(1);
     }
 ///Game///
@@ -536,6 +541,7 @@ public class Game2Manager : MonoBehaviour
         //맞았을때
         if (TrueButtonLocation == WhichButtonTouch){
             CorrectAnswer();
+            CorrectAudio.play();
             Debug.Log("HapticHere - RightAnswer");
             if (isRight)
             {
@@ -557,6 +563,7 @@ public class Game2Manager : MonoBehaviour
         //틀렸을때
         else{
             WrongAnswer();
+            WrongAudio.play();
             Debug.Log("HapticHere - WrongAnswer");
             Debug.Log("IsItRightAnswer - ELSE");
             if (isRight)
