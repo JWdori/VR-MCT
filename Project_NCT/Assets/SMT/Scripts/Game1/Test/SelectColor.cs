@@ -24,6 +24,7 @@ public class SelectColor : MonoBehaviour
     public GameObject PG;
     public GameObject startbutton;
     public GameObject result;
+    public GameObject exit;
     //float time1;
     //float time2;
 
@@ -32,6 +33,7 @@ public class SelectColor : MonoBehaviour
         StartCoroutine(PadCtrl_Test.PadColor());
         result.SetActive(false);
         startbutton.SetActive(false);
+        exit.SetActive(false);
         if (PadCtrl_Test.side == 0 & PadCtrl_Test.order == 0)
         {            
             BO.SetActive(true);
