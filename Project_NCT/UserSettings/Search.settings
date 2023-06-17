@@ -7,9 +7,12 @@ onBoardingDoNotAskAgain = true
 showPackageIndexes = false
 showStatusBar = false
 scopes = {
-	"last_search.DA949528" = "lighting"
+	"last_search.DA949528" = "Clean Cache "
 	"OpenInspectorPreview.DA949528" = "0"
-	"currentGroup.DA949528" = "menu"
+	"currentGroup.DA949528" = "settings"
+	"last_search.2138236A" = "oculus"
+	"OpenInspectorPreview.2138236A" = "0"
+	"currentGroup.2138236A" = "asset"
 }
 providers = {
 	adb = {
@@ -56,6 +59,9 @@ providers = {
 objectSelectors = {
 }
 recentSearches = [
+	"oculus"
+	"Clean Cache "
+	"c"
 	"a"
 	"co"
 	"R"

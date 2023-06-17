@@ -7,65 +7,65 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    //°ÔÀÓ ÀüÃ¼ ½Ã°£, ½ºÅ×ÀÌÁö ½Ã°£, Æ²¸° È½¼ö, ¸ÂÃá È½¼ö, ½ºÅ×ÀÌÁö ¹øÈ£, (½ÃÀÛ, ¼º°ø, ½ÇÆÐ)¸¦ ³ªÅ¸³»´Â ÅØ½ºÆ®
+    //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ ï¿½Ã°ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½, Æ²ï¿½ï¿½ È½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ È½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£, (ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½)ï¿½ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½Ø½ï¿½Æ®
     public Text totalTimeText, stageTimeText, missText, hitText, stageNumText, pushText;
 
-    //ÅÍÄ¡ ¿©ºÎ
+    //ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½
     static public bool isTouch = true;
 
-    //Æ²¸° È½¼ö
+    //Æ²ï¿½ï¿½ È½ï¿½ï¿½
     int missNum = 0;
 
-    //´­·¯¾ß µÇ´Â ÆÐµå ¼ø¼­
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç´ï¿½ ï¿½Ðµï¿½ ï¿½ï¿½ï¿½ï¿½
     static public int step = 0;
 
-    //Å¬¸¯ÇÑ ÆÐµå ¹øÈ£
+    //Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½Ðµï¿½ ï¿½ï¿½È£
     static public int padNum;
 
-    //½ºÅ×ÀÌÁöÀÇ ÀüÃ¼ ÆÐµå ¼ö
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ ï¿½Ðµï¿½ ï¿½ï¿½
     static public int padCnt;
 
-    //¼ø¼­ ¸ÂÃá È½¼ö
+    //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È½ï¿½ï¿½
     int hitCnt = 0;
 
-    //½ºÅ×ÀÌÁö ¹øÈ£
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£
     static public int stageNum = 1;
 
-    //³­ÀÌµµ ¹øÈ£ (1 = easy, 2 = normal, 3 = hard)
-    //Easy.cs, Normal.cs, Hard.cs¿¡¼­ ¼³Á¤
+    //ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ï¿½È£ (1 = easy, 2 = normal, 3 = hard)
+    //Easy.cs, Normal.cs, Hard.csï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     static public int levelNum;
 
-    //ÃÖ´ë ½ºÅ×ÀÌÁö ¼ö
+    //ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
     int stageCnt = 20;
 
-    //ÆÐµå ¹®Á¦ ¹è¿­
-    //ShuffleTouch¿¡¼­ ·£´ýÀ¸·Î ¼³Á¤
+    //ï¿½Ðµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½è¿­
+    //ShuffleTouchï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     static public int[] arPads = new int[20];
 
-    //°ÔÀÓ ½ÃÀÛ ½Ã°£
+    //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½
     float startTime;
 
-    //½ºÅ×ÀÌÁö °æ°ú ½Ã°£
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½
     float stageTime;
 
-    //ÀüÃ¼ ½Ã°£
+    //ï¿½ï¿½Ã¼ ï¿½Ã°ï¿½
     static public float totalTime;
 
-    //ÀüÃ¼ miss È½¼ö
+    //ï¿½ï¿½Ã¼ miss È½ï¿½ï¿½
     static public int totalMiss;
 
-    //½ºÅ×ÀÌÁö ½Ã°£
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½
     static public int time2;
 
     static public bool over = false;
 
-    //°ÔÀÓ »óÅÂ¸¦ ³ªÅ¸³»´Â STATE
+    //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â¸ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ï¿½ï¿½ STATE
     public enum STATE
     {
         START, MAKE, HIT, WRONG, WAIT, IDLE, CLEAR, FINISH
     };
 
-    //Ã³À½ »óÅÂ¸¦ START·Î ÁöÁ¤
+    //Ã³ï¿½ï¿½ ï¿½ï¿½ï¿½Â¸ï¿½ STARTï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     static public STATE state = STATE.START;
 
     void Start()
@@ -74,29 +74,29 @@ public class GameManager : MonoBehaviour
         Screen.orientation = ScreenOrientation.LandscapeRight;
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
 
-        //½Ã°£ ÃÊ±âÈ­
+        //ï¿½Ã°ï¿½ ï¿½Ê±ï¿½È­
         startTime = stageTime = Time.time;
 
-        //¹®Á¦ »ý¼º
-        //¿Ü¿ö¾ß µÇ´Â Pad°¡ ´©ÀûÀÎ °æ¿ì
+        //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        //ï¿½Ü¿ï¿½ï¿½ï¿½ ï¿½Ç´ï¿½ Padï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
         ShuffleTouch();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //ÀüÃ¼ °ÔÀÓ ½Ã°£ °è»ê
+        //ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½
         totalTime = (int)(Time.time - startTime);
-        //½ºÅ×ÀÌÁö °ÔÀÓ ½Ã°£ °è»ê
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½
         time2 = (int)(Time.time - stageTime);
 
-        //°ÔÀÓ ÀüÃ¼ ½Ã°£ Ãâ·Â
+        //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½
         totalTimeText.text = "Total time : " + totalTime;
-        //½ºÅ×ÀÌÁö °ÔÀÓ ½Ã°£ Ãâ·Â
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½
         stageTimeText.text = "Stage Time : " + time2;
-        //Æ²¸° È½¼ö Ãâ·Â
+        //Æ²ï¿½ï¿½ È½ï¿½ï¿½ ï¿½ï¿½ï¿½
         missText.text = "Miss : " + missNum;
-        //¸ÂÃá È½¼ö Ãâ·Â
+        //ï¿½ï¿½ï¿½ï¿½ È½ï¿½ï¿½ ï¿½ï¿½ï¿½
         hitText.text = "Hit : " + hitCnt;
 
         if (time2 == 60)
@@ -105,55 +105,55 @@ public class GameManager : MonoBehaviour
             state = STATE.FINISH;
         }
 
-        //state¿¡ µû¶ó ¾Ë¸ÂÀº È¯°æ ½ÇÇà
+        //stateï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ë¸ï¿½ï¿½ï¿½ È¯ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         switch (state)
         {
-            //state°¡ STARTÀÌ¸é Level¿¡ ¸Â´Â ½ºÅ×ÀÌÁö ¸¸µé±â
-            //MakeStage() ½ÇÇà
+            //stateï¿½ï¿½ STARTï¿½Ì¸ï¿½ Levelï¿½ï¿½ ï¿½Â´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
+            //MakeStage() ï¿½ï¿½ï¿½ï¿½
             case STATE.START:
                 StartCoroutine(MakeStage());
                 Debug.Log("Start");               
                 break;
 
-            //state°¡ MAKEÀÌ¸é ¹®Á¦ Á¦½Ã
-            //ShowTouch() ½ÇÇà
+            //stateï¿½ï¿½ MAKEï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+            //ShowTouch() ï¿½ï¿½ï¿½ï¿½
             case STATE.MAKE:
                 Debug.Log("Make");
                 StartCoroutine(ShowTouch());
                 break;
 
-            //state°¡ WRONGÀÌ¸é Æ²·ÈÀ» °æ¿ì
-            //WrongPad() ½ÇÇà
-            //state¸¦ WRONGÀ¸·Î ¹Ù²Ù´Â ºÎºÐÀº PadCtrl.cs¿¡ ÀÖÀ½
+            //stateï¿½ï¿½ WRONGï¿½Ì¸ï¿½ Æ²ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+            //WrongPad() ï¿½ï¿½ï¿½ï¿½
+            //stateï¿½ï¿½ WRONGï¿½ï¿½ï¿½ï¿½ ï¿½Ù²Ù´ï¿½ ï¿½Îºï¿½ï¿½ï¿½ PadCtrl.csï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             case STATE.WRONG:
                 Debug.Log("Wrong");
                 StartCoroutine(WrongPad());
                 break;
             
-            //state°¡ HITÀÌ¸é ¸ÂÀº °æ¿ì
-            //CheckPad() ½ÇÇà
-            //state¸¦ HIT·Î ¹Ù²Ù´Â ºÎºÐÀº PadCtrl.cs¿¡ ÀÖÀ½
+            //stateï¿½ï¿½ HITï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+            //CheckPad() ï¿½ï¿½ï¿½ï¿½
+            //stateï¿½ï¿½ HITï¿½ï¿½ ï¿½Ù²Ù´ï¿½ ï¿½Îºï¿½ï¿½ï¿½ PadCtrl.csï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             case STATE.HIT:
                 Debug.Log("Hit");
                 StartCoroutine(CheckPad());
                 break;
 
-            //state°¡ CLEARÀÌ¸é ÇÑ stage ¿Ï·á
-            //StageClear() ½ÇÇà
+            //stateï¿½ï¿½ CLEARï¿½Ì¸ï¿½ ï¿½ï¿½ stage ï¿½Ï·ï¿½
+            //StageClear() ï¿½ï¿½ï¿½ï¿½
             case STATE.CLEAR:
                 Debug.Log("Clear");
                 StartCoroutine(StageClear());
                 break;
 
-            //state°¡ FINISHÀÌ¸é °ÔÀÓ ³¡
-            //Result È­¸éÀ¸·Î ³Ñ¾î°¨
+            //stateï¿½ï¿½ FINISHï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+            //Result È­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ¾î°¨
             case STATE.FINISH:
                 Debug.Log("Finish");
                 SceneManager.LoadScene("Result");
                 break;
         }
-        //ÀÏ´Ü Esc ¹öÆ° ´©¸£¸é ³­ÀÌµµ ¼±ÅÃÀ¸·Î ³Ñ¾î°¡°Ô ¼³Á¤
-        //³ªÁß¿¡ ¼öÁ¤
+        //ï¿½Ï´ï¿½ Esc ï¿½ï¿½Æ° ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ¾î°¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        //ï¿½ï¿½ï¿½ß¿ï¿½ ï¿½ï¿½ï¿½ï¿½
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             SceneManager.LoadScene("LevelSelect");
@@ -161,223 +161,223 @@ public class GameManager : MonoBehaviour
         
     }
 
-    //Æ²·ÈÀ» °æ¿ì ½ÇÇàµÇ´Â È¯°æ
+    //Æ²ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç´ï¿½ È¯ï¿½ï¿½
     IEnumerator WrongPad()
     {
-        //STATE.WAITÀÌ¶û isTouch´Â PadCtrl.cs¿¡¼­ ¸¶¿ì½º Å¬¸¯ °¡´ÉÇÑ È¯°æ ¼³Á¤
-        //STATE.WAITÀÎ »óÅÂ¿¡¼­´Â ¸¶¿ì½º Å¬¸¯ ¾È µÊ
+        //STATE.WAITï¿½Ì¶ï¿½ isTouchï¿½ï¿½ PadCtrl.csï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ì½º Å¬ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È¯ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        //STATE.WAITï¿½ï¿½ ï¿½ï¿½ï¿½Â¿ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ì½º Å¬ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½
         state = STATE.WAIT;
         isTouch = true;
-        //arPads[step]Àº step¹øÂ° ´­·¯¾ß µÇ´Â Pad¹øÈ£
-        //padNumÀº PadCtrl.cs¿¡¼­ ¹Þ¾Æ¿Â »ç¿ëÀÚ°¡ ´©¸¥ Pad¹øÈ£
+        //arPads[step]ï¿½ï¿½ stepï¿½ï¿½Â° ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç´ï¿½ Padï¿½ï¿½È£
+        //padNumï¿½ï¿½ PadCtrl.csï¿½ï¿½ï¿½ï¿½ ï¿½Þ¾Æ¿ï¿½ ï¿½ï¿½ï¿½ï¿½Ú°ï¿½ ï¿½ï¿½ï¿½ï¿½ Padï¿½ï¿½È£
         if (arPads[step] != padNum && isTouch)
         {
-            //Æ²·ÈÀ» °æ¿ì missNum°ú totalMiss ÇÏ³ª ¾¿ Áõ°¡
-            ++missNum; //½ºÅ×ÀÌÁö¸¶´Ù ÃÊ±âÈ­
-            ++totalMiss; //´©Àû
+            //Æ²ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ missNumï¿½ï¿½ totalMiss ï¿½Ï³ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+            ++missNum; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­
+            ++totalMiss; //ï¿½ï¿½ï¿½ï¿½
 
-            // missNumÀÌ 1º¸´Ù Å©´Ù´Â °ÍÀº ÇÑ ½ºÅ×ÀÌÁö¿¡¼­ µÎ ¹ø Æ²·È´Ù´Â ¶æ
+            // missNumï¿½ï¿½ 1ï¿½ï¿½ï¿½ï¿½ Å©ï¿½Ù´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ Æ²ï¿½È´Ù´ï¿½ ï¿½ï¿½
             if (missNum > 1)
             {
-                //µÎ ¹ø Æ²¸®¸é ÅÍÄ¡ ¾È µÇ°í, Fail Ãâ·Â
+                //ï¿½ï¿½ ï¿½ï¿½ Æ²ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ ï¿½Ç°ï¿½, Fail ï¿½ï¿½ï¿½
                 isTouch = false;
                 StartCoroutine(ShowFail());
                 yield return new WaitForSeconds(2f);
-                //state°¡ FINISH·Î ¹Ù²ñ
+                //stateï¿½ï¿½ FINISHï¿½ï¿½ ï¿½Ù²ï¿½
                 state = STATE.FINISH;
             }
             yield return new WaitForSeconds(0.03f);
         }
         yield return new WaitForSeconds(0.03f);
-        //missNumÀÌ 1ÀÎ °æ¿ì´Â ÀÌ¾î¼­ ÇÃ·¹ÀÌ
+        //missNumï¿½ï¿½ 1ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¾î¼­ ï¿½Ã·ï¿½ï¿½ï¿½
         state = STATE.IDLE;
     }
 
     IEnumerator CheckPad()
     {
-        //STATE.WAITÀÌ¶û isTouch´Â PadCtrl.cs¿¡¼­ ¸¶¿ì½º Å¬¸¯ °¡´ÉÇÑ È¯°æ ¼³Á¤
-        //STATE.WAITÀÎ »óÅÂ¿¡¼­´Â ¸¶¿ì½º Å¬¸¯ ¾È µÊ
+        //STATE.WAITï¿½Ì¶ï¿½ isTouchï¿½ï¿½ PadCtrl.csï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ì½º Å¬ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È¯ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        //STATE.WAITï¿½ï¿½ ï¿½ï¿½ï¿½Â¿ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ì½º Å¬ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½
         state = STATE.WAIT;
         isTouch = true;
 
-        //´­·¯¾ß µÇ´Â Pad¿Í »ç¿ëÀÚ°¡ ´©¸¥ Pad°¡ °°Àº °æ¿ì
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç´ï¿½ Padï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ú°ï¿½ ï¿½ï¿½ï¿½ï¿½ Padï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
         if (arPads[step] == padNum && isTouch)
         {
-            //¸ÂÃá È½¼ö Áõ°¡
+            //ï¿½ï¿½ï¿½ï¿½ È½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             ++hitCnt;
             
-            //ÇØ´ç ½ºÅ×ÀÌÁö¿¡¼­ ´­·¯¾ß µÇ´Â Pad¸¦ ¸ðµÎ ´­·¶À» °æ¿ì
+            //ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç´ï¿½ Padï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
             if (step+1 == stageNum)
             {
-                //ÅÍÄ¡ ¾È µÇ°Ô ¹Ù²Ù°í, state´Â CLEAR·Î º¯È¯
+                //ï¿½ï¿½Ä¡ ï¿½ï¿½ ï¿½Ç°ï¿½ ï¿½Ù²Ù°ï¿½, stateï¿½ï¿½ CLEARï¿½ï¿½ ï¿½ï¿½È¯
                 isTouch = false;
                 state = STATE.CLEAR;
                 yield return new WaitForSeconds(0.03f);
                 //return;
             }
-            //stepÀ» ´Ã·Á¼­ ´­·¯¾ß µÇ´Â ´ÙÀ½ Pad ¼³Á¤
+            //stepï¿½ï¿½ ï¿½Ã·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç´ï¿½ ï¿½ï¿½ï¿½ï¿½ Pad ï¿½ï¿½ï¿½ï¿½
             ++step;
 
 
         }
 
         yield return new WaitForSeconds(0.03f);
-        //ÇØ´ç ½ºÅ×ÀÌÁö¿¡ ´­·¯¾ß µÇ´Â Pad°¡ ³²¾ÒÀ» °æ¿ì ÀÌ¾î¼­ ÇÃ·¹ÀÌ
+        //ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç´ï¿½ Padï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ì¾î¼­ ï¿½Ã·ï¿½ï¿½ï¿½
         state = STATE.IDLE;
     }
 
-    //ÇØ´ç ½ºÅ×ÀÌÁö¿¡¼­ ÁÖ¾îÁø Pad ¸ðµÎ ´­·¶À» °æ¿ì
+    //ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½ï¿½ Pad ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
     IEnumerator StageClear()
     {
         state = STATE.WAIT;
         yield return new WaitForSeconds(0.5f);
-        //Clear ¹®±¸ º¸¿©ÁÜ
+        //Clear ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         StartCoroutine(ShowClear());
         yield return new WaitForSeconds(2f);
 
-        //´ÙÀ½ ½ºÅ×ÀÌÁö ¹øÈ£
+        //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£
         ++stageNum;
         
-        //ÃÖ´ë ½ºÅ×ÀÌÁö°¡ µÇ¾úÀ» °æ¿ì
+        //ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
         if (stageNum > stageCnt)
         {
-            //°ÔÀÓ ³¡, FINISH »óÅÂ·Î
+            //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½, FINISH ï¿½ï¿½ï¿½Â·ï¿½
             state = STATE.FINISH;
             yield return new WaitForSeconds(0.5f);
         }
 
-        //½ºÅ×ÀÌÁö ½Ã°£ ÃÊ±âÈ­
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ ï¿½Ê±ï¿½È­
         stageTime = Time.time;
         
-        //¸ÂÃá È½¼ö ÃÊ±âÈ­
+        //ï¿½ï¿½ï¿½ï¿½ È½ï¿½ï¿½ ï¿½Ê±ï¿½È­
         hitCnt = 0;
-        //¸ÂÃç¾ß µÇ´Â Pad°¹¼ö ÃÊ±âÈ­
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç´ï¿½ Padï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­
         step = 0;
-        //Æ²¸° È½¼ö ÃÊ±âÈ­
+        //Æ²ï¿½ï¿½ È½ï¿½ï¿½ ï¿½Ê±ï¿½È­
         missNum = 0;
-        //´ÙÀ½ ¹®Á¦ Á¦½Ã
+        //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         state = STATE.MAKE;
         
     }
 
-    //Ã³À½ °ÔÀÓ¿¡ µé¾î¿ÔÀ» ¶§ Level¿¡ ¸ÂÃç Pad ¼ÂÆÃ
+    //Ã³ï¿½ï¿½ ï¿½ï¿½ï¿½Ó¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ Levelï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Pad ï¿½ï¿½ï¿½ï¿½
     IEnumerator MakeStage()
     {
         state = STATE.WAIT;
         
         yield return new WaitForSeconds(1f);
 
-        //½ÃÀÛÄ«µåÀÇ xÁÂÇ¥
+        //ï¿½ï¿½ï¿½ï¿½Ä«ï¿½ï¿½ï¿½ï¿½ xï¿½ï¿½Ç¥
         float sx = 0;
 
-        //½ÃÀÛÄ«µåÀÇ zÁÂÇ¥
+        //ï¿½ï¿½ï¿½ï¿½Ä«ï¿½ï¿½ï¿½ï¿½ zï¿½ï¿½Ç¥
         float sz = 0;
 
         SetPadPos(out sx, out sz);
 
-        //½ÃÀÛ ÆÐµåÀÇ ¹øÈ£
+        //ï¿½ï¿½ï¿½ï¿½ ï¿½Ðµï¿½ï¿½ï¿½ ï¿½ï¿½È£
         int n = 1;
 
-        //PadSet.cs¿¡¼­ Pad¹è¿­ ÀÐ±â ¹è¿­ÀÇ 1ÇàÀ» ÀÐ°í º¯¼ö t¿¡ ÇÒ´çÇÑ´Ù
+        //PadSet.csï¿½ï¿½ï¿½ï¿½ Padï¿½è¿­ ï¿½Ð±ï¿½ ï¿½è¿­ï¿½ï¿½ 1ï¿½ï¿½ï¿½ï¿½ ï¿½Ð°ï¿½ ï¿½ï¿½ï¿½ï¿½ tï¿½ï¿½ ï¿½Ò´ï¿½ï¿½Ñ´ï¿½
         string[] str = PadSet.stage[levelNum - 1];
 
-        //¹è¿­ÀÇ ÇàÀÇ ¼ö¸¸Å­ ¹Ýº¹
+        //ï¿½è¿­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Å­ ï¿½Ýºï¿½
         foreach (string t in str)
         {
-            //°¢ ÇàÀÇ ¹®ÀÚ¿­À» ´ÜÀÏ ¹®ÀÚ ¹è¿­·Î º¯È¯(¹®ÀÚ¿­ ÁÂ¿ìÀÇ °ø¹é Á¦°Å), º¯¼öÀÇ ÁÂ¿ì °ø¹éÀ» Á¦°Å(Trim)ÇÏ°í ´ÜÀÏ ¹®ÀÚ¹è¿­·Î º¯È¯
+            //ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½è¿­ï¿½ï¿½ ï¿½ï¿½È¯(ï¿½ï¿½ï¿½Ú¿ï¿½ ï¿½Â¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½), ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Â¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½(Trim)ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¹è¿­ï¿½ï¿½ ï¿½ï¿½È¯
             char[] ch = t.Trim().ToCharArray();
 
-            //PadÀÇ xÃà ÁÂÇ¥
+            //Padï¿½ï¿½ xï¿½ï¿½ ï¿½ï¿½Ç¥
             float x = sx;
 
-            //1ÇàÀÇ ¹®ÀÚ¿­ ±æÀÌ¸¸Å­ ¹Ýº¹
-            //¹è¿­ÀÇ chÀÇ ÇÑ¹®ÀÚ¸¦ ÀÐ°í º¯¼ö c¿¡ ÇÒ´çÇÑ´Ù
+            //1ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¿ï¿½ ï¿½ï¿½ï¿½Ì¸ï¿½Å­ ï¿½Ýºï¿½
+            //ï¿½è¿­ï¿½ï¿½ chï¿½ï¿½ ï¿½Ñ¹ï¿½ï¿½Ú¸ï¿½ ï¿½Ð°ï¿½ ï¿½ï¿½ï¿½ï¿½ cï¿½ï¿½ ï¿½Ò´ï¿½ï¿½Ñ´ï¿½
             foreach (char c in ch)
             {
                 switch (c)
                 {
-                    //¸ÊÀÇ ³»¿ëÀÌ *ÀÌ¸é ±× À§Ä¡¿¡ Pad ¸¸µé¾î¼­ ¹èÄ¡
+                    //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ *ï¿½Ì¸ï¿½ ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ Pad ï¿½ï¿½ï¿½ï¿½î¼­ ï¿½ï¿½Ä¡
                     case '*':
-                        //Pad ¸¸µé±â
-                        //PrefapÀ¸·Î ¸¸µé¾îÁø Pad¸¦ GameObject·Î ¼³Á¤
+                        //Pad ï¿½ï¿½ï¿½ï¿½ï¿½
+                        //Prefapï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Padï¿½ï¿½ GameObjectï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                         GameObject pad = Instantiate(Resources.Load("Prefab/Pad")) as GameObject;
 
-                        //Pad ÁÂÇ¥¼³Á¤
+                        //Pad ï¿½ï¿½Ç¥ï¿½ï¿½ï¿½ï¿½
                         pad.transform.position = new Vector3(x, 0, sz);
 
-                        //pad1, pad2, ... pad25±îÁö tag·Î ¼³Á¤µÇ¾î ÀÖÀ½
-                        //»ý¼ºµÇ´Â Pad¸¶´Ù tag¸¦ ºÙ¿©ÁÜ
-                        //³ªÁß¿¡ »ç¿ëÀÚ°¡ ¼±ÅÃÇÑ Pad¿Í ´­·¯¾ß µÇ´Â Pad ºñ±³ÇÒ ¶§ ¾²ÀÓ
+                        //pad1, pad2, ... pad25ï¿½ï¿½ï¿½ï¿½ tagï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ ï¿½ï¿½ï¿½ï¿½
+                        //ï¿½ï¿½ï¿½ï¿½ï¿½Ç´ï¿½ Padï¿½ï¿½ï¿½ï¿½ tagï¿½ï¿½ ï¿½Ù¿ï¿½ï¿½ï¿½
+                        //ï¿½ï¿½ï¿½ß¿ï¿½ ï¿½ï¿½ï¿½ï¿½Ú°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Padï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç´ï¿½ Pad ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                         pad.tag = "pad" + n++;
                         x++;
                         break;
 
-                    //ºóÄ­ Ã³¸®
+                    //ï¿½ï¿½Ä­ Ã³ï¿½ï¿½
                     case '.':
                         x++;
                         break;
 
-                    //¹Ý Ä­ °ø¹éÃ³¸®
+                    //ï¿½ï¿½ Ä­ ï¿½ï¿½ï¿½ï¿½Ã³ï¿½ï¿½
                     case '>':
                         x += 0.5f;
                         break;
 
-                    //¹Ý ÁÙ Çà°£ Ã³¸®
+                    //ï¿½ï¿½ ï¿½ï¿½ ï¿½à°£ Ã³ï¿½ï¿½
                     case '^':
                         sz += 0.5f;
                         break;
                 }
 
-                //Ä«µå¸¦ Ç¥½ÃÇÑ ÈÄ¿¡´Â Áö¿¬ ½Ã°£À» µÎ¾î Ä«µå°¡ ¹èÄ¡µÇ´Â °úÁ¤ÀÌ º¸ÀÌµµ·ÏÇÔ
+                //Ä«ï¿½å¸¦ Ç¥ï¿½ï¿½ï¿½ï¿½ ï¿½Ä¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ï¿½ï¿½ ï¿½Î¾ï¿½ Ä«ï¿½å°¡ ï¿½ï¿½Ä¡ï¿½Ç´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ï¿½ï¿½ï¿½ï¿½
                 if (c == '*')
                 {
                     yield return new WaitForSeconds(0.03f);
                 }
             }
 
-            //ÇÑ ÁÙ ¾Æ·¡·Î ÀÌµ¿
+            //ï¿½ï¿½ ï¿½ï¿½ ï¿½Æ·ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
             sz--;
         }
         yield return new WaitForSeconds(1);
 
-        //Pad ¼ÂÆÃ ¿Ï·á ÈÄ ¹®Á¦ Á¦½Ã »óÅÂ·Î ³Ñ¾î°¨
+        //Pad ï¿½ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â·ï¿½ ï¿½Ñ¾î°¨
         state = STATE.MAKE;
     }
 
-    //PadÀÇ ½ÃÀÛ À§Ä¡ °è»ê
+    //Padï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½
     void SetPadPos(out float sx, out float sz)
     {
-        //°¡·Î Pad ¼ö ¹Ý Ä­ °ø¹é Æ÷ÇÔ
+        //ï¿½ï¿½ï¿½ï¿½ Pad ï¿½ï¿½ ï¿½ï¿½ Ä­ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         float x = 0;
 
-        //¼¼·Î Çà¼ö ¹ÝÁÙ Çà°£ Æ÷ÇÔ
+        //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½à°£ ï¿½ï¿½ï¿½ï¿½
         float z = 0;
 
-        //°¡·Î Pad ÃÖ´ë ¼ö
+        //ï¿½ï¿½ï¿½ï¿½ Pad ï¿½Ö´ï¿½ ï¿½ï¿½
         float maxX = 0;
 
-        //Pad ¹è¿­ Á¶»ç ¸Ê ¹è¿­À» ÀÐÀ½
+        //Pad ï¿½è¿­ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½è¿­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         string[] str = PadSet.stage[levelNum - 1];
 
-        //ÇàÀÇ ¼ö¸¸Å­ ¹Ýº¹
+        //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Å­ ï¿½Ýºï¿½
         for (int i = 0; i<str.Length; i++)
         {
-            //1Çà ÀÐ±â
+            //1ï¿½ï¿½ ï¿½Ð±ï¿½
             string t = str[i].Trim();
 
-            //°¢ ÇàÀÇ Pad ¼ö
+            //ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Pad ï¿½ï¿½
             x = 0;
 
-            //°¢ ÇàÀÇ ±ÛÀÚ ¼ö¸¸Å­ ¹Ýº¹
+            //ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Å­ ï¿½Ýºï¿½
             for (int j = 0; j<t.Length; j++)
             {
-                //¹®ÀÚ¿­(string)Àº ´ÜÀÏ ¹®ÀÚ(char)ÀÇ ¹è¿­·Î Ãë±ÞÇÒ ¼ö ÀÖÀ½
+                //ï¿½ï¿½ï¿½Ú¿ï¿½(string)ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½(char)ï¿½ï¿½ ï¿½è¿­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                 switch(t[j])
                 {
                     case '.':
                     case '*':
 
-                        //Pad ¹èÄ¡¿¡ ÇÊ¿äÇÑ °ø°£
+                        //Pad ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                         x++;
 
                         break;
@@ -390,88 +390,88 @@ public class GameManager : MonoBehaviour
                 }
             }
 
-            //°¢ ÇàÀÇ ÃÖ´ë Pad ¼ö °è»ê
+            //ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ Pad ï¿½ï¿½ ï¿½ï¿½ï¿½
             if (x>maxX)
             {
                 maxX = x;
             }
-            //ÀüÃ¼ ÇàÀÇ ¼ö
+            //ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
             z++;
         }
-        //Pad °¡·Î ½ÃÀÛ À§Ä¡
+        //Pad ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡
         sx = -maxX / 2;
         sz = (z - 1) / 2;
     }
 
-    //»ç¿ëÀÚ°¡ ÅÍÄ¡ÇØ¾ß ÇÒ PadµéÀ» º¸¿©ÁÜ
+    //ï¿½ï¿½ï¿½ï¿½Ú°ï¿½ ï¿½ï¿½Ä¡ï¿½Ø¾ï¿½ ï¿½ï¿½ Padï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     IEnumerator ShowTouch()
     {
         state = STATE.WAIT;
 
-        //·£´ýÀ¸·Î Pad¼ø¼­ »ý¼º
-        //stage¸¶´Ù ¹®Á¦°¡ ¹Ù²ð ¶§
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Padï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        //stageï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù²ï¿½ ï¿½ï¿½
         //ShuffleTouch();
 
-        //¹®Á¦ Á¦½Ã Àü¿¡ Stage ¾Ë·ÁÁÜ
+        //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Stage ï¿½Ë·ï¿½ï¿½ï¿½
         StartCoroutine(ShowStageNum());
         yield return new WaitForSeconds(2f);
         
-        //´­·¯¾ß µÇ´Â Pad ¼ø¼­ Ã³À½À¸·Î ÃÊ±âÈ­
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç´ï¿½ Pad ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­
         step = 0;
 
-        //stageNum¸¸Å­ ´­·¯¾ß µÇ´Â Pad ¼ø¼­´ë·Î º¸¿©ÁÜ
+        //stageNumï¿½ï¿½Å­ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç´ï¿½ Pad ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         for (int i = 1; i <= stageNum; i++)
         {
-            //pad¸¦ tag¸¦ ÀÌ¿ëÇÏ¿© ¼³Á¤
-            //ShuffleTouch¿¡¼­ arPads ¹è¿­ ·£´ý »ý¼º
+            //padï¿½ï¿½ tagï¿½ï¿½ ï¿½Ì¿ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½
+            //ShuffleTouchï¿½ï¿½ï¿½ï¿½ arPads ï¿½è¿­ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             GameObject pad = GameObject.FindWithTag("pad" + arPads[i-1]);
-            //¹®Á¦ º¸¿©ÁÙ ¶§ È¿°úÀ½ ½ÇÇà
+            //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ È¿ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             pad.SendMessage("PlayAud", SendMessageOptions.DontRequireReceiver);
-            //´­·¯¾ß µÇ´Â Pad ÆÄ¶õ»öÀ¸·Î º¸¿©ÁÜ
-            //"ShowPad"´Â PadCtrl.cs¿¡¼­ È®ÀÎ
+            //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç´ï¿½ Pad ï¿½Ä¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+            //"ShowPad"ï¿½ï¿½ PadCtrl.csï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½
             pad.SendMessage("ShowPad", SendMessageOptions.DontRequireReceiver);
             yield return new WaitForSeconds(1f);
         }
-        //¹®Á¦ º¸¿©ÁØ ÈÄ »ç¿ëÀÚ°¡ ÅÍÄ¡ÇÒ ¼ö ÀÖ´Â ¼ø°£À» ¾Ë·ÁÁÜ
+        //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ú°ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë·ï¿½ï¿½ï¿½
         StartCoroutine(ShowPushTiming());
         yield return new WaitForSeconds(1f);
 
-        //ÅÍÄ¡ÇÒ ¼ö ÀÖµµ·Ï ¼³Á¤
+        //ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ ï¿½Öµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         isTouch = true;
         state = STATE.IDLE;
     }
 
-    //»ç¿ëÀÚ°¡ ´­·¯¾ß µÇ´Â Pad¸¦ ·£´ýÀ¸·Î ¹ÞÀ» ¼ö ÀÖµµ·Ï ¼³Á¤
-    //arPads ¹è¿­ ¼³Á¤
+    //ï¿½ï¿½ï¿½ï¿½Ú°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç´ï¿½ Padï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Öµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    //arPads ï¿½è¿­ ï¿½ï¿½ï¿½ï¿½
     void ShuffleTouch()
     {
         for (int i = 0; i < stageCnt; i++)
         {
-            //1ºÎÅÍ pad°¹¼ö »çÀÌ¿¡ ¼ýÀÚ¸¦ ·£´ýÀ¸·Î ¼³Á¤
+            //1ï¿½ï¿½ï¿½ï¿½ padï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¿ï¿½ ï¿½ï¿½ï¿½Ú¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             int r = Random.Range(1, padCnt + 1);
-            //·£´ýÀ¸·Î »ÌÀº ¼ýÀÚ¸¦ ¹è¿­¿¡ ¼ø¼­´ë·Î ¼³Á¤
+            //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¸ï¿½ ï¿½è¿­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             arPads[i] = r;
         }
     }
 
-    //½ºÅ×ÀÌÁö ½ÃÀÛ½Ã ½ºÅ×ÀÌÁö ¹øÈ£¸¦ º¸¿©ÁØ´Ù.
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Û½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø´ï¿½.
     IEnumerator ShowStageNum()
     {
         stageNumText.text = "STAGE " + stageNum;
 
-        //1ÃÊ ÈÄ »ç¶óÁü
+        //1ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
         yield return new WaitForSeconds(1f);
         
         stageNumText.text = "";
         yield return new WaitForSeconds(2f);
     }
 
-    //´©¸£´Â Å¸ÀÌ¹ÖÀ» ¾Ë·ÁÁØ´Ù.
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½Ë·ï¿½ï¿½Ø´ï¿½.
     IEnumerator ShowPushTiming()
     {
         pushText.text = "Start";
 
-        //1ÃÊ ÈÄ »ç¶óÁü
+        //1ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
         yield return new WaitForSeconds(1f);
         
         pushText.text = "";
@@ -479,12 +479,12 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(2f);
     }
 
-    //Stage¸¦ ClearÇß´Ù´Â °ÍÀ» ¾Ë¸²
+    //Stageï¿½ï¿½ Clearï¿½ß´Ù´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ë¸ï¿½
     IEnumerator ShowClear()
     {
         pushText.text = "Clear";
 
-        //1ÃÊ ÈÄ »ç¶óÁü
+        //1ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
         yield return new WaitForSeconds(1f);
 
         pushText.text = "";
@@ -492,12 +492,12 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
     }
 
-    //Stage¸¦ ClearÇÏÁö ¸øÇÔ
+    //Stageï¿½ï¿½ Clearï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     IEnumerator ShowFail()
     {
         pushText.text = "Fail";
 
-        //1ÃÊ ÈÄ »ç¶óÁü
+        //1ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
         yield return new WaitForSeconds(1f);
 
         pushText.text = "";
