@@ -104,7 +104,7 @@ MonoBehaviour:
     \uC2DC\uAC04\uC5D0 \uBC84\uD2BC\uC744 \uB20C\uB7EC\uC57C \uD568\n\uD604\uC7AC
     \uC2DC\uAC04\uC740 \uAE00\uB7EC\uBE0C\uB85C \uC720\uCD94\uD574\uC57C \uD568"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: c61be827aa69d754aa81bea5281ff516, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a1c1e4c57fb7d7741a694eb1fbd494bd, type: 2}
   m_sharedMaterial: {fileID: -4553947801052687371, guid: c61be827aa69d754aa81bea5281ff516,
     type: 2}
   m_fontSharedMaterials: []
@@ -172,6 +172,6 @@ MonoBehaviour:
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_renderer: {fileID: 676425956977488475}
   m_maskType: 0

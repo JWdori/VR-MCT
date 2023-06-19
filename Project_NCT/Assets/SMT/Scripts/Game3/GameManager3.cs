@@ -73,7 +73,10 @@ public class GameManager3 : MonoBehaviour
 
 
 
-
+void Start()
+    {
+        Result_Game3.isResult = false;
+    }
 
 
 
@@ -164,6 +167,7 @@ public enum STATE
                 missNum = 2;
                 totalMiss = 2;
                 totalTime = 0f;
+                Result_Game3.isResult = false;
                 over = false;
                 StartCoroutine(MakeStage());
                 Debug.Log("Start");
