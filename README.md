@@ -94,8 +94,11 @@
 
 <br/>
 
-### SDK setting - Bhaptics, Oculus
-
+### SDK setting - bHaptics, Oculus
+- bHaptics sdk와 햅틱 피드백 api는 본 프로젝트에 포함되어 있습니다. 햅틱 피드백을 커스텀하고 싶다면, bHptics [개발자 지원 페이지](https://www.bhaptics.com/support/developers)를 참고
+- 오큘러스 SDK는 본 프로젝트에 포함되어 있다. 그러나, 프로젝트를 수정하다보면 SDK를 import해야할 경우가 존재한다.<br/>유니티에서 오큘러스를 HMD 환경에서 앱을 디버그하거나 빌드하기 위해서는 프로젝트를 안드로이드로 설정해야한다. 이를 포함한 세팅 방법은 아래 ***링크***를 참고
+  - [유니티 VR 튜토리얼](https://learn.unity.com/course/create-with-vr) - 초반 개발자 세팅
+  - [오큘러스 핸드 트래킹 VR 튜토리얼](https://www.youtube.com/watch?v=WELSs-lPJYA) - 핸드 트래킹 및 SDK 데모
 
 <br/>
 
@@ -110,14 +113,17 @@
 <br/>
 
 ### Troubleshooting
-#### 1) 갑자기 사용자 시점이 너무 높아지는 문제 발생 시, HMD 재시작 요망 - HMD Trouble
+   1) 빌드 후, 실행시에 사용자 시점이 너무 높아지는 문제가 발생하는 경우, HMD 재시작 요망
+   2) VR 튜토리얼 영상과 달리, 특별한 세팅 없이 유니티에서 디버그 시에는 HMD를 써도, 핸드 트래킹이 작동하지 않음. "**메타 XR 시뮬레이터**"를 활용하여 개발하고, 빌드로 테스트 추천. 다만, 시뮬레이터에서 나오는 손과 빌드 이후, 핸드 트래킹용 손은 다를 수 있음(컨트롤러와 핸드 세팅이 각각임)
+  ![image](https://github.com/JWdori/VR-MCT/assets/42615916/d3bafd69-5540-4089-9393-5858197d34cf)
+
+
 
 <br/>
 
 
 ### ETC
  - **본 프로젝트는 한양대학교 에리카 캠퍼스 컴퓨터학부 가상및증강현실프로그래밍 수업의 IC-PBL 과제입니다. @JWdori @KJH-27 @dongjun0207*
- - 
  - **Reference**
     - E. Paul Cherniack (2011) Not just fun and games: applications of virtual reality in the identification and rehabilitation of cognitive disorders of the elderly, Disability and Rehabilitation: Assistive Technology, 6:4, 283-289
     - Anna Cornelia Maria Bauer, Gerda Andringa; The Potential of Immersive Virtual Reality for Cognitive Training in Elderly. Gerontology 2 December 2020; 66 (6): 614–623
