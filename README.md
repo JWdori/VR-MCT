@@ -99,25 +99,74 @@
 - 오큘러스 SDK는 본 프로젝트에 포함되어 있다. 그러나, 프로젝트를 수정하다보면 SDK를 import해야할 경우가 존재한다.<br/>유니티에서 오큘러스를 HMD 환경에서 앱을 디버그하거나 빌드하기 위해서는 프로젝트를 안드로이드로 설정해야한다. 이를 포함한 세팅 방법은 아래 ***링크***를 참고
   - [유니티 VR 튜토리얼](https://learn.unity.com/course/create-with-vr) - 초반 개발자 세팅
   - [오큘러스 핸드 트래킹 VR 튜토리얼](https://www.youtube.com/watch?v=WELSs-lPJYA) - 핸드 트래킹 및 SDK 데모
+ 
+    
+<br/>
+### Game1 System Structure
+<div align="start">
+  <table>
+    <tr align="center">
+      <th>메인 메뉴</th>
+      <th>쉬움 모드</th>
+    </tr>
+    <tr>
+      <td><img src="" alt="gif-main-page" width="370"></td>
+      <td><img src=""alt="gif-function1" width="370"></td>
+    </tr>
+    <tr align="center">
+      <th>어려움 모드</th>
+      <th>테스트 모드</th>
+    </tr>
+    <tr>
+      <td><img src=""alt="gif-function2" width="370"></td>
+      <td><img src=""alt="gif-function3" width="370"></td>
+    </tr>
+  </table>
+</div>
 
 <br/>
 
 ### Game2 System Structure
 
+<div align="start">
+  <table>
+    <tr align="center">
+      <th>쉬움 모드</th>
+      <th>어려움 모드</th>
+    </tr>
+    <tr>
+      <td><img src="" alt="gif-main-page" width="370"></td>
+      <td><img src=""alt="gif-function1" width="370"></td>
+    </tr>
+  </table>
+</div>
+
 <br/>
 
 ### Game3 System Structure
 
+<div align="start">
+  <table>
+    <tr align="center">
+      <th>쉬움 모드</th>
+      <th>어려움 모드</th>
+    </tr>
+    <tr>
+      <td><img src="" alt="gif-main-page" width="370"></td>
+      <td><img src=""alt="gif-function1" width="370"></td>
+    </tr>
+  </table>
+</div>
 
+<br/>
 
 <br/>
 
 ### Troubleshooting
    1) 빌드 후, 실행시에 사용자 시점이 너무 높아지는 문제가 발생하는 경우, HMD 재시작 요망
    2) VR 튜토리얼 영상과 달리, 특별한 세팅 없이 유니티에서 디버그 시에는 HMD를 써도, 핸드 트래킹이 작동하지 않음. "**메타 XR 시뮬레이터**"를 활용하여 개발하고, 빌드로 테스트 추천. 다만, 시뮬레이터에서 나오는 손과 빌드 이후, 핸드 트래킹용 손은 다를 수 있음(컨트롤러와 핸드 세팅이 각각임)
-  ![image](https://github.com/JWdori/VR-MCT/assets/42615916/d3bafd69-5540-4089-9393-5858197d34cf)
 
-
+   ![image](https://github.com/JWdori/VR-MCT/assets/42615916/d3bafd69-5540-4089-9393-5858197d34cf)
 
 <br/>
 
