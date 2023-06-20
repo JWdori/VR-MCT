@@ -2,7 +2,7 @@
 
 노인의 인지능력 향상을 위한 훈련 프로그램을 Haptic Glove와 가상현실 기반의 Serious 게임으로 구현
 
-![그림1111](https://github.com/JWdori/VR-MCT/assets/42615916/3ebbaea7-b955-4553-89d7-2ab7e0226a5c)
+<img width="792" alt="image" src="https://github.com/JWdori/VR-MCT/assets/42615916/418ec169-7591-4437-bc45-73d9be7da4b5">
 **핸드 트래킹** 기술과 **햅틱 글러브**을 기반으로 하고, 각 게임마다 인지 능력과 관련된 주제를 잡았다.
 
 **손 운동, 시각, 촉각, 청각, 기억력/추상력/순발력** 등이 활용되는 게임으로 노인의 인지능력 향상/재활에 도움을 줄 수 있는 훈련 프로그램 구현을 목표로 한다.
@@ -68,6 +68,10 @@
   - HMD: Oculus(Meta) quest 2 / Oculus(Meta) quest pro
   - Haptic Glove: Tack Glove                              //HMD에서 블루투스 연결
   - Cable: 링크 케이블                                     //저가 케이블 사용시, 빌드에 문제가 있을 수 있음
+    <img width="627" alt="image" src="https://github.com/JWdori/VR-MCT/assets/42615916/76261e3d-154f-45c2-b154-e5105eb009b6">
+
+    여기에 run device를 oculus 기기로 선택(싸구려 케이블 사용 시, 안나올 가능성 존재)
+
     
 <br/>
 
@@ -82,6 +86,8 @@
   - etc.
     - 게임 종료 환호 소리 - https://www.youtube.com/watch?v=gv2fprZIkqs&t=1s     *//GameManager 스크립트*
     - 게임3 풍선 터지는 소리 - https://www.youtube.com/watch?v=6Trhh7b00zw        *//풍선 오브젝트*
+     <br/>
+     
 - **유료**
    - Animals Kitz Sound FX - https://assetstore.unity.com/packages/audio/sound-fx/animals/animals-pro-sound-fx-84562#content *//게임2 동물 소리 모음*
    - Animals SFX Collection - https://assetstore.unity.com/packages/audio/sound-fx/animals/animals-sfx-collection-232277#content *//게임2 동물 소리 모음*
@@ -215,7 +221,7 @@
 
 <td><img src="https://github.com/JWdori/VR-MCT/assets/42615916/6e15bde4-362f-43d7-96b8-77461f5d4fc5"alt="gif-function2" width="700"></td>
 
-bHaptic API를 통해 제공하는 햅틱 피드백은 다음과 같다.
+<br/>bHaptic API를 통해 제공하는 햅틱 피드백은 다음과 같다.
 <br/>양 손에 이와 같은 피드백을 전달하며, 햅틱 피드백을 통해 시간을 파악할 수 있도록 있다.
 
 <br/>
@@ -300,7 +306,8 @@ bHaptic API를 통해 제공하는 햅틱 피드백은 다음과 같다.
 ### Troubleshooting
    1) 빌드 후, 실행시에 사용자 시점이 너무 높아지는 문제가 발생하는 경우, HMD 재시작 요망
    2) VR 튜토리얼 영상과 달리, 특별한 세팅 없이 유니티에서 디버그 시에는 HMD를 써도, 핸드 트래킹이 작동하지 않음. "**메타 XR 시뮬레이터**"를 활용하여 개발하고, 빌드로 테스트 추천. 다만, 시뮬레이터에서 나오는 손과 빌드 이후, 핸드 트래킹용 손은 다를 수 있음(컨트롤러와 핸드 세팅이 각각임)
-        ![image](https://github.com/JWdori/VR-MCT/assets/42615916/d3bafd69-5540-4089-9393-5858197d34cf)
+   ![image](https://github.com/JWdori/VR-MCT/assets/42615916/d1dd934e-3bdb-4fdd-8baa-4a6cf5aad2b0)
+
    3) 게임3에서 다트가 잘 잡히지 않는 문제가 있다. 정확히는, 다트가 안잡히기 보다는 Tack Glove로 인한 문제로, 장갑이 두꺼워서 핸드 트래킹에 정확도가 떨어지면서 동작 인식이 안되서 발생하는 문제다. 또한, 다트의 경우, 오른손 잡이 대상으로 구현하였다.
    4) 책상 등의 문제가 뚫리는 문제
        - "왜 책상이 손에 뚫리는가?"에 대한 지적을 받았다. 그러나, 여러 타 프로젝트와 게임을 확인해 본 결과, 가구 등의 오브젝트에서 사용자의 컨트럴러의 움직임을 임의로 막는 경우는 없었다. 이에 대해서는 카메라에 비춰지는, 또는 HMD에서 파악되는 컨트롤러의 현재 위치와, 게임에서의 컨트롤러 위치가 비매칭되면서 여러 오류가 발생하기 때문으로 보인다.
