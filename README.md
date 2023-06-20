@@ -41,7 +41,7 @@
  ┃ ┃ ┣ 📂Materials      // 색상 및 재질 파일
  ┃ ┃ ┣ 📂Resources      // 오디오 등의 리소스 파일
  ┃ ┃ ┣ 📂Scenes         // 게임1, 2, 3과 테스트 모드, 메뉴 씬
- ┃ ┃ ┗ 📂Scripts        // 각 씬별 스크립트. 공용 스크립트는 폴더에 정리되어있지 않음.
+ ┃ ┃ ┗ 📂Scripts        // 각 씬별 소스코드. 공용 소스코드는 폴더에 정리되어있지 않음.
  ┃ ┃ ┃ ┣ 📂 Game1       // 게임1과 테스트모드1의 스크립트
  ┃ ┃ ┃ ┣ 📂 Game2       // 게임2과 테스트모드2의 스크립트
  ┃ ┃ ┃ ┗ 📂 Game3       // 게임3과 테스트모드3의 스크립트
@@ -98,6 +98,7 @@
 - 오큘러스 SDK는 본 프로젝트에 포함되어 있다. 그러나, 프로젝트를 수정하다보면 SDK를 import해야할 경우가 존재한다.<br/>유니티에서 오큘러스를 HMD 환경에서 앱을 디버그하거나 빌드하기 위해서는 프로젝트를 안드로이드로 설정해야한다. 이를 포함한 세팅 방법은 아래 ***링크***를 참고
   - [유니티 VR 튜토리얼](https://learn.unity.com/course/create-with-vr) - 초반 개발자 세팅
   - [오큘러스 핸드 트래킹 VR 튜토리얼](https://www.youtube.com/watch?v=WELSs-lPJYA) - 핸드 트래킹 및 SDK 데모
+  
  
 <br/>
 
@@ -151,8 +152,8 @@
       <th>어려움 모드</th>
     </tr>
     <tr>
-      <td><img src="https://github.com/JWdori/VR-MCT/assets/42615916/ba02cdef-7964-4158-9bbf-7c1ad941d3e1"alt="gif-function2" width="370"></td>
-      <td><img src="https://github.com/JWdori/VR-MCT/assets/42615916/b822b88b-4ce8-4325-b481-c34a0a425e5c"alt="gif-function3" width="370"></td>
+      <td><img src="https://github.com/JWdori/VR-MCT/assets/42615916/51b4457f-946a-49dc-8224-97ef983441d7"alt="gif-function2" width="370"></td>
+      <td><img src="https://github.com/JWdori/VR-MCT/assets/42615916/d5e27e50-6a50-48b5-8ab4-c2621bf71c4c" width="370"></td>
     </tr>
   </table>
 </div>
@@ -172,7 +173,7 @@
       <th>테스트 모드</th>
     </tr>
     <tr>
-      <td><img src="https://github.com/JWdori/VR-MCT/assets/42615916/ba02cdef-7964-4158-9bbf-7c1ad941d3e1"alt="gif-function2" width="370"></td>
+      <td><img src="https://github.com/JWdori/VR-MCT/assets/42615916/d5a8b42d-640c-4135-bb3f-9742cfe72026"alt="gif-function2" width="370"></td>
     </tr>
   </table>
 </div>
@@ -192,14 +193,12 @@
 <div align="start">
   <table>
     <tr align="center">
-      <th>쉬움 모드</th>
       <th>어려움 모드</th>
+      <th>태스트 모드</th>
     </tr>
     <tr>
-      <td><img src="![image](https://github.com/JWdori/VR-MCT/assets/42615916/d8a2c1d9-1ab2-4e23-83cb-4d8effa7b206)
-" alt="gif-main-page" width="370"></td>
-      <td><img src="![image](https://github.com/JWdori/VR-MCT/assets/42615916/3e4c9078-af76-4800-bad2-b7dd2a061447)
-"alt="gif-function1" width="370"></td>
+      <td><img src="https://github.com/JWdori/VR-MCT/assets/42615916/3fca73cc-3528-40d0-95b0-46f5c6663b44" alt="gif-main-page" width="370"></td>
+      <td><img src="https://github.com/JWdori/VR-MCT/assets/42615916/1fbb6c05-fe09-44dc-a0f2-9cec78236d0b"alt="gif-function1" width="370"></td>
     </tr>
   </table>
 </div>
@@ -223,10 +222,10 @@ bHaptic API를 통해 제공하는 햅틱 피드백은 다음과 같다.
 <div align="start">
   <table>
     <tr align="center">
-      <th>테스트 모드</th>
+      <th>햅틱 피드백</th>
     </tr>
     <tr>
-      <td><img src="https://github.com/JWdori/VR-MCT/assets/42615916/ba02cdef-7964-4158-9bbf-7c1ad941d3e1"alt="gif-function2" width="370"></td>
+      <td><img src="https://github.com/JWdori/VR-MCT/assets/42615916/312f0b43-2dda-46f4-90cb-66c203b9a5da"alt="gif-function2" width="370"></td>
     </tr>
   </table>
 </div>
@@ -247,12 +246,12 @@ bHaptic API를 통해 제공하는 햅틱 피드백은 다음과 같다.
 <div align="start">
   <table>
     <tr align="center">
-      <th>쉬움 모드</th>
+      <th>보통 모드</th>
       <th>어려움 모드</th>
     </tr>
     <tr>
-      <td><img src="" alt="gif-main-page" width="370"></td>
-      <td><img src=""alt="gif-function1" width="370"></td>
+      <td><img src="https://github.com/JWdori/VR-MCT/assets/42615916/97cdcb4e-df3a-4099-9754-84910bfba8a0" alt="gif-main-page" width="370"></td>
+      <td><img src="https://github.com/JWdori/VR-MCT/assets/42615916/ac4bb59a-7ed2-49ef-bfc9-e85510954a2e"alt="gif-function1" width="370"></td>
     </tr>
   </table>
 </div>
@@ -276,7 +275,7 @@ bHaptic API를 통해 제공하는 햅틱 피드백은 다음과 같다.
       <th>테스트 모드</th>
     </tr>
     <tr>
-      <td><img src="https://github.com/JWdori/VR-MCT/assets/42615916/ba02cdef-7964-4158-9bbf-7c1ad941d3e1"alt="gif-function2" width="370"></td>
+      <td><img src="https://github.com/JWdori/VR-MCT/assets/42615916/21fcc863-13bc-4df0-850c-01d22091ddb7"alt="gif-function2" width="370"></td>
     </tr>
   </table>
 </div>
