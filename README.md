@@ -149,8 +149,7 @@
 <br/>
 
 
-### Game1 System Structure
-
+### Game1 System Structure (@KJH-27)
 <div align="start">
   <table>
     <tr align="center">
@@ -195,7 +194,7 @@
 <br/>
 
 
-### Game2 System Structure
+### Game2 System Structure (@dongjun0207)
 <div align="start">
   <table>
     <tr align="center">
@@ -247,7 +246,7 @@
 
 <br/>
 
-### Game3 System Structure
+### Game3 System Structure (@JWdori)
 
 <div align="start">
   <table>
