@@ -39,6 +39,8 @@ TagManager:
   - Answer
   - HardModeExplain
   - DART
+  - OnOff
+  - shot
   layers:
   - Default
   - TransparentFX
